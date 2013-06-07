@@ -1,5 +1,5 @@
 //
-//  REAppDelegate.h
+//  AppDelegate.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/6/13.
@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface REAppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+@property (strong) IBOutlet NSMenu *statusMenu;
+@property (strong) NSStatusItem *statusBar;
 
 @end
