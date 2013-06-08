@@ -1,0 +1,13 @@
+PODS:
+  - JSONModel (0.9.0)
+  - OBMenuBarWindow (0.0.1)
+
+DEPENDENCIES:
+  - JSONModel (~> 0.9.0)
+  - OBMenuBarWindow (~> 0.0.1)
+
+SPEC CHECKSUMS:
+  JSONModel: 0bd6b228cab887fa0637abe05e805aef8a624461
+  OBMenuBarWindow: 70b2741217b6b17670e7427fd29b1ff13d0c349a
+
+COCOAPODS: 0.20.2
