@@ -16,6 +16,7 @@
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
 		936327BC1763BB1000146C8A /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327BA1763BB1000146C8A /* Window.xib */; };
+		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,8 @@
 		936327B81763BB1000146C8A /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = Classes/Controllers/WindowController.h; sourceTree = SOURCE_ROOT; };
 		936327B91763BB1000146C8A /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowController.m; path = Classes/Controllers/WindowController.m; sourceTree = SOURCE_ROOT; };
 		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Classes/Controllers/Window.xib; sourceTree = SOURCE_ROOT; };
+		936327BD1763C25B00146C8A /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = Classes/Controllers/ApplicationController.h; sourceTree = SOURCE_ROOT; };
+		936327BE1763C25B00146C8A /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = Classes/Controllers/ApplicationController.m; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -108,14 +111,14 @@
 		932C29A01761AE0B0049EC1B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				934626581762798100F947FE /* Podfile */,
 				932C29C71761AF800049EC1B /* AppDelegate.h */,
 				932C29C81761AF800049EC1B /* AppDelegate.m */,
-				932C29BA1761AF0B0049EC1B /* main.m */,
-				932C29BB1761AF0B0049EC1B /* Prefix.pch */,
-				932C29B91761AF0B0049EC1B /* Info.plist */,
 				932C29BE1761AF460049EC1B /* Credits.rtf */,
+				932C29B91761AF0B0049EC1B /* Info.plist */,
 				932C29C01761AF460049EC1B /* InfoPlist.strings */,
+				932C29BA1761AF0B0049EC1B /* main.m */,
+				934626581762798100F947FE /* Podfile */,
+				932C29BB1761AF0B0049EC1B /* Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -150,6 +153,8 @@
 		936327B71763BAE100146C8A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				936327BD1763C25B00146C8A /* ApplicationController.h */,
+				936327BE1763C25B00146C8A /* ApplicationController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
 			);
@@ -260,6 +265,7 @@
 				932C29C91761AF800049EC1B /* AppDelegate.m in Sources */,
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
+				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
