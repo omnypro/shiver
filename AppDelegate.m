@@ -13,12 +13,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Initialize and display the window and status bar menu item.
-    [self.window setMenuBarIcon:[NSImage imageNamed:NSImageNameActionTemplate]];
-    [self.window setHighlightedMenuBarIcon:[NSImage imageNamed:NSImageNameActionTemplate]];
-    [self.window setHasMenuBarIcon:YES];
-    [self.window setAttachedToMenuBar:YES];
-
     // Initialize and display the status bar menu item.
     // self.statusBar = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     // [self.statusBar setTitle:@"Shiver"];
