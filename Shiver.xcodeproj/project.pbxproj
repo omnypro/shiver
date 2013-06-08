@@ -12,6 +12,8 @@
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
 		932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932C29C01761AF460049EC1B /* InfoPlist.strings */; };
 		932C29C91761AF800049EC1B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29C81761AF800049EC1B /* AppDelegate.m */; };
+		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
+		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		93636A801761B05C00980570 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,9 @@
 		932C29C11761AF460049EC1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		932C29C71761AF800049EC1B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		932C29C81761AF800049EC1B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
+		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
+		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +87,7 @@
 		932C299F1761AE0B0049EC1B /* Shiver */ = {
 			isa = PBXGroup;
 			children = (
+				93462653176273D500F947FE /* Classes */,
 				93636A7D1761B03D00980570 /* MainMenu.xib */,
 				932C29A01761AE0B0049EC1B /* Supporting Files */,
 			);
@@ -91,6 +97,7 @@
 		932C29A01761AE0B0049EC1B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				934626581762798100F947FE /* Podfile */,
 				932C29C71761AF800049EC1B /* AppDelegate.h */,
 				932C29C81761AF800049EC1B /* AppDelegate.m */,
 				932C29BA1761AF0B0049EC1B /* main.m */,
@@ -100,6 +107,23 @@
 				932C29C01761AF460049EC1B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93462653176273D500F947FE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				93462654176273E500F947FE /* Models */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		93462654176273E500F947FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				934626551762740E00F947FE /* Stream.h */,
+				934626561762740E00F947FE /* Stream.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +181,7 @@
 				93636A801761B05C00980570 /* MainMenu.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
+				934626591762798100F947FE /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +194,7 @@
 			files = (
 				932C29BD1761AF0B0049EC1B /* main.m in Sources */,
 				932C29C91761AF800049EC1B /* AppDelegate.m in Sources */,
+				934626571762740E00F947FE /* Stream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
