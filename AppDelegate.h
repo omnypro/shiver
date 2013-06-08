@@ -8,14 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class OBMenuBarWindow;
+@protocol ShiverApplicationDelegate <NSApplicationDelegate>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@end
 
-@property (assign) IBOutlet NSMenu *statusMenu;
-@property (assign) IBOutlet OBMenuBarWindow *window;
+@interface ShiverApplication : NSApplication
 
-@property (nonatomic, strong) NSStatusItem *statusBar;
-@property (nonatomic, strong) NSPopover *popover;
+@property (nonatomic, unsafe_unretained) id <ShiverApplicationDelegate> delegate;
 
 @end
