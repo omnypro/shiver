@@ -11,7 +11,7 @@
 		932C29BD1761AF0B0049EC1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29BA1761AF0B0049EC1B /* main.m */; };
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
 		932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932C29C01761AF460049EC1B /* InfoPlist.strings */; };
-		932C29C91761AF800049EC1B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29C81761AF800049EC1B /* AppDelegate.m */; };
+		932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29C81761AF800049EC1B /* ShiverApplication.m */; };
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
@@ -32,8 +32,8 @@
 		932C29BB1761AF0B0049EC1B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = SOURCE_ROOT; };
 		932C29BF1761AF460049EC1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		932C29C11761AF460049EC1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		932C29C71761AF800049EC1B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		932C29C81761AF800049EC1B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		932C29C71761AF800049EC1B /* ShiverApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiverApplication.h; sourceTree = SOURCE_ROOT; };
+		932C29C81761AF800049EC1B /* ShiverApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiverApplication.m; sourceTree = SOURCE_ROOT; };
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
@@ -111,8 +111,8 @@
 		932C29A01761AE0B0049EC1B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				932C29C71761AF800049EC1B /* AppDelegate.h */,
-				932C29C81761AF800049EC1B /* AppDelegate.m */,
+				932C29C71761AF800049EC1B /* ShiverApplication.h */,
+				932C29C81761AF800049EC1B /* ShiverApplication.m */,
 				932C29BE1761AF460049EC1B /* Credits.rtf */,
 				932C29B91761AF0B0049EC1B /* Info.plist */,
 				932C29C01761AF460049EC1B /* InfoPlist.strings */,
@@ -262,7 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				932C29BD1761AF0B0049EC1B /* main.m in Sources */,
-				932C29C91761AF800049EC1B /* AppDelegate.m in Sources */,
+				932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */,
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,

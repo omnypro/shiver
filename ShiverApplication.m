@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ShiverApplication.h"
 
 @implementation ShiverApplication
 
