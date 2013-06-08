@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class OBMenuBarWindow;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, weak) IBOutlet NSMenu *statusMenu;
+@property (assign) IBOutlet NSMenu *statusMenu;
+@property (assign) IBOutlet OBMenuBarWindow *window;
 
 @property (nonatomic, strong) NSStatusItem *statusBar;
 @property (nonatomic, strong) NSPopover *popover;
