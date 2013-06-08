@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "JSONModel.h"
 
-@interface Stream : NSObject
+@interface Stream : JSONModel
 
 @end
