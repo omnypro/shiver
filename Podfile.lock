@@ -1,15 +1,23 @@
 PODS:
-  - JSONModel (0.9.0)
+  - libextobjc/EXTKeyPathCoding (0.2.5):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.2.5):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.2.5)
+  - Mantle (1.1):
+    - libextobjc/EXTKeyPathCoding
+    - libextobjc/EXTScope
   - OBMenuBarWindow (0.0.1)
   - PXListView (0.0.1)
 
 DEPENDENCIES:
-  - JSONModel (~> 0.9.0)
+  - Mantle (~> 1.1)
   - OBMenuBarWindow (~> 0.0.1)
   - PXListView (~> 0.0.1)
 
 SPEC CHECKSUMS:
-  JSONModel: 0bd6b228cab887fa0637abe05e805aef8a624461
+  libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
+  Mantle: aba2facc6ee8f97512a94768dc57c82b7802948c
   OBMenuBarWindow: 70b2741217b6b17670e7427fd29b1ff13d0c349a
   PXListView: 5fac830cb89dd5e7c7bc10cc1c13a21e03e0ba69
 
