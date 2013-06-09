@@ -8,8 +8,10 @@
 
 #import "StreamListViewController.h"
 
+#import "Overcoat.h"
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
+#import "Stream.h"
 #import "StreamListViewCell.h"
 
 @interface StreamListViewController ()
@@ -33,8 +35,17 @@
         [self._listItems addObject:title];
     }
 
+    [Stream fetchItems];
     [self.listView reloadData];
 }
+
+#pragma mark - Data Source Methods
+
+- (void)loadItems
+{
+}
+
+#pragma mark - ListView Methods
 
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
 {

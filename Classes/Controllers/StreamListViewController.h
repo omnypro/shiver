@@ -14,5 +14,6 @@
 
 @property (weak) IBOutlet PXListView *listView;
 @property (nonatomic, strong) NSMutableArray *_listItems;
+@property (nonatomic, strong) NSMutableArray *streamArray;
 
 @end

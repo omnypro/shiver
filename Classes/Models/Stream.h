@@ -21,4 +21,6 @@
 @property (nonatomic, copy, readonly) NSURL *previewImageURL;
 @property (nonatomic, copy, readonly) NSNumber *viewers;
 
++ (void)fetchItems;
+
 @end
