@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ShiverApplication.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/6/13.
