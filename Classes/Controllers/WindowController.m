@@ -17,12 +17,9 @@
 
 -(void) setupControllers;
 -(void) composeInterface;
--(void) composeTitleBar;
 @end
 
 @implementation WindowController
-
-@synthesize masterView = _masterView;
 
 - (id)init
 {
@@ -37,10 +34,10 @@
 {
     [super windowDidLoad];
     [[self window] setAllowsConcurrentViewDrawing:YES];
-    // Set up our initial controllers.
-    [self setupControllers];
     
-    // Initialize and display the window and status bar menu item.
+    // Set up our initial controllers and initialize and display the window
+    // and status bar menu item.
+    [self setupControllers];
     [self composeInterface];
 }
 
@@ -64,15 +61,10 @@
     [window setAttachedToMenuBar:YES];
 
     // Compose our own title bar.
-    [self composeTitleBar];
-}
-
-- (void)composeTitleBar
-{
-    OBMenuBarWindow *window = (OBMenuBarWindow *)[self window];
     [window setTitle:@""];
     [[window toolbarView] addSubview:self.titleBarView];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+
 }
 
 @end

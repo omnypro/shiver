@@ -12,8 +12,6 @@
 #import "PXListView.h"
 #import "StreamListViewCell.h"
 
-#define NUM_EXAMPLE_ITEMS				10
-
 @interface StreamViewController ()
 
 @end
@@ -22,14 +20,14 @@
 
 - (void)awakeFromNib
 {
-    [self.listView setCellSpacing:2.0f];
+    [self.listView setCellSpacing:1.0f];
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
 
     self._listItems = [[NSMutableArray alloc] init];
 
-    //Create a bunch of rows as a test
-    for( NSInteger i = 0; i < NUM_EXAMPLE_ITEMS; i++ )
+    // Create a bunch of rows as a test.
+    for( NSInteger i = 0; i < 10; i++ )
     {
         NSString *title = [[NSString alloc] initWithFormat: @"Item %ld", i +1];
         [self._listItems addObject:title];
@@ -46,8 +44,8 @@
     }
 
     // Set up our new cell.
+    [[cell streamUserLabel] setStringValue:[self._listItems objectAtIndex:row]];
     [[cell streamTitleLabel] setStringValue:[self._listItems objectAtIndex:row]];
-    NSLog(@"<%p> %@", self, cell.streamTitleLabel);
     return cell;
 }
 
