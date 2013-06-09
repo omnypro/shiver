@@ -12,7 +12,8 @@
 
 @interface WindowController : NSWindowController
 
-@property (assign) IBOutlet NSView *masterView;
-
+@property (weak) IBOutlet NSView *masterView;
+@property (weak) IBOutlet NSView *titleBarView;
+@property (weak) IBOutlet NSTextField *statusLabel;
 
 @end
