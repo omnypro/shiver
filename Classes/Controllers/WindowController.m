@@ -6,17 +6,23 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "OBMenuBarWindow.h"
-
 #import "WindowController.h"
 
+#import "OBMenuBarWindow.h"
+#import "StreamViewController.h"
+
 @interface WindowController ()
+@property (strong) NSViewController *currentViewController;
+@property (strong) StreamViewController *streamViewController;
+
 -(void) setupControllers;
 -(void) composeInterface;
 -(void) composeTitleBar;
 @end
 
 @implementation WindowController
+
+@synthesize masterView = _masterView;
 
 - (id)init
 {
@@ -31,7 +37,6 @@
 {
     [super windowDidLoad];
     [[self window] setAllowsConcurrentViewDrawing:YES];
-
     // Set up our initial controllers.
     [self setupControllers];
     
@@ -43,7 +48,11 @@
 
 - (void)setupControllers
 {
-    
+    self.streamViewController = [[StreamViewController alloc] initWithNibName:@"StreamView" bundle:nil];
+
+    self.currentViewController = self.streamViewController;
+    [self.currentViewController.view setFrame:self.masterView.bounds];
+    [self.masterView addSubview:self.currentViewController.view];
 }
 
 - (void)composeInterface
@@ -62,9 +71,7 @@
 {
     OBMenuBarWindow *window = (OBMenuBarWindow *)[self window];
     [window setTitle:@""];
-
-    NSView *toolbarView = [window toolbarView];
-    [toolbarView addSubview:self.titleBarView];
+    [[window toolbarView] addSubview:self.titleBarView];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
 }
 
