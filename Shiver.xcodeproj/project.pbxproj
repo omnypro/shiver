@@ -129,8 +129,6 @@
 		932C29A01761AE0B0049EC1B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				932C29C71761AF800049EC1B /* ShiverApplication.h */,
-				932C29C81761AF800049EC1B /* ShiverApplication.m */,
 				932C29BE1761AF460049EC1B /* Credits.rtf */,
 				932C29B91761AF0B0049EC1B /* Info.plist */,
 				932C29C01761AF460049EC1B /* InfoPlist.strings */,
@@ -144,9 +142,11 @@
 		93462653176273D500F947FE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				936327D61764468B00146C8A /* Views */,
+				932C29C71761AF800049EC1B /* ShiverApplication.h */,
+				932C29C81761AF800049EC1B /* ShiverApplication.m */,
 				936327B71763BAE100146C8A /* Controllers */,
 				93462654176273E500F947FE /* Models */,
+				936327D61764468B00146C8A /* Views */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
