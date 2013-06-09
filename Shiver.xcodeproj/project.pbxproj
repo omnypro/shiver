@@ -21,8 +21,8 @@
 		936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */; };
 		936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C91764119200146C8A /* StatusBarIcon.pdf */; };
 		936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */; };
-		936327D01764287100146C8A /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327CE1764287100146C8A /* StreamViewController.m */; };
-		936327D11764287100146C8A /* StreamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamView.xib */; };
+		936327D01764287100146C8A /* StreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327CE1764287100146C8A /* StreamListViewController.m */; };
+		936327D11764287100146C8A /* StreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamListView.xib */; };
 		936327D51764468500146C8A /* StreamListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327D41764468500146C8A /* StreamListViewCell.m */; };
 		936327D81764670300146C8A /* StreamListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327D71764670300146C8A /* StreamListViewCell.xib */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
@@ -54,9 +54,9 @@
 		936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchWhite.pdf; path = Assets/Templates/TwitchGlitchWhite.pdf; sourceTree = SOURCE_ROOT; };
 		936327C91764119200146C8A /* StatusBarIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIcon.pdf; path = Assets/Templates/StatusBarIcon.pdf; sourceTree = SOURCE_ROOT; };
 		936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIconInverted.pdf; path = Assets/Templates/StatusBarIconInverted.pdf; sourceTree = SOURCE_ROOT; };
-		936327CD1764287100146C8A /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewController.h; path = Classes/Controllers/StreamViewController.h; sourceTree = SOURCE_ROOT; };
-		936327CE1764287100146C8A /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewController.m; path = Classes/Controllers/StreamViewController.m; sourceTree = SOURCE_ROOT; };
-		936327CF1764287100146C8A /* StreamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamView.xib; path = Classes/Controllers/StreamView.xib; sourceTree = SOURCE_ROOT; };
+		936327CD1764287100146C8A /* StreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewController.h; path = Classes/Controllers/StreamListViewController.h; sourceTree = SOURCE_ROOT; };
+		936327CE1764287100146C8A /* StreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewController.m; path = Classes/Controllers/StreamListViewController.m; sourceTree = SOURCE_ROOT; };
+		936327CF1764287100146C8A /* StreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListView.xib; path = Classes/Controllers/StreamListView.xib; sourceTree = SOURCE_ROOT; };
 		936327D31764468400146C8A /* StreamListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewCell.h; path = Classes/Views/StreamListViewCell.h; sourceTree = SOURCE_ROOT; };
 		936327D41764468500146C8A /* StreamListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewCell.m; path = Classes/Views/StreamListViewCell.m; sourceTree = SOURCE_ROOT; };
 		936327D71764670300146C8A /* StreamListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamListViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -174,8 +174,8 @@
 			children = (
 				936327BD1763C25B00146C8A /* ApplicationController.h */,
 				936327BE1763C25B00146C8A /* ApplicationController.m */,
-				936327CD1764287100146C8A /* StreamViewController.h */,
-				936327CE1764287100146C8A /* StreamViewController.m */,
+				936327CD1764287100146C8A /* StreamListViewController.h */,
+				936327CE1764287100146C8A /* StreamListViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
 			);
@@ -199,7 +199,7 @@
 			children = (
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327D71764670300146C8A /* StreamListViewCell.xib */,
-				936327CF1764287100146C8A /* StreamView.xib */,
+				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
 			name = NIBs;
@@ -277,7 +277,7 @@
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
 				936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */,
 				936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */,
-				936327D11764287100146C8A /* StreamView.xib in Resources */,
+				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,7 +325,7 @@
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
-				936327D01764287100146C8A /* StreamViewController.m in Sources */,
+				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamViewController.h"
+#import "StreamListViewController.h"
 
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
 #import "StreamListViewCell.h"
 
-@interface StreamViewController ()
+@interface StreamListViewController ()
 
 @end
 
-@implementation StreamViewController
+@implementation StreamListViewController
 
 - (void)awakeFromNib
 {
