@@ -25,19 +25,9 @@
     [self.streamUserLabel setStringValue:@"user"];
 }
 
-//- (id)initWithFrame:(NSRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        // Initialization code here.
-//    }
-//
-//    return self;
-//}
-
 - (void)drawRect:(NSRect)dirtyRect
 {
-	if([self isSelected]) {
+	if ([self isSelected]) {
 		[[NSColor selectedControlColor] set];
 	}
 	else {

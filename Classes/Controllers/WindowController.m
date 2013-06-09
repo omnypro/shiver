@@ -9,11 +9,11 @@
 #import "WindowController.h"
 
 #import "OBMenuBarWindow.h"
-#import "StreamViewController.h"
+#import "StreamListViewController.h"
 
 @interface WindowController ()
 @property (strong) NSViewController *currentViewController;
-@property (strong) StreamViewController *streamViewController;
+@property (strong) StreamListViewController *streamListViewController;
 
 -(void) setupControllers;
 -(void) composeInterface;
@@ -45,9 +45,9 @@
 
 - (void)setupControllers
 {
-    self.streamViewController = [[StreamViewController alloc] initWithNibName:@"StreamView" bundle:nil];
+    self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamListView" bundle:nil];
 
-    self.currentViewController = self.streamViewController;
+    self.currentViewController = self.streamListViewController;
     [self.currentViewController.view setFrame:self.masterView.bounds];
     [self.masterView addSubview:self.currentViewController.view];
 }
