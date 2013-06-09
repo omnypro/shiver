@@ -1,4 +1,5 @@
 PODS:
+  - AFNetworking (1.2.1)
   - libextobjc/EXTKeyPathCoding (0.2.5):
     - libextobjc/RuntimeExtensions
   - libextobjc/EXTScope (0.2.5):
@@ -8,17 +9,23 @@ PODS:
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
   - OBMenuBarWindow (0.0.1)
+  - Overcoat (0.2):
+    - AFNetworking (~> 1.2.1)
+    - Mantle (~> 1.1)
   - PXListView (0.0.1)
 
 DEPENDENCIES:
   - Mantle (~> 1.1)
   - OBMenuBarWindow (~> 0.0.1)
+  - Overcoat (~> 0.2)
   - PXListView (~> 0.0.1)
 
 SPEC CHECKSUMS:
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aba2facc6ee8f97512a94768dc57c82b7802948c
   OBMenuBarWindow: 70b2741217b6b17670e7427fd29b1ff13d0c349a
+  Overcoat: e6f10fc287ce6582735aab6cde224f769daf9a07
   PXListView: 5fac830cb89dd5e7c7bc10cc1c13a21e03e0ba69
 
 COCOAPODS: 0.20.2

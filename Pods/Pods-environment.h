@@ -6,6 +6,12 @@
 // project.
 
 
+// AFNetworking
+#define COCOAPODS_POD_AVAILABLE_AFNetworking
+#define COCOAPODS_VERSION_MAJOR_AFNetworking 1
+#define COCOAPODS_VERSION_MINOR_AFNetworking 2
+#define COCOAPODS_VERSION_PATCH_AFNetworking 1
+
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1
@@ -17,6 +23,12 @@
 #define COCOAPODS_VERSION_MAJOR_OBMenuBarWindow 0
 #define COCOAPODS_VERSION_MINOR_OBMenuBarWindow 0
 #define COCOAPODS_VERSION_PATCH_OBMenuBarWindow 1
+
+// Overcoat
+#define COCOAPODS_POD_AVAILABLE_Overcoat
+#define COCOAPODS_VERSION_MAJOR_Overcoat 0
+#define COCOAPODS_VERSION_MINOR_Overcoat 2
+#define COCOAPODS_VERSION_PATCH_Overcoat 0
 
 // PXListView
 #define COCOAPODS_POD_AVAILABLE_PXListView
