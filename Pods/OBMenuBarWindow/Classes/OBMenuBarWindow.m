@@ -35,7 +35,7 @@ NSString * const OBMenuBarWindowDidAttachToMenuBar = @"OBMenuBarWindowDidAttachT
 NSString * const OBMenuBarWindowDidDetachFromMenuBar = @"OBMenuBarWindowDidDetachFromMenuBar";
 
 // You can alter these constants to change the appearance of the window
-const CGFloat OBMenuBarWindowTitleBarHeight = 32.0;
+const CGFloat OBMenuBarWindowTitleBarHeight = 34.0;
 const CGFloat OBMenuBarWindowArrowHeight = 10.0;
 const CGFloat OBMenuBarWindowArrowWidth = 20.0;
 

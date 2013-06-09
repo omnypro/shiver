@@ -17,6 +17,10 @@
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
 		936327BC1763BB1000146C8A /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327BA1763BB1000146C8A /* Window.xib */; };
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
+		936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */; };
+		936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */; };
+		936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C91764119200146C8A /* StatusBarIcon.pdf */; };
+		936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -42,6 +46,10 @@
 		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Classes/Controllers/Window.xib; sourceTree = SOURCE_ROOT; };
 		936327BD1763C25B00146C8A /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = Classes/Controllers/ApplicationController.h; sourceTree = SOURCE_ROOT; };
 		936327BE1763C25B00146C8A /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = Classes/Controllers/ApplicationController.m; sourceTree = SOURCE_ROOT; };
+		936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchPurple.pdf; path = Assets/Templates/TwitchGlitchPurple.pdf; sourceTree = SOURCE_ROOT; };
+		936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchWhite.pdf; path = Assets/Templates/TwitchGlitchWhite.pdf; sourceTree = SOURCE_ROOT; };
+		936327C91764119200146C8A /* StatusBarIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIcon.pdf; path = Assets/Templates/StatusBarIcon.pdf; sourceTree = SOURCE_ROOT; };
+		936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIconInverted.pdf; path = Assets/Templates/StatusBarIconInverted.pdf; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -144,6 +152,7 @@
 		936327B41763B73700146C8A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				936327C01763C8AE00146C8A /* Templates */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
@@ -159,6 +168,18 @@
 				936327B91763BB1000146C8A /* WindowController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		936327C01763C8AE00146C8A /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				936327C91764119200146C8A /* StatusBarIcon.pdf */,
+				936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */,
+				936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */,
+				936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */,
+			);
+			name = Templates;
+			path = Assets/Templates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +241,10 @@
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
 				934626591762798100F947FE /* Podfile in Resources */,
 				936327BC1763BB1000146C8A /* Window.xib in Resources */,
+				936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */,
+				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
+				936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */,
+				936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
