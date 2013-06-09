@@ -6,8 +6,13 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "PXListView.h"
+
 #import <Cocoa/Cocoa.h>
 
-@interface StreamViewController : NSViewController
+@interface StreamViewController : NSViewController <PXListViewDelegate>
+
+@property (weak) IBOutlet PXListView *listView;
+@property (nonatomic, strong) NSMutableArray *_listItems;
 
 @end
