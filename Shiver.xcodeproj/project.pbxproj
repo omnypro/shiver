@@ -21,6 +21,8 @@
 		936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */; };
 		936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C91764119200146C8A /* StatusBarIcon.pdf */; };
 		936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */; };
+		936327D01764287100146C8A /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327CE1764287100146C8A /* StreamViewController.m */; };
+		936327D11764287100146C8A /* StreamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamView.xib */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,9 @@
 		936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchWhite.pdf; path = Assets/Templates/TwitchGlitchWhite.pdf; sourceTree = SOURCE_ROOT; };
 		936327C91764119200146C8A /* StatusBarIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIcon.pdf; path = Assets/Templates/StatusBarIcon.pdf; sourceTree = SOURCE_ROOT; };
 		936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIconInverted.pdf; path = Assets/Templates/StatusBarIconInverted.pdf; sourceTree = SOURCE_ROOT; };
+		936327CD1764287100146C8A /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewController.h; path = Classes/Controllers/StreamViewController.h; sourceTree = SOURCE_ROOT; };
+		936327CE1764287100146C8A /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewController.m; path = Classes/Controllers/StreamViewController.m; sourceTree = SOURCE_ROOT; };
+		936327CF1764287100146C8A /* StreamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamView.xib; path = Classes/Controllers/StreamView.xib; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -152,9 +157,8 @@
 		936327B41763B73700146C8A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				936327D21764288E00146C8A /* NIBs */,
 				936327C01763C8AE00146C8A /* Templates */,
-				93636A7D1761B03D00980570 /* Menu.xib */,
-				936327BA1763BB1000146C8A /* Window.xib */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -164,6 +168,8 @@
 			children = (
 				936327BD1763C25B00146C8A /* ApplicationController.h */,
 				936327BE1763C25B00146C8A /* ApplicationController.m */,
+				936327CD1764287100146C8A /* StreamViewController.h */,
+				936327CE1764287100146C8A /* StreamViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
 			);
@@ -180,6 +186,16 @@
 			);
 			name = Templates;
 			path = Assets/Templates;
+			sourceTree = "<group>";
+		};
+		936327D21764288E00146C8A /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				93636A7D1761B03D00980570 /* Menu.xib */,
+				936327CF1764287100146C8A /* StreamView.xib */,
+				936327BA1763BB1000146C8A /* Window.xib */,
+			);
+			name = NIBs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +261,7 @@
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
 				936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */,
 				936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */,
+				936327D11764287100146C8A /* StreamView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +308,7 @@
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
+				936327D01764287100146C8A /* StreamViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
