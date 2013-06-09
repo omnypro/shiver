@@ -20,10 +20,10 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"previewImage": @"preview"};
+    return @{@"previewImageURL": @"preview"};
 }
 
-+ (NSValueTransformer *)previewImageJSONTransformer {
++ (NSValueTransformer *)previewImageURLJSONTransformer {
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 

@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong, readonly) Channel *channel;
 @property (nonatomic, copy, readonly) NSString *broadcaster;
-@property (nonatomic, copy, readonly) NSURL *previewImage;
+@property (nonatomic, copy, readonly) NSURL *previewImageURL;
 @property (nonatomic, copy, readonly) NSNumber *viewers;
 
 @end
