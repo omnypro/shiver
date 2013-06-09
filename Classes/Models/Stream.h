@@ -6,8 +6,19 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "JSONModel.h"
+#import "Mantle.h"
 
-@interface Stream : JSONModel
+@class Channel;
+
+@interface Stream : MTLModel <MTLJSONSerializing>
+
+@property (nonatomic, copy, readonly) NSNumber *_id;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *game;
+
+@property (nonatomic, strong, readonly) Channel *channel;
+@property (nonatomic, copy, readonly) NSString *broadcaster;
+@property (nonatomic, copy, readonly) NSURL *previewImage;
+@property (nonatomic, copy, readonly) NSNumber *viewers;
 
 @end

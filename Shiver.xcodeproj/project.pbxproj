@@ -25,6 +25,7 @@
 		936327D11764287100146C8A /* StreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamListView.xib */; };
 		936327D51764468500146C8A /* StreamListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327D41764468500146C8A /* StreamListViewCell.m */; };
 		936327D81764670300146C8A /* StreamListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327D71764670300146C8A /* StreamListViewCell.xib */; };
+		936327DB1764F9BB00146C8A /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327DA1764F9BB00146C8A /* Channel.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,8 @@
 		936327D31764468400146C8A /* StreamListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewCell.h; path = Classes/Views/StreamListViewCell.h; sourceTree = SOURCE_ROOT; };
 		936327D41764468500146C8A /* StreamListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewCell.m; path = Classes/Views/StreamListViewCell.m; sourceTree = SOURCE_ROOT; };
 		936327D71764670300146C8A /* StreamListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamListViewCell.xib; sourceTree = SOURCE_ROOT; };
+		936327D91764F9BB00146C8A /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Channel.h; path = Classes/Models/Channel.h; sourceTree = SOURCE_ROOT; };
+		936327DA1764F9BB00146C8A /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Channel.m; path = Classes/Models/Channel.m; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -154,6 +157,8 @@
 		93462654176273E500F947FE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				936327D91764F9BB00146C8A /* Channel.h */,
+				936327DA1764F9BB00146C8A /* Channel.m */,
 				934626551762740E00F947FE /* Stream.h */,
 				934626561762740E00F947FE /* Stream.m */,
 			);
@@ -327,6 +332,7 @@
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewCell.m in Sources */,
+				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

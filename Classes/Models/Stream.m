@@ -8,6 +8,27 @@
 
 #import "Stream.h"
 
+#import "Channel.h"
+
 @implementation Stream
+
++ (NSDateFormatter *)dateFormatter {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    return dateFormatter;
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"previewImage": @"preview"};
+}
+
++ (NSValueTransformer *)previewImageJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)channelJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Channel.class];
+}
 
 @end
