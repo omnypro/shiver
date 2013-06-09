@@ -9,6 +9,7 @@
 #import "Stream.h"
 
 #import "Channel.h"
+#import "Overcoat.h"
 
 @implementation Stream
 
@@ -29,6 +30,20 @@
 
 + (NSValueTransformer *)channelJSONTransformer {
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Channel.class];
+}
+
++ (void)fetchItems
+{
+    NSURL *baseURL = [[NSURL alloc] initWithString:@"https://api.twitch.tv/kraken/"];
+    OVCClient *twitchClient = [[OVCClient alloc] initWithBaseURL:baseURL];
+    OVCQuery *featuredStreams = [OVCQuery queryWithMethod:OVCQueryMethodGet path:@"streams/featured" parameters:nil modelClass:Stream.class objectKeyPath:@"featured"];
+//    OVCQuery *featuredStreams = [OVCQuery queryWithMethod:OVCQueryMethodGet path:@"streams/featured" modelClass:Stream.class];
+
+    [twitchClient executeQuery:featuredStreams completionBlock:^(OVCRequestOperation *operation, NSArray *streams, NSError *error) {
+        if (!error) {
+            NSLog(@"%@", streams);
+        }
+    }];
 }
 
 @end
