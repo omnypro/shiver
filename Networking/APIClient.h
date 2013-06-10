@@ -6,17 +6,16 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "AFHTTPClient.h"
+#import "AFOAuth2Client.h"
 
 extern NSString * const kTwitchBaseURL;
 
-@interface APIClient : AFHTTPClient
+@interface APIClient : AFOAuth2Client
 
 @property (nonatomic, assign) BOOL isAuthenticated;
 
 + (APIClient *)sharedClient;
 
-#define clientID @"rh02ow0o6qsss1psrb3q2cceg34tg9s"
-#define clientSecret @"rji9hs6u0wbj35snosv1n71ou0xpuqi"
+- (void)signOut;
 
 @end
