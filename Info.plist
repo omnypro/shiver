@@ -34,5 +34,16 @@
 	<string>NSApplication</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>Shiver URL</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>shiver</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
