@@ -16,4 +16,9 @@
 @property (weak) IBOutlet NSView *titleBarView;
 @property (weak) IBOutlet NSTextField *statusLabel;
 
+@property (strong) IBOutlet NSMenu *contextMenu;
+
+- (IBAction)showContextMenu:(NSButton *)sender;
+- (IBAction)showPreferences:(id)sender;
+
 @end
