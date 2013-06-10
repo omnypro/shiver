@@ -67,4 +67,13 @@
 
 }
 
+#pragma mark Interface Builder Actions
+
+- (IBAction)showContextMenu:(NSButton *)sender {
+    [self.contextMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(14,26) inView:sender];
+}
+
+- (IBAction)showPreferences:(id)sender {
+}
+
 @end
