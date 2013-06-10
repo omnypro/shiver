@@ -18,6 +18,11 @@
 #endif
 
 
+#ifdef __OBJC__
+  #import <Security/Security.h>
+#endif /* __OBJC__*/
+
+
 
 
 
