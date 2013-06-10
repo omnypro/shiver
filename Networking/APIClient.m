@@ -11,6 +11,15 @@
 #import "AFJSONRequestOperation.h"
 
 NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
+NSString * const kRedirectURI = @"shiver://oauth";
+NSString * const kClientID = @"rh02ow0o6qsss1psrb3q2cceg34tg9s";
+NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
+
+@interface APIClient ()
+
+@property (strong, nonatomic) AFOAuthCredential *credential;
+
+@end
 
 @implementation APIClient
 
@@ -25,17 +34,28 @@ NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
     return _sharedClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url
+- (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)clientID secret:(NSString *)secret
 {
-    self = [super initWithBaseURL:url];
+    self = [super initWithBaseURL:url clientID:clientID secret:secret];
     if (!self) {
         return nil;
     }
 
-    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"application/vnd.twitchtv.v2+json"];
+    [self setDefaultHeader:@"Client-ID" value:kClientID];
+
+    self.credential = [AFOAuthCredential retrieveCredentialWithIdentifier:self.serviceProviderIdentifier];
+    if (self.credential != nil) {
+        [self setAuthorizationHeaderWithCredential:self.credential];
+    }
+
     return self;
 }
 
+- (void)signOut
+{
+    self.credential = nil;
+    [AFOAuthCredential deleteCredentialWithIdentifier:self.serviceProviderIdentifier];
+}
 
 @end
