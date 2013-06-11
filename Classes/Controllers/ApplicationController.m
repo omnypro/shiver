@@ -21,18 +21,7 @@
     return [NSApp delegate];
 }
 
-- (void)getURL:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
-{
-    NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
-    NSLog(@"%@", url);
-}
-
 #pragma mark - NSApplicationDelegate
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification
-{
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

@@ -26,6 +26,32 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+}
+
+#pragma mark - Sheet Lifecycle Methods
+
+- (void)getURL:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
+    NSString *urlString = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSLog(@"urlString: %@", urlString);
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"urlQueryParams: %@", [url query]);
+
+    if (url && [[url query] rangeOfString:@"access_denied"].location != NSNotFound) {
+        [NSApp endSheet:self.modalWindow];
+        [self didEndSheet:self.modalWindow returnCode:0 contextInfo:nil];
+    }
+}
+
+- (void)didEndSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    [sheet orderOut:self];
+}
+
 #pragma mark - RHPreferencesViewControllerProtocol
 
 - (NSString*)identifier

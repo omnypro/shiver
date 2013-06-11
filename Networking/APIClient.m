@@ -11,7 +11,7 @@
 #import "AFJSONRequestOperation.h"
 
 NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
-NSString * const kRedirectURI = @"shiver://oauth";
+NSString * const kRedirectURI = @"shiver://authorize";
 NSString * const kClientID = @"rh02ow0o6qsss1psrb3q2cceg34tg9s";
 NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
@@ -29,14 +29,18 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kTwitchBaseURL]];
+        _sharedClient.credential = [AFOAuthCredential retrieveCredentialWithIdentifier:_sharedClient.serviceProviderIdentifier];
+        if (_sharedClient.credential != nil) {
+            [_sharedClient setAuthorizationHeaderWithCredential:_sharedClient.credential];
+        }
     });
 
     return _sharedClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)clientID secret:(NSString *)secret
+- (id)initWithBaseURL:(NSURL *)url
 {
-    self = [super initWithBaseURL:url clientID:clientID secret:secret];
+    self = [super initWithBaseURL:url];
     if (!self) {
         return nil;
     }
