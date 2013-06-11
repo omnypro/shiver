@@ -9,6 +9,7 @@
 #import "WindowController.h"
 
 #import "OBMenuBarWindow.h"
+#import "OAuthViewController.h"
 #import "StreamListViewController.h"
 
 @interface WindowController ()
@@ -69,11 +70,21 @@
 
 #pragma mark Interface Builder Actions
 
-- (IBAction)showContextMenu:(NSButton *)sender {
+- (IBAction)showContextMenu:(NSButton *)sender
+{
     [self.contextMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(14,26) inView:sender];
 }
 
-- (IBAction)showPreferences:(id)sender {
+- (IBAction)showPreferences:(id)sender
+{
+    // If we have not created the window controller yet, create it now.
+    if (!self.preferencesWindowController) {
+        OAuthViewController *oauth = [[OAuthViewController alloc] init];
+        NSArray *controllers = [NSArray arrayWithObjects:oauth, nil];
+        self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
+    }
+
+    [self.preferencesWindowController showWindow:self];
 }
 
 @end

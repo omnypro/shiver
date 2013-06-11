@@ -7,10 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <RHPreferences/RHPreferences.h>
 
 @class OBMenuBarWindow;
 
 @interface WindowController : NSWindowController
+
+@property (strong) RHPreferencesWindowController *preferencesWindowController;
 
 @property (weak) IBOutlet NSView *masterView;
 @property (weak) IBOutlet NSView *titleBarView;
