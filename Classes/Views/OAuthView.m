@@ -22,7 +22,10 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Drawing code here.
+    NSColor* twitchColor = [NSColor colorWithCalibratedRed: 0.392 green: 0.255 blue: 0.647 alpha: 1];
+    NSBezierPath* sidebarPath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 180, 480, 60)];
+    [twitchColor setFill];
+    [sidebarPath fill];
 }
 
 @end
