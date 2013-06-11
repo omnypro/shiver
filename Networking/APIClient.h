@@ -9,6 +9,8 @@
 #import "AFOAuth2Client.h"
 
 extern NSString * const kTwitchBaseURL;
+extern NSString * const kRedirectURI;
+extern NSString * const kClientID;
 
 @interface APIClient : AFOAuth2Client
 
