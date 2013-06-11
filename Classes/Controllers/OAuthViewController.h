@@ -7,7 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <RHPreferences/RHPreferences.h>
+#import <WebKit/WebKit.h>
 
-@interface OAuthViewController : NSViewController
+@interface OAuthViewController : NSViewController <RHPreferencesViewControllerProtocol>
+
+@property (weak) IBOutlet NSButton *loginButton;
+@property (weak) IBOutlet NSButton *learnMoreButton;
+
+@property (strong) IBOutlet NSWindow *modalWindow;
+@property (weak) IBOutlet WebView *modalWebView;
+
+- (IBAction)login:(NSButton *)sender;
+- (IBAction)learnMore:(NSButton *)sender;
 
 @end
