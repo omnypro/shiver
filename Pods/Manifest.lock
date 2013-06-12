@@ -11,9 +11,6 @@ PODS:
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
   - OBMenuBarWindow (0.0.1)
-  - Overcoat (0.2):
-    - AFNetworking (~> 1.2.1)
-    - Mantle (~> 1.1)
   - PXListView (0.0.1)
   - RHPreferences (1.0.0)
 
@@ -22,7 +19,6 @@ DEPENDENCIES:
   - AFOAuth2Client (~> 0.1.1)
   - Mantle (~> 1.1)
   - OBMenuBarWindow (~> 0.0.1)
-  - Overcoat (~> 0.2)
   - PXListView (~> 0.0.1)
   - RHPreferences (~> 1.0.0)
 
@@ -32,7 +28,6 @@ SPEC CHECKSUMS:
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aba2facc6ee8f97512a94768dc57c82b7802948c
   OBMenuBarWindow: 70b2741217b6b17670e7427fd29b1ff13d0c349a
-  Overcoat: e6f10fc287ce6582735aab6cde224f769daf9a07
   PXListView: 5fac830cb89dd5e7c7bc10cc1c13a21e03e0ba69
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
 

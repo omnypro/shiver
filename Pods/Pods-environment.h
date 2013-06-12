@@ -30,12 +30,6 @@
 #define COCOAPODS_VERSION_MINOR_OBMenuBarWindow 0
 #define COCOAPODS_VERSION_PATCH_OBMenuBarWindow 1
 
-// Overcoat
-#define COCOAPODS_POD_AVAILABLE_Overcoat
-#define COCOAPODS_VERSION_MAJOR_Overcoat 0
-#define COCOAPODS_VERSION_MINOR_Overcoat 2
-#define COCOAPODS_VERSION_PATCH_Overcoat 0
-
 // PXListView
 #define COCOAPODS_POD_AVAILABLE_PXListView
 #define COCOAPODS_VERSION_MAJOR_PXListView 0
