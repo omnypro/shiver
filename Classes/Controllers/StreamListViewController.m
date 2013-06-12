@@ -8,7 +8,6 @@
 
 #import "StreamListViewController.h"
 
-#import "Overcoat.h"
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
 #import "Stream.h"
