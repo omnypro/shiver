@@ -77,7 +77,13 @@
     StreamListViewController *object = [notification object];
     if ([object isKindOfClass:[StreamListViewController class]]) {
         // Update the interface, starting with the number of live streams.
-        [[self statusLabel] setStringValue:[NSString stringWithFormat:@"%lu live streams", (unsigned long)[object.streamArray count]]];
+        NSString *statusLabelString = [[NSString alloc] init];
+        if ([object.streamArray count] == 1) {
+            statusLabelString = [NSString stringWithFormat:@"%lu live stream", (unsigned long)[object.streamArray count]];
+        } else {
+            statusLabelString = [NSString stringWithFormat:@"%lu live streams", (unsigned long)[object.streamArray count]];
+        }
+        [[self statusLabel] setStringValue:statusLabelString];
 
         // Now update lastUpdatedLabel with the current date (relative).
         SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
