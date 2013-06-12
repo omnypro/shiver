@@ -14,6 +14,7 @@
 
 @property (weak) IBOutlet NSButton *loginButton;
 @property (weak) IBOutlet NSButton *learnMoreButton;
+@property (weak) IBOutlet NSTextField *connectionStatusLabel;
 
 @property (strong) IBOutlet NSWindow *modalWindow;
 @property (weak) IBOutlet WebView *modalWebView;
