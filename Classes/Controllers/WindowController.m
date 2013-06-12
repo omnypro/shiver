@@ -84,6 +84,7 @@
     }
 
     [self.preferencesWindowController showWindow:self];
+    [self.preferencesWindowController.window makeKeyAndOrderFront:self];
 }
 
 @end

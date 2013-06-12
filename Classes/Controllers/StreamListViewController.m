@@ -8,6 +8,7 @@
 
 #import "StreamListViewController.h"
 
+#import "Channel.h"
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
 #import "Stream.h"
@@ -25,17 +26,18 @@
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
 
-    self._listItems = [[NSMutableArray alloc] init];
+    [Stream fetchStreamListWithBlock:^(NSArray *streams, NSError *error) {
+        if (error) {
+            [[NSAlert alertWithMessageText:NSLocalizedString(@"Error", nil) defaultButton:NSLocalizedString(@"OK", nil) alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@",[error localizedDescription]] runModal];
+        }
 
-    // Create a bunch of rows as a test.
-    for( NSInteger i = 0; i < 10; i++ )
-    {
-        NSString *title = [[NSString alloc] initWithFormat: @"Item %ld", i +1];
-        [self._listItems addObject:title];
-    }
+        NSLog(@"streams: %lu", (unsigned long)streams.count);
+        NSLog(@"streams: %@", streams);
+        self.streamArray = streams;
+        NSLog(@"streams mutableCopy: %@", self.streamArray);
 
-    [Stream fetchItems];
-    [self.listView reloadData];
+        [self.listView reloadData];
+    }];
 }
 
 #pragma mark - Data Source Methods
@@ -49,24 +51,26 @@
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
 {
     StreamListViewCell *cell = (StreamListViewCell *)[aListView dequeueCellWithReusableIdentifier:@"Cell"];
-    if (!cell) {
+    if (!cell) {    
         cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
     }
 
     // Set up our new cell.
-    [[cell streamUserLabel] setStringValue:[self._listItems objectAtIndex:row]];
-    [[cell streamTitleLabel] setStringValue:[self._listItems objectAtIndex:row]];
+    Stream *stream = [self.streamArray objectAtIndex:row];
+    NSLog(@"%@", stream);
+    [[cell streamTitleLabel] setStringValue:stream.channel.status];
+    [[cell streamUserLabel] setStringValue:[NSString stringWithFormat:@"%@ playing %@", stream.channel.displayName, stream.game]];
     return cell;
 }
 
 - (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
 {
-    return 50;
+    return 60;
 }
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
 {
-	return [self._listItems count];
+    return self.streamArray.count;
 }
 
 @end

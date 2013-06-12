@@ -14,10 +14,11 @@ extern NSString * const kClientID;
 
 @interface APIClient : AFOAuth2Client
 
-@property (nonatomic, assign) BOOL isAuthenticated;
+@property (nonatomic, strong) NSString *userHandle;
 
 + (APIClient *)sharedClient;
-
-- (void)signOut;
+- (BOOL)isAuthenticated;
+- (void)authorizeUsingResponseURL:(NSURL *)url;
+- (void)logout;
 
 @end
