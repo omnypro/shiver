@@ -56,8 +56,7 @@
     // Set up our new cell.
     Stream *stream = [self.streamArray objectAtIndex:row];
 
-    NSString *truncatedTitleLabel = [[stream.channel.status substringToIndex:50] stringByAppendingString:@"..."];
-    [[cell streamTitleLabel] setStringValue:truncatedTitleLabel];
+    [[cell streamTitleLabel] setStringValue:stream.channel.status];
     [[cell streamUserLabel] setStringValue:[NSString stringWithFormat:@"%@ playing %@", stream.channel.displayName, stream.game]];
     [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@ viewers", stream.viewers]];
     return cell;
