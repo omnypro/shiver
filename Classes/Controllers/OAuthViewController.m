@@ -97,6 +97,9 @@
     if ([[APIClient sharedClient] isAuthenticated]) {
         [[APIClient sharedClient] signOut];
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitch.tv/settings/applications"]];
+
+        // Update the interface.
+        [self.connectionStatusLabel setStringValue:@"Not currently connected."];
         [self.loginButton setTitle:@"Connect With Twitch"];
     } else {
         NSString *authorizationURL = [NSString stringWithFormat:@"%@oauth2/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=user_read", kTwitchBaseURL, kClientID, kRedirectURI];
