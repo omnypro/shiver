@@ -59,12 +59,13 @@
     NSString *truncatedTitleLabel = [[stream.channel.status substringToIndex:50] stringByAppendingString:@"..."];
     [[cell streamTitleLabel] setStringValue:truncatedTitleLabel];
     [[cell streamUserLabel] setStringValue:[NSString stringWithFormat:@"%@ playing %@", stream.channel.displayName, stream.game]];
+    [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@ viewers", stream.viewers]];
     return cell;
 }
 
 - (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
 {
-    return 60;
+    return 70;
 }
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView

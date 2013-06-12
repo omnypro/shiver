@@ -12,7 +12,8 @@
 
 @interface StreamListViewCell : PXListViewCell
 
-@property (nonatomic, strong) IBOutlet NSTextField *streamTitleLabel;
-@property (nonatomic, strong) IBOutlet NSTextField *streamUserLabel;
+@property (weak) IBOutlet NSTextField *streamTitleLabel;
+@property (weak) IBOutlet NSTextField *streamUserLabel;
+@property (weak) IBOutlet NSTextField *streamViewerCountLabel;
 
 @end
