@@ -8,8 +8,8 @@
 
 #import "Stream.h"
 
+#import "APIClient.h"
 #import "Channel.h"
-#import "Overcoat.h"
 
 @implementation Stream
 
