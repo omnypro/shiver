@@ -65,7 +65,6 @@
     [window setTitle:@""];
     [[window toolbarView] addSubview:self.titleBarView];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
-
 }
 
 #pragma mark Interface Builder Actions

@@ -21,12 +21,23 @@
     };
 }
 
-+ (void)fetchUser
++ (void)userWithBlock:(void (^)(User *user, NSError *error))block
 {
     [[APIClient sharedClient] getPath:@"user" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"responseObject: %@", responseObject);
+
+        NSError *error = nil;
+        User *user = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:responseObject error:&error];
+
+        if (block) {
+            block(user, nil);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error: %@", error);
+
+        if (block) {
+            block(nil, nil);
+        }
     }];
 }
 

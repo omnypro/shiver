@@ -34,6 +34,7 @@
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
 		93A3A12B17679C8100913C9A /* OAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12A17679C8100913C9A /* OAuthView.m */; };
 		93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A12C1767A66F00913C9A /* CoreServices.framework */; };
+		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,8 @@
 		93A3A12917679C8100913C9A /* OAuthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthView.h; path = Classes/Views/OAuthView.h; sourceTree = SOURCE_ROOT; };
 		93A3A12A17679C8100913C9A /* OAuthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthView.m; path = Classes/Views/OAuthView.m; sourceTree = SOURCE_ROOT; };
 		93A3A12C1767A66F00913C9A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		93A3A12E1768071C00913C9A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = SOURCE_ROOT; };
+		93A3A12F1768071C00913C9A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = SOURCE_ROOT; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -186,6 +189,8 @@
 				936327DA1764F9BB00146C8A /* Channel.m */,
 				934626551762740E00F947FE /* Stream.h */,
 				934626561762740E00F947FE /* Stream.m */,
+				93A3A12E1768071C00913C9A /* User.h */,
+				93A3A12F1768071C00913C9A /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				936327E11765268200146C8A /* APIClient.m in Sources */,
 				93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */,
 				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,
+				93A3A1301768071C00913C9A /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

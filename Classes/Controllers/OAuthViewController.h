@@ -19,7 +19,7 @@
 @property (strong) IBOutlet NSWindow *modalWindow;
 @property (weak) IBOutlet WebView *modalWebView;
 
-- (IBAction)login:(NSButton *)sender;
+- (IBAction)loginOrLogout:(NSButton *)sender;
 - (IBAction)learnMore:(NSButton *)sender;
 
 @end

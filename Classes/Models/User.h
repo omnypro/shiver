@@ -17,6 +17,6 @@
 
 @property (nonatomic, copy, readonly) NSURL *logoImageURL;
 
-+ (void)fetchUser;
++ (void)userWithBlock:(void (^)(User *user, NSError *error))block;
 
 @end
