@@ -10,6 +10,7 @@
 
 #import "OBMenuBarWindow.h"
 #import "OAuthViewController.h"
+#import "SORelativeDateTransformer.h"
 #import "StreamListViewController.h"
 
 @interface WindowController ()
@@ -35,7 +36,9 @@
 {
     [super windowDidLoad];
     [[self window] setAllowsConcurrentViewDrawing:YES];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListWasUpdated:) name:StreamListWasUpdatedNotification object:nil];
+
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
     [self setupControllers];
@@ -65,6 +68,22 @@
     [window setTitle:@""];
     [[window toolbarView] addSubview:self.titleBarView];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+}
+
+#pragma mark Notification Observers
+
+- (void)streamListWasUpdated:(NSNotification *)notification
+{
+    StreamListViewController *object = [notification object];
+    if ([object isKindOfClass:[StreamListViewController class]]) {
+        // Update the interface, starting with the number of live streams.
+        [[self statusLabel] setStringValue:[NSString stringWithFormat:@"%lu live streams", (unsigned long)[object.streamArray count]]];
+
+        // Now update lastUpdatedLabel with the current date (relative).
+        SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
+        NSString *relativeDate = [relativeDateTransformer transformedValue:[NSDate date]];
+        [[self lastUpdatedLabel] setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
+    }
 }
 
 #pragma mark Interface Builder Actions
