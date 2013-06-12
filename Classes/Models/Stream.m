@@ -33,7 +33,7 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Channel.class];
 }
 
-+ (void)fetchStreamListWithBlock:(void (^)(NSArray *streams, NSError *error))block {
++ (void)streamListWithBlock:(void (^)(NSArray *streams, NSError *error))block {
     [[APIClient sharedClient] getPath:@"streams/followed" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);
         NSArray *streamsFromResponse = [responseObject valueForKeyPath:@"streams"];

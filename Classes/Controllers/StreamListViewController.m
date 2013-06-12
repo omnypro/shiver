@@ -33,7 +33,7 @@
 
 - (void)loadStreamList
 {
-    [Stream fetchStreamListWithBlock:^(NSArray *streams, NSError *error) {
+    [Stream streamListWithBlock:^(NSArray *streams, NSError *error) {
         if (error) { NSLog(@"%@", [error localizedDescription]); }
         self.streamArray = streams;
 
