@@ -42,6 +42,12 @@
 #define COCOAPODS_VERSION_MINOR_RHPreferences 0
 #define COCOAPODS_VERSION_PATCH_RHPreferences 0
 
+// SORelativeDateTransformer
+#define COCOAPODS_POD_AVAILABLE_SORelativeDateTransformer
+#define COCOAPODS_VERSION_MAJOR_SORelativeDateTransformer 1
+#define COCOAPODS_VERSION_MINOR_SORelativeDateTransformer 1
+#define COCOAPODS_VERSION_PATCH_SORelativeDateTransformer 8
+
 // libextobjc/EXTKeyPathCoding
 #define COCOAPODS_POD_AVAILABLE_libextobjc_EXTKeyPathCoding
 #define COCOAPODS_VERSION_MAJOR_libextobjc_EXTKeyPathCoding 0

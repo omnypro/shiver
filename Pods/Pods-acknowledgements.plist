@@ -177,6 +177,33 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string># License
+
+SORelativeDateTransformer is released under the CC BY-SA 3.0 license. If you would like a non-attribution license, contact me via [GitHub](https://github.com/billgarrison).
+
+![Creative Commons License](http://i.creativecommons.org/l/by-sa/3.0/88x31.png) [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/).
+
+## You are free to:
+
+* to Share -- to copy, distribute, and transmit the work
+* to Remix -- to adapt the work
+* to make commercial use of the work
+
+## Under the following conditions:
+
+* Share Alike - If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
+* Attribution - You must attribute the work as
+
+&gt; SORelativeDateTransformer, &amp;copy;2010-2013 Standard Orbit Software, LLC. https://github.com/billgarrison/SORelativeDateTransformer
+
+</string>
+			<key>Title</key>
+			<string>SORelativeDateTransformer</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2012 Justin Spahr-Summers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
