@@ -9,6 +9,7 @@
 #import "Stream.h"
 
 #import "APIClient.h"
+#import "Mantle.h"
 #import "Channel.h"
 
 @implementation Stream
@@ -29,19 +30,27 @@
 }
 
 + (NSValueTransformer *)channelJSONTransformer {
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:Channel.class];
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Channel.class];
 }
 
-+ (void)fetchItems
-{
-    NSURL *baseURL = [[NSURL alloc] initWithString:@"https://api.twitch.tv/kraken/"];
-    OVCClient *twitchClient = [[OVCClient alloc] initWithBaseURL:baseURL];
-    OVCQuery *featuredStreams = [OVCQuery queryWithMethod:OVCQueryMethodGet path:@"streams/featured" parameters:nil modelClass:Stream.class objectKeyPath:@"featured"];
-//    OVCQuery *featuredStreams = [OVCQuery queryWithMethod:OVCQueryMethodGet path:@"streams/featured" modelClass:Stream.class];
++ (void)fetchStreamListWithBlock:(void (^)(NSArray *streams, NSError *error))block {
+    [[APIClient sharedClient] getPath:@"streams/followed" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        NSArray *streamsFromResponse = [responseObject valueForKeyPath:@"streams"];
+        NSMutableArray *mutableStreams = [NSMutableArray arrayWithCapacity:[streamsFromResponse count]];
 
-    [twitchClient executeQuery:featuredStreams completionBlock:^(OVCRequestOperation *operation, NSArray *streams, NSError *error) {
-        if (!error) {
-            NSLog(@"%@", streams);
+        for (NSDictionary *dictionary in streamsFromResponse) {
+            NSError *error = nil;
+            Stream *stream = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:dictionary error:&error];
+            [mutableStreams addObject:stream];
+        }
+
+        if (block) {
+            block(mutableStreams, nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (block) {
+            block([NSArray array], error);
         }
     }];
 }

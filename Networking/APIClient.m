@@ -9,6 +9,7 @@
 #import "APIClient.h"
 
 #import "AFJSONRequestOperation.h"
+#import "OAuthViewController.h"
 
 NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
 NSString * const kRedirectURI = @"shiver://authorize";
@@ -16,9 +17,9 @@ NSString * const kClientID = @"rh02ow0o6qsss1psrb3q2cceg34tg9s";
 NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 @interface APIClient ()
-
 @property (strong, nonatomic) AFOAuthCredential *credential;
 
+- (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url;
 @end
 
 @implementation APIClient
@@ -28,7 +29,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     static APIClient *_sharedClient = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kTwitchBaseURL]];
+        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kTwitchBaseURL] clientID:kClientID secret:kClientSecret];
         _sharedClient.credential = [AFOAuthCredential retrieveCredentialWithIdentifier:_sharedClient.serviceProviderIdentifier];
         if (_sharedClient.credential != nil) {
             [_sharedClient setAuthorizationHeaderWithCredential:_sharedClient.credential];
@@ -38,25 +39,60 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     return _sharedClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url
+- (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)clientID secret:(NSString *)secret
 {
-    self = [super initWithBaseURL:url];
+    self = [super initWithBaseURL:url clientID:clientID secret:secret];
     if (!self) {
         return nil;
     }
 
-    [self setDefaultHeader:@"Accept" value:@"application/vnd.twitchtv.v2+json"];
+    [self setDefaultHeader:@"Accept" value:@"application/json"];
     [self setDefaultHeader:@"Client-ID" value:kClientID];
-
-    self.credential = [AFOAuthCredential retrieveCredentialWithIdentifier:self.serviceProviderIdentifier];
-    if (self.credential != nil) {
-        [self setAuthorizationHeaderWithCredential:self.credential];
-    }
-
     return self;
 }
 
-- (void)signOut
+- (BOOL)isAuthenticated
+{
+    self.credential = [AFOAuthCredential retrieveCredentialWithIdentifier:self.serviceProviderIdentifier];
+    if (self.credential != nil) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)authorizeUsingResponseURL:(NSURL *)url
+{
+    [self clearAuthorizationHeader];
+
+    NSString *accessToken = [[self parseQueryStringsFromURL:url] objectForKey:@"access_token"];
+    self.credential = [AFOAuthCredential credentialWithOAuthToken:accessToken tokenType:@"OAuth"];
+    [AFOAuthCredential storeCredential:self.credential withIdentifier:self.serviceProviderIdentifier];
+
+    [self setAuthorizationHeaderWithCredential:self.credential];
+
+    // Store `accessToken` in userDefaults.
+    [[NSUserDefaults standardUserDefaults] setObject:self.credential.accessToken forKey:@"accessToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url
+{
+    NSMutableDictionary *queryStrings = [@{} mutableCopy];
+    for (NSString *qs in [[url fragment] componentsSeparatedByString:@"&"]) {
+        [queryStrings setValue:[[[[qs componentsSeparatedByString:@"="] objectAtIndex:1] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:[[qs componentsSeparatedByString:@"="] objectAtIndex:0]];
+    }
+
+    return queryStrings;
+}
+
+// This overrides AFOAuth2's method, since it's a douchebag.
+- (void)setAuthorizationHeaderWithToken:(NSString *)token ofType:(NSString *)type
+{
+    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"%@ %@", type, token]];
+}
+
+- (void)logout
 {
     self.credential = nil;
     [AFOAuthCredential deleteCredentialWithIdentifier:self.serviceProviderIdentifier];

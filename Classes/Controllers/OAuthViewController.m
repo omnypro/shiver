@@ -55,6 +55,12 @@
     }
     if (url && [[url fragment] rangeOfString:@"access_token"].location != NSNotFound) {
         [[APIClient sharedClient] authorizeUsingResponseURL:url];
+
+        // Update the interface.
+        [User userWithBlock:^(User *user, NSError *error) {
+            [self.connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", user.name]];
+            [self.loginButton setTitle:@"Disconnect Twitch"];
+        }];
     }
 }
 
@@ -95,7 +101,7 @@
 - (IBAction)loginOrLogout:(NSButton *)sender
 {
     if ([[APIClient sharedClient] isAuthenticated]) {
-        [[APIClient sharedClient] signOut];
+        [[APIClient sharedClient] logout];
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitch.tv/settings/applications"]];
 
         // Update the interface.
@@ -106,8 +112,6 @@
         [self.modalWebView setMainFrameURL:authorizationURL];
 
         [[NSApplication sharedApplication] beginSheet:self.modalWindow modalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
-
-        [self.loginButton setTitle:@"Disconnect Twitch"];
     }
 }
 

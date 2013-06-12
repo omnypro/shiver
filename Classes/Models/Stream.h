@@ -21,6 +21,6 @@
 @property (nonatomic, copy, readonly) NSURL *previewImageURL;
 @property (nonatomic, copy, readonly) NSNumber *viewers;
 
-+ (void)fetchItems;
++ (void)fetchStreamListWithBlock:(void (^)(NSArray *streams, NSError *error))block;
 
 @end

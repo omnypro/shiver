@@ -9,7 +9,6 @@
 #import "ApplicationController.h"
 
 #import "WindowController.h"
-#import "User.h"
 
 @interface ApplicationController ()
 @property (nonatomic, strong) WindowController *windowController;
@@ -29,8 +28,6 @@
     WindowController *windowController = [[WindowController alloc] init];
     [self setWindowController:windowController];
     [self.windowController showWindow:self];
-
-    [User fetchUser];
 }
 
 @end
