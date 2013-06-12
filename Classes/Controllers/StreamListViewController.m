@@ -13,37 +13,38 @@
 #import "PXListView.h"
 #import "Stream.h"
 #import "StreamListViewCell.h"
+#import "WindowController.h"
 
 @interface StreamListViewController ()
-
+- (void)loadStreamList;
 @end
 
 @implementation StreamListViewController
 
 - (void)awakeFromNib
 {
-    [self.listView setCellSpacing:1.0f];
+    [self.listView setCellSpacing:1];
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
-
-    [Stream fetchStreamListWithBlock:^(NSArray *streams, NSError *error) {
-        if (error) {
-            [[NSAlert alertWithMessageText:NSLocalizedString(@"Error", nil) defaultButton:NSLocalizedString(@"OK", nil) alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@",[error localizedDescription]] runModal];
-        }
-
-        NSLog(@"streams: %lu", (unsigned long)streams.count);
-        NSLog(@"streams: %@", streams);
-        self.streamArray = streams;
-        NSLog(@"streams mutableCopy: %@", self.streamArray);
-
-        [self.listView reloadData];
-    }];
+    [self loadStreamList];
 }
 
 #pragma mark - Data Source Methods
 
-- (void)loadItems
+- (void)loadStreamList
 {
+    [Stream fetchStreamListWithBlock:^(NSArray *streams, NSError *error) {
+        if (error) { NSLog(@"%@", [error localizedDescription]); }
+        self.streamArray = streams;
+
+        // Update the interface, starting with the number of live streams.
+        WindowController *window = [[WindowController alloc] init];
+        [[window statusLabel] setStringValue:[NSString stringWithFormat:@"%lu live streams", (unsigned long)[self.streamArray count]]];
+//        [[window lastUpdatedLabel] = ]
+
+        // Reload the listView.
+        [self.listView reloadData];
+    }];
 }
 
 #pragma mark - ListView Methods
@@ -71,7 +72,7 @@
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
 {
-    return self.streamArray.count;
+    return [self.streamArray count];
 }
 
 @end
