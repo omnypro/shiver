@@ -35,6 +35,7 @@
 		93A3A12B17679C8100913C9A /* OAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12A17679C8100913C9A /* OAuthView.m */; };
 		93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A12C1767A66F00913C9A /* CoreServices.framework */; };
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
+		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		93A3A12C1767A66F00913C9A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		93A3A12E1768071C00913C9A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = SOURCE_ROOT; };
 		93A3A12F1768071C00913C9A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = SOURCE_ROOT; };
+		93A3A1311768571A00913C9A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Classes/Constants.h; sourceTree = SOURCE_ROOT; };
+		93A3A1321768571B00913C9A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Classes/Constants.m; sourceTree = SOURCE_ROOT; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -173,11 +176,13 @@
 		93462653176273D500F947FE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				932C29C71761AF800049EC1B /* ShiverApplication.h */,
-				932C29C81761AF800049EC1B /* ShiverApplication.m */,
 				936327B71763BAE100146C8A /* Controllers */,
 				93462654176273E500F947FE /* Models */,
 				936327D61764468B00146C8A /* Views */,
+				93A3A1311768571A00913C9A /* Constants.h */,
+				93A3A1321768571B00913C9A /* Constants.m */,
+				932C29C71761AF800049EC1B /* ShiverApplication.h */,
+				932C29C81761AF800049EC1B /* ShiverApplication.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */,
 				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
+				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

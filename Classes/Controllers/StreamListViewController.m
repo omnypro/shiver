@@ -37,13 +37,10 @@
         if (error) { NSLog(@"%@", [error localizedDescription]); }
         self.streamArray = streams;
 
-        // Update the interface, starting with the number of live streams.
-        WindowController *window = [[WindowController alloc] init];
-        [[window statusLabel] setStringValue:[NSString stringWithFormat:@"%lu live streams", (unsigned long)[self.streamArray count]]];
-//        [[window lastUpdatedLabel] = ]
-
-        // Reload the listView.
+        // Reload the listView and send a notification that the list was
+        // reloaded so other parts of the application can update their UIs.
         [self.listView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
     }];
 }
 

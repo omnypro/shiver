@@ -24,5 +24,6 @@
 
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showPreferences:(id)sender;
+- (void)streamListWasUpdated:(NSNotification *)notification;
 
 @end
