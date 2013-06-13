@@ -67,6 +67,10 @@
     // Compose our own title bar.
     [window setTitle:@""];
     [[window toolbarView] addSubview:self.titleBarView];
+
+    // Make things pretty.
+    [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
+    [[self.lastUpdatedLabel cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
 }
 
