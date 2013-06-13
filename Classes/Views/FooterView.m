@@ -37,7 +37,7 @@
     [topInnerShadow setShadowBlurRadius: 0];
 
     //// Rectangle Drawing
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 360, 36)];
+    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 420, 36)];
     [toolbarGradient drawInBezierPath: rectanglePath angle: -90];
 
     ////// Rectangle Inner Shadow
