@@ -16,4 +16,6 @@
 @property (nonatomic, strong) NSMutableArray *_listItems;
 @property (nonatomic, strong) NSArray *streamArray;
 
+- (void)loadStreamList;
+
 @end
