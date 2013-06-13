@@ -49,13 +49,13 @@
 									<object class="NSView" id="11352970">
 										<reference key="NSNextResponder" ref="89832144"/>
 										<int key="NSvFlags">308</int>
-										<string key="NSFrameSize">{360, 200}</string>
+										<string key="NSFrameSize">{420, 200}</string>
 										<reference key="NSSuperview" ref="89832144"/>
-										<reference key="NSNextKeyView" ref="413092744"/>
+										<reference key="NSNextKeyView" ref="893117594"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 									</object>
 								</array>
-								<string key="NSFrameSize">{360, 200}</string>
+								<string key="NSFrameSize">{420, 200}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
 								<reference key="NSNextKeyView" ref="11352970"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
@@ -76,6 +76,7 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{344, 0}, {16, 200}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:15</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="1035529183"/>
@@ -97,9 +98,9 @@
 								<double key="NSPercent">0.99722991689750695</double>
 							</object>
 						</array>
-						<string key="NSFrameSize">{360, 200}</string>
+						<string key="NSFrameSize">{420, 200}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSNextKeyView" ref="89832144"/>
+						<reference key="NSNextKeyView" ref="413092744"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133648</int>
 						<reference key="NSVScroller" ref="893117594"/>
@@ -110,7 +111,7 @@
 						<double key="NSMagnification">1</double>
 					</object>
 				</array>
-				<string key="NSFrameSize">{360, 200}</string>
+				<string key="NSFrameSize">{420, 200}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="1035529183"/>
 				<string key="NSClassName">NSView</string>

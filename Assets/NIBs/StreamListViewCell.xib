@@ -54,7 +54,6 @@
 						</set>
 						<string key="NSFrame">{{12, 11}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="494879172"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -77,9 +76,8 @@
 					<object class="NSButton" id="58927789">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{278, 31}, {78, 32}}</string>
+						<string key="NSFrame">{{338, 31}, {78, 32}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="483822019"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -107,9 +105,8 @@
 					<object class="NSTextField" id="483822019">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{70, 9}, {196, 17}}</string>
+						<string key="NSFrame">{{70, 9}, {256, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="628225106">
@@ -147,9 +144,8 @@
 					<object class="NSTextField" id="952746705">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{70, 25}, {196, 17}}</string>
+						<string key="NSFrame">{{70, 25}, {256, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="58927789"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -168,9 +164,8 @@
 					<object class="NSTextField" id="494879172">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{70, 42}, {196, 17}}</string>
+						<string key="NSFrame">{{70, 42}, {256, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="952746705"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -199,9 +194,8 @@
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{360, 70}</string>
+				<string key="NSFrameSize">{420, 70}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="29577020"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StreamListViewCell</string>
@@ -266,6 +260,14 @@
 						<reference key="destination" ref="58927789"/>
 					</object>
 					<int key="connectionID">35</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">redirectToStream:</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="58927789"/>
+					</object>
+					<int key="connectionID">42</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -409,65 +411,9 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">39</int>
+			<int key="maxID">42</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">PXListViewCell</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PXListViewCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">StreamImageView</string>
-					<string key="superclassName">NSImageView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/StreamImageView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">StreamListViewCell</string>
-					<string key="superclassName">PXListViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="streamLogo">StreamImageView</string>
-						<string key="streamRedirectButton">NSButton</string>
-						<string key="streamTitleLabel">NSTextField</string>
-						<string key="streamUserLabel">NSTextField</string>
-						<string key="streamViewerCountLabel">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="streamLogo">
-							<string key="name">streamLogo</string>
-							<string key="candidateClassName">StreamImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="streamRedirectButton">
-							<string key="name">streamRedirectButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="streamTitleLabel">
-							<string key="name">streamTitleLabel</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="streamUserLabel">
-							<string key="name">streamUserLabel</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="streamViewerCountLabel">
-							<string key="name">streamViewerCountLabel</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/StreamListViewCell.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
