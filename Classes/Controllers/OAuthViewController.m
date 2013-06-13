@@ -49,11 +49,11 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSLog(@"urlQueryParams: %@", [url query]);
 
-    if (url && [[url query] rangeOfString:@"access_denied"].location != NSNotFound) {
+    if ([[url query] rangeOfString:@"access_denied"].location != NSNotFound) {
         [NSApp endSheet:self.modalWindow];
         [self didEndSheet:self.modalWindow returnCode:0 contextInfo:nil];
     }
-    if (url && [[url fragment] rangeOfString:@"access_token"].location != NSNotFound) {
+    else if ([[url fragment] rangeOfString:@"access_token"].location != NSNotFound) {
         [[APIClient sharedClient] authorizeUsingResponseURL:url];
 
         // Update the interface.
