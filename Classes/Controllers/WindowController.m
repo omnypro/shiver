@@ -16,9 +16,13 @@
 @interface WindowController ()
 @property (strong) NSViewController *currentViewController;
 @property (strong) StreamListViewController *streamListViewController;
+@property (strong) NSDate *lastUpdatedTimestamp;
 
 -(void) setupControllers;
 -(void) composeInterface;
+
+- (void)startTimerForLastUpdatedLabel;
+- (void)updateLastUpdatedLabel;
 @end
 
 @implementation WindowController
@@ -69,9 +73,26 @@
     [[window toolbarView] addSubview:self.titleBarView];
 
     // Make things pretty.
+    [[self.refreshButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.lastUpdatedLabel cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+}
+
+#pragma mark UI Update Methods
+
+- (void)startTimerForLastUpdatedLabel
+{
+    // Schedule a timer to update `lastUpdatedLabel` every 60 seconds.
+    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateLastUpdatedLabel) userInfo:nil repeats:YES];
+}
+
+- (void)updateLastUpdatedLabel
+{
+    // Update `lastUpdatedLabel` with the current date (relative).
+    SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
+    NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
+    [[self lastUpdatedLabel] setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
 }
 
 #pragma mark Notification Observers
@@ -81,7 +102,7 @@
     StreamListViewController *object = [notification object];
     if ([object isKindOfClass:[StreamListViewController class]]) {
         // Update the interface, starting with the number of live streams.
-        NSString *statusLabelString = [[NSString alloc] init];
+        NSString *statusLabelString = nil;
         if ([object.streamArray count] == 1) {
             statusLabelString = [NSString stringWithFormat:@"%lu live stream", (unsigned long)[object.streamArray count]];
         } else {
@@ -89,10 +110,9 @@
         }
         [[self statusLabel] setStringValue:statusLabelString];
 
-        // Now update lastUpdatedLabel with the current date (relative).
-        SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
-        NSString *relativeDate = [relativeDateTransformer transformedValue:[NSDate date]];
-        [[self lastUpdatedLabel] setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
+        self.lastUpdatedTimestamp = [NSDate date];
+        [self updateLastUpdatedLabel];
+        [self startTimerForLastUpdatedLabel];
     }
 }
 
@@ -115,6 +135,11 @@
     [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
     [self.preferencesWindowController showWindow:self];
     [NSApp activateIgnoringOtherApps:YES];
+}
+
+- (IBAction)refreshStreamList:(NSButton *)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToUpdateStreamNotification object:self userInfo:nil];
 }
 
 @end

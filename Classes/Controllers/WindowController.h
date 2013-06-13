@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSView *masterView;
 @property (weak) IBOutlet NSView *titleBarView;
 @property (weak) IBOutlet NSTextField *statusLabel;
+@property (weak) IBOutlet NSButton *refreshButton;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;
 @property (weak) IBOutlet NSButton *preferencesButton;
 
@@ -25,6 +26,7 @@
 
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showPreferences:(id)sender;
+- (IBAction)refreshStreamList:(NSButton *)sender;
 - (void)streamListWasUpdated:(NSNotification *)notification;
 
 @end

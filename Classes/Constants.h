@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const StreamListWasUpdatedNotification;
+extern NSString *const RequestToUpdateStreamNotification;
 
 @interface Constants : NSObject
 
