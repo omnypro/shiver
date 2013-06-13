@@ -1,18 +1,18 @@
 //
-//  EmptyStreamListController.m
+//  EmptyStreamListViewController.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/13/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "EmptyStreamListController.h"
+#import "EmptyStreamListViewController.h"
 
-@interface EmptyStreamListController ()
+@interface EmptyStreamListViewController ()
 
 @end
 
-@implementation EmptyStreamListController
+@implementation EmptyStreamListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

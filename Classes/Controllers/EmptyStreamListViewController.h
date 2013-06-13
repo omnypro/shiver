@@ -1,5 +1,5 @@
 //
-//  EmptyStreamListController.h
+//  EmptyStreamListViewController.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/13/13.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface EmptyStreamListController : NSViewController
+@interface EmptyStreamListViewController : NSViewController
 
 @end
