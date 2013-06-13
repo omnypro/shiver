@@ -15,7 +15,11 @@
 #import "StreamListViewCell.h"
 #import "WindowController.h"
 
-@interface StreamListViewController ()
+@interface StreamListViewController () {
+@private
+    dispatch_source_t _timer;
+}
+
 - (void)loadStreamList;
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
@@ -34,9 +38,20 @@
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
     [self loadStreamList];
+    [self startTimerForLoadingStreamList];
 }
 
 #pragma mark - Data Source Methods
+
+- (void)startTimerForLoadingStreamList
+{
+    // Schedule a timer to run `loadStreamList` every 5 minutes (300 seconds).
+    // Keep a strong reference to _timer in ARC.
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_timer, ^{ [self loadStreamList]; });
+    dispatch_resume(_timer);
+}
 
 - (void)loadStreamList
 {
