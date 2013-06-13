@@ -60,6 +60,7 @@
         [User userWithBlock:^(User *user, NSError *error) {
             [self.connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", user.name]];
             [self.loginButton setTitle:@"Disconnect Twitch"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserDidConnectAccountNotification object:self userInfo:nil];
         }];
     }
 }
@@ -107,6 +108,9 @@
         // Update the interface.
         [self.connectionStatusLabel setStringValue:@"Not currently connected."];
         [self.loginButton setTitle:@"Connect With Twitch"];
+
+        // Alert the residents!
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserDidDisconnectAccountNotification object:self userInfo:nil];
     } else {
         NSString *authorizationURL = [NSString stringWithFormat:@"%@oauth2/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=user_read", kTwitchBaseURL, kClientID, kRedirectURI];
         [self.modalWebView setMainFrameURL:authorizationURL];
