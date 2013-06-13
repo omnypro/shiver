@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9301E9E3176A478300C46750 /* EmptyStreamListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9301E9E1176A478300C46750 /* EmptyStreamListController.m */; };
-		9301E9E4176A478300C46750 /* EmptyStreamListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyStreamListController.xib */; };
+		9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */; };
+		9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyStreamListView.xib */; };
 		932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		932C29BD1761AF0B0049EC1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29BA1761AF0B0049EC1B /* main.m */; };
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
@@ -45,9 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9301E9E0176A478300C46750 /* EmptyStreamListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyStreamListController.h; path = Classes/Controllers/EmptyStreamListController.h; sourceTree = SOURCE_ROOT; };
-		9301E9E1176A478300C46750 /* EmptyStreamListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyStreamListController.m; path = Classes/Controllers/EmptyStreamListController.m; sourceTree = SOURCE_ROOT; };
-		9301E9E2176A478300C46750 /* EmptyStreamListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyStreamListController.xib; path = Assets/NIBs/EmptyStreamListController.xib; sourceTree = SOURCE_ROOT; };
+		9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyStreamListViewController.h; path = Classes/Controllers/EmptyStreamListViewController.h; sourceTree = SOURCE_ROOT; };
+		9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyStreamListViewController.m; path = Classes/Controllers/EmptyStreamListViewController.m; sourceTree = SOURCE_ROOT; };
+		9301E9E2176A478300C46750 /* EmptyStreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyStreamListView.xib; path = Assets/NIBs/EmptyStreamListView.xib; sourceTree = SOURCE_ROOT; };
 		932C29961761AE0B0049EC1B /* Shiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932C29991761AE0B0049EC1B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		932C299C1761AE0B0049EC1B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -233,8 +233,8 @@
 				936327CE1764287100146C8A /* StreamListViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
-				9301E9E0176A478300C46750 /* EmptyStreamListController.h */,
-				9301E9E1176A478300C46750 /* EmptyStreamListController.m */,
+				9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */,
+				9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				93A3A12417658EF600913C9A /* Preferences */,
-				9301E9E2176A478300C46750 /* EmptyStreamListController.xib */,
+				9301E9E2176A478300C46750 /* EmptyStreamListView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327D71764670300146C8A /* StreamListViewCell.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
@@ -389,7 +389,7 @@
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListViewCell.xib in Resources */,
 				93A3A12317658ED200913C9A /* OAuthView.xib in Resources */,
-				9301E9E4176A478300C46750 /* EmptyStreamListController.xib in Resources */,
+				9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +447,7 @@
 				93A3A1361768EA5C00913C9A /* StreamImageView.m in Sources */,
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
 				936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */,
-				9301E9E3176A478300C46750 /* EmptyStreamListController.m in Sources */,
+				9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

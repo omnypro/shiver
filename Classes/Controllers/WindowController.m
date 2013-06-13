@@ -8,6 +8,8 @@
 
 #import "WindowController.h"
 
+#import "APIClient.h"
+#import "EmptyStreamListViewController.h"
 #import "OBMenuBarWindow.h"
 #import "OAuthViewController.h"
 #import "SORelativeDateTransformer.h"
@@ -19,10 +21,12 @@
 }
 
 @property (strong) NSViewController *currentViewController;
+@property (strong) EmptyStreamListViewController *emptyStreamListViewController;
 @property (strong) StreamListViewController *streamListViewController;
 @property (strong) NSDate *lastUpdatedTimestamp;
 
 -(void) setupControllers;
+-(void) swapViewController:(NSViewController *)viewController;
 -(void) composeInterface;
 
 - (void)startTimerForLastUpdatedLabel;
@@ -59,11 +63,33 @@
 
 - (void)setupControllers
 {
+    self.emptyStreamListViewController = [[EmptyStreamListViewController alloc] initWithNibName:@"EmptyStreamListView" bundle:nil];
     self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamListView" bundle:nil];
 
-    self.currentViewController = self.streamListViewController;
+    if ([[APIClient sharedClient] isAuthenticated]) {
+        self.currentViewController = self.streamListViewController;
+    } else {
+        self.currentViewController = self.emptyStreamListViewController;
+    }
+
     [self.currentViewController.view setFrame:self.masterView.bounds];
     [self.masterView addSubview:self.currentViewController.view];
+}
+
+- (void)swapViewController:(NSViewController *)viewController
+{
+    // Don't switch the view if it doesn't need switching.
+    if (self.currentViewController == viewController) return;
+
+    NSView *currentView = [self.currentViewController view];
+    NSView *swappedView = [viewController view];
+
+    [self.masterView replaceSubview:currentView with:swappedView];
+    self.currentViewController = viewController;
+    currentView = swappedView;
+
+    [currentView setFrame:[self.masterView bounds]];
+    [currentView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 }
 
 - (void)composeInterface
