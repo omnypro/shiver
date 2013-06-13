@@ -112,8 +112,9 @@
         self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }
 
+    [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
     [self.preferencesWindowController showWindow:self];
-    [self.preferencesWindowController.window makeKeyAndOrderFront:self];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 @end
