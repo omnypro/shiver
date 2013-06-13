@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */; };
 		9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyStreamListView.xib */; };
+		9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */; };
 		932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		932C29BD1761AF0B0049EC1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29BA1761AF0B0049EC1B /* main.m */; };
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
@@ -48,6 +49,7 @@
 		9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyStreamListViewController.h; path = Classes/Controllers/EmptyStreamListViewController.h; sourceTree = SOURCE_ROOT; };
 		9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyStreamListViewController.m; path = Classes/Controllers/EmptyStreamListViewController.m; sourceTree = SOURCE_ROOT; };
 		9301E9E2176A478300C46750 /* EmptyStreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyStreamListView.xib; path = Assets/NIBs/EmptyStreamListView.xib; sourceTree = SOURCE_ROOT; };
+		9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchLogoWhite.pdf; path = Assets/Templates/TwitchLogoWhite.pdf; sourceTree = SOURCE_ROOT; };
 		932C29961761AE0B0049EC1B /* Shiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932C29991761AE0B0049EC1B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		932C299C1761AE0B0049EC1B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -246,6 +248,7 @@
 				936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */,
 				936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */,
 				936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */,
+				9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */,
 			);
 			name = Templates;
 			path = Assets/Templates;
@@ -390,6 +393,7 @@
 				936327D81764670300146C8A /* StreamListViewCell.xib in Resources */,
 				93A3A12317658ED200913C9A /* OAuthView.xib in Resources */,
 				9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */,
+				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
