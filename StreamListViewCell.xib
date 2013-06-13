@@ -80,7 +80,6 @@
 						<string key="NSFrame">{{278, 4}, {78, 32}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="419125813">
@@ -133,7 +132,7 @@
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 							</object>
-							<object class="NSColor" key="NSTextColor" id="850915392">
+							<object class="NSColor" key="NSTextColor" id="190175508">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
 								<string key="NSColorName">controlShadowColor</string>
@@ -162,7 +161,7 @@
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="952746705"/>
 							<reference key="NSBackgroundColor" ref="949652252"/>
-							<reference key="NSTextColor" ref="850915392"/>
+							<reference key="NSTextColor" ref="190175508"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
@@ -259,6 +258,14 @@
 						<reference key="destination" ref="29577020"/>
 					</object>
 					<int key="connectionID">34</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">streamRedirectButton</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="58927789"/>
+					</object>
+					<int key="connectionID">35</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -402,7 +409,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">34</int>
+			<int key="maxID">35</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -427,6 +434,7 @@
 					<string key="superclassName">PXListViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="streamLogo">StreamImageView</string>
+						<string key="streamRedirectButton">NSButton</string>
 						<string key="streamTitleLabel">NSTextField</string>
 						<string key="streamUserLabel">NSTextField</string>
 						<string key="streamViewerCountLabel">NSTextField</string>
@@ -435,6 +443,10 @@
 						<object class="IBToOneOutletInfo" key="streamLogo">
 							<string key="name">streamLogo</string>
 							<string key="candidateClassName">StreamImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamRedirectButton">
+							<string key="name">streamRedirectButton</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="streamTitleLabel">
 							<string key="name">streamTitleLabel</string>
