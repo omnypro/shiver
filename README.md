@@ -27,7 +27,7 @@ installed. I currently use 4.6.2. After that, install
 Then, while in the project's directory:
 
     $ pod install
-    $ open Shiver.xcodeworkspace
+    $ open Shiver.xcworkspace
 
 You should be able to build the application. If you're having any problems,
 please be so kind and [file an
