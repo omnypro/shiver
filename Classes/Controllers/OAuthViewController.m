@@ -79,7 +79,7 @@
 
 - (NSImage*)toolbarItemImage
 {
-    return [NSImage imageNamed:@"TwitchGlitchPurple"];
+    return [NSImage imageNamed:@"PreferencesGlitch"];
 }
 
 -(NSString*)toolbarItemLabel
