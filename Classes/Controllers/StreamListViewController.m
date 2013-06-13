@@ -63,7 +63,7 @@
         // streams to the notification center.
         if (self.streamArray != nil) {
             NSSet *newBroadcasts = [self compareExistingStreamList:self.streamArray withNewList:streams];
-            NSLog(@"new streams: %@", newBroadcasts);
+            [self sendNewStreamNotificationToUser:newBroadcasts];
         }
 
         self.streamArray = streams;
@@ -94,9 +94,9 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     for (Stream *stream in newSet) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        [notification setTitle:@"Shiver"];
-        [notification setSubtitle:[NSString stringWithFormat:@"%@ has gone live!", stream.channel.displayName]];
-        [notification setInformativeText:[NSString stringWithFormat:@"%@ started playing %@: \"%@\"", stream.channel.displayName, stream.game, stream.channel.status]];
+        [notification setTitle:[NSString stringWithFormat:@"%@ is now live!", stream.channel.displayName]];
+        [notification setSubtitle:[NSString stringWithFormat:@"%@ started playing %@", stream.channel.displayName, stream.game]];
+        [notification setInformativeText:stream.channel.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
 
         // Beam it up, Scotty!
@@ -107,11 +107,6 @@
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
-}
-
-- (void)userNotificationCenter:(NSUserNotificationCenter *)center didDeliverNotification:(NSUserNotification *)notification
-{
-    [center removeDeliveredNotification:notification];
 }
 
 #pragma mark - ListView Methods
