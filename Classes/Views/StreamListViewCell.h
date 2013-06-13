@@ -17,5 +17,6 @@
 @property (weak) IBOutlet NSTextField *streamTitleLabel;
 @property (weak) IBOutlet NSTextField *streamUserLabel;
 @property (weak) IBOutlet NSTextField *streamViewerCountLabel;
+@property (weak) IBOutlet NSButton *streamRedirectButton;
 
 @end
