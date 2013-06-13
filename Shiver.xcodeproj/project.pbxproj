@@ -129,7 +129,6 @@
 				932C299F1761AE0B0049EC1B /* Shiver */,
 				932C29981761AE0B0049EC1B /* Frameworks */,
 				932C29971761AE0B0049EC1B /* Products */,
-				93A3A1251766DFDF00913C9A /* Vendors */,
 				AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -169,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				936327B41763B73700146C8A /* Assets */,
+				93A3A1251766DFDF00913C9A /* Categories */,
 				93462653176273D500F947FE /* Classes */,
 				936327DE1765262E00146C8A /* Networking */,
 				932C29A01761AE0B0049EC1B /* Supporting Files */,
@@ -308,13 +308,13 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
-		93A3A1251766DFDF00913C9A /* Vendors */ = {
+		93A3A1251766DFDF00913C9A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				936959D2176978C100F2F788 /* PXListView+TextHeight.h */,
 				936959D3176978C100F2F788 /* PXListView+TextHeight.m */,
 			);
-			path = Vendors;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		93A3A12817679C6600913C9A /* Preferences */ = {
