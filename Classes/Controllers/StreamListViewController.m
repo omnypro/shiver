@@ -67,6 +67,22 @@
     return xorSet;
 }
 
+- (void)sendNewStreamNotificationToUser:(NSSet *)newSet
+{
+    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [center setDelegate:self];
+
+    for (Stream *stream in newSet) {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        [notification setTitle:[NSString stringWithFormat:@"%@ has gone live!", stream.channel.displayName]];
+        [notification setInformativeText:[NSString stringWithFormat:@"%@ started playing %@: \"%@\"", stream.channel.displayName, stream.game, stream.channel.status]];
+        [notification setSoundName:NSUserNotificationDefaultSoundName];
+
+        // Beam it up, Scotty!
+        [center deliverNotification:notification];
+    }
+}
+
 #pragma mark - ListView Methods
 
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row

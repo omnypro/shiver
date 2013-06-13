@@ -10,7 +10,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StreamListViewController : NSViewController <PXListViewDelegate>
+@interface StreamListViewController : NSViewController <NSUserNotificationCenterDelegate, PXListViewDelegate>
 
 @property (weak) IBOutlet PXListView *listView;
 @property (nonatomic, strong) NSMutableArray *_listItems;
