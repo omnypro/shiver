@@ -91,6 +91,8 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 {
     self.credential = nil;
     [AFOAuthCredential deleteCredentialWithIdentifier:self.serviceProviderIdentifier];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"accessToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
