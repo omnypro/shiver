@@ -9,6 +9,7 @@
 #import "StreamListViewController.h"
 
 #import "Channel.h"
+#import "OAuthViewController.h"
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
 #import "Stream.h"
@@ -29,6 +30,7 @@
 - (void)awakeFromNib
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStreamListRefresh:) name:RequestToUpdateStreamNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
@@ -145,6 +147,15 @@
     WindowController *object = [notification object];
     if ([object isKindOfClass:[WindowController class]]) {
         [self loadStreamList];
+    }
+}
+
+- (void)userDisconnectedAccount:(NSNotification *)notification
+{
+    OAuthViewController *object = [notification object];
+    if ([object isKindOfClass:[OAuthViewController class]]) {
+        // Ah, don't forget we have a timer. We should stop it.
+        dispatch_source_cancel(_timer);
     }
 }
 
