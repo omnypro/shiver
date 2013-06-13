@@ -448,6 +448,7 @@ const CGFloat OBMenuBarWindowArrowWidth = 20.0;
 
 - (void)windowDidBecomeKey:(NSNotification *)aNotification
 {
+    [statusItemView setHighlighted:YES];
     [[self.contentView superview] setNeedsDisplayInRect:[self titleBarRect]];
 }
 
@@ -455,6 +456,7 @@ const CGFloat OBMenuBarWindowArrowWidth = 20.0;
 {
     if (self.attachedToMenuBar)
     {
+        [statusItemView setHighlighted:NO];
         [self orderOut:self];
     }
     [[self.contentView superview] setNeedsDisplayInRect:[self titleBarRect]];
@@ -843,21 +845,21 @@ const CGFloat OBMenuBarWindowArrowWidth = 20.0;
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    self.highlighted = YES;
+    // self.highlighted = YES;
     if ([self.menuBarWindow isMainWindow] || (self.menuBarWindow.isVisible && self.menuBarWindow.attachedToMenuBar))
     {
         [self.menuBarWindow orderOut:self];
     }
     else
     {
-        [NSApp activateIgnoringOtherApps:YES];
         [self.menuBarWindow makeKeyAndOrderFront:self];
+        [NSApp activateIgnoringOtherApps:YES];
     }
 }
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    self.highlighted = NO;
+    // self.highlighted = NO;
 }
 
 #pragma mark - Drawing
