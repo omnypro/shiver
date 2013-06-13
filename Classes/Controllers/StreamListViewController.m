@@ -27,6 +27,9 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStreamListRefresh:) name:RequestToUpdateStreamNotification object:nil];
 
+    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [center setDelegate:self];
+
     [self.listView setCellSpacing:1];
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
@@ -74,8 +77,6 @@
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet
 {
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-    [center setDelegate:self];
-
     for (Stream *stream in newSet) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         [notification setTitle:@"Shiver"];
