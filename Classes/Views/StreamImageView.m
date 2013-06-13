@@ -10,6 +10,8 @@
 
 CGFloat const StreamImageViewCornerRadius = 3.0;
 CGFloat const StreamImageViewImageInset = 3.0;
+CGFloat const StreamImageViewHighlightCurveStartXOffset = 5.0;
+CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
 
 @implementation StreamImageView
 
@@ -34,12 +36,24 @@ CGFloat const StreamImageViewImageInset = 3.0;
 	NSRect imageRect = NSInsetRect(drawingBounds, StreamImageViewImageInset, StreamImageViewImageInset);
 	[self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 
+	NSBezierPath *highlightPath = [NSBezierPath bezierPath];
+	[highlightPath moveToPoint:NSMakePoint(floor(NSMinX(imageRect) + StreamImageViewHighlightCurveStartXOffset), NSMinY(imageRect))];
+	NSPoint controlPoint = NSMakePoint(NSMidX(imageRect), NSMidY(imageRect));
+	[highlightPath curveToPoint:NSMakePoint(NSMaxX(imageRect), floor(NSMaxY(imageRect) - StreamImageViewHighlightCurveEndYOffset)) controlPoint1:controlPoint controlPoint2:controlPoint];
+
+	[highlightPath lineToPoint:NSMakePoint(NSMaxX(imageRect), NSMaxY(imageRect))];
+	[highlightPath lineToPoint:NSMakePoint(NSMinX(imageRect), NSMaxY(imageRect))];
+	[highlightPath lineToPoint:NSMakePoint(NSMinX(imageRect), NSMinY(imageRect))];
+	[highlightPath closePath];
+
 	static NSGradient *highlightGrad = nil;
 	if (highlightGrad == nil) {
 		NSColor *startColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.2];
 		NSColor *endColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.0];
 		highlightGrad = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
 	}
+
+    [highlightGrad drawInBezierPath:highlightPath angle:270.0];
 
 	[NSGraphicsContext restoreGraphicsState];
 }
