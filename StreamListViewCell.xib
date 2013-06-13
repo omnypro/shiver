@@ -76,8 +76,8 @@
 					</object>
 					<object class="NSButton" id="58927789">
 						<reference key="NSNextResponder" ref="309547117"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{264, 23}, {82, 32}}</string>
+						<int key="NSvFlags">289</int>
+						<string key="NSFrame">{{278, 4}, {78, 32}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -86,7 +86,7 @@
 						<object class="NSButtonCell" key="NSCell" id="419125813">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Button</string>
+							<string key="NSContents">Watch</string>
 							<object class="NSFont" key="NSSupport" id="645805226">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>
@@ -96,6 +96,7 @@
 							<reference key="NSControlView" ref="58927789"/>
 							<int key="NSButtonFlags">-2038284288</int>
 							<int key="NSButtonFlags2">129</int>
+							<reference key="NSAlternateImage" ref="645805226"/>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">200</int>
@@ -106,7 +107,7 @@
 					<object class="NSTextField" id="483822019">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{70, 9}, {214, 17}}</string>
+						<string key="NSFrame">{{70, 11}, {214, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="58927789"/>
@@ -132,13 +133,13 @@
 									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 							</object>
-							<object class="NSColor" key="NSTextColor" id="196683242">
+							<object class="NSColor" key="NSTextColor" id="850915392">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
-								<string key="NSColorName">controlTextColor</string>
+								<string key="NSColorName">controlShadowColor</string>
 								<object class="NSColor" key="NSColor">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
+									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 								</object>
 							</object>
 						</object>
@@ -147,7 +148,7 @@
 					<object class="NSTextField" id="952746705">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{70, 25}, {214, 17}}</string>
+						<string key="NSFrame">{{70, 27}, {214, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="483822019"/>
@@ -161,14 +162,14 @@
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="952746705"/>
 							<reference key="NSBackgroundColor" ref="949652252"/>
-							<reference key="NSTextColor" ref="196683242"/>
+							<reference key="NSTextColor" ref="850915392"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSTextField" id="494879172">
 						<reference key="NSNextResponder" ref="309547117"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{70, 42}, {214, 17}}</string>
+						<string key="NSFrame">{{70, 44}, {273, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="952746705"/>
@@ -186,7 +187,15 @@
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="494879172"/>
 							<reference key="NSBackgroundColor" ref="949652252"/>
-							<reference key="NSTextColor" ref="196683242"/>
+							<object class="NSColor" key="NSTextColor" id="196683242">
+								<int key="NSColorSpace">6</int>
+								<string key="NSCatalogName">System</string>
+								<string key="NSColorName">controlTextColor</string>
+								<object class="NSColor" key="NSColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MAA</bytes>
+								</object>
+							</object>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
@@ -199,10 +208,9 @@
 				<string key="NSClassName">StreamListViewCell</string>
 			</object>
 			<object class="NSTextField" id="410110261">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<string key="NSFrameSize">{38, 17}</string>
-				<reference key="NSSuperview"/>
 				<string key="NSReuseIdentifierKey">_NS:1535</string>
 				<bool key="NSEnabled">YES</bool>
 				<object class="NSTextFieldCell" key="NSCell" id="602299863">
@@ -244,6 +252,14 @@
 					</object>
 					<int key="connectionID">25</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">streamLogo</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="29577020"/>
+					</object>
+					<int key="connectionID">34</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -277,9 +293,9 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="494879172"/>
 							<reference ref="952746705"/>
-							<reference ref="58927789"/>
-							<reference ref="483822019"/>
 							<reference ref="29577020"/>
+							<reference ref="483822019"/>
+							<reference ref="58927789"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -386,7 +402,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -410,11 +426,16 @@
 					<string key="className">StreamListViewCell</string>
 					<string key="superclassName">PXListViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="streamLogo">StreamImageView</string>
 						<string key="streamTitleLabel">NSTextField</string>
 						<string key="streamUserLabel">NSTextField</string>
 						<string key="streamViewerCountLabel">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="streamLogo">
+							<string key="name">streamLogo</string>
+							<string key="candidateClassName">StreamImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="streamTitleLabel">
 							<string key="name">streamTitleLabel</string>
 							<string key="candidateClassName">NSTextField</string>
