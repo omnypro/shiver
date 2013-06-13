@@ -20,7 +20,6 @@
     dispatch_source_t _timer;
 }
 
-- (void)loadStreamList;
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
