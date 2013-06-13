@@ -94,6 +94,11 @@
     return YES;
 }
 
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didDeliverNotification:(NSUserNotification *)notification
+{
+    [center removeDeliveredNotification:notification];
+}
+
 #pragma mark - ListView Methods
 
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
