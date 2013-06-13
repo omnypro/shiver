@@ -18,7 +18,7 @@
 
 @property (nonatomic, copy, readonly) NSDate *createdAt;
 @property (nonatomic, copy, readonly) NSDate *updatedAt;
-@property (nonatomic, copy, readonly) NSString *status;
 @property (nonatomic, copy, readonly) NSURL *logoImageURL;
+@property (nonatomic, copy, readonly) NSString *status;
 
 @end

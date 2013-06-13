@@ -27,7 +27,21 @@ CGFloat const StreamImageViewImageInset = 3.0;
 	}
 	[backingGrad drawInBezierPath:outerClip angle:90.0];
 
-    [NSGraphicsContext restoreGraphicsState];
+	CGFloat y = NSMinY(self.bounds) + 0.5;
+	[[NSColor whiteColor] set];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(self.bounds) + StreamImageViewCornerRadius, y) toPoint:NSMakePoint(NSMaxX(self.bounds) - StreamImageViewCornerRadius, y)];
+
+	NSRect imageRect = NSInsetRect(drawingBounds, StreamImageViewImageInset, StreamImageViewImageInset);
+	[self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+
+	static NSGradient *highlightGrad = nil;
+	if (highlightGrad == nil) {
+		NSColor *startColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.2];
+		NSColor *endColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.0];
+		highlightGrad = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
+	}
+
+	[NSGraphicsContext restoreGraphicsState];
 }
 
 @end
