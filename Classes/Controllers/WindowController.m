@@ -109,6 +109,11 @@
     [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.lastUpdatedLabel cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+
+    // Set the lastUpdatedLabel to a blank string when we initially compose
+    // the interface. Reason being, I want a field with text in it to position
+    // in Interface Builder.
+    [self.lastUpdatedLabel setStringValue:@""];
 }
 
 #pragma mark UI Update Methods
@@ -157,6 +162,10 @@
     OAuthViewController *object = [notification object];
     if ([object isKindOfClass:[OAuthViewController class]]) {
         [self.refreshButton setEnabled:YES];
+        [self swapViewController:self.streamListViewController];
+
+        // Not sure we NEED to do this, but I guess it's just to make sure, eh?
+        [self.streamListViewController loadStreamList];
     }
 }
 
@@ -166,10 +175,11 @@
     if ([object isKindOfClass:[OAuthViewController class]]) {
         // Ah, don't forget we have a timer. We should stop it.
         dispatch_source_cancel(_timer);
-        dispatch_release(_timer);
 
         [self.refreshButton setEnabled:NO];
         [self.statusLabel setStringValue:@"Not logged in."];
+        [self.lastUpdatedLabel setStringValue:@""];
+        [self swapViewController:self.emptyStreamListViewController];
     }
 }
 
@@ -184,7 +194,7 @@
 {
     // If we have not created the window controller yet, create it now.
     if (!self.preferencesWindowController) {
-        OAuthViewController *oauth = [[OAuthViewController alloc] init];
+        OAuthViewController *oauth = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
         NSArray *controllers = [NSArray arrayWithObjects:oauth, nil];
         self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }
