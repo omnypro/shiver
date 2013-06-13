@@ -37,6 +37,15 @@
 {
     [Stream streamListWithBlock:^(NSArray *streams, NSError *error) {
         if (error) { NSLog(@"%@", [error localizedDescription]); }
+
+        // If we've fetched streams before, compared the existing list to the
+        // newly fetched one to check for any new broadcasts. If so, send those
+        // streams to the notification center.
+        if (self.streamArray != nil) {
+            NSSet *newBroadcasts = [self compareExistingStreamList:self.streamArray withNewList:streams];
+            NSLog(@"new streams: %@", newBroadcasts);
+        }
+
         self.streamArray = streams;
 
         // Reload the listView and send a notification that the list was
@@ -44,6 +53,18 @@
         [self.listView reloadData];
         [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
     }];
+}
+
+- (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray
+{
+    // Take the `_id` value of each stream in the existing array subtract those
+    // that exist in the recently fetched array. Notifications will be sent for
+    // the results.
+    NSSet *existingStreamSet = [NSSet setWithArray:existingArray];
+    NSSet *existingStreamSetIDs = [existingStreamSet valueForKey:@"_id"];
+    NSSet *newStreamSet = [NSSet setWithArray:newArray];
+    NSSet *xorSet = [newStreamSet filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", existingStreamSetIDs]];
+    return xorSet;
 }
 
 #pragma mark - ListView Methods
