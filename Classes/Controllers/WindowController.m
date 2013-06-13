@@ -13,7 +13,11 @@
 #import "SORelativeDateTransformer.h"
 #import "StreamListViewController.h"
 
-@interface WindowController ()
+@interface WindowController () {
+@private
+    dispatch_source_t _timer;
+}
+
 @property (strong) NSViewController *currentViewController;
 @property (strong) StreamListViewController *streamListViewController;
 @property (strong) NSDate *lastUpdatedTimestamp;
@@ -83,8 +87,12 @@
 
 - (void)startTimerForLastUpdatedLabel
 {
-    // Schedule a timer to update `lastUpdatedLabel` every 60 seconds.
-    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateLastUpdatedLabel) userInfo:nil repeats:YES];
+    // Schedule a timer to update `lastUpdatedLabel` every 30 seconds.
+    // Keep a strong reference to _timer in ARC.
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 30.0 * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_timer, ^{ [self updateLastUpdatedLabel]; });
+    dispatch_resume(_timer);
 }
 
 - (void)updateLastUpdatedLabel
