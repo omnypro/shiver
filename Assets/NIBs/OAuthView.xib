@@ -98,10 +98,10 @@
 							<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
 							<string>NeXT TIFF v4.0 pasteboard type</string>
 						</set>
-						<string key="NSFrame">{{20, 195}, {32, 32}}</string>
+						<string key="NSFrame">{{139, 196}, {70, 28}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="924101932"/>
+						<reference key="NSNextKeyView" ref="620632268"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="667671352">
@@ -109,7 +109,7 @@
 							<int key="NSCellFlags2">33554432</int>
 							<object class="NSCustomResource" key="NSContents">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">TwitchGlitchWhite</string>
+								<string key="NSResourceName">TwitchLogoWhite</string>
 							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<int key="NSAlign">0</int>
@@ -123,16 +123,16 @@
 					<object class="NSTextField" id="924101932">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{62, 200}, {179, 23}}</string>
+						<string key="NSFrame">{{17, 200}, {118, 23}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="620632268"/>
+						<reference key="NSNextKeyView" ref="1052658762"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="757415234">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Connect with Twitch</string>
+							<string key="NSContents">Connect with</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">HelveticaNeue-Bold</string>
 								<double key="NSSize">18</double>
@@ -343,7 +343,7 @@
 				<string key="NSFrameSize">{480, 240}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1052658762"/>
+				<reference key="NSNextKeyView" ref="924101932"/>
 				<string key="NSClassName">OAuthView</string>
 			</object>
 			<object class="NSWindowTemplate" id="116473339">
@@ -531,9 +531,9 @@
 							<reference ref="577877478"/>
 							<reference ref="924101932"/>
 							<reference ref="210303824"/>
-							<reference ref="1052658762"/>
 							<reference ref="639351286"/>
 							<reference ref="917397727"/>
+							<reference ref="1052658762"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -800,8 +800,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">TwitchGlitchWhite</string>
-			<string key="NS.object.0">{300, 300}</string>
+			<string key="NS.key.0">TwitchLogoWhite</string>
+			<string key="NS.object.0">{792, 263}</string>
 		</object>
 	</data>
 </archive>
