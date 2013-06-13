@@ -12,31 +12,31 @@
 
 - (id)initWithReusableIdentifier: (NSString*)identifier
 {
-	if (self = [super initWithReusableIdentifier:identifier]) {
+    if (self = [super initWithReusableIdentifier:identifier]) {
         // Initialization code here.
-	}
+    }
 
-	return self;
+    return self;
 }
 
 - (void)prepareForReuse
 {
-	[self.streamTitleLabel setStringValue:@"title"];
+    [self.streamTitleLabel setStringValue:@"title"];
     [self.streamUserLabel setStringValue:@"user"];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	if ([self isSelected]) {
-		[[NSColor selectedControlColor] set];
-	}
-	else {
-		[[NSColor whiteColor] set];
+    if ([self isSelected]) {
+        [[NSColor selectedControlColor] set];
+    }
+    else {
+        [[NSColor whiteColor] set];
     }
 
     //Draw the border and background
-	NSBezierPath *roundedRect = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:0.0 yRadius:0.0];
-	[roundedRect fill];
+    NSBezierPath *roundedRect = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:0.0 yRadius:0.0];
+    [roundedRect fill];
 }
 
 @end
