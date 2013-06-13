@@ -9,6 +9,7 @@
 #import "Constants.h"
 
 NSString *const StreamListWasUpdatedNotification = @"com.revyver.Shiver.StreamListWasUpdatedNotification";
+NSString *const RequestToUpdateStreamNotification = @"com.revyver.Shiver.RequestToUpdateStreamNotification";
 
 @implementation Constants
 

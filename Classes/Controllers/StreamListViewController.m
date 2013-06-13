@@ -23,6 +23,8 @@
 
 - (void)awakeFromNib
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStreamListRefresh:) name:RequestToUpdateStreamNotification object:nil];
+
     [self.listView setCellSpacing:1];
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
@@ -71,6 +73,16 @@
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
 {
     return [self.streamArray count];
+}
+
+#pragma mark Notification Observers
+
+- (void)requestStreamListRefresh:(NSNotification *)notification
+{
+    WindowController *object = [notification object];
+    if ([object isKindOfClass:[WindowController class]]) {
+        [self loadStreamList];
+    }
 }
 
 @end
