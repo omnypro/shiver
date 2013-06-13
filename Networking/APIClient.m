@@ -53,12 +53,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (BOOL)isAuthenticated
 {
-    self.credential = [AFOAuthCredential retrieveCredentialWithIdentifier:self.serviceProviderIdentifier];
-    if (self.credential != nil) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return (self.credential != nil) ? YES : NO;
 }
 
 - (void)authorizeUsingResponseURL:(NSURL *)url
