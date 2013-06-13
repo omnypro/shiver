@@ -47,16 +47,17 @@
     NSLog(@"urlString: %@", urlString);
 
     NSURL *url = [NSURL URLWithString:urlString];
-    NSLog(@"urlQueryParams: %@", [url query]);
+    [NSApp endSheet:self.modalWindow];
+    [self didEndSheet:self.modalWindow returnCode:0 contextInfo:nil];
 
-    if ([[url query] rangeOfString:@"access_denied"].location != NSNotFound) {
-        [NSApp endSheet:self.modalWindow];
-        [self didEndSheet:self.modalWindow returnCode:0 contextInfo:nil];
+    if ([url query] != nil && [[url query] rangeOfString:@"access_denied"].location != NSNotFound) {
+        // Make the user feel bad. DO NOT DENY ME! D:
+        [self.connectionStatusLabel setTextColor:[NSColor redColor]];
+        [self.connectionStatusLabel setStringValue:@"You refused to grant access. :("];
     }
-    else if ([[url fragment] rangeOfString:@"access_token"].location != NSNotFound) {
+    if ([url fragment] != nil && [[url fragment] rangeOfString:@"access_token"].location != NSNotFound) {
+        // Authenticate and update the interface.
         [[APIClient sharedClient] authorizeUsingResponseURL:url];
-
-        // Update the interface.
         [User userWithBlock:^(User *user, NSError *error) {
             [self.connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", user.name]];
             [self.loginButton setTitle:@"Disconnect Twitch"];
