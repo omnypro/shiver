@@ -46,6 +46,8 @@
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListWasUpdated:) name:StreamListWasUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
@@ -121,6 +123,27 @@
         self.lastUpdatedTimestamp = [NSDate date];
         [self updateLastUpdatedLabel];
         [self startTimerForLastUpdatedLabel];
+    }
+}
+
+- (void)userConnectedAccount:(NSNotification *)notification
+{
+    OAuthViewController *object = [notification object];
+    if ([object isKindOfClass:[OAuthViewController class]]) {
+        [self.refreshButton setEnabled:YES];
+    }
+}
+
+- (void)userDisconnectedAccount:(NSNotification *)notification
+{
+    OAuthViewController *object = [notification object];
+    if ([object isKindOfClass:[OAuthViewController class]]) {
+        // Ah, don't forget we have a timer. We should stop it.
+        dispatch_source_cancel(_timer);
+        dispatch_release(_timer);
+
+        [self.refreshButton setEnabled:NO];
+        [self.statusLabel setStringValue:@"Not logged in."];
     }
 }
 

@@ -10,6 +10,8 @@
 
 extern NSString *const StreamListWasUpdatedNotification;
 extern NSString *const RequestToUpdateStreamNotification;
+extern NSString *const UserDidConnectAccountNotification;
+extern NSString *const UserDidDisconnectAccountNotification;
 
 @interface Constants : NSObject
 
