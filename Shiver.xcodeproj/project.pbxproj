@@ -333,6 +333,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 932C29B31761AE0B0049EC1B /* Build configuration list for PBXNativeTarget "Shiver" */;
 			buildPhases = (
+				9301E9E7176A66CF00C46750 /* ShellScript */,
 				5BD4470A08354C6285B15378 /* Check Pods Manifest.lock */,
 				932C29921761AE0B0049EC1B /* Sources */,
 				932C29931761AE0B0049EC1B /* Frameworks */,
@@ -413,6 +414,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		9301E9E7176A66CF00C46750 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			showEnvVarsInLog = 0;
 		};
 		ADBB9DB2641844318B22B995 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
