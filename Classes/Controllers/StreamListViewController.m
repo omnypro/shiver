@@ -17,6 +17,8 @@
 
 @interface StreamListViewController ()
 - (void)loadStreamList;
+- (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
+- (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
 
 @implementation StreamListViewController
@@ -67,6 +69,8 @@
     return xorSet;
 }
 
+#pragma mark - NSUserNotificationCenter Methods
+
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet
 {
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
@@ -74,13 +78,19 @@
 
     for (Stream *stream in newSet) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        [notification setTitle:[NSString stringWithFormat:@"%@ has gone live!", stream.channel.displayName]];
+        [notification setTitle:@"Shiver"];
+        [notification setSubtitle:[NSString stringWithFormat:@"%@ has gone live!", stream.channel.displayName]];
         [notification setInformativeText:[NSString stringWithFormat:@"%@ started playing %@: \"%@\"", stream.channel.displayName, stream.game, stream.channel.status]];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
 
         // Beam it up, Scotty!
         [center deliverNotification:notification];
     }
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
 }
 
 #pragma mark - ListView Methods
