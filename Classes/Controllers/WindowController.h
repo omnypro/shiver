@@ -19,6 +19,7 @@
 @property (weak) IBOutlet NSView *titleBarView;
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;
+@property (weak) IBOutlet NSButton *preferencesButton;
 
 @property (strong) IBOutlet NSMenu *contextMenu;
 
