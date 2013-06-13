@@ -30,7 +30,7 @@ NSString * const kAFOAuthPasswordCredentialsGrantType = @"password";
 NSString * const kAFOAuthRefreshGrantType = @"refresh_token";
 
 #ifdef _SECURITY_SECITEM_H_
-NSString * const kAFOAuthCredentialServiceName = @"AFOAuthCredentialService";
+NSString * const kAFOAuthCredentialServiceName = @"Twitch API Token";
 
 static NSMutableDictionary * AFKeychainQueryDictionaryWithIdentifier(NSString *identifier) {
     NSMutableDictionary *queryDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:(__bridge id)kSecClassGenericPassword, kSecClass, kAFOAuthCredentialServiceName, kSecAttrService, nil];
