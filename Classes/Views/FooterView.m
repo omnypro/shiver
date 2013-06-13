@@ -23,9 +23,9 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     //// Color Declarations
-    NSColor* strokeColor = [NSColor colorWithCalibratedRed: 0.314 green: 0.314 blue: 0.314 alpha: 1];
-    NSColor* topGradientColor = [NSColor colorWithCalibratedRed: 0.188 green: 0.188 blue: 0.188 alpha: 1];
-    NSColor* bottomGradientColor = [NSColor colorWithCalibratedRed: 0.122 green: 0.122 blue: 0.122 alpha: 1];
+    NSColor* strokeColor = [NSColor colorWithCalibratedRed: 0.179 green: 0.179 blue: 0.179 alpha: 1];
+    NSColor* topGradientColor = [NSColor colorWithCalibratedRed: 0.173 green: 0.173 blue: 0.173 alpha: 1];
+    NSColor* bottomGradientColor = [NSColor colorWithCalibratedRed: 0.112 green: 0.112 blue: 0.112 alpha: 1];
 
     //// Gradient Declarations
     NSGradient* toolbarGradient = [[NSGradient alloc] initWithStartingColor: topGradientColor endingColor: bottomGradientColor];
