@@ -58,8 +58,6 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (void)authorizeUsingResponseURL:(NSURL *)url
 {
-    [self clearAuthorizationHeader];
-
     NSString *accessToken = [[self parseQueryStringsFromURL:url] objectForKey:@"access_token"];
     self.credential = [AFOAuthCredential credentialWithOAuthToken:accessToken tokenType:@"OAuth"];
     [AFOAuthCredential storeCredential:self.credential withIdentifier:self.serviceProviderIdentifier];
