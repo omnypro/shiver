@@ -8,6 +8,8 @@
 
 #import "StreamListViewCell.h"
 
+#import "Channel.h"
+
 @implementation StreamListViewCell
 
 - (id)initWithReusableIdentifier: (NSString*)identifier
@@ -21,8 +23,9 @@
 
 - (void)prepareForReuse
 {
-    [self.streamTitleLabel setStringValue:@"title"];
-    [self.streamUserLabel setStringValue:@"user"];
+    [self.streamTitleLabel setStringValue:@""];
+    [self.streamUserLabel setStringValue:@""];
+    [self.streamViewerCountLabel setStringValue:@""];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -37,6 +40,11 @@
     //Draw the border and background
     NSBezierPath *roundedRect = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:0.0 yRadius:0.0];
     [roundedRect fill];
+}
+
+- (IBAction)redirectToStream:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:self.stream.channel.url];
 }
 
 @end

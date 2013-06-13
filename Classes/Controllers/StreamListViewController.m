@@ -57,6 +57,7 @@
 
     // Set up our new cell.
     Stream *stream = [self.streamArray objectAtIndex:row];
+    [cell setStream:stream];
 
     [[cell streamLogo] setImage:[[NSImage alloc] initWithContentsOfURL:stream.channel.logoImageURL]];
     [[cell streamTitleLabel] setStringValue:stream.channel.status];
