@@ -96,7 +96,7 @@
     for (Stream *stream in newSet) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         [notification setTitle:[NSString stringWithFormat:@"%@ is now live!", stream.channel.displayName]];
-        [notification setSubtitle:[NSString stringWithFormat:@"%@ started playing %@", stream.channel.displayName, stream.game]];
+        [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
         [notification setInformativeText:stream.channel.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
 
