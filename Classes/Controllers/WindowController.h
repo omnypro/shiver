@@ -17,6 +17,7 @@
 
 @property (weak) IBOutlet NSView *masterView;
 @property (weak) IBOutlet NSView *titleBarView;
+@property (weak) IBOutlet NSImageView *liveStreamImage;
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSButton *refreshButton;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;

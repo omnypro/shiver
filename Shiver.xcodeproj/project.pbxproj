@@ -36,6 +36,7 @@
 		936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959D3176978C100F2F788 /* PXListView+TextHeight.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
+		93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93918313176A981800367399 /* LiveStreamsTemplate.pdf */; };
 		93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* OAuthViewController.m */; };
 		93A3A12317658ED200913C9A /* OAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* OAuthView.xib */; };
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
@@ -94,6 +95,7 @@
 		936959D3176978C100F2F788 /* PXListView+TextHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PXListView+TextHeight.m"; path = "Categories/PXListView+TextHeight.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
+		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
 		93A3A11F17658ED200913C9A /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthViewController.h; path = Classes/Controllers/OAuthViewController.h; sourceTree = SOURCE_ROOT; };
 		93A3A12017658ED200913C9A /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthViewController.m; path = Classes/Controllers/OAuthViewController.m; sourceTree = SOURCE_ROOT; };
 		93A3A12117658ED200913C9A /* OAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthView.xib; path = Assets/NIBs/OAuthView.xib; sourceTree = SOURCE_ROOT; };
@@ -249,6 +251,7 @@
 		936327C01763C8AE00146C8A /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				93918313176A981800367399 /* LiveStreamsTemplate.pdf */,
 				936327C91764119200146C8A /* StatusBarIcon.pdf */,
 				936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */,
 				936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */,
@@ -412,6 +415,7 @@
 				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
 				93918311176A828500367399 /* PreferencesGlitch.png in Resources */,
 				93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */,
+				93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

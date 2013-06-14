@@ -109,6 +109,7 @@
     [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.lastUpdatedLabel cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
