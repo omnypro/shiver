@@ -41,7 +41,7 @@
 					<object class="NSTextField" id="394918565">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{77, 120}, {326, 17}}</string>
+						<string key="NSFrame">{{85, 120}, {310, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -50,7 +50,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="961702529">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Nothing to see here folks. Maybe you should login.</string>
+							<string key="NSContents">Nothing to see here folks. Login via Preferences.</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>
