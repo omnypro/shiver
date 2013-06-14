@@ -18,6 +18,7 @@
 
 @property (strong) IBOutlet NSWindow *modalWindow;
 @property (weak) IBOutlet WebView *modalWebView;
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 
 - (IBAction)loginOrLogout:(NSButton *)sender;
 - (IBAction)learnMore:(NSButton *)sender;
