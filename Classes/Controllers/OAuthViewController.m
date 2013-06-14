@@ -29,14 +29,15 @@
 
 - (void)awakeFromNib
 {
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
-
+    [self.modalWebView setFrameLoadDelegate:self];
     if ([[APIClient sharedClient] isAuthenticated]) {
         [User userWithBlock:^(User *user, NSError *error) {
             if (user) { [self.connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", user.name]]; }
         }];
         [self.loginButton setTitle:@"Disconnect Twitch"];
     }
+
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
 }
 
 #pragma mark - Sheet Lifecycle Methods
@@ -92,12 +93,13 @@
 
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame
 {
-
+    [self.progressIndicator startAnimation:self];
 }
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-
+    [self.progressIndicator stopAnimation:self];
+    [self.progressIndicator setHidden:YES];
 }
 
 - (IBAction)loginOrLogout:(NSButton *)sender
