@@ -115,6 +115,12 @@
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
     [self.lastUpdatedLabel setStringValue:@""];
+
+    // The refresh button is disabled by default. We need to enable it if the
+    // user is authenticated.
+    if ([[APIClient sharedClient] isAuthenticated]) {
+        [self.refreshButton setEnabled:YES];
+    }
 }
 
 #pragma mark UI Update Methods
