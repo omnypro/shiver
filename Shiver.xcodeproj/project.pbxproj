@@ -29,14 +29,15 @@
 		936327D51764468500146C8A /* StreamListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327D41764468500146C8A /* StreamListViewCell.m */; };
 		936327D81764670300146C8A /* StreamListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327D71764670300146C8A /* StreamListViewCell.xib */; };
 		936327DB1764F9BB00146C8A /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327DA1764F9BB00146C8A /* Channel.m */; };
-		936327DD1765150100146C8A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
 		936327E11765268200146C8A /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327E01765268200146C8A /* APIClient.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		936959D01769606D00F2F788 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959CF1769606D00F2F788 /* FooterView.m */; };
 		936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959D3176978C100F2F788 /* PXListView+TextHeight.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A765E176BEAE80094A361 /* NSColor+Hex.m */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93918313176A981800367399 /* LiveStreamsTemplate.pdf */; };
+		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
 		93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* OAuthViewController.m */; };
 		93A3A12317658ED200913C9A /* OAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* OAuthView.xib */; };
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
@@ -93,6 +94,8 @@
 		936959CF1769606D00F2F788 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FooterView.m; path = Classes/Views/FooterView.m; sourceTree = SOURCE_ROOT; };
 		936959D2176978C100F2F788 /* PXListView+TextHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PXListView+TextHeight.h"; path = "Categories/PXListView+TextHeight.h"; sourceTree = SOURCE_ROOT; };
 		936959D3176978C100F2F788 /* PXListView+TextHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PXListView+TextHeight.m"; path = "Categories/PXListView+TextHeight.m"; sourceTree = SOURCE_ROOT; };
+		938A765D176BEAE80094A361 /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
+		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Hex.m"; path = "Categories/NSColor+Hex.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
@@ -118,9 +121,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */,
 				93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */,
 				93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */,
-				936327DD1765150100146C8A /* SystemConfiguration.framework in Frameworks */,
 				932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */,
 				B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */,
 			);
@@ -150,12 +153,12 @@
 		932C29981761AE0B0049EC1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				932C299B1761AE0B0049EC1B /* Other Frameworks */,
+				A795A5CACCC44DC59B59DAEC /* libPods.a */,
 				932C29991761AE0B0049EC1B /* Cocoa.framework */,
 				93A3A12C1767A66F00913C9A /* CoreServices.framework */,
 				936327DC1765150000146C8A /* SystemConfiguration.framework */,
 				93A3A1261766E25300913C9A /* WebKit.framework */,
-				A795A5CACCC44DC59B59DAEC /* libPods.a */,
+				932C299B1761AE0B0049EC1B /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,12 +241,12 @@
 				93A3A11E17658E2B00913C9A /* Preferences */,
 				936327BD1763C25B00146C8A /* ApplicationController.h */,
 				936327BE1763C25B00146C8A /* ApplicationController.m */,
+				9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */,
+				9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */,
 				936327CD1764287100146C8A /* StreamListViewController.h */,
 				936327CE1764287100146C8A /* StreamListViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
-				9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */,
-				9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -329,6 +332,8 @@
 		93A3A1251766DFDF00913C9A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				938A765D176BEAE80094A361 /* NSColor+Hex.h */,
+				938A765E176BEAE80094A361 /* NSColor+Hex.m */,
 				936959D2176978C100F2F788 /* PXListView+TextHeight.h */,
 				936959D3176978C100F2F788 /* PXListView+TextHeight.m */,
 			);
@@ -488,6 +493,7 @@
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
 				936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */,
 				9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */,
+				938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
