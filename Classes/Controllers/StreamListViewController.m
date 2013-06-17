@@ -99,6 +99,7 @@
         [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
         [notification setInformativeText:stream.channel.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
+        [notification setUserInfo:@{ @"URL": stream.channel.url }];
 
         // Beam it up, Scotty!
         [center deliverNotification:notification];
@@ -108,6 +109,12 @@
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
+}
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+    if ([notification activationType] == NSUserNotificationActivationTypeContentsClicked) {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[notification userInfo][@"URL"]]];
+    }
 }
 
 #pragma mark - ListView Methods
