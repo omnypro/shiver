@@ -1,19 +1,19 @@
 //
-//  StreamImageView.m
+//  StreamLogoImageView.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/12/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamImageView.h"
+#import "StreamLogoImageView.h"
 
 CGFloat const StreamImageViewCornerRadius = 3.0;
 CGFloat const StreamImageViewImageInset = 3.0;
 CGFloat const StreamImageViewHighlightCurveStartXOffset = 5.0;
 CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
 
-@implementation StreamImageView
+@implementation StreamLogoImageView
 
 - (void)drawRect:(NSRect)dirtyRect
 {

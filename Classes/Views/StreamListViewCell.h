@@ -9,14 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 #import "Stream.h"
-#import "StreamImageView.h"
+#import "StreamLogoImageView.h"
 #import "PXListViewCell.h"
 
 @interface StreamListViewCell : PXListViewCell
 
 @property (nonatomic, strong) Stream *stream;
 
-@property (weak) IBOutlet StreamImageView *streamLogo;
+@property (weak) IBOutlet StreamLogoImageView *streamLogo;
 @property (weak) IBOutlet NSTextField *streamGameLabel;
 @property (weak) IBOutlet NSTextField *streamUserLabel;
 @property (weak) IBOutlet NSTextField *streamTitleLabel;

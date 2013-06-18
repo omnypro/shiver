@@ -45,7 +45,7 @@
 		93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A12C1767A66F00913C9A /* CoreServices.framework */; };
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
-		93A3A1361768EA5C00913C9A /* StreamImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamImageView.m */; };
+		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -110,8 +110,8 @@
 		93A3A12F1768071C00913C9A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = SOURCE_ROOT; };
 		93A3A1311768571A00913C9A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Classes/Constants.h; sourceTree = SOURCE_ROOT; };
 		93A3A1321768571B00913C9A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Classes/Constants.m; sourceTree = SOURCE_ROOT; };
-		93A3A1341768EA5B00913C9A /* StreamImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamImageView.h; path = Classes/Views/StreamImageView.h; sourceTree = SOURCE_ROOT; };
-		93A3A1351768EA5B00913C9A /* StreamImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamImageView.m; path = Classes/Views/StreamImageView.m; sourceTree = SOURCE_ROOT; };
+		93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamLogoImageView.h; path = Classes/Views/StreamLogoImageView.h; sourceTree = SOURCE_ROOT; };
+		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -285,8 +285,8 @@
 				93A3A12817679C6600913C9A /* Preferences */,
 				936959CE1769606D00F2F788 /* FooterView.h */,
 				936959CF1769606D00F2F788 /* FooterView.m */,
-				93A3A1341768EA5B00913C9A /* StreamImageView.h */,
-				93A3A1351768EA5B00913C9A /* StreamImageView.m */,
+				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
+				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
 				936327D31764468400146C8A /* StreamListViewCell.h */,
 				936327D41764468500146C8A /* StreamListViewCell.m */,
 			);
@@ -489,7 +489,7 @@
 				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
-				93A3A1361768EA5C00913C9A /* StreamImageView.m in Sources */,
+				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
 				936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */,
 				9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */,
