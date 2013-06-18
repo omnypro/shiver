@@ -132,14 +132,15 @@
 
     [[cell streamLogo] setImage:[[NSImage alloc] initWithContentsOfURL:stream.channel.logoImageURL]];
     [[cell streamTitleLabel] setStringValue:stream.channel.status];
-    [[cell streamUserLabel] setStringValue:[NSString stringWithFormat:@"%@ playing %@", stream.channel.displayName, stream.game]];
-    [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@ viewers", stream.viewers]];
+    [[cell streamUserLabel] setStringValue:stream.channel.displayName];
+    [[cell streamGameLabel] setStringValue:stream.game];
+    [[cell streamViewerCountLabel] setStringValue:stream.viewers];
     return cell;
 }
 
 - (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
 {
-    return 70;
+    return 110;
 }
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
