@@ -34,6 +34,8 @@
 		936959D01769606D00F2F788 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959CF1769606D00F2F788 /* FooterView.m */; };
 		936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959D3176978C100F2F788 /* PXListView+TextHeight.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A765E176BEAE80094A361 /* NSColor+Hex.m */; };
+		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
+		938A7665177108460094A361 /* StreamListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7664177108460094A361 /* StreamListView.m */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93918313176A981800367399 /* LiveStreamsTemplate.pdf */; };
@@ -96,6 +98,10 @@
 		936959D3176978C100F2F788 /* PXListView+TextHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PXListView+TextHeight.m"; path = "Categories/PXListView+TextHeight.m"; sourceTree = SOURCE_ROOT; };
 		938A765D176BEAE80094A361 /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
 		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Hex.m"; path = "Categories/NSColor+Hex.m"; sourceTree = SOURCE_ROOT; };
+		938A7660177105FC0094A361 /* StreamPreviewImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamPreviewImageView.h; path = Classes/Views/StreamPreviewImageView.h; sourceTree = SOURCE_ROOT; };
+		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
+		938A7663177108460094A361 /* StreamListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListView.h; path = Classes/Views/StreamListView.h; sourceTree = SOURCE_ROOT; };
+		938A7664177108460094A361 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
@@ -271,8 +277,8 @@
 				93A3A12417658EF600913C9A /* Preferences */,
 				9301E9E2176A478300C46750 /* EmptyStreamListView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
-				936327D71764670300146C8A /* StreamListViewCell.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
+				936327D71764670300146C8A /* StreamListViewCell.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
 			name = NIBs;
@@ -285,10 +291,14 @@
 				93A3A12817679C6600913C9A /* Preferences */,
 				936959CE1769606D00F2F788 /* FooterView.h */,
 				936959CF1769606D00F2F788 /* FooterView.m */,
-				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
-				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
+				938A7663177108460094A361 /* StreamListView.h */,
+				938A7664177108460094A361 /* StreamListView.m */,
 				936327D31764468400146C8A /* StreamListViewCell.h */,
 				936327D41764468500146C8A /* StreamListViewCell.m */,
+				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
+				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
+				938A7660177105FC0094A361 /* StreamPreviewImageView.h */,
+				938A7661177105FC0094A361 /* StreamPreviewImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -494,6 +504,8 @@
 				936959D4176978C100F2F788 /* PXListView+TextHeight.m in Sources */,
 				9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */,
 				938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */,
+				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
+				938A7665177108460094A361 /* StreamListView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
