@@ -134,7 +134,7 @@
     [[cell streamTitleLabel] setStringValue:stream.channel.status];
     [[cell streamUserLabel] setStringValue:stream.channel.displayName];
     [[cell streamGameLabel] setStringValue:stream.game];
-    [[cell streamViewerCountLabel] setStringValue:stream.viewers];
+    [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
     return cell;
 }
 
