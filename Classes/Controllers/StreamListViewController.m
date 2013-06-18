@@ -130,6 +130,7 @@
     Stream *stream = [self.streamArray objectAtIndex:row];
     [cell setStream:stream];
 
+    [[cell streamPreview] setImage:[[NSImage alloc] initWithContentsOfURL:stream.previewImageURL]];
     [[cell streamLogo] setImage:[[NSImage alloc] initWithContentsOfURL:stream.channel.logoImageURL]];
     [[cell streamTitleLabel] setStringValue:stream.channel.status];
     [[cell streamUserLabel] setStringValue:stream.channel.displayName];
@@ -140,7 +141,7 @@
 
 - (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
 {
-    return 110;
+    return 120;
 }
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView

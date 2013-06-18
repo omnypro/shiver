@@ -22,7 +22,7 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"previewImageURL": @"preview"};
+    return @{@"previewImageURL": @"preview.large"};
 }
 
 + (NSValueTransformer *)previewImageURLJSONTransformer {
