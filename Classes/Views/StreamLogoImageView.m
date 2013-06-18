@@ -8,8 +8,8 @@
 
 #import "StreamLogoImageView.h"
 
-CGFloat const StreamImageViewCornerRadius = 3.0;
-CGFloat const StreamImageViewImageInset = 3.0;
+CGFloat const StreamImageViewCornerRadius = 2.0;
+CGFloat const StreamImageViewImageInset = 1.0;
 CGFloat const StreamImageViewHighlightCurveStartXOffset = 5.0;
 CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
 
