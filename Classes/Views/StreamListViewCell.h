@@ -17,8 +17,9 @@
 @property (nonatomic, strong) Stream *stream;
 
 @property (weak) IBOutlet StreamImageView *streamLogo;
-@property (weak) IBOutlet NSTextField *streamTitleLabel;
+@property (weak) IBOutlet NSTextField *streamGameLabel;
 @property (weak) IBOutlet NSTextField *streamUserLabel;
+@property (weak) IBOutlet NSTextField *streamTitleLabel;
 @property (weak) IBOutlet NSTextField *streamViewerCountLabel;
 @property (weak) IBOutlet NSButton *streamRedirectButton;
 
