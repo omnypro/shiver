@@ -289,16 +289,9 @@
 			isa = PBXGroup;
 			children = (
 				93A3A12817679C6600913C9A /* Preferences */,
+				938A766617710AD30094A361 /* Stream List */,
 				936959CE1769606D00F2F788 /* FooterView.h */,
 				936959CF1769606D00F2F788 /* FooterView.m */,
-				938A7663177108460094A361 /* StreamListView.h */,
-				938A7664177108460094A361 /* StreamListView.m */,
-				936327D31764468400146C8A /* StreamListViewCell.h */,
-				936327D41764468500146C8A /* StreamListViewCell.m */,
-				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
-				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
-				938A7660177105FC0094A361 /* StreamPreviewImageView.h */,
-				938A7661177105FC0094A361 /* StreamPreviewImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +303,21 @@
 				936327E01765268200146C8A /* APIClient.m */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		938A766617710AD30094A361 /* Stream List */ = {
+			isa = PBXGroup;
+			children = (
+				938A7663177108460094A361 /* StreamListView.h */,
+				938A7664177108460094A361 /* StreamListView.m */,
+				936327D31764468400146C8A /* StreamListViewCell.h */,
+				936327D41764468500146C8A /* StreamListViewCell.m */,
+				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
+				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
+				938A7660177105FC0094A361 /* StreamPreviewImageView.h */,
+				938A7661177105FC0094A361 /* StreamPreviewImageView.m */,
+			);
+			name = "Stream List";
 			sourceTree = "<group>";
 		};
 		9391830E176A827300367399 /* Images */ = {
