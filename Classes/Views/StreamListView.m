@@ -8,6 +8,8 @@
 
 #import "StreamListView.h"
 
+#import "NSColor+Hex.h"
+
 @implementation StreamListView
 
 - (id)initWithFrame:(NSRect)frame
@@ -23,6 +25,9 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Drawing code here.
+    [[NSColor colorWithHex:@"#222222"] setFill];
+    NSRectFill(dirtyRect);
+    [super drawRect:dirtyRect];
 }
 
 @end
