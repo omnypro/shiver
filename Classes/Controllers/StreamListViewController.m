@@ -99,7 +99,7 @@
         [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
         [notification setInformativeText:stream.channel.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
-        [notification setUserInfo:@{ @"URL": stream.channel.url }];
+        [notification setUserInfo:@{ @"URL": [stream.channel.url absoluteString] }];
 
         // Beam it up, Scotty!
         [center deliverNotification:notification];
