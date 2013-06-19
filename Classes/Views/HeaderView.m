@@ -10,71 +10,41 @@
 
 #import "NSColor+Hex.h"
 
+const CGFloat cornerRadius = 5;
+
 @implementation HeaderView
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    //// Color Declarations
-    NSColor* headerLeftTopColor = [NSColor colorWithHex:@"#545353"];
-    NSColor* headerLeftBottomColor = [NSColor colorWithHex:@"#2A2A2A"];
-    NSColor* headerLeftInnerShadowColor = [NSColor colorWithHex:@"#838282"];
+    // Declare our colors first.
+    NSColor* topColor = [NSColor colorWithHex:@"#545353"];
+    NSColor* bottomColor = [NSColor colorWithHex:@"#2A2A2A"];
+    NSColor* highlightColor = [NSColor colorWithHex:@"#838282"];
 
-    //// Gradient Declarations
-    NSGradient* footerLeftGradient = [[NSGradient alloc] initWithStartingColor: headerLeftTopColor endingColor: headerLeftBottomColor];
+    // Gradient and shadow next.
+    NSGradient* gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
 
-    //// Shadow Declarations
-    NSShadow* footerLeftInnerShadow = [[NSShadow alloc] init];
-    [footerLeftInnerShadow setShadowColor: headerLeftInnerShadowColor];
-    [footerLeftInnerShadow setShadowOffset: NSMakeSize(0.0, -0.51)];
-    [footerLeftInnerShadow setShadowBlurRadius: 0];
+    // We're only drawing the left side of the two-tone header.
+    NSRect rect = NSMakeRect(0, 0, 38, 34);
+    NSRect innerRect = NSInsetRect(rect, cornerRadius, cornerRadius);
+    NSBezierPath* path = [NSBezierPath bezierPath];
+    [path moveToPoint: NSMakePoint(NSMinX(rect), NSMinY(rect))];
+    [path lineToPoint: NSMakePoint(NSMaxX(rect), NSMinY(rect))];
+    [path lineToPoint: NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+    [path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(innerRect), NSMaxY(innerRect)) radius: cornerRadius startAngle: 90 endAngle: 180];
+    [path closePath];
+    [gradient drawInBezierPath: path angle: -90];
 
-    //// Abstracted Attributes
-    NSRect footerLeftRect = NSMakeRect(0, 0, 38, 34);
-    CGFloat footerLeftCornerRadius = 5;
+    // Draw a box for the highlight too.
+    NSRect highlightRect = NSMakeRect(4, 33.5, 33, 0.5);
+    [highlightColor setFill];
+    NSRectFill(highlightRect);
 
-
-    //// Footer (Left) Drawing
-    NSRect footerLeftInnerRect = NSInsetRect(footerLeftRect, footerLeftCornerRadius, footerLeftCornerRadius);
-    NSBezierPath* footerLeftPath = [NSBezierPath bezierPath];
-    [footerLeftPath moveToPoint: NSMakePoint(NSMinX(footerLeftRect), NSMinY(footerLeftRect))];
-    [footerLeftPath lineToPoint: NSMakePoint(NSMaxX(footerLeftRect), NSMinY(footerLeftRect))];
-    [footerLeftPath lineToPoint: NSMakePoint(NSMaxX(footerLeftRect), NSMaxY(footerLeftRect))];
-    [footerLeftPath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(footerLeftInnerRect), NSMaxY(footerLeftInnerRect)) radius: footerLeftCornerRadius startAngle: 90 endAngle: 180];
-    [footerLeftPath closePath];
-    [footerLeftGradient drawInBezierPath: footerLeftPath angle: -90];
-
-    ////// Footer (Left) Inner Shadow
-    NSRect footerLeftBorderRect = NSInsetRect([footerLeftPath bounds], -footerLeftInnerShadow.shadowBlurRadius, -footerLeftInnerShadow.shadowBlurRadius);
-    footerLeftBorderRect = NSOffsetRect(footerLeftBorderRect, -footerLeftInnerShadow.shadowOffset.width, -footerLeftInnerShadow.shadowOffset.height);
-    footerLeftBorderRect = NSInsetRect(NSUnionRect(footerLeftBorderRect, [footerLeftPath bounds]), -1, -1);
-
-    NSBezierPath* footerLeftNegativePath = [NSBezierPath bezierPathWithRect: footerLeftBorderRect];
-    [footerLeftNegativePath appendBezierPath: footerLeftPath];
-    [footerLeftNegativePath setWindingRule: NSEvenOddWindingRule];
-
-    [NSGraphicsContext saveGraphicsState];
-    {
-        NSShadow* footerLeftInnerShadowWithOffset = [footerLeftInnerShadow copy];
-        CGFloat xOffset = footerLeftInnerShadowWithOffset.shadowOffset.width + round(footerLeftBorderRect.size.width);
-        CGFloat yOffset = footerLeftInnerShadowWithOffset.shadowOffset.height;
-        footerLeftInnerShadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
-        [footerLeftInnerShadowWithOffset set];
-        [[NSColor grayColor] setFill];
-        [footerLeftPath addClip];
-        NSAffineTransform* transform = [NSAffineTransform transform];
-        [transform translateXBy: -round(footerLeftBorderRect.size.width) yBy: 0];
-        [[transform transformBezierPath: footerLeftNegativePath] fill];
-    }
-    [NSGraphicsContext restoreGraphicsState];
-    
-    
-    
-    //// Rectangle Drawing
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(37, 0, 1, 33.5)];
+    // Draw a "faked" shadow to separate the two sides of the footer.
     [[NSColor colorWithHex:@"#333333"] setFill];
-    [rectanglePath fill];
-    
-    
+    NSRectFill(NSMakeRect(37, 0, 1, 33.5));
+
+    [super drawRect:dirtyRect];
 }
 
 @end
