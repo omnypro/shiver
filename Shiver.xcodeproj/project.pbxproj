@@ -52,6 +52,11 @@
 		939E8B7C17717DE1006D6442 /* CogInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7817717DE1006D6442 /* CogInactive.png */; };
 		939E8B7D17717DE1006D6442 /* CogInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7917717DE1006D6442 /* CogInactive@2x.png */; };
 		939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B7F17719251006D6442 /* WatchButtonCell.m */; };
+		939E8B831771A4CF006D6442 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B821771A4CF006D6442 /* HeaderView.m */; };
+		939E8B881771A9A2006D6442 /* BroadcastActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B841771A9A2006D6442 /* BroadcastActive.png */; };
+		939E8B891771A9A2006D6442 /* BroadcastActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B851771A9A2006D6442 /* BroadcastActive@2x.png */; };
+		939E8B8A1771A9A2006D6442 /* BroadcastInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B861771A9A2006D6442 /* BroadcastInactive.png */; };
+		939E8B8B1771A9A2006D6442 /* BroadcastInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B871771A9A2006D6442 /* BroadcastInactive@2x.png */; };
 		93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* OAuthViewController.m */; };
 		93A3A12317658ED200913C9A /* OAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* OAuthView.xib */; };
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
@@ -132,6 +137,12 @@
 		939E8B7917717DE1006D6442 /* CogInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CogInactive@2x.png"; path = "Assets/Images/CogInactive@2x.png"; sourceTree = SOURCE_ROOT; };
 		939E8B7E17719251006D6442 /* WatchButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchButtonCell.h; path = Classes/Views/WatchButtonCell.h; sourceTree = SOURCE_ROOT; };
 		939E8B7F17719251006D6442 /* WatchButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchButtonCell.m; path = Classes/Views/WatchButtonCell.m; sourceTree = SOURCE_ROOT; };
+		939E8B811771A4CF006D6442 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = Classes/Views/HeaderView.h; sourceTree = SOURCE_ROOT; };
+		939E8B821771A4CF006D6442 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = Classes/Views/HeaderView.m; sourceTree = SOURCE_ROOT; };
+		939E8B841771A9A2006D6442 /* BroadcastActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BroadcastActive.png; path = Assets/Images/BroadcastActive.png; sourceTree = SOURCE_ROOT; };
+		939E8B851771A9A2006D6442 /* BroadcastActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BroadcastActive@2x.png"; path = "Assets/Images/BroadcastActive@2x.png"; sourceTree = SOURCE_ROOT; };
+		939E8B861771A9A2006D6442 /* BroadcastInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BroadcastInactive.png; path = Assets/Images/BroadcastInactive.png; sourceTree = SOURCE_ROOT; };
+		939E8B871771A9A2006D6442 /* BroadcastInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BroadcastInactive@2x.png"; path = "Assets/Images/BroadcastInactive@2x.png"; sourceTree = SOURCE_ROOT; };
 		93A3A11F17658ED200913C9A /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthViewController.h; path = Classes/Controllers/OAuthViewController.h; sourceTree = SOURCE_ROOT; };
 		93A3A12017658ED200913C9A /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthViewController.m; path = Classes/Controllers/OAuthViewController.m; sourceTree = SOURCE_ROOT; };
 		93A3A12117658ED200913C9A /* OAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthView.xib; path = Assets/NIBs/OAuthView.xib; sourceTree = SOURCE_ROOT; };
@@ -320,6 +331,8 @@
 				938A766617710AD30094A361 /* Stream List */,
 				936959CE1769606D00F2F788 /* FooterView.h */,
 				936959CF1769606D00F2F788 /* FooterView.m */,
+				939E8B811771A4CF006D6442 /* HeaderView.h */,
+				939E8B821771A4CF006D6442 /* HeaderView.m */,
 				939E8B69177161A8006D6442 /* ShadowTextField.h */,
 				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
 				939E8B7E17719251006D6442 /* WatchButtonCell.h */,
@@ -355,6 +368,10 @@
 		9391830E176A827300367399 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				939E8B841771A9A2006D6442 /* BroadcastActive.png */,
+				939E8B851771A9A2006D6442 /* BroadcastActive@2x.png */,
+				939E8B861771A9A2006D6442 /* BroadcastInactive.png */,
+				939E8B871771A9A2006D6442 /* BroadcastInactive@2x.png */,
 				939E8B7617717DE1006D6442 /* CogActive.png */,
 				939E8B7717717DE1006D6442 /* CogActive@2x.png */,
 				939E8B7817717DE1006D6442 /* CogInactive.png */,
@@ -490,6 +507,10 @@
 				939E8B7B17717DE1006D6442 /* CogActive@2x.png in Resources */,
 				939E8B7C17717DE1006D6442 /* CogInactive.png in Resources */,
 				939E8B7D17717DE1006D6442 /* CogInactive@2x.png in Resources */,
+				939E8B881771A9A2006D6442 /* BroadcastActive.png in Resources */,
+				939E8B891771A9A2006D6442 /* BroadcastActive@2x.png in Resources */,
+				939E8B8A1771A9A2006D6442 /* BroadcastInactive.png in Resources */,
+				939E8B8B1771A9A2006D6442 /* BroadcastInactive@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +589,7 @@
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				939E8B6B177161A8006D6442 /* ShadowTextField.m in Sources */,
 				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
+				939E8B831771A4CF006D6442 /* HeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
