@@ -689,7 +689,7 @@ const CGFloat OBMenuBarWindowArrowWidth = 20.0;
     CGFloat height = bounds.size.height;
     CGFloat arrowHeight = OBMenuBarWindowArrowHeight;
     CGFloat arrowWidth = OBMenuBarWindowArrowWidth;
-    CGFloat cornerRadius = 4.0;
+    CGFloat cornerRadius = 5.0;
     
     BOOL isAttached = window.attachedToMenuBar;
     
