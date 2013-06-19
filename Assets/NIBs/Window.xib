@@ -44,14 +44,14 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {320, 240}}</string>
+				<string key="NSWindowRect">{{196, 240}, {320, 284}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">OBMenuBarWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMaxSize">{320, 480}</string>
-				<string key="NSWindowContentMinSize">{320, 240}</string>
+				<string key="NSWindowContentMinSize">{320, 284}</string>
 				<object class="NSView" key="NSWindowView" id="1006">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -60,7 +60,7 @@
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">274</int>
 							<array class="NSMutableArray" key="NSSubviews"/>
-							<string key="NSFrame">{{0, 36}, {320, 204}}</string>
+							<string key="NSFrame">{{0, 36}, {320, 248}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1028632989"/>
@@ -78,7 +78,7 @@
 									<string key="NSFrame">{{6, 6}, {19, 25}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="660897288"/>
+									<reference key="NSNextKeyView" ref="990513849"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="542075686">
@@ -111,7 +111,7 @@
 									<string key="NSFrame">{{295, 5}, {20, 25}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="990513849"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="788722859">
@@ -140,7 +140,7 @@
 									<string key="NSFrame">{{80, 9}, {181, 17}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
+									<reference key="NSNextKeyView" ref="660897288"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSTextFieldCell" key="NSCell" id="88799930">
@@ -184,18 +184,18 @@
 							<string key="NSClassName">FooterView</string>
 						</object>
 					</array>
-					<string key="NSFrameSize">{320, 240}</string>
+					<string key="NSFrameSize">{320, 284}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="67843978"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
-				<string key="NSMinSize">{320, 262}</string>
+				<string key="NSMinSize">{320, 306}</string>
 				<string key="NSMaxSize">{320, 502}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSCustomView" id="629863436">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSImageView" id="587222220">
@@ -235,7 +235,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{28, 5}, {97, 19}}</string>
 						<reference key="NSSuperview" ref="629863436"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="452139197">
@@ -264,7 +263,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{420, 34}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="587222220"/>
 				<bool key="NSViewIsLayerTreeHost">YES</bool>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
