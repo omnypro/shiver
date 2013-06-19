@@ -8,6 +8,7 @@
 
 #import "StreamPreviewImageView.h"
 
+#import "NSColor+Hex.h"
 #import "NSImage+MGCropExtensions.h"
 
 @implementation StreamPreviewImageView
@@ -26,12 +27,12 @@
     [path lineToPoint:NSMakePoint(NSMaxX(initialRect), NSMaxY(initialRect))];
     [path lineToPoint:NSMakePoint(NSMinX(initialRect), NSMaxY(initialRect))];
     [path closePath];
-    [[NSColor blackColor] setFill];
+    [[NSColor colorWithHex:@"#222222"] setFill];
     [path fill];
 
     // Crop the preview image, because squishy images suck.
     NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(304, 85) method:MGImageResizeCropStart];
-    [croppedImage drawInRect:innerRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    [croppedImage drawInRect:innerRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
 
     // Draw the title rectangle with the same bottom rounded corners and a
     // translucent black background for the title text to sit on.
