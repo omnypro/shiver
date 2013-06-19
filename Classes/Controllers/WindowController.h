@@ -16,10 +16,14 @@
 @property (strong) RHPreferencesWindowController *preferencesWindowController;
 
 @property (weak) IBOutlet NSView *masterView;
+
+// Header elements.
 @property (weak) IBOutlet NSView *titleBarView;
-@property (weak) IBOutlet NSImageView *liveStreamImage;
+@property (weak) IBOutlet NSImageView *statusImage;
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSTextField *usernameLabel;
+
+// Footer elements.
 @property (weak) IBOutlet NSButton *refreshButton;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;
 @property (weak) IBOutlet NSButton *preferencesButton;

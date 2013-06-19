@@ -115,7 +115,7 @@
     [self.preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
     [self.preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
 
-    [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [[self.statusImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
