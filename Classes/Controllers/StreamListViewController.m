@@ -122,7 +122,7 @@
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
 {
     StreamListViewCell *cell = (StreamListViewCell *)[aListView dequeueCellWithReusableIdentifier:@"Cell"];
-    if (!cell) {    
+    if (!cell) {
         cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
     }
 
@@ -132,7 +132,14 @@
 
     [[cell streamPreview] setImage:[[NSImage alloc] initWithContentsOfURL:stream.previewImageURL]];
     [[cell streamLogo] setImage:[[NSImage alloc] initWithContentsOfURL:stream.channel.logoImageURL]];
-    [[cell streamTitleLabel] setStringValue:stream.channel.status];
+
+    NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:14];
+    [attrStreamTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrStreamTitle length])];
+    [[cell streamTitleLabel] setAttributedStringValue:attrStreamTitle];
+
     [[cell streamUserLabel] setStringValue:stream.channel.displayName];
     [[cell streamGameLabel] setStringValue:stream.game];
     [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
@@ -141,7 +148,7 @@
 
 - (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
 {
-    return 120;
+    return 115;
 }
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
