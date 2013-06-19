@@ -758,8 +758,8 @@ const CGFloat OBMenuBarWindowArrowWidth = 20.0;
     NSColor *bottomColor, *topColor, *topColorTransparent;
     if ([window isKeyWindow] || window.attachedToMenuBar)
     {
-        bottomColor = [NSColor colorWithCalibratedWhite:0.690 alpha:1.0];
-        topColor = [NSColor colorWithCalibratedWhite:0.910 alpha:1.0];
+        bottomColor = [NSColor colorWithCalibratedRed: 0.745 green: 0.745 blue: 0.769 alpha: 1];
+        topColor = [NSColor colorWithCalibratedRed: 0.941 green: 0.941 blue: 0.945 alpha: 1];
         topColorTransparent = [NSColor colorWithCalibratedWhite:0.910 alpha:0.0];
     }
     else
@@ -816,7 +816,7 @@ const CGFloat OBMenuBarWindowArrowWidth = 20.0;
     [NSGraphicsContext restoreGraphicsState];
     
     // Draw separator line between the titlebar and the content view
-    [[NSColor colorWithCalibratedWhite:0.5 alpha:1.0] set];
+    [[NSColor colorWithCalibratedRed: 0.100 green: 0.100 blue: 0.100 alpha: 1] set];
     NSRect separatorRect = NSMakeRect(originX,
                                       originY + height - OBMenuBarWindowTitleBarHeight - (isAttached ? OBMenuBarWindowArrowHeight : 0) - 1,
                                       width,
