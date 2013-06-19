@@ -9,6 +9,7 @@
 #import "StreamListViewController.h"
 
 #import "Channel.h"
+#import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
@@ -141,7 +142,11 @@
     [[cell streamTitleLabel] setAttributedStringValue:attrStreamTitle];
 
     [[cell streamUserLabel] setStringValue:stream.channel.displayName];
+    [[cell streamUserLabel] setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+
     [[cell streamGameLabel] setStringValue:stream.game];
+    [[cell streamGameLabel] setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
+
     [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
     return cell;
 }
