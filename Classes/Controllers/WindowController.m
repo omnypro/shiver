@@ -106,7 +106,9 @@
     [[window toolbarView] addSubview:self.titleBarView];
 
     // Make things pretty.
-    [[self.refreshButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
+    [self.refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
+    [self.refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
+
     [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
