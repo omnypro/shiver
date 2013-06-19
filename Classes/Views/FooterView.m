@@ -14,33 +14,32 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Declare our colors and gradients first. There's a lot of them.
+    // Declare our colors first. There's a lot of them.
     NSColor *leftTopColor = [NSColor colorWithHex:@"#343434"];;
     NSColor *leftBottomColor = [NSColor colorWithHex:@"#141414"];
     NSColor *rightTopColor = [NSColor colorWithHex:@"#E0E0E1"];
     NSColor *rightBottomColor = [NSColor colorWithHex:@"#C0C0C6"];
     NSColor *leftHighlightColor = [NSColor colorWithHex:@"#3F3F40"];
-    NSGradient *leftGradient = [[NSGradient alloc] initWithStartingColor:leftTopColor endingColor:leftBottomColor];
-    NSGradient *rightGradient = [[NSGradient alloc] initWithStartingColor:rightTopColor endingColor:rightBottomColor];
 
     // Draw the left side of the two-tone footer first.
-    NSBezierPath* leftPath = [NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, 38, 36)];
-    NSBezierPath* leftHighlightPath = [NSBezierPath bezierPathWithRect:NSMakeRect(0, 35, 37, 1)];
-    [leftGradient drawInBezierPath:leftPath angle: -90];
+    NSRect leftRect = NSMakeRect(0, 0, 38, 36);
+    NSRect leftHighlightRect = NSMakeRect(0, 35, 37, 1);
+    NSGradient *leftGradient = [[NSGradient alloc] initWithStartingColor:leftTopColor endingColor:leftBottomColor];
+    [leftGradient drawInRect:leftRect angle:-90];
     [leftHighlightColor setFill];
-    [leftHighlightPath fill];
+    NSRectFill(leftHighlightRect);
 
     // Draw the right side of the two-tone footer.
-    NSBezierPath* rightPath = [NSBezierPath bezierPathWithRect:NSMakeRect(38, 0, 282, 36)];
-    NSBezierPath* rightHighlightPath = [NSBezierPath bezierPathWithRect:NSMakeRect(38, 35, 282, 1)];
-    [rightGradient drawInBezierPath: rightPath angle: -90];
+    NSRect rightRect = NSMakeRect(38, 0, 282, 36);
+    NSRect rightHighlightRect = NSMakeRect(38, 35, 282, 1);
+    NSGradient *rightGradient = [[NSGradient alloc] initWithStartingColor:rightTopColor endingColor:rightBottomColor];
+    [rightGradient drawInRect:rightRect angle:-90];
     [[NSColor whiteColor] setFill];
-    [rightHighlightPath fill];
+    NSRectFill(rightHighlightRect);
 
     // Draw a "faked" shadow to separate the two sides of the footer.
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect:NSMakeRect(37, 0, 1, 36)];
     [[NSColor blackColor] setFill];
-    [rectanglePath fill];
+    NSRectFill(NSMakeRect(37, 0, 1, 36));
 
     [super drawRect:dirtyRect];
 }
