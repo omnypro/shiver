@@ -15,6 +15,7 @@
 #import "OAuthViewController.h"
 #import "SORelativeDateTransformer.h"
 #import "StreamListViewController.h"
+#import "User.h"
 
 @interface WindowController () {
 @private
@@ -106,13 +107,14 @@
     [[window toolbarView] addSubview:self.titleBarView];
 
     // Make things pretty.
+    [self.statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+
     [self.refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
     [self.refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
 
     [self.preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
     [self.preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
 
-    [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
@@ -126,6 +128,12 @@
     if ([[APIClient sharedClient] isAuthenticated]) {
         [self.refreshButton setEnabled:YES];
     }
+
+    // Are we logged in? Set the string value to the current username.
+    [self.usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [User userWithBlock:^(User *user, NSError *error) {
+        if (user) { [self.usernameLabel setStringValue:user.name]; }
+    }];
 }
 
 #pragma mark UI Update Methods
@@ -173,6 +181,11 @@
 {
     OAuthViewController *object = [notification object];
     if ([object isKindOfClass:[OAuthViewController class]]) {
+
+        [User userWithBlock:^(User *user, NSError *error) {
+            if (user) { [self.usernameLabel setStringValue:user.name]; }
+        }];
+
         [self.refreshButton setEnabled:YES];
         [self swapViewController:self.streamListViewController];
 
