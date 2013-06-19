@@ -137,7 +137,7 @@
 								<object class="NSTextField" id="990513849">
 									<reference key="NSNextResponder" ref="1028632989"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{80, 9}, {181, 17}}</string>
+									<string key="NSFrame">{{48, 8}, {181, 17}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="660897288"/>
@@ -654,6 +654,7 @@
 				<real value="0.0" key="2.IBViewIntegration.shadowOffsetHeight"/>
 				<real value="0.0" key="2.IBViewIntegration.shadowOffsetWidth"/>
 				<string key="204.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="220.CustomClassName">ShadowTextField</string>
 				<string key="220.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="221.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="222.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -699,6 +700,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/OBMenuBarWindow.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ShadowTextField</string>
+					<string key="superclassName">NSTextField</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ShadowTextField.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
