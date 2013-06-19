@@ -8,7 +8,7 @@
 
 #import "StreamLogoImageView.h"
 
-CGFloat const StreamImageViewCornerRadius = 2.0;
+CGFloat const StreamImageViewCornerRadius = 0;
 CGFloat const StreamImageViewImageInset = 1.0;
 CGFloat const StreamImageViewHighlightCurveStartXOffset = 5.0;
 CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
@@ -18,6 +18,12 @@ CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
 - (void)drawRect:(NSRect)dirtyRect
 {
     [NSGraphicsContext saveGraphicsState];
+
+    NSShadow* shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.5]];
+    [shadow setShadowOffset: NSMakeSize(0.0, -3.0)];
+    [shadow setShadowBlurRadius:6];
+    [shadow set];
 
     NSRect drawingBounds = NSMakeRect(NSMinX(self.bounds), floor(NSMinY(self.bounds) + 1.0), NSWidth(self.bounds), floor(NSHeight(self.bounds) - 1.0));
     NSBezierPath *outerClip = [NSBezierPath bezierPathWithRoundedRect:drawingBounds xRadius:StreamImageViewCornerRadius yRadius:StreamImageViewCornerRadius];
