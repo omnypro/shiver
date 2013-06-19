@@ -109,7 +109,9 @@
     [self.refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
     [self.refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
 
-    [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
+    [self.preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
+    [self.preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
+
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
