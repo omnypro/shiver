@@ -10,6 +10,7 @@
 
 #import "APIClient.h"
 #import "EmptyStreamListViewController.h"
+#import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
 #import "OAuthViewController.h"
 #import "SORelativeDateTransformer.h"
@@ -107,14 +108,14 @@
     // Make things pretty.
     [[self.refreshButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
-    [[self.lastUpdatedLabel cell] setBackgroundStyle:NSBackgroundStyleLowered];
     [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
-    [self.lastUpdatedLabel setStringValue:@""];
+    [self.lastUpdatedLabel setStringValue:@"Never updated"];
+    [self.lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
 
     // The refresh button is disabled by default. We need to enable it if the
     // user is authenticated.
