@@ -75,7 +75,7 @@
 								<object class="NSButton" id="652341569">
 									<reference key="NSNextResponder" ref="1028632989"/>
 									<int key="NSvFlags">270</int>
-									<string key="NSFrame">{{6, 6}, {19, 25}}</string>
+									<string key="NSFrame">{{7, 5}, {24, 25}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="990513849"/>
@@ -111,7 +111,6 @@
 									<string key="NSFrame">{{295, 5}, {20, 25}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="788722859">
@@ -137,7 +136,7 @@
 								<object class="NSTextField" id="990513849">
 									<reference key="NSNextResponder" ref="1028632989"/>
 									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{48, 8}, {181, 17}}</string>
+									<string key="NSFrame">{{48, 10}, {181, 17}}</string>
 									<reference key="NSSuperview" ref="1028632989"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="660897288"/>
@@ -148,8 +147,8 @@
 										<int key="NSCellFlags2">272630784</int>
 										<string key="NSContents">Not yet updated</string>
 										<object class="NSFont" key="NSSupport">
-											<string key="NSName">Helvetica</string>
-											<double key="NSSize">11</double>
+											<string key="NSName">HelveticaNeue</string>
+											<double key="NSSize">10</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<string key="NSCellIdentifier">_NS:1535</string>
