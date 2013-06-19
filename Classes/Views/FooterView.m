@@ -41,6 +41,8 @@
     NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect:NSMakeRect(37, 0, 1, 36)];
     [[NSColor blackColor] setFill];
     [rectanglePath fill];
+
+    [super drawRect:dirtyRect];
 }
 
 @end
