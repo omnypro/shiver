@@ -51,6 +51,7 @@
 		939E8B7B17717DE1006D6442 /* CogActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7717717DE1006D6442 /* CogActive@2x.png */; };
 		939E8B7C17717DE1006D6442 /* CogInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7817717DE1006D6442 /* CogInactive.png */; };
 		939E8B7D17717DE1006D6442 /* CogInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7917717DE1006D6442 /* CogInactive@2x.png */; };
+		939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B7F17719251006D6442 /* WatchButtonCell.m */; };
 		93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* OAuthViewController.m */; };
 		93A3A12317658ED200913C9A /* OAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* OAuthView.xib */; };
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
@@ -129,6 +130,8 @@
 		939E8B7717717DE1006D6442 /* CogActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CogActive@2x.png"; path = "Assets/Images/CogActive@2x.png"; sourceTree = SOURCE_ROOT; };
 		939E8B7817717DE1006D6442 /* CogInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CogInactive.png; path = Assets/Images/CogInactive.png; sourceTree = SOURCE_ROOT; };
 		939E8B7917717DE1006D6442 /* CogInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CogInactive@2x.png"; path = "Assets/Images/CogInactive@2x.png"; sourceTree = SOURCE_ROOT; };
+		939E8B7E17719251006D6442 /* WatchButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchButtonCell.h; path = Classes/Views/WatchButtonCell.h; sourceTree = SOURCE_ROOT; };
+		939E8B7F17719251006D6442 /* WatchButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchButtonCell.m; path = Classes/Views/WatchButtonCell.m; sourceTree = SOURCE_ROOT; };
 		93A3A11F17658ED200913C9A /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthViewController.h; path = Classes/Controllers/OAuthViewController.h; sourceTree = SOURCE_ROOT; };
 		93A3A12017658ED200913C9A /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthViewController.m; path = Classes/Controllers/OAuthViewController.m; sourceTree = SOURCE_ROOT; };
 		93A3A12117658ED200913C9A /* OAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthView.xib; path = Assets/NIBs/OAuthView.xib; sourceTree = SOURCE_ROOT; };
@@ -319,6 +322,8 @@
 				936959CF1769606D00F2F788 /* FooterView.m */,
 				939E8B69177161A8006D6442 /* ShadowTextField.h */,
 				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
+				939E8B7E17719251006D6442 /* WatchButtonCell.h */,
+				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 				938A7665177108460094A361 /* StreamListView.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				939E8B6B177161A8006D6442 /* ShadowTextField.m in Sources */,
+				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
