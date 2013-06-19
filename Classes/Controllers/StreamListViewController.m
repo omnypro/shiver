@@ -35,7 +35,7 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    [self.listView setCellSpacing:5];
+    [self.listView setCellSpacing:0];
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
     [self loadStreamList];

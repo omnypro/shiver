@@ -67,4 +67,11 @@
 	[self setNeedsDisplayInRect: [self visibleRect]];
 }
 
+-(void) setFrameSize:(NSSize)newSize
+{
+    // Hack PXListDocumentView to add padding to the bottom of it.
+    newSize.height += 5;
+    [super setFrameSize:newSize];
+}
+
 @end
