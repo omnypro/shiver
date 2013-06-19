@@ -148,6 +148,7 @@
     [[cell streamGameLabel] setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
 
     [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
+
     return cell;
 }
 
