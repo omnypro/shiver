@@ -30,15 +30,12 @@
     [path fill];
 
     // Crop the preview image, because squishy images suck.
-    NSImage *croppedImage;
-    MGImageResizingMethod method = MGImageResizeCropStart;
-    NSSize targetSize = NSMakeSize(304, 85);
-    croppedImage = [self.image imageToFitSize:targetSize method:method];
+    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(304, 85) method:MGImageResizeCropStart];
     [croppedImage drawInRect:innerRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 
     // Draw the title rectangle with the same bottom rounded corners and a
     // translucent black background for the title text to sit on.
-    NSColor* titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.7];
+    NSColor* titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
     NSRect titleRect = NSMakeRect(0, 0, 304, 48);
     NSRect titleInnerRect = NSInsetRect(titleRect, cornerRadius, cornerRadius);
     NSBezierPath* titlePath = [NSBezierPath bezierPath];
