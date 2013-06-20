@@ -32,6 +32,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    // Abstracted attributes.
     CGFloat cornerRadius = 2;
 
     // Declare our colors first.
