@@ -32,49 +32,44 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    //// Color Declarations
-    NSColor* topGradientColor = [NSColor colorWithCalibratedRed: 0.902 green: 0.906 blue: 0.91 alpha: 1];
-    NSColor* bottomGradientColor = [NSColor colorWithCalibratedRed: 0.827 green: 0.831 blue: 0.835 alpha: 1];
+    CGFloat cornerRadius = 2;
 
-    //// Gradient Declarations
-    NSGradient* gradient = [[NSGradient alloc] initWithStartingColor: topGradientColor endingColor: bottomGradientColor];
+    // Declare our colors first.
+    NSColor *topColor = [NSColor colorWithCalibratedRed:0.902 green:0.906 blue:0.91 alpha:1];
+    NSColor *bottomColor = [NSColor colorWithCalibratedRed:0.827 green:0.831 blue:0.835 alpha:1];
 
-    //// Shadow Declarations
-    NSShadow* innerShadow = [[NSShadow alloc] init];
-    [innerShadow setShadowColor: [NSColor whiteColor]];
-    [innerShadow setShadowOffset: NSMakeSize(0.1, -1.1)];
-    [innerShadow setShadowBlurRadius: 0];
+    // Next, declare the necessary gradient and shadow.
+    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
+    NSShadow *innerShadow = [[NSShadow alloc] init];
+    [innerShadow setShadowColor:[NSColor whiteColor]];
+    [innerShadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+    [innerShadow setShadowBlurRadius:0];
 
-    //// Abstracted Attributes
-    NSRect roundedRectangleRect = NSMakeRect(5, 0, 310, 110);
-    CGFloat roundedRectangleCornerRadius = 2;
+    // Draw the box.
+    NSRect rect = NSMakeRect(5, 0, 310, 110);
+    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:cornerRadius yRadius:cornerRadius];
+    [gradient drawInBezierPath:path angle:-90];
 
+    NSRect borderRect = NSInsetRect([path bounds], -innerShadow.shadowBlurRadius, -innerShadow.shadowBlurRadius);
+    borderRect = NSOffsetRect(borderRect, -innerShadow.shadowOffset.width, -innerShadow.shadowOffset.height);
+    borderRect = NSInsetRect(NSUnionRect(borderRect, [path bounds]), -1, -1);
 
-    //// Rounded Rectangle Drawing
-    NSBezierPath* roundedRectanglePath = [NSBezierPath bezierPathWithRoundedRect: roundedRectangleRect xRadius: roundedRectangleCornerRadius yRadius: roundedRectangleCornerRadius];
-    [gradient drawInBezierPath: roundedRectanglePath angle: -90];
-
-    ////// Rounded Rectangle Inner Shadow
-    NSRect roundedRectangleBorderRect = NSInsetRect([roundedRectanglePath bounds], -innerShadow.shadowBlurRadius, -innerShadow.shadowBlurRadius);
-    roundedRectangleBorderRect = NSOffsetRect(roundedRectangleBorderRect, -innerShadow.shadowOffset.width, -innerShadow.shadowOffset.height);
-    roundedRectangleBorderRect = NSInsetRect(NSUnionRect(roundedRectangleBorderRect, [roundedRectanglePath bounds]), -1, -1);
-
-    NSBezierPath* roundedRectangleNegativePath = [NSBezierPath bezierPathWithRect: roundedRectangleBorderRect];
-    [roundedRectangleNegativePath appendBezierPath: roundedRectanglePath];
-    [roundedRectangleNegativePath setWindingRule: NSEvenOddWindingRule];
+    NSBezierPath *negativePath = [NSBezierPath bezierPathWithRect:borderRect];
+    [negativePath appendBezierPath:path];
+    [negativePath setWindingRule:NSEvenOddWindingRule];
 
     [NSGraphicsContext saveGraphicsState];
     {
-        NSShadow* innerShadowWithOffset = [innerShadow copy];
-        CGFloat xOffset = innerShadowWithOffset.shadowOffset.width + round(roundedRectangleBorderRect.size.width);
-        CGFloat yOffset = innerShadowWithOffset.shadowOffset.height;
-        innerShadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
-        [innerShadowWithOffset set];
+        NSShadow *shadowWithOffset = [innerShadow copy];
+        CGFloat xOffset = shadowWithOffset.shadowOffset.width + round(borderRect.size.width);
+        CGFloat yOffset = shadowWithOffset.shadowOffset.height;
+        shadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
+        [shadowWithOffset set];
         [[NSColor grayColor] setFill];
-        [roundedRectanglePath addClip];
-        NSAffineTransform* transform = [NSAffineTransform transform];
-        [transform translateXBy: -round(roundedRectangleBorderRect.size.width) yBy: 0];
-        [[transform transformBezierPath: roundedRectangleNegativePath] fill];
+        [path addClip];
+        NSAffineTransform *transform = [NSAffineTransform transform];
+        [transform translateXBy:-round(borderRect.size.width) yBy: 0];
+        [[transform transformBezierPath:negativePath] fill];
     }
     [NSGraphicsContext restoreGraphicsState];
 }
