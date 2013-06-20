@@ -198,6 +198,36 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="NSImageView" id="844472917">
+						<reference key="NSNextResponder" ref="629863436"/>
+						<int key="NSvFlags">265</int>
+						<array class="NSMutableArray" key="NSSubviews"/>
+						<set class="NSMutableSet" key="NSDragTypes">
+							<string>Apple PDF pasteboard type</string>
+							<string>Apple PICT pasteboard type</string>
+							<string>Apple PNG pasteboard type</string>
+							<string>NSFilenamesPboardType</string>
+							<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+							<string>NeXT TIFF v4.0 pasteboard type</string>
+						</set>
+						<string key="NSFrame">{{295, 8}, {16, 16}}</string>
+						<reference key="NSSuperview" ref="629863436"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSImageCell" key="NSCell" id="298301045">
+							<int key="NSCellFlags">134217728</int>
+							<int key="NSCellFlags2">33554432</int>
+							<string key="NSCellIdentifier">_NS:9</string>
+							<int key="NSAlign">0</int>
+							<int key="NSScale">0</int>
+							<int key="NSStyle">0</int>
+							<bool key="NSAnimates">NO</bool>
+						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+						<bool key="NSEditable">YES</bool>
+					</object>
 					<object class="NSImageView" id="587222220">
 						<reference key="NSNextResponder" ref="629863436"/>
 						<int key="NSvFlags">260</int>
@@ -235,10 +265,10 @@
 					<object class="NSTextField" id="704749243">
 						<reference key="NSNextResponder" ref="629863436"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{201, 10}, {97, 19}}</string>
+						<string key="NSFrame">{{192, 10}, {97, 19}}</string>
 						<reference key="NSSuperview" ref="629863436"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="844472917"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="912835011">
@@ -498,6 +528,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">userImage</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="844472917"/>
+					</object>
+					<int key="connectionID">285</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="1005"/>
 						<reference key="destination" ref="1001"/>
@@ -555,6 +593,7 @@
 							<reference ref="536232932"/>
 							<reference ref="587222220"/>
 							<reference ref="704749243"/>
+							<reference ref="844472917"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -696,6 +735,19 @@
 						<reference key="object" ref="912835011"/>
 						<reference key="parent" ref="704749243"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">282</int>
+						<reference key="object" ref="844472917"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="298301045"/>
+						</array>
+						<reference key="parent" ref="629863436"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">283</int>
+						<reference key="object" ref="298301045"/>
+						<reference key="parent" ref="844472917"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -731,6 +783,9 @@
 				<string key="275.CustomClassName">ShadowTextField</string>
 				<string key="275.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="276.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="282.CustomClassName">UserImageView</string>
+				<string key="282.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="283.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<real value="0.0" key="63.IBViewIntegration.shadowBlurRadius"/>
 				<reference key="63.IBViewIntegration.shadowColor" ref="513116374"/>
@@ -744,7 +799,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">281</int>
+			<int key="maxID">287</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -781,6 +836,14 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">UserImageView</string>
+					<string key="superclassName">NSImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UserImageView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">WindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
@@ -811,6 +874,7 @@
 						<string key="statusImage">NSImageView</string>
 						<string key="statusLabel">NSTextField</string>
 						<string key="titleBarView">NSView</string>
+						<string key="userImage">NSImageView</string>
 						<string key="usernameLabel">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -845,6 +909,10 @@
 						<object class="IBToOneOutletInfo" key="titleBarView">
 							<string key="name">titleBarView</string>
 							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="userImage">
+							<string key="name">userImage</string>
+							<string key="candidateClassName">NSImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="usernameLabel">
 							<string key="name">usernameLabel</string>

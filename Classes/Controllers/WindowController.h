@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSImageView *statusImage;
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSTextField *usernameLabel;
+@property (weak) IBOutlet NSImageView *userImage;
 
 // Footer elements.
 @property (weak) IBOutlet NSButton *refreshButton;

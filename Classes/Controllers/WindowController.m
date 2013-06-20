@@ -132,7 +132,10 @@
     // Are we logged in? Set the string value to the current username.
     [self.usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
     [User userWithBlock:^(User *user, NSError *error) {
-        if (user) { [self.usernameLabel setStringValue:user.name]; }
+        if (user) {
+            [self.usernameLabel setStringValue:user.name];
+            [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+        }
     }];
 }
 
