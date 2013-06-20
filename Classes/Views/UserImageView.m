@@ -63,8 +63,10 @@
 - (void)mouseDown:(NSEvent *)theEvent
 {
     [User userWithBlock:^(User *user, NSError *error) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@", user.name]];
-        [[NSWorkspace sharedWorkspace] openURL:url];
+        if (user) {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@", user.name]];
+            [[NSWorkspace sharedWorkspace] openURL:url];
+        }
     }];
 }
 
