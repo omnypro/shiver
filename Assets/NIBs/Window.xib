@@ -83,7 +83,7 @@
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="542075686">
 										<int key="NSCellFlags">-1543503872</int>
-										<int key="NSCellFlags2">134217728</int>
+										<int key="NSCellFlags2">134250496</int>
 										<string key="NSContents"/>
 										<object class="NSFont" key="NSSupport" id="45535436">
 											<string key="NSName">LucidaGrande</string>
@@ -115,7 +115,7 @@
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="788722859">
 										<int key="NSCellFlags">-2080374784</int>
-										<int key="NSCellFlags2">134217728</int>
+										<int key="NSCellFlags2">134250496</int>
 										<string key="NSContents"/>
 										<reference key="NSSupport" ref="45535436"/>
 										<string key="NSCellIdentifier">_NS:9</string>
