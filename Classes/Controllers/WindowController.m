@@ -173,6 +173,7 @@
     if ([object isKindOfClass:[StreamListViewController class]]) {
         // Update the interface, swapping in the empty stream list view.
         [self swapViewController:self.emptyStreamListViewController];
+        [self.statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
     }
 }
 
@@ -198,6 +199,8 @@
         self.lastUpdatedTimestamp = [NSDate date];
         [self updateLastUpdatedLabel];
         [self startTimerForLastUpdatedLabel];
+
+        [self.statusImage setImage:[NSImage imageNamed:@"BroadcastActive"]];
     }
 }
 
