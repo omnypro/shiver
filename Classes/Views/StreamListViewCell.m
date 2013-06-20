@@ -23,6 +23,8 @@
 
 - (void)prepareForReuse
 {
+    [self.streamLogo setImage:nil];
+    [self.streamPreview setImage:nil];
     [self.streamTitleLabel setStringValue:@""];
     [self.streamUserLabel setStringValue:@""];
     [self.streamViewerCountLabel setStringValue:@""];
