@@ -263,15 +263,15 @@
 					<object class="NSTextField" id="704749243">
 						<reference key="NSNextResponder" ref="629863436"/>
 						<int key="NSvFlags">-2147483380</int>
-						<string key="NSFrame">{{219, 10}, {70, 19}}</string>
+						<string key="NSFrame">{{159, 10}, {130, 19}}</string>
 						<reference key="NSSuperview" ref="629863436"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="844472917"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="912835011">
-							<int key="NSCellFlags">68157504</int>
-							<int key="NSCellFlags2">71336960</int>
+							<int key="NSCellFlags">67108928</int>
+							<int key="NSCellFlags2">71337984</int>
 							<string key="NSContents">Username</string>
 							<object class="NSFont" key="NSSupport" id="1050942802">
 								<string key="NSName">HelveticaNeue-Bold</string>
