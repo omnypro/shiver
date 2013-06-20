@@ -124,7 +124,7 @@
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
-    [self.lastUpdatedLabel setStringValue:@"Never updated"];
+    [self.lastUpdatedLabel setHidden:YES];
     [self.lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
 
     // The refresh button is disabled by default. We need to enable it if the
@@ -159,10 +159,12 @@
 
 - (void)updateLastUpdatedLabel
 {
+    [self.lastUpdatedLabel setHidden:NO];
+
     // Update `lastUpdatedLabel` with the current date (relative).
     SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
     NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-    [[self lastUpdatedLabel] setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
+    [self.lastUpdatedLabel setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
 }
 
 #pragma mark Notification Observers
@@ -233,13 +235,16 @@
         // Ah, don't forget we have a timer. We should stop it.
         dispatch_source_cancel(_timer);
 
+        // We've logged out. Show the login view.
+        [self swapViewController:self.loginRequiredViewController];
+
+        // Reset the interface.
         [self.usernameLabel setHidden:YES];
         [self.userImage setHidden:YES];
-
+        [self.lastUpdatedLabel setHidden:YES];
         [self.refreshButton setEnabled:NO];
         [self.statusLabel setStringValue:@"Not logged in."];
-        [self.lastUpdatedLabel setStringValue:@""];
-        [self swapViewController:self.emptyStreamListViewController];
+        [self.statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
     }
 }
 
