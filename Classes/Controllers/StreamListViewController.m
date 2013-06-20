@@ -62,7 +62,7 @@
 
         // If we have no streams, brodacast a notification so other parts
         // of the application can update their UIs.
-        if (self.streamArray.count == 0) {
+        if (streams.count == 0) {
             [[NSNotificationCenter defaultCenter] postNotificationName:StreamListIsEmptyNotification object:self userInfo:nil];
         }
         else {
