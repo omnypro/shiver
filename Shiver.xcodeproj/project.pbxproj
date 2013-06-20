@@ -333,20 +333,10 @@
 		936327D61764468B00146C8A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				939E8B9317728326006D6442 /* Custom UI */,
+				939E8B921772830A006D6442 /* Main Window */,
 				93A3A12817679C6600913C9A /* Preferences */,
 				938A766617710AD30094A361 /* Stream List */,
-				936959CE1769606D00F2F788 /* FooterView.h */,
-				936959CF1769606D00F2F788 /* FooterView.m */,
-				939E8B811771A4CF006D6442 /* HeaderView.h */,
-				939E8B821771A4CF006D6442 /* HeaderView.m */,
-				939E8B69177161A8006D6442 /* ShadowTextField.h */,
-				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
-				939E8B8C17727456006D6442 /* UserImageView.h */,
-				939E8B8D17727456006D6442 /* UserImageView.m */,
-				939E8B8F177280FB006D6442 /* UsernameTextField.h */,
-				939E8B90177280FB006D6442 /* UsernameTextField.m */,
-				939E8B7E17719251006D6442 /* WatchButtonCell.h */,
-				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -371,6 +361,8 @@
 				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
 				938A7660177105FC0094A361 /* StreamPreviewImageView.h */,
 				938A7661177105FC0094A361 /* StreamPreviewImageView.m */,
+				939E8B7E17719251006D6442 /* WatchButtonCell.h */,
+				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
 			name = "Stream List";
 			sourceTree = "<group>";
@@ -395,6 +387,30 @@
 			);
 			name = Images;
 			path = Assets/Images;
+			sourceTree = "<group>";
+		};
+		939E8B921772830A006D6442 /* Main Window */ = {
+			isa = PBXGroup;
+			children = (
+				936959CE1769606D00F2F788 /* FooterView.h */,
+				936959CF1769606D00F2F788 /* FooterView.m */,
+				939E8B811771A4CF006D6442 /* HeaderView.h */,
+				939E8B821771A4CF006D6442 /* HeaderView.m */,
+				939E8B8C17727456006D6442 /* UserImageView.h */,
+				939E8B8D17727456006D6442 /* UserImageView.m */,
+				939E8B8F177280FB006D6442 /* UsernameTextField.h */,
+				939E8B90177280FB006D6442 /* UsernameTextField.m */,
+			);
+			name = "Main Window";
+			sourceTree = "<group>";
+		};
+		939E8B9317728326006D6442 /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				939E8B69177161A8006D6442 /* ShadowTextField.h */,
+				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
+			);
+			name = "Custom UI";
 			sourceTree = "<group>";
 		};
 		93A3A11E17658E2B00913C9A /* Preferences */ = {
