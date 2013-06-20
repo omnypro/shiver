@@ -41,26 +41,26 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSButton" id="977063469">
+					<object class="NSButton" id="55555669">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{119, 59}, {83, 32}}</string>
+						<string key="NSFrame">{{87, 59}, {147, 32}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="664737423">
+						<object class="NSButtonCell" key="NSCell" id="837467335">
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Sign in</string>
+							<string key="NSContents">Connect with Twitch</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">HelveticaNeue-Bold</string>
 								<double key="NSSize">11</double>
 								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
-							<reference key="NSControlView" ref="977063469"/>
+							<reference key="NSControlView" ref="55555669"/>
 							<int key="NSButtonFlags">-2038284288</int>
 							<int key="NSButtonFlags2">129</int>
 							<string key="NSAlternateContents"/>
@@ -109,7 +109,7 @@
 						<string key="NSFrame">{{0, 90}, {320, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="977063469"/>
+						<reference key="NSNextKeyView" ref="55555669"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="184097025">
@@ -219,7 +219,7 @@
 							<reference ref="394918565"/>
 							<reference ref="770464501"/>
 							<reference ref="108985215"/>
-							<reference ref="977063469"/>
+							<reference ref="55555669"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -264,16 +264,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">138</int>
-						<reference key="object" ref="977063469"/>
+						<reference key="object" ref="55555669"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="664737423"/>
+							<reference ref="837467335"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">139</int>
-						<reference key="object" ref="664737423"/>
-						<reference key="parent" ref="977063469"/>
+						<reference key="object" ref="837467335"/>
+						<reference key="parent" ref="55555669"/>
 					</object>
 				</array>
 			</object>
