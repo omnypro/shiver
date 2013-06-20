@@ -58,6 +58,7 @@
 		939E8B8A1771A9A2006D6442 /* BroadcastInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B861771A9A2006D6442 /* BroadcastInactive.png */; };
 		939E8B8B1771A9A2006D6442 /* BroadcastInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B871771A9A2006D6442 /* BroadcastInactive@2x.png */; };
 		939E8B8E17727456006D6442 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B8D17727456006D6442 /* UserImageView.m */; };
+		939E8B91177280FB006D6442 /* UsernameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B90177280FB006D6442 /* UsernameTextField.m */; };
 		93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* OAuthViewController.m */; };
 		93A3A12317658ED200913C9A /* OAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* OAuthView.xib */; };
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
@@ -146,6 +147,8 @@
 		939E8B871771A9A2006D6442 /* BroadcastInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BroadcastInactive@2x.png"; path = "Assets/Images/BroadcastInactive@2x.png"; sourceTree = SOURCE_ROOT; };
 		939E8B8C17727456006D6442 /* UserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserImageView.h; path = Classes/Views/UserImageView.h; sourceTree = SOURCE_ROOT; };
 		939E8B8D17727456006D6442 /* UserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserImageView.m; path = Classes/Views/UserImageView.m; sourceTree = SOURCE_ROOT; };
+		939E8B8F177280FB006D6442 /* UsernameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UsernameTextField.h; path = Classes/Views/UsernameTextField.h; sourceTree = SOURCE_ROOT; };
+		939E8B90177280FB006D6442 /* UsernameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UsernameTextField.m; path = Classes/Views/UsernameTextField.m; sourceTree = SOURCE_ROOT; };
 		93A3A11F17658ED200913C9A /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthViewController.h; path = Classes/Controllers/OAuthViewController.h; sourceTree = SOURCE_ROOT; };
 		93A3A12017658ED200913C9A /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthViewController.m; path = Classes/Controllers/OAuthViewController.m; sourceTree = SOURCE_ROOT; };
 		93A3A12117658ED200913C9A /* OAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthView.xib; path = Assets/NIBs/OAuthView.xib; sourceTree = SOURCE_ROOT; };
@@ -340,6 +343,8 @@
 				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
 				939E8B8C17727456006D6442 /* UserImageView.h */,
 				939E8B8D17727456006D6442 /* UserImageView.m */,
+				939E8B8F177280FB006D6442 /* UsernameTextField.h */,
+				939E8B90177280FB006D6442 /* UsernameTextField.m */,
 				939E8B7E17719251006D6442 /* WatchButtonCell.h */,
 				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
@@ -596,6 +601,7 @@
 				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
 				939E8B831771A4CF006D6442 /* HeaderView.m in Sources */,
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
+				939E8B91177280FB006D6442 /* UsernameTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
