@@ -106,7 +106,6 @@
 {
     if ([[APIClient sharedClient] isAuthenticated]) {
         [[APIClient sharedClient] logout];
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://twitch.tv/settings/applications"]];
 
         // Update the interface.
         [self.connectionStatusLabel setStringValue:@"Not currently connected."];
