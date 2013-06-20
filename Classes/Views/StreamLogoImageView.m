@@ -35,10 +35,6 @@ CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
     }
     [backingGrad drawInBezierPath:outerClip angle:90.0];
 
-    CGFloat y = NSMinY(self.bounds) + 0.5;
-    [[NSColor whiteColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(self.bounds) + StreamImageViewCornerRadius, y) toPoint:NSMakePoint(NSMaxX(self.bounds) - StreamImageViewCornerRadius, y)];
-
     NSRect imageRect = NSInsetRect(drawingBounds, StreamImageViewImageInset, StreamImageViewImageInset);
     [self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 
