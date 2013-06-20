@@ -199,7 +199,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSImageView" id="844472917">
 						<reference key="NSNextResponder" ref="629863436"/>
-						<int key="NSvFlags">265</int>
+						<int key="NSvFlags">-2147483383</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<set class="NSMutableSet" key="NSDragTypes">
 							<string>Apple PDF pasteboard type</string>
@@ -262,7 +262,7 @@
 					</object>
 					<object class="NSTextField" id="704749243">
 						<reference key="NSNextResponder" ref="629863436"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">-2147483380</int>
 						<string key="NSFrame">{{219, 10}, {70, 19}}</string>
 						<reference key="NSSuperview" ref="629863436"/>
 						<reference key="NSWindow"/>

@@ -135,6 +135,8 @@
         if (user) {
             [self.usernameLabel setStringValue:user.name];
             [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+            [self.usernameLabel setHidden:NO];
+            [self.userImage setHidden:NO];
         }
     }];
 }
@@ -189,6 +191,8 @@
             if (user) {
                 [self.usernameLabel setStringValue:user.name];
                 [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+                [self.usernameLabel setHidden:NO];
+                [self.userImage setHidden:NO];
             }
         }];
 
@@ -206,6 +210,9 @@
     if ([object isKindOfClass:[OAuthViewController class]]) {
         // Ah, don't forget we have a timer. We should stop it.
         dispatch_source_cancel(_timer);
+
+        [self.usernameLabel setHidden:YES];
+        [self.userImage setHidden:YES];
 
         [self.refreshButton setEnabled:NO];
         [self.statusLabel setStringValue:@"Not logged in."];
