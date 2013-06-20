@@ -10,6 +10,7 @@
 
 NSString *const StreamListIsEmptyNotification = @"com.revyver.Shiver.StreamListIsEmptyNotification";
 NSString *const StreamListWasUpdatedNotification = @"com.revyver.Shiver.StreamListWasUpdatedNotification";
+NSString *const RequestToOpenPreferencesNotification = @"com.revyver.Shiver.RequestToOpenPreferencesNotification";
 NSString *const RequestToUpdateStreamNotification = @"com.revyver.Shiver.RequestToUpdateStreamNotification";
 NSString *const UserDidConnectAccountNotification = @"com.revyver.Shiver.UserDidConnectAccountNotification";
 NSString *const UserDidDisconnectAccountNotification = @"com.revyver.Shiver.UserDidDisconnectAccountNotification";

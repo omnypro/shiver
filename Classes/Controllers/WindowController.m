@@ -38,9 +38,12 @@
 
 - (void)startTimerForLastUpdatedLabel;
 - (void)updateLastUpdatedLabel;
+
 @end
 
 @implementation WindowController
+
+@synthesize preferencesWindowController = _preferencesWindowController;
 
 - (id)init
 {
@@ -56,6 +59,7 @@
     [super windowDidLoad];
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListIsEmpty:) name:StreamListIsEmptyNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListWasUpdated:) name:StreamListWasUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
@@ -65,6 +69,18 @@
     // and status bar menu item.
     [self setupControllers];
     [self composeInterface];
+}
+
+- (NSWindowController *)preferencesWindowController
+{
+    // If we have not created the window controller yet, create it now.
+    if (_preferencesWindowController == nil) {
+        GeneralViewController *general = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
+        OAuthViewController *oauth = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
+        NSArray *controllers = [NSArray arrayWithObjects:general, oauth, nil];
+        _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
+    }
+    return _preferencesWindowController;
 }
 
 #pragma mark Window Compositioning
@@ -172,6 +188,11 @@
 
 #pragma mark Notification Observers
 
+- (void)requestToOpenPreferences:(NSNotification *)notification
+{
+    [self showPreferences:notification.object];
+}
+
 - (void)streamListIsEmpty:(NSNotification *)notification
 {
     StreamListViewController *object = [notification object];
@@ -261,16 +282,8 @@
 
 - (IBAction)showPreferences:(id)sender
 {
-    // If we have not created the window controller yet, create it now.
-    if (!self.preferencesWindowController) {
-        GeneralViewController *general = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
-        OAuthViewController *oauth = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
-        NSArray *controllers = [NSArray arrayWithObjects:general, oauth, nil];
-        self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
-    }
-
     [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
-    [self.preferencesWindowController showWindow:self];
+    [self.preferencesWindowController showWindow:sender];
     [NSApp activateIgnoringOtherApps:YES];
 }
 
