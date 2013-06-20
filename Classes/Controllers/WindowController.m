@@ -13,10 +13,13 @@
 #import "LoginRequiredViewController.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
-#import "OAuthViewController.h"
 #import "SORelativeDateTransformer.h"
 #import "StreamListViewController.h"
 #import "User.h"
+
+// Preferences-related imports.
+#import "GeneralViewController.h"
+#import "OAuthViewController.h"
 
 @interface WindowController () {
 @private
@@ -260,8 +263,9 @@
 {
     // If we have not created the window controller yet, create it now.
     if (!self.preferencesWindowController) {
+        GeneralViewController *general = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
         OAuthViewController *oauth = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
-        NSArray *controllers = [NSArray arrayWithObjects:oauth, nil];
+        NSArray *controllers = [NSArray arrayWithObjects:general, oauth, nil];
         self.preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }
 
