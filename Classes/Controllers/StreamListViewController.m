@@ -8,6 +8,7 @@
 
 #import "StreamListViewController.h"
 
+#import "AFImageRequestOperation.h"
 #import "Channel.h"
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
@@ -131,17 +132,20 @@
 
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
 {
-    StreamListViewCell *cell = (StreamListViewCell *)[aListView dequeueCellWithReusableIdentifier:@"Cell"];
-    if (!cell) {
-        cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
-    }
+    // We've turned off dequeuing since we don't really need it at the moment.
+    // If performance suffers, I'll turn it back on.
+    // StreamListViewCell *cell = (StreamListViewCell *)[aListView dequeueCellWithReusableIdentifier:@"Cell"];
+    // if (!cell) {
+    //     cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
+    // }
 
     // Set up our new cell.
+    StreamListViewCell *cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
     Stream *stream = [self.streamArray objectAtIndex:row];
     [cell setStream:stream];
 
-    [[cell streamPreview] setImage:[[NSImage alloc] initWithContentsOfURL:stream.previewImageURL]];
-    [[cell streamLogo] setImage:[[NSImage alloc] initWithContentsOfURL:stream.channel.logoImageURL]];
+    // Asynchronously load the two images required for every stream cell.
+    [self loadStreamImagesForCell:cell];
 
     NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
@@ -169,6 +173,25 @@
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
 {
     return [self.streamArray count];
+}
+
+- (void)loadStreamImagesForCell:(StreamListViewCell *)cell
+{
+    AFImageRequestOperation *previewRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:cell.stream.previewImageURL] success:^(NSImage *image) {
+        [cell.streamPreview setImage:image];
+    }];
+    [previewRequest setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+        return [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:cachedResponse.userInfo storagePolicy:cachedResponse.storagePolicy];
+    }];
+    [previewRequest start];
+
+    AFImageRequestOperation *logoRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:cell.stream.channel.logoImageURL] success:^(NSImage *image) {
+        [cell.streamLogo setImage:image];
+    }];
+    [logoRequest setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
+        return [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:cachedResponse.userInfo storagePolicy:cachedResponse.storagePolicy];
+    }];
+    [logoRequest start];
 }
 
 #pragma mark Notification Observers
