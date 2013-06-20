@@ -10,12 +10,13 @@
 
 #import "NSColor+Hex.h"
 
-const CGFloat cornerRadius = 5;
 
 @implementation HeaderView
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    CGFloat cornerRadius = 5;
+
     // Declare our colors first.
     NSColor* topColor = [NSColor colorWithHex:@"#464646"];
     NSColor* bottomColor = [NSColor colorWithHex:@"#262626"];
