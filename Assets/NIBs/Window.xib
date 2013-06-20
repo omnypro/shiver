@@ -351,7 +351,7 @@
 				<array class="NSMutableArray" key="NSMenuItems">
 					<object class="NSMenuItem" id="928821166">
 						<reference key="NSMenu" ref="606350202"/>
-						<string key="NSTitle">Something Else</string>
+						<string key="NSTitle">About Shiver</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="936204215">
