@@ -176,6 +176,7 @@
         // Update the interface, swapping in the empty stream list view.
         [self swapViewController:self.emptyStreamListViewController];
         [self.statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
+        [self.statusLabel setStringValue:@"No live streams"];
     }
 }
 
