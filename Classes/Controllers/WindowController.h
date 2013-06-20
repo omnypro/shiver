@@ -13,7 +13,7 @@
 
 @interface WindowController : NSWindowController
 
-@property (strong) RHPreferencesWindowController *preferencesWindowController;
+@property (nonatomic, readonly) RHPreferencesWindowController *preferencesWindowController;
 
 @property (weak) IBOutlet NSView *masterView;
 

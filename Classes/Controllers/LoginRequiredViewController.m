@@ -24,4 +24,9 @@
     return self;
 }
 
+- (IBAction)login:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenPreferencesNotification object:self userInfo:nil];
+}
+
 @end
