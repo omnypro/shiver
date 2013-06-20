@@ -186,7 +186,10 @@
     if ([object isKindOfClass:[OAuthViewController class]]) {
 
         [User userWithBlock:^(User *user, NSError *error) {
-            if (user) { [self.usernameLabel setStringValue:user.name]; }
+            if (user) {
+                [self.usernameLabel setStringValue:user.name];
+                [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+            }
         }];
 
         [self.refreshButton setEnabled:YES];
