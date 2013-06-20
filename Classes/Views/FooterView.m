@@ -8,61 +8,40 @@
 
 #import "FooterView.h"
 
-@implementation FooterView
+#import "NSColor+Hex.h"
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
+@implementation FooterView
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    //// Color Declarations
-    NSColor* strokeColor = [NSColor colorWithCalibratedRed: 0.179 green: 0.179 blue: 0.179 alpha: 1];
-    NSColor* topGradientColor = [NSColor colorWithCalibratedRed: 0.173 green: 0.173 blue: 0.173 alpha: 1];
-    NSColor* bottomGradientColor = [NSColor colorWithCalibratedRed: 0.112 green: 0.112 blue: 0.112 alpha: 1];
+    // Declare our colors first. There's a lot of them.
+    NSColor *leftTopColor = [NSColor colorWithHex:@"#343434"];;
+    NSColor *leftBottomColor = [NSColor colorWithHex:@"#141414"];
+    NSColor *rightTopColor = [NSColor colorWithHex:@"#E0E0E1"];
+    NSColor *rightBottomColor = [NSColor colorWithHex:@"#C0C0C6"];
+    NSColor *leftHighlightColor = [NSColor colorWithHex:@"#3F3F40"];
 
-    //// Gradient Declarations
-    NSGradient* toolbarGradient = [[NSGradient alloc] initWithStartingColor: topGradientColor endingColor: bottomGradientColor];
+    // Draw the left side of the two-tone footer first.
+    NSRect leftRect = NSMakeRect(0, 0, 38, 36);
+    NSRect leftHighlightRect = NSMakeRect(0, 35, 37, 1);
+    NSGradient *leftGradient = [[NSGradient alloc] initWithStartingColor:leftTopColor endingColor:leftBottomColor];
+    [leftGradient drawInRect:leftRect angle:-90];
+    [leftHighlightColor setFill];
+    NSRectFill(leftHighlightRect);
 
-    //// Shadow Declarations
-    NSShadow* topInnerShadow = [[NSShadow alloc] init];
-    [topInnerShadow setShadowColor: strokeColor];
-    [topInnerShadow setShadowOffset: NSMakeSize(0.1, -1.1)];
-    [topInnerShadow setShadowBlurRadius: 0];
+    // Draw the right side of the two-tone footer.
+    NSRect rightRect = NSMakeRect(38, 0, 282, 36);
+    NSRect rightHighlightRect = NSMakeRect(38, 35, 282, 1);
+    NSGradient *rightGradient = [[NSGradient alloc] initWithStartingColor:rightTopColor endingColor:rightBottomColor];
+    [rightGradient drawInRect:rightRect angle:-90];
+    [[NSColor whiteColor] setFill];
+    NSRectFill(rightHighlightRect);
 
-    //// Rectangle Drawing
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(0, 0, 420, 36)];
-    [toolbarGradient drawInBezierPath: rectanglePath angle: -90];
+    // Draw a "faked" shadow to separate the two sides of the footer.
+    [[NSColor blackColor] setFill];
+    NSRectFill(NSMakeRect(37, 0, 1, 36));
 
-    ////// Rectangle Inner Shadow
-    NSRect rectangleBorderRect = NSInsetRect([rectanglePath bounds], -topInnerShadow.shadowBlurRadius, -topInnerShadow.shadowBlurRadius);
-    rectangleBorderRect = NSOffsetRect(rectangleBorderRect, -topInnerShadow.shadowOffset.width, -topInnerShadow.shadowOffset.height);
-    rectangleBorderRect = NSInsetRect(NSUnionRect(rectangleBorderRect, [rectanglePath bounds]), -1, -1);
-
-    NSBezierPath* rectangleNegativePath = [NSBezierPath bezierPathWithRect: rectangleBorderRect];
-    [rectangleNegativePath appendBezierPath: rectanglePath];
-    [rectangleNegativePath setWindingRule: NSEvenOddWindingRule];
-
-    [NSGraphicsContext saveGraphicsState];
-    {
-        NSShadow* topInnerShadowWithOffset = [topInnerShadow copy];
-        CGFloat xOffset = topInnerShadowWithOffset.shadowOffset.width + round(rectangleBorderRect.size.width);
-        CGFloat yOffset = topInnerShadowWithOffset.shadowOffset.height;
-        topInnerShadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
-        [topInnerShadowWithOffset set];
-        [[NSColor grayColor] setFill];
-        [rectanglePath addClip];
-        NSAffineTransform* transform = [NSAffineTransform transform];
-        [transform translateXBy: -round(rectangleBorderRect.size.width) yBy: 0];
-        [[transform transformBezierPath: rectangleNegativePath] fill];
-    }
-    [NSGraphicsContext restoreGraphicsState];
+    [super drawRect:dirtyRect];
 }
 
 @end

@@ -1,23 +1,29 @@
 //
-//  StreamImageView.m
+//  StreamLogoImageView.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/12/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamImageView.h"
+#import "StreamLogoImageView.h"
 
-CGFloat const StreamImageViewCornerRadius = 3.0;
-CGFloat const StreamImageViewImageInset = 3.0;
+CGFloat const StreamImageViewCornerRadius = 0;
+CGFloat const StreamImageViewImageInset = 1.0;
 CGFloat const StreamImageViewHighlightCurveStartXOffset = 5.0;
 CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
 
-@implementation StreamImageView
+@implementation StreamLogoImageView
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     [NSGraphicsContext saveGraphicsState];
+
+    NSShadow* shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.5]];
+    [shadow setShadowOffset: NSMakeSize(0.0, -3.0)];
+    [shadow setShadowBlurRadius:6];
+    [shadow set];
 
     NSRect drawingBounds = NSMakeRect(NSMinX(self.bounds), floor(NSMinY(self.bounds) + 1.0), NSWidth(self.bounds), floor(NSHeight(self.bounds) - 1.0));
     NSBezierPath *outerClip = [NSBezierPath bezierPathWithRoundedRect:drawingBounds xRadius:StreamImageViewCornerRadius yRadius:StreamImageViewCornerRadius];
@@ -28,10 +34,6 @@ CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
         backingGrad = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
     }
     [backingGrad drawInBezierPath:outerClip angle:90.0];
-
-    CGFloat y = NSMinY(self.bounds) + 0.5;
-    [[NSColor whiteColor] set];
-    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(self.bounds) + StreamImageViewCornerRadius, y) toPoint:NSMakePoint(NSMaxX(self.bounds) - StreamImageViewCornerRadius, y)];
 
     NSRect imageRect = NSInsetRect(drawingBounds, StreamImageViewImageInset, StreamImageViewImageInset);
     [self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];

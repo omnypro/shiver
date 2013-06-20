@@ -1,5 +1,5 @@
 //
-//  StreamImageView.h
+//  StreamLogoImageView.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/12/13.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StreamImageView : NSImageView
+@interface StreamLogoImageView : NSImageView
 
 @end
