@@ -10,6 +10,7 @@
 
 #import "APIClient.h"
 #import "EmptyStreamListViewController.h"
+#import "LoginRequiredViewController.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
 #import "OAuthViewController.h"
@@ -24,6 +25,7 @@
 
 @property (strong) NSViewController *currentViewController;
 @property (strong) EmptyStreamListViewController *emptyStreamListViewController;
+@property (strong) LoginRequiredViewController *loginRequiredViewController;
 @property (strong) StreamListViewController *streamListViewController;
 @property (strong) NSDate *lastUpdatedTimestamp;
 
@@ -66,12 +68,13 @@
 - (void)setupControllers
 {
     self.emptyStreamListViewController = [[EmptyStreamListViewController alloc] initWithNibName:@"EmptyStreamListView" bundle:nil];
+    self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
     self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamListView" bundle:nil];
 
     if ([[APIClient sharedClient] isAuthenticated]) {
         self.currentViewController = self.streamListViewController;
     } else {
-        self.currentViewController = self.emptyStreamListViewController;
+        self.currentViewController = self.loginRequiredViewController;
     }
 
     [self.currentViewController.view setFrame:self.masterView.bounds];
