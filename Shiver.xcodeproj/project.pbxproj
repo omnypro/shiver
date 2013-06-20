@@ -14,6 +14,8 @@
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
 		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
 		932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932423A01772945800374EB9 /* LoginKeys@2x.png */; };
+		932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932423A31772950A00374EB9 /* LoginRequiredView.xib */; };
+		932423A71772954800374EB9 /* LoginRequiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932423A61772954800374EB9 /* LoginRequiredViewController.m */; };
 		932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		932C29BD1761AF0B0049EC1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29BA1761AF0B0049EC1B /* main.m */; };
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
@@ -83,6 +85,9 @@
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
 		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
 		932423A01772945800374EB9 /* LoginKeys@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LoginKeys@2x.png"; path = "Assets/Images/LoginKeys@2x.png"; sourceTree = SOURCE_ROOT; };
+		932423A31772950A00374EB9 /* LoginRequiredView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginRequiredView.xib; path = Assets/NIBs/LoginRequiredView.xib; sourceTree = SOURCE_ROOT; };
+		932423A51772954800374EB9 /* LoginRequiredViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequiredViewController.h; path = Classes/Controllers/LoginRequiredViewController.h; sourceTree = SOURCE_ROOT; };
+		932423A61772954800374EB9 /* LoginRequiredViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginRequiredViewController.m; path = Classes/Controllers/LoginRequiredViewController.m; sourceTree = SOURCE_ROOT; };
 		932C29961761AE0B0049EC1B /* Shiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932C29991761AE0B0049EC1B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		932C299C1761AE0B0049EC1B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -301,6 +306,8 @@
 				936327BE1763C25B00146C8A /* ApplicationController.m */,
 				9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */,
 				9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */,
+				932423A51772954800374EB9 /* LoginRequiredViewController.h */,
+				932423A61772954800374EB9 /* LoginRequiredViewController.m */,
 				936327CD1764287100146C8A /* StreamListViewController.h */,
 				936327CE1764287100146C8A /* StreamListViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
@@ -329,6 +336,7 @@
 			children = (
 				93A3A12417658EF600913C9A /* Preferences */,
 				9301E9E2176A478300C46750 /* EmptyStreamListView.xib */,
+				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327D71764670300146C8A /* StreamListViewCell.xib */,
@@ -553,6 +561,7 @@
 				9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */,
 				932423A11772945800374EB9 /* LoginKeys.png in Resources */,
 				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
+				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +643,7 @@
 				939E8B831771A4CF006D6442 /* HeaderView.m in Sources */,
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
 				939E8B91177280FB006D6442 /* UsernameTextField.m in Sources */,
+				932423A71772954800374EB9 /* LoginRequiredViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
