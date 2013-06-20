@@ -10,10 +10,12 @@
 
 #import "APIClient.h"
 #import "EmptyStreamListViewController.h"
+#import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
 #import "OAuthViewController.h"
 #import "SORelativeDateTransformer.h"
 #import "StreamListViewController.h"
+#import "User.h"
 
 @interface WindowController () {
 @private
@@ -105,22 +107,38 @@
     [[window toolbarView] addSubview:self.titleBarView];
 
     // Make things pretty.
-    [[self.refreshButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
-    [[self.preferencesButton cell] setBackgroundStyle:NSBackgroundStyleLowered];
-    [[self.lastUpdatedLabel cell] setBackgroundStyle:NSBackgroundStyleLowered];
-    [[self.statusLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
-    [[self.liveStreamImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [self.statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+
+    [self.refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
+    [self.refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
+
+    [self.preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
+    [self.preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
+
+    [[self.statusImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
-    [self.lastUpdatedLabel setStringValue:@""];
+    [self.lastUpdatedLabel setStringValue:@"Never updated"];
+    [self.lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
 
     // The refresh button is disabled by default. We need to enable it if the
     // user is authenticated.
     if ([[APIClient sharedClient] isAuthenticated]) {
         [self.refreshButton setEnabled:YES];
     }
+
+    // Are we logged in? Set the string value to the current username.
+    [self.usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [User userWithBlock:^(User *user, NSError *error) {
+        if (user) {
+            [self.usernameLabel setStringValue:user.name];
+            [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+            [self.usernameLabel setHidden:NO];
+            [self.userImage setHidden:NO];
+        }
+    }];
 }
 
 #pragma mark UI Update Methods
@@ -168,6 +186,16 @@
 {
     OAuthViewController *object = [notification object];
     if ([object isKindOfClass:[OAuthViewController class]]) {
+
+        [User userWithBlock:^(User *user, NSError *error) {
+            if (user) {
+                [self.usernameLabel setStringValue:user.name];
+                [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+                [self.usernameLabel setHidden:NO];
+                [self.userImage setHidden:NO];
+            }
+        }];
+
         [self.refreshButton setEnabled:YES];
         [self swapViewController:self.streamListViewController];
 
@@ -182,6 +210,9 @@
     if ([object isKindOfClass:[OAuthViewController class]]) {
         // Ah, don't forget we have a timer. We should stop it.
         dispatch_source_cancel(_timer);
+
+        [self.usernameLabel setHidden:YES];
+        [self.userImage setHidden:YES];
 
         [self.refreshButton setEnabled:NO];
         [self.statusLabel setStringValue:@"Not logged in."];

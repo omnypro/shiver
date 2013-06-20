@@ -9,6 +9,7 @@
 #import "StreamListViewController.h"
 
 #import "Channel.h"
+#import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "PXListViewDelegate.h"
 #import "PXListView.h"
@@ -35,7 +36,7 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    [self.listView setCellSpacing:1];
+    [self.listView setCellSpacing:0];
     [self.listView setAllowsEmptySelection:YES];
     [self.listView setAllowsMultipleSelection:YES];
     [self loadStreamList];
@@ -122,7 +123,7 @@
 - (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
 {
     StreamListViewCell *cell = (StreamListViewCell *)[aListView dequeueCellWithReusableIdentifier:@"Cell"];
-    if (!cell) {    
+    if (!cell) {
         cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
     }
 
@@ -130,16 +131,30 @@
     Stream *stream = [self.streamArray objectAtIndex:row];
     [cell setStream:stream];
 
+    [[cell streamPreview] setImage:[[NSImage alloc] initWithContentsOfURL:stream.previewImageURL]];
     [[cell streamLogo] setImage:[[NSImage alloc] initWithContentsOfURL:stream.channel.logoImageURL]];
-    [[cell streamTitleLabel] setStringValue:stream.channel.status];
-    [[cell streamUserLabel] setStringValue:[NSString stringWithFormat:@"%@ playing %@", stream.channel.displayName, stream.game]];
-    [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@ viewers", stream.viewers]];
+
+    NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:14];
+    [attrStreamTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrStreamTitle length])];
+    [[cell streamTitleLabel] setAttributedStringValue:attrStreamTitle];
+
+    [[cell streamUserLabel] setStringValue:stream.channel.displayName];
+    [[cell streamUserLabel] setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+
+    [[cell streamGameLabel] setStringValue:stream.game];
+    [[cell streamGameLabel] setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
+
+    [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
+
     return cell;
 }
 
 - (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
 {
-    return 70;
+    return 115;
 }
 
 - (NSUInteger)numberOfRowsInListView:(PXListView *)aListView

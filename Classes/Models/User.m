@@ -21,6 +21,10 @@
     };
 }
 
++ (NSValueTransformer *)logoImageURLJSONTransformer {
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
 + (void)userWithBlock:(void (^)(User *user, NSError *error))block
 {
     [[APIClient sharedClient] getPath:@"user" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
