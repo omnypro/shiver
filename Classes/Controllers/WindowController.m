@@ -53,6 +53,7 @@
     [super windowDidLoad];
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListIsEmpty:) name:StreamListIsEmptyNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListWasUpdated:) name:StreamListWasUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
@@ -166,10 +167,25 @@
 
 #pragma mark Notification Observers
 
+- (void)streamListIsEmpty:(NSNotification *)notification
+{
+    StreamListViewController *object = [notification object];
+    if ([object isKindOfClass:[StreamListViewController class]]) {
+        // Update the interface, swapping in the empty stream list view.
+        [self swapViewController:self.emptyStreamListViewController];
+    }
+}
+
 - (void)streamListWasUpdated:(NSNotification *)notification
 {
     StreamListViewController *object = [notification object];
     if ([object isKindOfClass:[StreamListViewController class]]) {
+        // If the current view controller is `emptyStreamViewController`,
+        // switch that out since we have results now.
+        if (self.currentViewController == self.emptyStreamListViewController) {
+            [self swapViewController:self.streamListViewController];
+        }
+
         // Update the interface, starting with the number of live streams.
         NSString *statusLabelString = nil;
         if ([object.streamArray count] == 1) {

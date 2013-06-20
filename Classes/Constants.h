@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const StreamListIsEmptyNotification;
 extern NSString *const StreamListWasUpdatedNotification;
 extern NSString *const RequestToUpdateStreamNotification;
 extern NSString *const UserDidConnectAccountNotification;

@@ -60,20 +60,29 @@
     [Stream streamListWithBlock:^(NSArray *streams, NSError *error) {
         if (error) { NSLog(@"%@", [error localizedDescription]); }
 
-        // If we've fetched streams before, compared the existing list to the
-        // newly fetched one to check for any new broadcasts. If so, send those
-        // streams to the notification center.
-        if (self.streamArray != nil) {
-            NSSet *newBroadcasts = [self compareExistingStreamList:self.streamArray withNewList:streams];
-            [self sendNewStreamNotificationToUser:newBroadcasts];
+        // If we have no streams, brodacast a notification so other parts
+        // of the application can update their UIs.
+        if (self.streamArray.count == 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:StreamListIsEmptyNotification object:self userInfo:nil];
+        }
+        else {
+            // If we've fetched streams before, compared the existing list to
+            // the newly fetched one to check for any new broadcasts. If so,
+            // send those streams to the notification center.
+            if (self.streamArray != nil) {
+                NSSet *newBroadcasts = [self compareExistingStreamList:self.streamArray withNewList:streams];
+                [self sendNewStreamNotificationToUser:newBroadcasts];
+            }
+
+            self.streamArray = streams;
+
+            // Send a notification that the list was reloaded so other parts
+            // of the application can update their UIs.
+            [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
         }
 
-        self.streamArray = streams;
-
-        // Reload the listView and send a notification that the list was
-        // reloaded so other parts of the application can update their UIs.
+        // Reload the listView.
         [self.listView reloadData];
-        [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
     }];
 }
 
