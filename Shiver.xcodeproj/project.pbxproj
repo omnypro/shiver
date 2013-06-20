@@ -72,6 +72,8 @@
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
+		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
+		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +175,9 @@
 		93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamLogoImageView.h; path = Classes/Views/StreamLogoImageView.h; sourceTree = SOURCE_ROOT; };
 		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
+		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
+		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
+		93D15BAB17736ED900643D95 /* GeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralViewController.m; path = Classes/Controllers/GeneralViewController.m; sourceTree = SOURCE_ROOT; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -435,6 +440,8 @@
 		93A3A11E17658E2B00913C9A /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				93D15BAA17736ED900643D95 /* GeneralViewController.h */,
+				93D15BAB17736ED900643D95 /* GeneralViewController.m */,
 				93A3A11F17658ED200913C9A /* OAuthViewController.h */,
 				93A3A12017658ED200913C9A /* OAuthViewController.m */,
 			);
@@ -445,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				93A3A12117658ED200913C9A /* OAuthView.xib */,
+				93D15BA817736EB100643D95 /* GeneralView.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -559,6 +567,7 @@
 				932423A11772945800374EB9 /* LoginKeys.png in Resources */,
 				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
 				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
+				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +649,7 @@
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
 				939E8B91177280FB006D6442 /* UsernameTextField.m in Sources */,
 				932423A71772954800374EB9 /* LoginRequiredViewController.m in Sources */,
+				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
