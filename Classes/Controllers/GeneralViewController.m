@@ -29,7 +29,7 @@
 - (void)viewWillAppear
 {
     StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverIdentifier];
-    if (![loginController startAtLogin]) { [loginCheck setState:0]; }
+    if (![loginController startAtLogin]) { [self.systemStartupCheckbox setState:0]; }
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol
