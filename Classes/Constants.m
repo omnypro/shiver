@@ -8,6 +8,7 @@
 
 #import "Constants.h"
 
+NSString *const ShiverIdentifier = @"com.revyver.Shiver";
 NSString *const StreamListIsEmptyNotification = @"com.revyver.Shiver.StreamListIsEmptyNotification";
 NSString *const StreamListWasUpdatedNotification = @"com.revyver.Shiver.StreamListWasUpdatedNotification";
 NSString *const RequestToOpenPreferencesNotification = @"com.revyver.Shiver.RequestToOpenPreferencesNotification";
