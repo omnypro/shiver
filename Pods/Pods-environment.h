@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_AFOAuth2Client 1
 #define COCOAPODS_VERSION_PATCH_AFOAuth2Client 1
 
+// JRSwizzle
+#define COCOAPODS_POD_AVAILABLE_JRSwizzle
+#define COCOAPODS_VERSION_MAJOR_JRSwizzle 1
+#define COCOAPODS_VERSION_MINOR_JRSwizzle 0
+#define COCOAPODS_VERSION_PATCH_JRSwizzle 0
+
 // Mantle
 #define COCOAPODS_POD_AVAILABLE_Mantle
 #define COCOAPODS_VERSION_MAJOR_Mantle 1
@@ -42,6 +48,24 @@
 #define COCOAPODS_VERSION_MINOR_RHPreferences 0
 #define COCOAPODS_VERSION_PATCH_RHPreferences 0
 
+// ReactiveCocoa
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa 9
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 4
+
+// ReactiveCocoa/Core
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_Core
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_Core 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 9
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 4
+
+// ReactiveCocoa/RACExtensions
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_RACExtensions
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_RACExtensions 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_RACExtensions 9
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_RACExtensions 4
+
 // SORelativeDateTransformer
 #define COCOAPODS_POD_AVAILABLE_SORelativeDateTransformer
 #define COCOAPODS_VERSION_MAJOR_SORelativeDateTransformer 1
@@ -53,6 +77,12 @@
 #define COCOAPODS_VERSION_MAJOR_StartAtLoginController 0
 #define COCOAPODS_VERSION_MINOR_StartAtLoginController 0
 #define COCOAPODS_VERSION_PATCH_StartAtLoginController 1
+
+// libextobjc/EXTConcreteProtocol
+#define COCOAPODS_POD_AVAILABLE_libextobjc_EXTConcreteProtocol
+#define COCOAPODS_VERSION_MAJOR_libextobjc_EXTConcreteProtocol 0
+#define COCOAPODS_VERSION_MINOR_libextobjc_EXTConcreteProtocol 2
+#define COCOAPODS_VERSION_PATCH_libextobjc_EXTConcreteProtocol 5
 
 // libextobjc/EXTKeyPathCoding
 #define COCOAPODS_POD_AVAILABLE_libextobjc_EXTKeyPathCoding
