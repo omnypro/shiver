@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const ShiverIdentifier;
+extern NSString *const ShiverHelperIdentifier;
 extern NSString *const StreamListIsEmptyNotification;
 extern NSString *const StreamListWasUpdatedNotification;
 extern NSString *const RequestToOpenPreferencesNotification;

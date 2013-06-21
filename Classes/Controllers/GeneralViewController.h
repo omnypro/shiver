@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <RHPreferences/RHPreferences.h>
+#import <ServiceManagement/ServiceManagement.h>
 
 @interface GeneralViewController : NSViewController <RHPreferencesViewControllerProtocol>
 

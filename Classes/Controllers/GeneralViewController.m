@@ -28,7 +28,7 @@
 
 - (void)viewWillAppear
 {
-    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverIdentifier];
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
     if (![loginController startAtLogin]) { [self.systemStartupCheckbox setState:0]; }
 }
 
@@ -51,7 +51,7 @@
 
 - (IBAction)toggleStartOnSystemStartup:(id)sender
 {
-    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverIdentifier];
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
     if ([self.systemStartupCheckbox state]) {
         if (![loginController startAtLogin]) { [loginController setStartAtLogin:YES]; }
     }
