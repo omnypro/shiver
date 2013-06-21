@@ -79,10 +79,24 @@
 		93BE57D01773D941008CB04E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57CE1773D941008CB04E /* Credits.rtf */; };
 		93BE57D31773D941008CB04E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57D21773D941008CB04E /* ApplicationDelegate.m */; };
 		93BE57D61773D941008CB04E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* MainMenu.xib */; };
+		93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		93BE57DA1773DA73008CB04E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyStreamListViewController.h; path = Classes/Controllers/EmptyStreamListViewController.h; sourceTree = SOURCE_ROOT; };
@@ -543,6 +557,7 @@
 				932C29931761AE0B0049EC1B /* Frameworks */,
 				932C29941761AE0B0049EC1B /* Resources */,
 				ADBB9DB2641844318B22B995 /* Copy Pods Resources */,
+				93BE57DA1773DA73008CB04E /* CopyFiles */,
 			);
 			buildRules = (
 			);
