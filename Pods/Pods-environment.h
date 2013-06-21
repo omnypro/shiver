@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_SORelativeDateTransformer 1
 #define COCOAPODS_VERSION_PATCH_SORelativeDateTransformer 8
 
+// StartAtLoginController
+#define COCOAPODS_POD_AVAILABLE_StartAtLoginController
+#define COCOAPODS_VERSION_MAJOR_StartAtLoginController 0
+#define COCOAPODS_VERSION_MINOR_StartAtLoginController 0
+#define COCOAPODS_VERSION_PATCH_StartAtLoginController 1
+
 // libextobjc/EXTKeyPathCoding
 #define COCOAPODS_POD_AVAILABLE_libextobjc_EXTKeyPathCoding
 #define COCOAPODS_VERSION_MAJOR_libextobjc_EXTKeyPathCoding 0

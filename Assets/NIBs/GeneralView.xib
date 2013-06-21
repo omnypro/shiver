@@ -84,7 +84,7 @@
 					<object class="NSTextField" id="798855860">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{377, 148}, {55, 17}}</string>
+						<string key="NSFrame">{{369, 148}, {55, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="788752314"/>
@@ -138,16 +138,15 @@
 					<object class="NSTextField" id="788752314">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{332, 145}, {40, 22}}</string>
+						<string key="NSFrame">{{332, 145}, {32, 22}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="187155705">
 							<int key="NSCellFlags">-1804599231</int>
-							<int key="NSCellFlags2">-1874852864</int>
-							<string key="NSContents"/>
+							<int key="NSCellFlags2">71304192</int>
+							<integer value="5" key="NSContents"/>
 							<reference key="NSSupport" ref="114760675"/>
 							<object class="NSNumberFormatter" key="NSFormatter" id="911269042">
 								<dictionary class="NSMutableDictionary" key="NS.attributes">
@@ -336,7 +335,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="765447224">
-							<int key="NSCellFlags">-2080374784</int>
+							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">268435456</int>
 							<string key="NSContents">Start Shiver on system startup</string>
 							<reference key="NSSupport" ref="114760675"/>
@@ -382,10 +381,9 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSTextField" id="794827497">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<string key="NSFrameSize">{38, 17}</string>
-				<reference key="NSSuperview"/>
 				<string key="NSReuseIdentifierKey">_NS:1535</string>
 				<bool key="NSEnabled">YES</bool>
 				<object class="NSTextFieldCell" key="NSCell" id="760316">
@@ -437,14 +435,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">startOnSystemStartup:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="19935209"/>
-					</object>
-					<int key="connectionID">157</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">showDesktopNotifications:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="800379168"/>
@@ -458,6 +448,14 @@
 						<reference key="destination" ref="788752314"/>
 					</object>
 					<int key="connectionID">159</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleStartOnSystemStartup:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="19935209"/>
+					</object>
+					<int key="connectionID">160</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -493,7 +491,6 @@
 							<reference ref="800379168"/>
 							<reference ref="788752314"/>
 							<reference ref="979155707"/>
-							<reference ref="798855860"/>
 							<reference ref="498369722"/>
 							<reference ref="450556837"/>
 							<reference ref="19935209"/>
@@ -501,6 +498,7 @@
 							<reference ref="793581144"/>
 							<reference ref="881453356"/>
 							<reference ref="419232214"/>
+							<reference ref="798855860"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -698,7 +696,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">159</int>
+			<int key="maxID">160</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -708,7 +706,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="setStreamListRefreshTime:">id</string>
 						<string key="showDesktopNotifications:">id</string>
-						<string key="startOnSystemStartup:">id</string>
+						<string key="toggleStartOnSystemStartup:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="setStreamListRefreshTime:">
@@ -719,8 +717,8 @@
 							<string key="name">showDesktopNotifications:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="startOnSystemStartup:">
-							<string key="name">startOnSystemStartup:</string>
+						<object class="IBActionInfo" key="toggleStartOnSystemStartup:">
+							<string key="name">toggleStartOnSystemStartup:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

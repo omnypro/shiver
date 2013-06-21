@@ -8,6 +8,7 @@
 
 #import "ApplicationController.h"
 
+#import "StartAtLoginController.h"
 #import "WindowController.h"
 
 @interface ApplicationController ()
@@ -28,6 +29,12 @@
     WindowController *windowController = [[WindowController alloc] init];
     [self setWindowController:windowController];
     [self.windowController showWindow:self];
+
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShiverAutoStart"]) {
+        [loginController setStartAtLogin:YES];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ShiverAutoStart"];
+    }
 }
 
 @end
