@@ -927,6 +927,7 @@
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -940,6 +941,7 @@
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
