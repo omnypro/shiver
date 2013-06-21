@@ -52,7 +52,6 @@
 										<string key="NSFrameSize">{320, 200}</string>
 										<reference key="NSSuperview" ref="89832144"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="893117594"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 									</object>
 								</array>
@@ -76,16 +75,17 @@
 							<object class="NSScroller" id="893117594">
 								<reference key="NSNextResponder" ref="1035529183"/>
 								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{344, 0}, {16, 200}}</string>
+								<string key="NSFrame">{{-100, -100}, {16, 200}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="413092744"/>
 								<string key="NSReuseIdentifierKey">_NS:15</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="1035529183"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSCurValue">1</double>
 								<double key="NSPercent">0.99502487562189057</double>
+								<int key="NSKnobStyle">2</int>
 							</object>
 							<object class="NSScroller" id="413092744">
 								<reference key="NSNextResponder" ref="1035529183"/>
@@ -100,17 +100,19 @@
 								<reference key="NSTarget" ref="1035529183"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSPercent">0.99722991689750695</double>
+								<int key="NSKnobStyle">2</int>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 200}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="413092744"/>
+						<reference key="NSNextKeyView" ref="893117594"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="NSsFlags">133648</int>
+						<int key="NSsFlags">264720</int>
 						<reference key="NSVScroller" ref="893117594"/>
 						<reference key="NSHScroller" ref="413092744"/>
 						<reference key="NSContentView" ref="89832144"/>
+						<int key="NSScrollerKnobStyle">2</int>
 						<double key="NSMinMagnification">0.25</double>
 						<double key="NSMaxMagnification">4</double>
 						<double key="NSMagnification">1</double>
