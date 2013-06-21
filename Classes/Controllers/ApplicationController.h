@@ -9,6 +9,7 @@
 #import "ShiverApplication.h"
 
 #import <Cocoa/Cocoa.h>
+#import <ServiceManagement/ServiceManagement.h>
 
 @class WindowController;
 
