@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  ApplicationDelegate.m
 //  ShiverHelper
 //
 //  Created by Bryan Veloso on 6/20/13.
