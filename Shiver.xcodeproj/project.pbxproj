@@ -73,6 +73,12 @@
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
+		93BE57C41773D941008CB04E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
+		93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57C81773D941008CB04E /* InfoPlist.strings */; };
+		93BE57CC1773D941008CB04E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57CB1773D941008CB04E /* main.m */; };
+		93BE57D01773D941008CB04E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57CE1773D941008CB04E /* Credits.rtf */; };
+		93BE57D31773D941008CB04E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57D21773D941008CB04E /* ApplicationDelegate.m */; };
+		93BE57D61773D941008CB04E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* MainMenu.xib */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
@@ -176,6 +182,15 @@
 		93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamLogoImageView.h; path = Classes/Views/StreamLogoImageView.h; sourceTree = SOURCE_ROOT; };
 		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
 		93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		93BE57C31773D941008CB04E /* ShiverHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiverHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93BE57C71773D941008CB04E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93BE57C91773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		93BE57CB1773D941008CB04E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		93BE57CD1773D941008CB04E /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		93BE57CF1773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		93BE57D11773D941008CB04E /* ApplicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
+		93BE57D21773D941008CB04E /* ApplicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
+		93BE57D51773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -198,6 +213,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93BE57C01773D941008CB04E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93BE57C41773D941008CB04E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -205,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				932C299F1761AE0B0049EC1B /* Shiver */,
+				93BE57C51773D941008CB04E /* ShiverHelper */,
 				932C29981761AE0B0049EC1B /* Frameworks */,
 				932C29971761AE0B0049EC1B /* Products */,
 				AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */,
@@ -215,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				932C29961761AE0B0049EC1B /* Shiver.app */,
+				93BE57C31773D941008CB04E /* ShiverHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -481,6 +506,30 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		93BE57C51773D941008CB04E /* ShiverHelper */ = {
+			isa = PBXGroup;
+			children = (
+				93BE57D11773D941008CB04E /* ApplicationDelegate.h */,
+				93BE57D21773D941008CB04E /* ApplicationDelegate.m */,
+				93BE57D41773D941008CB04E /* MainMenu.xib */,
+				93BE57C61773D941008CB04E /* Supporting Files */,
+			);
+			name = ShiverHelper;
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		93BE57C61773D941008CB04E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				93BE57C71773D941008CB04E /* Info.plist */,
+				93BE57C81773D941008CB04E /* InfoPlist.strings */,
+				93BE57CB1773D941008CB04E /* main.m */,
+				93BE57CD1773D941008CB04E /* Prefix.pch */,
+				93BE57CE1773D941008CB04E /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -502,6 +551,23 @@
 			name = Shiver;
 			productName = Shiver;
 			productReference = 932C29961761AE0B0049EC1B /* Shiver.app */;
+			productType = "com.apple.product-type.application";
+		};
+		93BE57C21773D941008CB04E /* ShiverHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93BE57D71773D941008CB04E /* Build configuration list for PBXNativeTarget "ShiverHelper" */;
+			buildPhases = (
+				93BE57BF1773D941008CB04E /* Sources */,
+				93BE57C01773D941008CB04E /* Frameworks */,
+				93BE57C11773D941008CB04E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShiverHelper;
+			productName = ShiverHelper;
+			productReference = 93BE57C31773D941008CB04E /* ShiverHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -527,6 +593,7 @@
 			projectRoot = "";
 			targets = (
 				932C29951761AE0B0049EC1B /* Shiver */,
+				93BE57C21773D941008CB04E /* ShiverHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -572,6 +639,16 @@
 				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
 				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93BE57C11773D941008CB04E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */,
+				93BE57D01773D941008CB04E /* Credits.rtf in Resources */,
+				93BE57D61773D941008CB04E /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +734,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93BE57BF1773D941008CB04E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93BE57CC1773D941008CB04E /* main.m in Sources */,
+				93BE57D31773D941008CB04E /* ApplicationDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -683,6 +769,30 @@
 			);
 			name = Menu.xib;
 			sourceTree = SOURCE_ROOT;
+		};
+		93BE57C81773D941008CB04E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93BE57C91773D941008CB04E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		93BE57CE1773D941008CB04E /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93BE57CF1773D941008CB04E /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		93BE57D41773D941008CB04E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				93BE57D51773D941008CB04E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
@@ -769,10 +879,35 @@
 				CODE_SIGN_ENTITLEMENTS = Shiver.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		93BE57D81773D941008CB04E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Helper/Prefix.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/ShiverHelper/Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		93BE57D91773D941008CB04E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Helper/Prefix.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/ShiverHelper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -798,6 +933,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		93BE57D71773D941008CB04E /* Build configuration list for PBXNativeTarget "ShiverHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93BE57D81773D941008CB04E /* Debug */,
+				93BE57D91773D941008CB04E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
