@@ -26,10 +26,11 @@
     return self;
 }
 
-- (void)viewWillAppear
+- (void)awakeFromNib
 {
     StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
-    if (![loginController startAtLogin]) { [self.systemStartupCheckbox setState:0]; }
+    if (![loginController startAtLogin]) { [self.systemStartupCheckbox setState:NSOffState]; }
+    if ([loginController startAtLogin]) { [self.systemStartupCheckbox setState:NSOnState]; }
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol

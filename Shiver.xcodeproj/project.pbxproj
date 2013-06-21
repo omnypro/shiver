@@ -712,7 +712,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${INFOPLIST_FILE}\"";
 		};
 		ADBB9DB2641844318B22B995 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

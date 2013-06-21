@@ -30,9 +30,9 @@
     [self setWindowController:windowController];
     [self.windowController showWindow:self];
 
-    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverIdentifier];
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShiverAutoStart"]) {
-        [loginController setStartAtLogin: YES];
+        [loginController setStartAtLogin:YES];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ShiverAutoStart"];
     }
 }
