@@ -78,7 +78,7 @@
 		93BE57CC1773D941008CB04E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57CB1773D941008CB04E /* main.m */; };
 		93BE57D01773D941008CB04E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57CE1773D941008CB04E /* Credits.rtf */; };
 		93BE57D31773D941008CB04E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57D21773D941008CB04E /* ApplicationDelegate.m */; };
-		93BE57D61773D941008CB04E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* MainMenu.xib */; };
+		93BE57D61773D941008CB04E /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* Menu.xib */; };
 		93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
@@ -204,7 +204,7 @@
 		93BE57CF1773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		93BE57D11773D941008CB04E /* ApplicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
 		93BE57D21773D941008CB04E /* ApplicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
-		93BE57D51773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		93BE57D51773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -525,7 +525,7 @@
 			children = (
 				93BE57D11773D941008CB04E /* ApplicationDelegate.h */,
 				93BE57D21773D941008CB04E /* ApplicationDelegate.m */,
-				93BE57D41773D941008CB04E /* MainMenu.xib */,
+				93BE57D41773D941008CB04E /* Menu.xib */,
 				93BE57C61773D941008CB04E /* Supporting Files */,
 			);
 			name = ShiverHelper;
@@ -664,7 +664,7 @@
 			files = (
 				93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */,
 				93BE57D01773D941008CB04E /* Credits.rtf in Resources */,
-				93BE57D61773D941008CB04E /* MainMenu.xib in Resources */,
+				93BE57D61773D941008CB04E /* Menu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,12 +815,12 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		93BE57D41773D941008CB04E /* MainMenu.xib */ = {
+		93BE57D41773D941008CB04E /* Menu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				93BE57D51773D941008CB04E /* en */,
 			);
-			name = MainMenu.xib;
+			name = Menu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -921,10 +921,11 @@
 		93BE57D81773D941008CB04E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
-				INFOPLIST_FILE = "$(SRCROOT)/ShiverHelper/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -933,10 +934,11 @@
 		93BE57D91773D941008CB04E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
-				INFOPLIST_FILE = "$(SRCROOT)/ShiverHelper/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
