@@ -205,6 +205,7 @@
 		93BE57D11773D941008CB04E /* ApplicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
 		93BE57D21773D941008CB04E /* ApplicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
 		93BE57D51773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
+		93BE57DD1773DDCC008CB04E /* ShiverHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShiverHelper.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -535,11 +536,12 @@
 		93BE57C61773D941008CB04E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93BE57CE1773D941008CB04E /* Credits.rtf */,
 				93BE57C71773D941008CB04E /* Info.plist */,
 				93BE57C81773D941008CB04E /* InfoPlist.strings */,
 				93BE57CB1773D941008CB04E /* main.m */,
 				93BE57CD1773D941008CB04E /* Prefix.pch */,
-				93BE57CE1773D941008CB04E /* Credits.rtf */,
+				93BE57DD1773DDCC008CB04E /* ShiverHelper.entitlements */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -921,6 +923,7 @@
 		93BE57D81773D941008CB04E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShiverHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -935,6 +938,7 @@
 		93BE57D91773D941008CB04E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShiverHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
