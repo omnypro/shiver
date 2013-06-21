@@ -75,12 +75,13 @@
 							<object class="NSScroller" id="893117594">
 								<reference key="NSNextResponder" ref="1035529183"/>
 								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{-100, -100}, {16, 200}}</string>
+								<string key="NSFrame">{{-100, -100}, {11, 200}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="413092744"/>
 								<string key="NSReuseIdentifierKey">_NS:15</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+								<int key="NSsFlags">512</int>
 								<reference key="NSTarget" ref="1035529183"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSCurValue">1</double>
@@ -90,13 +91,13 @@
 							<object class="NSScroller" id="413092744">
 								<reference key="NSNextResponder" ref="1035529183"/>
 								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{-100, -100}, {360, 16}}</string>
+								<string key="NSFrame">{{-100, -100}, {360, 11}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="89832144"/>
 								<string key="NSReuseIdentifierKey">_NS:26</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-								<int key="NSsFlags">1</int>
+								<int key="NSsFlags">513</int>
 								<reference key="NSTarget" ref="1035529183"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSPercent">0.99722991689750695</double>
