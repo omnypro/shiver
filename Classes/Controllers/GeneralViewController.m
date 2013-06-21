@@ -8,6 +8,8 @@
 
 #import "GeneralViewController.h"
 
+#import "StartAtLoginController.h"
+
 @interface GeneralViewController ()
 
 @end
@@ -22,6 +24,12 @@
     }
     
     return self;
+}
+
+- (void)viewWillAppear
+{
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverIdentifier];
+    if (![loginController startAtLogin]) { [loginCheck setState:0]; }
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol
@@ -41,9 +49,15 @@
     return NSLocalizedString(@"General", @"GeneralToolbarItemLabel");
 }
 
-- (IBAction)startOnSystemStartup:(id)sender
+- (IBAction)toggleStartOnSystemStartup:(id)sender
 {
-
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverIdentifier];
+    if ([self.systemStartupCheckbox state]) {
+        if (![loginController startAtLogin]) { [loginController setStartAtLogin:YES]; }
+    }
+    else {
+        if ([loginController startAtLogin]) { [loginController setStartAtLogin:NO]; }
+    }
 }
 
 - (IBAction)showDesktopNotifications:(id)sender

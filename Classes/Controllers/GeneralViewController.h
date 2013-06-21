@@ -15,7 +15,7 @@
 @property (weak) IBOutlet NSButton *notificationCheckbox;
 @property (weak) IBOutlet NSTextField *refreshTimeField;
 
-- (IBAction)startOnSystemStartup:(id)sender;
+- (IBAction)toggleStartOnSystemStartup:(id)sender;
 - (IBAction)showDesktopNotifications:(id)sender;
 - (IBAction)setStreamListRefreshTime:(id)sender;
 
