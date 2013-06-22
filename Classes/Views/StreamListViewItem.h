@@ -1,5 +1,5 @@
 //
-//  StreamListViewCell.h
+//  StreamListViewItem.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/8/13.
@@ -8,12 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "JAListViewItem.h"
 #import "Stream.h"
 #import "StreamLogoImageView.h"
 #import "StreamPreviewImageView.h"
-#import "PXListViewCell.h"
 
-@interface StreamListViewCell : PXListViewCell
+@interface StreamListViewItem : JAListViewItem
 
 @property (nonatomic, strong) Stream *stream;
 
@@ -26,5 +26,7 @@
 @property (weak) IBOutlet NSTextField *streamViewerCountLabel;
 @property (weak) IBOutlet NSButton *streamRedirectButton;
 
++ (StreamListViewItem *)initItem;
 - (IBAction)redirectToStream:(id)sender;
+
 @end
