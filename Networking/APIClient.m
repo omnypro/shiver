@@ -18,6 +18,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 @interface APIClient ()
 @property (strong, nonatomic) AFOAuthCredential *credential;
+@property (nonatomic, strong) User *user;
 
 - (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url;
 @end
@@ -39,6 +40,13 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     return _sharedClient;
 }
 
+- (void)setUser:(User *)twitchUser
+{
+    if (self.user == twitchUser) { return; }
+    self.user = twitchUser;
+
+}
+
 - (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)clientID secret:(NSString *)secret
 {
     self = [super initWithBaseURL:url clientID:clientID secret:secret];
@@ -46,6 +54,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
         return nil;
     }
 
+    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"application/json"];
     [self setDefaultHeader:@"Client-ID" value:kClientID];
     return self;
@@ -93,6 +102,33 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     // Remove `accessToken` from userDefaults.
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"accessToken"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+# pragma mark ---
+
+- (RACSignal *)fetchUser
+{
+    return [self enqueueRequestWithMethod:@"GET" path:@"user" parameters:nil];
+}
+
+- (RACSignal *)fetchStreamList
+{
+    return [self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil];
+}
+
+- (RACSignal *)enqueueRequestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters
+{
+    RACReplaySubject *subject = [RACReplaySubject subject];
+    NSURLRequest *request = [self requestWithMethod:method path:path parameters:parameters];
+    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [subject sendNext:responseObject];
+        [subject sendCompleted];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [subject sendError:error];
+    }];
+    [self enqueueHTTPRequestOperation:operation];
+
+    return subject;
 }
 
 @end
