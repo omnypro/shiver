@@ -12,10 +12,9 @@
 #import "Channel.h"
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
-#import "PXListViewDelegate.h"
-#import "PXListView.h"
+#import "JAListView.h"
 #import "Stream.h"
-#import "StreamListViewCell.h"
+#import "StreamListViewItem.h"
 #import "WindowController.h"
 
 @interface StreamListViewController () {
@@ -37,9 +36,9 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    [self.listView setCellSpacing:0];
-    [self.listView setAllowsEmptySelection:YES];
-    [self.listView setAllowsMultipleSelection:YES];
+    [self.listView setBackgroundColor:[NSColor clearColor]];
+    [self.listView setCanCallDataSourceInParallel:YES];
+
     [self loadStreamList];
     [self startTimerForLoadingStreamList];
 }
@@ -83,6 +82,7 @@
         }
 
         // Reload the listView.
+        [self.listView reloadDataAnimated:YES];
         [self.listView reloadData];
     }];
 }
@@ -128,65 +128,69 @@
     }
 }
 
-#pragma mark - ListView Methods
+#pragma mark - JAListView Methods
 
-- (PXListViewCell *)listView:(PXListView *)aListView cellForRow:(NSUInteger)row
+- (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
-    // We've turned off dequeuing since we don't really need it at the moment.
-    // If performance suffers, I'll turn it back on.
-    // StreamListViewCell *cell = (StreamListViewCell *)[aListView dequeueCellWithReusableIdentifier:@"Cell"];
-    // if (!cell) {
-    //     cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
-    // }
 
-    // Set up our new cell.
-    StreamListViewCell *cell = [StreamListViewCell cellLoadedFromNibNamed:@"StreamListViewCell" bundle:nil reusableIdentifier:@"Cell"];
-    Stream *stream = [self.streamArray objectAtIndex:row];
-    [cell setStream:stream];
+}
+
+- (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
+{
+
+}
+
+- (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
+{
+
+}
+
+#pragma mark - JAListViewDataSource Methods
+
+- (JAListViewItem *)listView:(JAListView *)listView viewAtIndex:(NSUInteger)index
+{
+    Stream *stream = [self.streamArray objectAtIndex:index];
+    StreamListViewItem *item = [StreamListViewItem initItem];
+    // [cell setStream:stream];
 
     // Asynchronously load the two images required for every stream cell.
-    [self loadStreamImagesForCell:cell];
+    [self loadStreamImagesForItem:item];
 
     NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:14];
     [attrStreamTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrStreamTitle length])];
-    [[cell streamTitleLabel] setAttributedStringValue:attrStreamTitle];
+    [item.streamTitleLabel setAttributedStringValue:attrStreamTitle];
 
-    [[cell streamUserLabel] setStringValue:stream.channel.displayName];
-    [[cell streamUserLabel] setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [item.streamUserLabel setStringValue:stream.channel.displayName];
+    [item.streamUserLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
 
-    [[cell streamGameLabel] setStringValue:stream.game];
-    [[cell streamGameLabel] setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
+    [item.streamGameLabel setStringValue:stream.game];
+    [item.streamGameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
 
-    [[cell streamViewerCountLabel] setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
-
-    return cell;
+    [item.streamViewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
+    
+    return item;
 }
 
-- (CGFloat)listView:(PXListView *)aListView heightOfRow:(NSUInteger)row
-{
-    return 115;
-}
-
-- (NSUInteger)numberOfRowsInListView:(PXListView *)aListView
+- (NSUInteger)numberOfItemsInListView:(JAListView *)listView
 {
     return [self.streamArray count];
 }
 
-- (void)loadStreamImagesForCell:(StreamListViewCell *)cell
+- (void)loadStreamImagesForItem:(StreamListViewItem *)item
 {
-    AFImageRequestOperation *previewRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:cell.stream.previewImageURL] success:^(NSImage *image) {
-        [cell.streamPreview setImage:image];
+    AFImageRequestOperation *previewRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:item.stream.previewImageURL] success:^(NSImage *image) {
+        [item.streamPreview setImage:image];
     }];
     [previewRequest setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
         return [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:cachedResponse.userInfo storagePolicy:cachedResponse.storagePolicy];
     }];
     [previewRequest start];
 
-    AFImageRequestOperation *logoRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:cell.stream.channel.logoImageURL] success:^(NSImage *image) {
-        [cell.streamLogo setImage:image];
+    AFImageRequestOperation *logoRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:item.stream.channel.logoImageURL] success:^(NSImage *image) {
+        [item.streamLogo setImage:image];
     }];
     [logoRequest setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
         return [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:cachedResponse.userInfo storagePolicy:cachedResponse.storagePolicy];
@@ -194,7 +198,7 @@
     [logoRequest start];
 }
 
-#pragma mark Notification Observers
+#pragma mark - Notification Observers
 
 - (void)requestStreamListRefresh:(NSNotification *)notification
 {
