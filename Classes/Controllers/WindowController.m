@@ -282,6 +282,7 @@
 
 - (IBAction)showPreferences:(id)sender
 {
+    [self.preferencesWindowController.window center];
     [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
     [self.preferencesWindowController showWindow:sender];
     [NSApp activateIgnoringOtherApps:YES];
