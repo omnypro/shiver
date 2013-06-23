@@ -81,6 +81,13 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
         }
 
+        // JAListView includes an internal padding function! So, when the list
+        // is longer than two (which creates scrolling behavior, add 5 points
+        // to the bottom of the view.
+        if (self.streamArray.count > 2) {
+            [self.listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
+        }
+
         // Reload the listView.
         [self.listView reloadDataAnimated:YES];
         [self.listView reloadData];
