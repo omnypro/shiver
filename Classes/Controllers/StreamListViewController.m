@@ -139,17 +139,23 @@
 
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
-
+    if (listView == self.listView) {
+        return;
+    }
 }
 
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
-
+    if (listView == self.listView) {
+        return;
+    }
 }
 
 - (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
 {
-
+    if (listView == self.listView) {
+        return;
+    }
 }
 
 #pragma mark - JAListViewDataSource Methods
