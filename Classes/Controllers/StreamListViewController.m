@@ -164,10 +164,15 @@
 {
     Stream *stream = [self.streamArray objectAtIndex:index];
     StreamListViewItem *item = [StreamListViewItem initItem];
-    // [cell setStream:stream];
 
-    // Asynchronously load the two images required for every stream cell.
-    [self loadStreamImagesForItem:item];
+    AFImageRequestOperation *previewRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:stream.previewImageURL] success:^(NSImage *image) {
+        [item.streamPreview setImage:image];
+    }];
+    AFImageRequestOperation *logoRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:stream.channel.logoImageURL] success:^(NSImage *image) {
+        [item.streamLogo setImage:image];
+    }];
+    [previewRequest start];
+    [logoRequest start];
 
     NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
@@ -190,25 +195,6 @@
 - (NSUInteger)numberOfItemsInListView:(JAListView *)listView
 {
     return [self.streamArray count];
-}
-
-- (void)loadStreamImagesForItem:(StreamListViewItem *)item
-{
-    AFImageRequestOperation *previewRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:item.stream.previewImageURL] success:^(NSImage *image) {
-        [item.streamPreview setImage:image];
-    }];
-    [previewRequest setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-        return [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:cachedResponse.userInfo storagePolicy:cachedResponse.storagePolicy];
-    }];
-    [previewRequest start];
-
-    AFImageRequestOperation *logoRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:item.stream.channel.logoImageURL] success:^(NSImage *image) {
-        [item.streamLogo setImage:image];
-    }];
-    [logoRequest setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-        return [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response data:cachedResponse.data userInfo:cachedResponse.userInfo storagePolicy:cachedResponse.storagePolicy];
-    }];
-    [logoRequest start];
 }
 
 #pragma mark - Notification Observers
