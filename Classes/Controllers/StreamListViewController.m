@@ -91,7 +91,6 @@
 
         // Reload the listView.
         [self.listView reloadDataAnimated:YES];
-        [self.listView reloadData];
     }];
 }
 
