@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "PXListView.h"
+#import "JAListView.h"
 
 #import <Cocoa/Cocoa.h>
 
-@interface StreamListViewController : NSViewController <NSUserNotificationCenterDelegate, PXListViewDelegate>
+@interface StreamListViewController : NSViewController <NSUserNotificationCenterDelegate, JAListViewDataSource, JAListViewDelegate>
 
-@property (weak) IBOutlet PXListView *listView;
+@property (nonatomic, strong) IBOutlet JAListView *listView;
 @property (nonatomic, strong) NSMutableArray *_listItems;
 @property (nonatomic, strong) NSArray *streamArray;
 
