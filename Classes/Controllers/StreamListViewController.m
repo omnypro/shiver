@@ -11,6 +11,7 @@
 #import "AFImageRequestOperation.h"
 #import "Channel.h"
 #import "NSColor+Hex.h"
+#import "NSImageView+AFNetworking.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
 #import "Stream.h"
@@ -165,14 +166,17 @@
     Stream *stream = [self.streamArray objectAtIndex:index];
     StreamListViewItem *item = [StreamListViewItem initItem];
 
-    AFImageRequestOperation *previewRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:stream.previewImageURL] success:^(NSImage *image) {
+    // Asynchronously load the two images required for every stream cell.
+    [item.streamPreview setImageWithURLRequest:[NSURLRequest requestWithURL:stream.previewImageURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
         [item.streamPreview setImage:image];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"%@", error);
     }];
-    AFImageRequestOperation *logoRequest = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:stream.channel.logoImageURL] success:^(NSImage *image) {
+    [item.streamLogo setImageWithURLRequest:[NSURLRequest requestWithURL:stream.channel.logoImageURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
         [item.streamLogo setImage:image];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"%@", error);
     }];
-    [previewRequest start];
-    [logoRequest start];
 
     NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];

@@ -23,6 +23,7 @@
 		932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29C81761AF800049EC1B /* ShiverApplication.m */; };
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
+		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
 		936327BC1763BB1000146C8A /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327BA1763BB1000146C8A /* Window.xib */; };
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
@@ -125,7 +126,9 @@
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
-		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Hex.h"; sourceTree = "<group>"; };
+		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Extensions/Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
+		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
+		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
 		936327B81763BB1000146C8A /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = Classes/Controllers/WindowController.h; sourceTree = SOURCE_ROOT; };
 		936327B91763BB1000146C8A /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowController.m; path = Classes/Controllers/WindowController.m; sourceTree = SOURCE_ROOT; };
 		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Assets/NIBs/Window.xib; sourceTree = SOURCE_ROOT; };
@@ -149,13 +152,13 @@
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		936959CE1769606D00F2F788 /* FooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FooterView.h; path = Classes/Views/FooterView.h; sourceTree = SOURCE_ROOT; };
 		936959CF1769606D00F2F788 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FooterView.m; path = Classes/Views/FooterView.m; sourceTree = SOURCE_ROOT; };
-		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hex.m"; sourceTree = "<group>"; };
+		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Hex.m"; path = "Extensions/Categories/NSColor+Hex.m"; sourceTree = SOURCE_ROOT; };
 		938A7660177105FC0094A361 /* StreamPreviewImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamPreviewImageView.h; path = Classes/Views/StreamPreviewImageView.h; sourceTree = SOURCE_ROOT; };
 		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
 		938A7663177108460094A361 /* StreamListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListView.h; path = Classes/Views/StreamListView.h; sourceTree = SOURCE_ROOT; };
 		938A7664177108460094A361 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
-		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+MGCropExtensions.h"; sourceTree = "<group>"; };
-		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+MGCropExtensions.m"; sourceTree = "<group>"; };
+		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
+		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
@@ -516,6 +519,8 @@
 				938A765E176BEAE80094A361 /* NSColor+Hex.m */,
 				938A7667177122130094A361 /* NSImage+MGCropExtensions.h */,
 				938A7668177122130094A361 /* NSImage+MGCropExtensions.m */,
+				934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */,
+				934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -770,6 +775,7 @@
 				939E8B91177280FB006D6442 /* UsernameTextField.m in Sources */,
 				932423A71772954800374EB9 /* LoginRequiredViewController.m in Sources */,
 				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
+				934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
