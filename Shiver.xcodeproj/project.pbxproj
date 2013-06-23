@@ -125,6 +125,7 @@
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Hex.h"; sourceTree = "<group>"; };
 		936327B81763BB1000146C8A /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = Classes/Controllers/WindowController.h; sourceTree = SOURCE_ROOT; };
 		936327B91763BB1000146C8A /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowController.m; path = Classes/Controllers/WindowController.m; sourceTree = SOURCE_ROOT; };
 		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Assets/NIBs/Window.xib; sourceTree = SOURCE_ROOT; };
@@ -148,14 +149,13 @@
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		936959CE1769606D00F2F788 /* FooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FooterView.h; path = Classes/Views/FooterView.h; sourceTree = SOURCE_ROOT; };
 		936959CF1769606D00F2F788 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FooterView.m; path = Classes/Views/FooterView.m; sourceTree = SOURCE_ROOT; };
-		938A765D176BEAE80094A361 /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
-		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Hex.m"; path = "Categories/NSColor+Hex.m"; sourceTree = SOURCE_ROOT; };
+		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Hex.m"; sourceTree = "<group>"; };
 		938A7660177105FC0094A361 /* StreamPreviewImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamPreviewImageView.h; path = Classes/Views/StreamPreviewImageView.h; sourceTree = SOURCE_ROOT; };
 		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
 		938A7663177108460094A361 /* StreamListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListView.h; path = Classes/Views/StreamListView.h; sourceTree = SOURCE_ROOT; };
 		938A7664177108460094A361 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
-		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
-		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
+		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+MGCropExtensions.h"; sourceTree = "<group>"; };
+		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+MGCropExtensions.m"; sourceTree = "<group>"; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
@@ -287,9 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				936327B41763B73700146C8A /* Assets */,
-				93A3A1251766DFDF00913C9A /* Categories */,
 				93462653176273D500F947FE /* Classes */,
-				936327DE1765262E00146C8A /* Networking */,
+				934C25DC17775E790038E5DB /* Extensions */,
 				932C29A01761AE0B0049EC1B /* Supporting Files */,
 			);
 			path = Shiver;
@@ -314,6 +313,7 @@
 			children = (
 				936327B71763BAE100146C8A /* Controllers */,
 				93462654176273E500F947FE /* Models */,
+				936327DE1765262E00146C8A /* Networking */,
 				936327D61764468B00146C8A /* Views */,
 				93A3A1311768571A00913C9A /* Constants.h */,
 				93A3A1321768571B00913C9A /* Constants.m */,
@@ -334,6 +334,14 @@
 				93A3A12F1768071C00913C9A /* User.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		934C25DC17775E790038E5DB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				93A3A1251766DFDF00913C9A /* Categories */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		936327B41763B73700146C8A /* Assets */ = {
@@ -504,7 +512,7 @@
 		93A3A1251766DFDF00913C9A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				938A765D176BEAE80094A361 /* NSColor+Hex.h */,
+				934C25DD17775ED00038E5DB /* NSColor+Hex.h */,
 				938A765E176BEAE80094A361 /* NSColor+Hex.m */,
 				938A7667177122130094A361 /* NSImage+MGCropExtensions.h */,
 				938A7668177122130094A361 /* NSImage+MGCropExtensions.m */,
