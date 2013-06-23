@@ -35,6 +35,7 @@
 {
     // Abstracted attributes.
     CGFloat cornerRadius = 2;
+    NSRect frame = dirtyRect;
 
     // Declare our colors first.
     NSColor *topColor = [NSColor colorWithCalibratedRed:0.902 green:0.906 blue:0.91 alpha:1];
@@ -48,7 +49,7 @@
     [innerShadow setShadowBlurRadius:0];
 
     // Draw the box.
-    NSRect rect = NSMakeRect(5, 0, 310, 110);
+    NSRect rect = NSMakeRect(5, 0, NSWidth(frame) - 10, 110);
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:cornerRadius yRadius:cornerRadius];
     [gradient drawInBezierPath:path angle:-90];
 

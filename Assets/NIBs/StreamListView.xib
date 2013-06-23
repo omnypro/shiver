@@ -52,7 +52,7 @@
 										<string key="NSFrameSize">{320, 200}</string>
 										<reference key="NSSuperview" ref="89832144"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
+										<reference key="NSNextKeyView" ref="893117594"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 									</object>
 								</array>
@@ -76,7 +76,7 @@
 							<object class="NSScroller" id="893117594">
 								<reference key="NSNextResponder" ref="1035529183"/>
 								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{-100, -100}, {11, 200}}</string>
+								<string key="NSFrame">{{306, 0}, {14, 200}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="413092744"/>
@@ -108,7 +108,7 @@
 						<string key="NSFrameSize">{320, 200}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="893117594"/>
+						<reference key="NSNextKeyView" ref="89832144"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">264720</int>
 						<reference key="NSVScroller" ref="893117594"/>

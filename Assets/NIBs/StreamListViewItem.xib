@@ -38,7 +38,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="309547117">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSImageView" id="819912306">
@@ -54,6 +54,7 @@
 						</set>
 						<string key="NSFrame">{{291, 10}, {11, 11}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="191783772">
@@ -77,6 +78,7 @@
 						<int key="NSvFlags">300</int>
 						<string key="NSFrame">{{14, 4}, {234, 36}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="483822019"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -122,6 +124,7 @@
 						</set>
 						<string key="NSFrame">{{15, 75}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="952746705"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -142,6 +145,7 @@
 						<int key="NSvFlags">297</int>
 						<string key="NSFrame">{{253, 17}, {60, 32}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="819912306"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -171,6 +175,7 @@
 						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{225, 7}, {66, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="58927789"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -203,6 +208,7 @@
 						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{152, 90}, {156, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="189150726"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -223,6 +229,7 @@
 						<int key="NSvFlags">300</int>
 						<string key="NSFrame">{{50, 90}, {106, 17}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="519417444"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -251,6 +258,7 @@
 						</set>
 						<string key="NSFrame">{{8, 3}, {304, 85}}</string>
 						<reference key="NSSuperview" ref="309547117"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="507310896"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -268,6 +276,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 115}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="29577020"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">StreamListViewItem</string>
@@ -523,11 +533,77 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
+					<string key="className">JAListViewItem</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/JAListViewItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">ShadowTextField</string>
 					<string key="superclassName">NSTextField</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ShadowTextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">StreamListViewItem</string>
+					<string key="superclassName">JAListViewItem</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">redirectToStream:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">redirectToStream:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">redirectToStream:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="streamGameLabel">NSTextField</string>
+						<string key="streamLogo">StreamLogoImageView</string>
+						<string key="streamPreview">StreamPreviewImageView</string>
+						<string key="streamRedirectButton">NSButton</string>
+						<string key="streamTitleLabel">NSTextField</string>
+						<string key="streamUserLabel">NSTextField</string>
+						<string key="streamViewerCountLabel">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="streamGameLabel">
+							<string key="name">streamGameLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamLogo">
+							<string key="name">streamLogo</string>
+							<string key="candidateClassName">StreamLogoImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamPreview">
+							<string key="name">streamPreview</string>
+							<string key="candidateClassName">StreamPreviewImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamRedirectButton">
+							<string key="name">streamRedirectButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamTitleLabel">
+							<string key="name">streamTitleLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamUserLabel">
+							<string key="name">streamUserLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="streamViewerCountLabel">
+							<string key="name">streamViewerCountLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/StreamListViewItem.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
