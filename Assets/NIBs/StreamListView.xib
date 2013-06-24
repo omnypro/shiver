@@ -48,10 +48,11 @@
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="NSView" id="11352970">
 										<reference key="NSNextResponder" ref="89832144"/>
-										<int key="NSvFlags">308</int>
+										<int key="NSvFlags">274</int>
 										<string key="NSFrameSize">{320, 200}</string>
 										<reference key="NSSuperview" ref="89832144"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="893117594"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 									</object>
 								</array>
@@ -75,7 +76,7 @@
 							<object class="NSScroller" id="893117594">
 								<reference key="NSNextResponder" ref="1035529183"/>
 								<int key="NSvFlags">-2147483392</int>
-								<string key="NSFrame">{{-100, -100}, {11, 200}}</string>
+								<string key="NSFrame">{{306, 0}, {14, 200}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="413092744"/>
@@ -107,7 +108,7 @@
 						<string key="NSFrameSize">{320, 200}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="893117594"/>
+						<reference key="NSNextKeyView" ref="89832144"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">264720</int>
 						<reference key="NSVScroller" ref="893117594"/>
@@ -140,17 +141,25 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">listView</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1035529183"/>
+						<reference key="destination" ref="11352970"/>
 					</object>
-					<int key="connectionID">82</int>
+					<int key="connectionID">85</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="11352970"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">86</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="1035529183"/>
+						<reference key="source" ref="11352970"/>
 						<reference key="destination" ref="1001"/>
 					</object>
-					<int key="connectionID">84</int>
+					<int key="connectionID">87</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -219,9 +228,8 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="78.CustomClassName">PXListView</string>
 				<string key="78.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="79.CustomClassName">PXListDocumentView</string>
+				<string key="79.CustomClassName">JAListView</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -230,35 +238,40 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">84</int>
+			<int key="maxID">87</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">PXListDocumentView</string>
+					<string key="className">JAListView</string>
 					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PXListDocumentView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PXListView</string>
-					<string key="superclassName">NSScrollView</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">delegate</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">delegate</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="dataSource">id</string>
+						<string key="delegate">id</string>
+						<string key="draggingDestinationDelegate">id</string>
+						<string key="draggingSourceDelegate">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="dataSource">
+							<string key="name">dataSource</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="delegate">
 							<string key="name">delegate</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBToOneOutletInfo" key="draggingDestinationDelegate">
+							<string key="name">draggingDestinationDelegate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="draggingSourceDelegate">
+							<string key="name">draggingSourceDelegate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PXListView.h</string>
+						<string key="minorKey">./Classes/JAListView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -274,13 +287,13 @@
 					<string key="superclassName">NSViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">listView</string>
-						<string key="NS.object.0">PXListView</string>
+						<string key="NS.object.0">JAListView</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<string key="NS.key.0">listView</string>
 						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">listView</string>
-							<string key="candidateClassName">PXListView</string>
+							<string key="candidateClassName">JAListView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
