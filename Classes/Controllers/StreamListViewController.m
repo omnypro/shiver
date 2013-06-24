@@ -31,7 +31,7 @@
 
 // Data sources.
 @property (atomic, strong) User *user;
-@property (atomic, strong) APIClient *apiClient;
+@property (atomic, strong) APIClient *client;
 @property (atomic, strong) NSArray *streamList;
 
 // Controller state.
@@ -46,29 +46,32 @@
 
 @implementation StreamListViewController
 
-+ (void)initWithUser:(User *)user
+- (id)initWithUser:(User *)user
 {
+    self = [super initWithNibName:@"StreamListView" bundle:nil];
+    if (self == nil) { return nil; }
 
+    self.user = user;
+    return self;
 }
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStreamListRefresh:) name:RequestToUpdateStreamNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
+    [self setUpViewSignals];
     [self setUpDataSignals];
 
     [self.listView setBackgroundColor:[NSColor clearColor]];
     [self.listView setCanCallDataSourceInParallel:YES];
-
-    [self loadStreamList];
-    [self startTimerForLoadingStreamList];
-
-
-
+    // [self loadStreamList];
+    // [self startTimerForLoadingStreamList];
 }
 
 - (void)setUpViewSignals
@@ -94,14 +97,26 @@
 {
     @weakify(self);
 
-    //
-    [[[RACAbleWithStart(self.apiClient) filter:^BOOL(id value) {
+    // Watch for `user` to change or be populated. If it is, start the process
+    // off by spawning the API client.
+    [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+        return (value == nil); // @@@ Do we really want to pass a user at all?
+    }] subscribeNext:^(id x) {
+        NSLog(@"Loading client...");
+        @strongify(self);
+        self.client = [APIClient sharedClient];
+    }];
+
+    // Watch for `client` to change or be populated. If so, fetch the stream
+    // list and assign it.
+    [[[RACAbleWithStart(self.client) filter:^BOOL(id value) {
         return (value != nil);
     }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
         NSLog(@"Fetching stuff...");
         @strongify(self);
-        [[[self.apiClient fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
+        [[[self.client fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
             @strongify(self);
+            NSLog(@"streamList: %@", streamList);
             self.streamList = streamList;
             self.showingLoading = YES;
         } error:^(NSError *error) {
@@ -117,7 +132,16 @@
      subscribeNext:^(id x){
          @strongify(self);
          NSLog(@"Refreshing the stream list...");
-         [self.listView reloadDataAnimated:YES];
+
+         // JAListView includes an internal padding function! So, when the list
+         // is longer than two (which creates scrolling behavior, add 5 points
+         // to the bottom of the view.
+         if (self.streamList.count > 2) {
+             [self.listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
+         }
+
+         // Reload the table.
+         [self.listView reloadData];
          self.showingLoading = NO;
      }];
 
@@ -165,13 +189,6 @@
             // Send a notification that the list was reloaded so other parts
             // of the application can update their UIs.
             [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
-        }
-
-        // JAListView includes an internal padding function! So, when the list
-        // is longer than two (which creates scrolling behavior, add 5 points
-        // to the bottom of the view.
-        if (self.streamArray.count > 2) {
-            [self.listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
         }
 
         // Reload the listView.
@@ -247,10 +264,11 @@
 
 - (JAListViewItem *)listView:(JAListView *)listView viewAtIndex:(NSUInteger)index
 {
-    Stream *stream = [self.streamArray objectAtIndex:index];
+    Stream *stream = [self.streamList objectAtIndex:index];
     StreamListViewItem *item = [StreamListViewItem initItem];
     
     item.object = stream;
+    NSLog(@"object: %@", item.object);
     [item refreshLogo];
     [item refreshPreview];
     return item;
@@ -258,7 +276,10 @@
 
 - (NSUInteger)numberOfItemsInListView:(JAListView *)listView
 {
-    return [self.streamArray count];
+    if (self.streamList != nil) {
+        return [self.streamList count];
+    }
+    return 0;
 }
 
 #pragma mark - Notification Observers

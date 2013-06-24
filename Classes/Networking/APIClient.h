@@ -22,7 +22,6 @@ extern NSString * const kClientID;
 @property (nonatomic, strong) NSString *userHandle;
 
 + (APIClient *)sharedClient;
-+ (APIClient *)clientForUser:(User *)user;
 
 - (BOOL)isAuthenticated;
 - (void)authorizeUsingResponseURL:(NSURL *)url;

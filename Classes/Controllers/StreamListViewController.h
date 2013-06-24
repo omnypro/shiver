@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *_listItems;
 @property (nonatomic, strong) NSArray *streamArray;
 
-- (void)loadStreamList;
 - (id)initWithUser:(User *)user;
+- (void)loadStreamList;
 
 @end

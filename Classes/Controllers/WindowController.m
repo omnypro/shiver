@@ -89,7 +89,8 @@
 {
     self.emptyStreamListViewController = [[EmptyStreamListViewController alloc] initWithNibName:@"EmptyStreamListView" bundle:nil];
     self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
-    self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamListView" bundle:nil];
+    self.streamListViewController = [[StreamListViewController alloc] initWithUser:nil];
+    // self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamListView" bundle:nil];
 
     if ([[APIClient sharedClient] isAuthenticated]) {
         self.currentViewController = self.streamListViewController;
