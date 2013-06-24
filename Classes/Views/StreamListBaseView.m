@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamListBaseView.h"
-
 #import "NSColor+Hex.h"
+#import "NSLayoutConstraint+Equations.h"
+
+#import "StreamListBaseView.h"
 
 @implementation StreamListBaseView
 
