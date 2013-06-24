@@ -9,7 +9,10 @@
 #import "APIClient.h"
 
 #import "AFJSONRequestOperation.h"
+#import "Mantle.h"
 #import "OAuthViewController.h"
+#import "Stream.h"
+#import "User.h"
 
 NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
 NSString * const kRedirectURI = @"shiver://authorize";
@@ -108,12 +111,25 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchUser
 {
-    return [self enqueueRequestWithMethod:@"GET" path:@"user" parameters:nil];
+    return [[self enqueueRequestWithMethod:@"GET" path:@"user" parameters:nil]
+        map:^id(id responseObject) {
+            NSError *error = nil;
+            User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:responseObject error:&error];
+            return user;
+        }];
 }
 
 - (RACSignal *)fetchStreamList
 {
-    return [self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil];
+    return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil]
+        map:^id(id responseObject) { return [responseObject valueForKeyPath:@"streams"]; }]
+        map:^id(NSArray *streamsFromResponse) {
+            return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictonary) {
+                NSError *error = nil;
+                Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictonary error:&error];
+                return stream;
+            }] array];
+        }];
 }
 
 - (RACSignal *)enqueueRequestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters
@@ -128,7 +144,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     }];
     [self enqueueHTTPRequestOperation:operation];
 
-    return subject;
+    return [subject deliverOn:[RACScheduler scheduler]];
 }
 
 @end
