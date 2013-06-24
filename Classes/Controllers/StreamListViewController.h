@@ -19,5 +19,4 @@
 - (void)loadStreamList;
 - (id)initWithUser:(User *)user;
 
-
 @end
