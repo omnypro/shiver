@@ -7,13 +7,11 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "EXTScope.h"
+#import <EXTScope.h>
 
-#import "AFImageRequestOperation.h"
 #import "APIClient.h"
 #import "Channel.h"
 #import "NSColor+Hex.h"
-#import "NSImageView+AFNetworking.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
 #import "Stream.h"
@@ -251,34 +249,10 @@
 {
     Stream *stream = [self.streamArray objectAtIndex:index];
     StreamListViewItem *item = [StreamListViewItem initItem];
-
-    // Asynchronously load the two images required for every stream cell.
-    [item.streamPreview setImageWithURLRequest:[NSURLRequest requestWithURL:stream.previewImageURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
-        [item.streamPreview setImage:image];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-    [item.streamLogo setImageWithURLRequest:[NSURLRequest requestWithURL:stream.channel.logoImageURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
-        [item.streamLogo setImage:image];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-
-    NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    [style setMaximumLineHeight:14];
-    [attrStreamTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrStreamTitle length])];
-    [item.streamTitleLabel setAttributedStringValue:attrStreamTitle];
-
-    [item.streamUserLabel setStringValue:stream.channel.displayName];
-    [item.streamUserLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
-
-    [item.streamGameLabel setStringValue:stream.game];
-    [item.streamGameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
-
-    [item.streamViewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
     
+    item.object = stream;
+    [item refreshLogo];
+    [item refreshPreview];
     return item;
 }
 

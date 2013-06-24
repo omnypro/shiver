@@ -10,23 +10,13 @@
 
 #import "JAListViewItem.h"
 #import "Stream.h"
-#import "StreamLogoImageView.h"
-#import "StreamPreviewImageView.h"
 
 @interface StreamListViewItem : JAListViewItem
 
-@property (nonatomic, strong) Stream *stream;
-
-@property (weak) IBOutlet StreamLogoImageView *streamLogo;
-@property (weak) IBOutlet StreamPreviewImageView *streamPreview;
-
-@property (weak) IBOutlet NSTextField *streamGameLabel;
-@property (weak) IBOutlet NSTextField *streamUserLabel;
-@property (weak) IBOutlet NSTextField *streamTitleLabel;
-@property (weak) IBOutlet NSTextField *streamViewerCountLabel;
-@property (weak) IBOutlet NSButton *streamRedirectButton;
+@property (nonatomic, strong) Stream *object;
 
 + (StreamListViewItem *)initItem;
-- (IBAction)redirectToStream:(id)sender;
+- (void)refreshLogo;
+- (void)refreshPreview;
 
 @end
