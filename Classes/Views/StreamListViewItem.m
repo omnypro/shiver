@@ -1,39 +1,41 @@
 //
-//  StreamListViewCell.m
+//  StreamListViewItem.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/8/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamListViewCell.h"
+#import "StreamListViewItem.h"
 
 #import "Channel.h"
 
-@implementation StreamListViewCell
+@implementation StreamListViewItem
 
-- (id)initWithReusableIdentifier: (NSString*)identifier
++ (StreamListViewItem *)initItem
 {
-    if (self = [super initWithReusableIdentifier:identifier]) {
-        // Initialization code here.
+    static NSNib *nib = nil;
+    if(nib == nil) {
+        nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
     }
 
-    return self;
-}
+    NSArray *objects = nil;
+    [nib instantiateWithOwner:nil topLevelObjects:&objects];
+    for(id object in objects) {
+        if ([object isKindOfClass:self]) {
+            return object;
+        }
+    }
 
-- (void)prepareForReuse
-{
-    [self.streamLogo setImage:nil];
-    [self.streamPreview setImage:nil];
-    [self.streamTitleLabel setStringValue:@""];
-    [self.streamUserLabel setStringValue:@""];
-    [self.streamViewerCountLabel setStringValue:@""];
+    NSAssert1(NO, @"No view of class %@ found.", NSStringFromClass(self));
+    return nil;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Abstracted attributes.
     CGFloat cornerRadius = 2;
+    NSRect frame = dirtyRect;
 
     // Declare our colors first.
     NSColor *topColor = [NSColor colorWithCalibratedRed:0.902 green:0.906 blue:0.91 alpha:1];
@@ -47,7 +49,7 @@
     [innerShadow setShadowBlurRadius:0];
 
     // Draw the box.
-    NSRect rect = NSMakeRect(5, 0, 310, 110);
+    NSRect rect = NSMakeRect(5, 0, NSWidth(frame) - 10, 110);
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:cornerRadius yRadius:cornerRadius];
     [gradient drawInBezierPath:path angle:-90];
 
