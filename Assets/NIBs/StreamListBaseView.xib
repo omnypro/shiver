@@ -35,7 +35,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="1005">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSScrollView" id="1035529183">
@@ -51,14 +51,12 @@
 										<int key="NSvFlags">274</int>
 										<string key="NSFrameSize">{320, 200}</string>
 										<reference key="NSSuperview" ref="89832144"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="893117594"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 									</object>
 								</array>
 								<string key="NSFrameSize">{320, 200}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="11352970"/>
 								<string key="NSReuseIdentifierKey">_NS:11</string>
 								<reference key="NSDocView" ref="11352970"/>
@@ -78,7 +76,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{306, 0}, {14, 200}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="413092744"/>
 								<string key="NSReuseIdentifierKey">_NS:15</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -94,7 +91,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{-100, -100}, {360, 11}}</string>
 								<reference key="NSSuperview" ref="1035529183"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="89832144"/>
 								<string key="NSReuseIdentifierKey">_NS:26</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -107,7 +103,6 @@
 						</array>
 						<string key="NSFrameSize">{320, 200}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="89832144"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">264720</int>
@@ -121,10 +116,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 200}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1035529183"/>
-				<string key="NSClassName">StreamListView</string>
+				<string key="NSClassName">StreamListBaseView</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -272,14 +265,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/JAListView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">StreamListView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/StreamListView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

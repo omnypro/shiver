@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StreamListView : NSView
+@interface StreamListBaseView : NSView
 
 @end

@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamListView.h"
+#import "StreamListBaseView.h"
 
 #import "NSColor+Hex.h"
 
-@implementation StreamListView
+@implementation StreamListBaseView
 
 - (id)initWithFrame:(NSRect)frame
 {
