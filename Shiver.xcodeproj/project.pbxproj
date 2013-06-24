@@ -10,6 +10,7 @@
 		9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */; };
 		9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyStreamListView.xib */; };
 		9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */; };
+		931E252A1778B7B20081162C /* StreamListEmptyErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* StreamListEmptyErrorView.m */; };
 		9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239B17728FBF00374EB9 /* EmptyStreamList.png */; };
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
 		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
@@ -104,6 +105,8 @@
 		9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyStreamListViewController.m; path = Classes/Controllers/EmptyStreamListViewController.m; sourceTree = SOURCE_ROOT; };
 		9301E9E2176A478300C46750 /* EmptyStreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyStreamListView.xib; path = Assets/NIBs/EmptyStreamListView.xib; sourceTree = SOURCE_ROOT; };
 		9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchLogoWhite.pdf; path = Assets/Templates/TwitchLogoWhite.pdf; sourceTree = SOURCE_ROOT; };
+		931E25281778B7B20081162C /* StreamListEmptyErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListEmptyErrorView.h; path = Classes/Views/StreamListEmptyErrorView.h; sourceTree = SOURCE_ROOT; };
+		931E25291778B7B20081162C /* StreamListEmptyErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListEmptyErrorView.m; path = Classes/Views/StreamListEmptyErrorView.m; sourceTree = SOURCE_ROOT; };
 		9324239B17728FBF00374EB9 /* EmptyStreamList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EmptyStreamList.png; path = Assets/Images/EmptyStreamList.png; sourceTree = SOURCE_ROOT; };
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
 		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
@@ -430,6 +433,8 @@
 			children = (
 				938A7663177108460094A361 /* StreamListBaseView.h */,
 				938A7664177108460094A361 /* StreamListBaseView.m */,
+				931E25281778B7B20081162C /* StreamListEmptyErrorView.h */,
+				931E25291778B7B20081162C /* StreamListEmptyErrorView.m */,
 				936327D31764468400146C8A /* StreamListViewItem.h */,
 				936327D41764468500146C8A /* StreamListViewItem.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
@@ -776,6 +781,7 @@
 				932423A71772954800374EB9 /* LoginRequiredViewController.m in Sources */,
 				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
 				934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */,
+				931E252A1778B7B20081162C /* StreamListEmptyErrorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
