@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamListViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "EXTScope.h"
 
 #import "AFImageRequestOperation.h"
+#import "APIClient.h"
 #import "Channel.h"
 #import "NSColor+Hex.h"
 #import "NSImageView+AFNetworking.h"
@@ -16,18 +18,40 @@
 #import "JAListView.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
+#import "User.h"
 #import "WindowController.h"
+
+#import "StreamListViewController.h"
 
 @interface StreamListViewController () {
 @private
     dispatch_source_t _timer;
 }
 
+// Views.
+@property (nonatomic, strong) NSView *emptyView;
+
+// Data sources.
+@property (atomic, strong) User *user;
+@property (atomic, strong) APIClient *apiClient;
+@property (atomic, strong) NSArray *streamList;
+
+// Controller state.
+@property (atomic) BOOL showingError;
+@property (atomic) NSString *showingErrorMessage;
+@property (atomic) BOOL showingEmpty;
+@property (atomic) BOOL showingLoading;
+
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
 
 @implementation StreamListViewController
+
++ (void)initWithUser:(User *)user
+{
+
+}
 
 - (void)awakeFromNib
 {
@@ -37,11 +61,74 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
+    [self setUpDataSignals];
+
     [self.listView setBackgroundColor:[NSColor clearColor]];
     [self.listView setCanCallDataSourceInParallel:YES];
 
     [self loadStreamList];
     [self startTimerForLoadingStreamList];
+
+
+
+}
+
+- (void)setUpViewSignals
+{
+    @weakify(self);
+
+    // Show or hide the empty view
+    [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *showingEmpty) {
+         @strongify(self);
+         BOOL isShowingEmpty = [showingEmpty boolValue];
+         if (isShowingEmpty && !self.showingError){
+             // self.emptyView = [TCSEmptyErrorView emptyViewWithTitle:@"No charts!" subtitle:subtitle];
+             [self.view addSubview:self.emptyView];
+         } else {
+             [self.emptyView removeFromSuperview];
+             self.emptyView = nil;
+         }
+     }];
+}
+
+- (void)setUpDataSignals
+{
+    @weakify(self);
+
+    //
+    [[[RACAbleWithStart(self.apiClient) filter:^BOOL(id value) {
+        return (value != nil);
+    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
+        NSLog(@"Fetching stuff...");
+        @strongify(self);
+        [[[self.apiClient fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
+            @strongify(self);
+            self.streamList = streamList;
+            self.showingLoading = YES;
+        } error:^(NSError *error) {
+            @strongify(self);
+            NSLog(@"Oh no, an error...");
+            self.showingErrorMessage = error.localizedDescription;
+            self.showingError = YES;
+        }];
+    }];
+
+    // When the stream list gets changed, reload the table.
+    [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id x){
+         @strongify(self);
+         NSLog(@"Refreshing the stream list...");
+         [self.listView reloadDataAnimated:YES];
+         self.showingLoading = NO;
+     }];
+
+    // Monitor the data source array and show an empty view if it's... empty.
+    [RACAble(self.streamList) subscribeNext:^(NSArray *streamList) {
+        @strongify(self);
+        if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
+        else { self.showingEmpty = NO; }
+    }];
 }
 
 #pragma mark - Data Source Methods

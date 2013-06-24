@@ -17,5 +17,7 @@
 @property (nonatomic, strong) NSArray *streamArray;
 
 - (void)loadStreamList;
+- (id)initWithUser:(User *)user;
+
 
 @end
