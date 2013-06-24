@@ -16,6 +16,7 @@
 #import "JAListView.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
+#import "StreamListEmptyErrorView.h"
 #import "User.h"
 #import "WindowController.h"
 
@@ -28,6 +29,7 @@
 
 // Views.
 @property (nonatomic, strong) NSView *emptyView;
+@property (nonatomic, strong) NSView *errorView;
 
 // Data sources.
 @property (atomic, strong) User *user;
@@ -91,6 +93,29 @@
              self.emptyView = nil;
          }
      }];
+
+    // Show or hide the error view.
+    [[[RACAble(self.showingError) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *showingError) {
+         @strongify(self);
+         BOOL isShowingError = [showingError boolValue];
+         if (isShowingError) {
+             // Don't show the empty or loading views if there's an error.
+             NSLog(@"Showing the error view...");
+             self.showingEmpty = NO;
+             self.showingLoading = NO;
+             NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
+             self.errorView = [StreamListEmptyErrorView errorViewWithTitle:message subTitle:message];
+             [self.view addSubview:self.errorView];
+             [self.errorView setNeedsDisplay:YES];
+         }
+         else {
+             NSLog(@"Removing the error view...");
+             [self.errorView removeFromSuperview];
+             self.errorView = nil;
+             self.showingErrorMessage = nil;
+        }
+    }];
 }
 
 - (void)setUpDataSignals
@@ -116,13 +141,13 @@
         @strongify(self);
         [[[self.client fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
             @strongify(self);
-            NSLog(@"streamList: %@", streamList);
             self.streamList = streamList;
             self.showingLoading = YES;
         } error:^(NSError *error) {
             @strongify(self);
             NSLog(@"Oh no, an error...");
-            self.showingErrorMessage = error.localizedDescription;
+            NSLog(@"error: %@", error);
+            self.showingErrorMessage = [error localizedDescription];
             self.showingError = YES;
         }];
     }];
