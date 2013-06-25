@@ -9,7 +9,6 @@
 #import "WindowController.h"
 
 #import "APIClient.h"
-#import "EmptyErrorViewController.h"
 #import "LoginRequiredViewController.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
@@ -44,7 +43,6 @@
 }
 
 @property (strong) NSViewController *currentViewController;
-@property (strong) EmptyErrorViewController *emptyStreamListViewController;
 @property (strong) LoginRequiredViewController *loginRequiredViewController;
 @property (strong) StreamListViewController *streamListViewController;
 @property (strong) NSDate *lastUpdatedTimestamp;
@@ -108,7 +106,6 @@
 
 - (void)setupControllers
 {
-    self.emptyStreamListViewController = [[EmptyErrorViewController alloc] initWithNibName:@"EmptyStreamListView" bundle:nil];
     self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
     self.streamListViewController = [[StreamListViewController alloc] initWithUser:nil];
     // self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamBaseListView" bundle:nil];
@@ -220,7 +217,6 @@
     StreamListViewController *object = [notification object];
     if ([object isKindOfClass:[StreamListViewController class]]) {
         // Update the interface, swapping in the empty stream list view.
-        [self swapViewController:self.emptyStreamListViewController];
         [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
         [_statusLabel setStringValue:@"No live streams"];
     }
@@ -230,12 +226,6 @@
 {
     StreamListViewController *object = [notification object];
     if ([object isKindOfClass:[StreamListViewController class]]) {
-        // If the current view controller is `emptyStreamViewController`,
-        // switch that out since we have results now.
-        if (self.currentViewController == self.emptyStreamListViewController) {
-            [self swapViewController:self.streamListViewController];
-        }
-
         // Update the interface, starting with the number of live streams.
         NSString *statusLabelString = nil;
         if ([object.streamArray count] == 1) {
