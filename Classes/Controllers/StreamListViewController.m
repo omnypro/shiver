@@ -93,7 +93,9 @@
          @strongify(self);
          BOOL isShowingEmpty = [showingEmpty boolValue];
          if (isShowingEmpty && !self.showingError){
-             self.errorView = [[EmptyErrorView init] emptyViewWithTitle:nil subTitle:nil];
+             NSString *title = @"Looks like you've got nothing to watch.";
+             NSString *subTitle = @"Why don't you follow some new streamers?";
+             self.errorView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
              [self.view addSubview:self.emptyView];
          } else {
              [self.emptyView removeFromSuperview];
@@ -111,8 +113,9 @@
              NSLog(@"Showing the error view...");
              self.showingEmpty = NO;
              self.showingLoading = NO;
+             NSString *title = @"Whoops! Something went wrong.";
              NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-             self.errorView = [[EmptyErrorView init] errorViewWithTitle:message subTitle:message];
+             self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
              [self.view addSubview:self.errorView];
              [self.errorView setNeedsDisplay:YES];
          }
