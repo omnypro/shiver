@@ -1,13 +1,13 @@
 //
-//  StreamListView.h
+//  InnerShadowView.h
 //  Shiver
 //
-//  Created by Bryan Veloso on 6/18/13.
+//  Created by Bryan Veloso on 6/24/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface StreamListBaseView : NSView
+@interface InnerShadowView : NSView
 
 @end
