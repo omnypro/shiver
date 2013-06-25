@@ -42,10 +42,11 @@
 	NSNib *nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
 	NSArray *objects = nil;
     [nib instantiateWithOwner:nil topLevelObjects:&objects];
-	for (id object in objects)
+	for (id object in objects) {
 		if ([object isKindOfClass:[JAListViewItem class]]) {
             return object;
         }
+    }
 	return nil;
 }
 
