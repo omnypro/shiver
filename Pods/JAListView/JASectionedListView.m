@@ -77,7 +77,7 @@
 }
 
 - (NSIndexPath *)indexPathFromAbsoluteIndex:(NSUInteger)absoluteIndex {
-    NSUInteger section;
+    NSUInteger section = 0;
     NSUInteger index;
     [self getSection:&section andIndex:&index fromAbsoluteIndex:absoluteIndex];
     return [NSIndexPath indexPathForIndex:index inSection:section];
