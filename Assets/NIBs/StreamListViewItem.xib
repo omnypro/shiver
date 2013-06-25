@@ -405,6 +405,62 @@
 					</object>
 					<int key="connectionID">69</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_logo</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="29577020"/>
+					</object>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_preview</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="189150726"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_gameLabel</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="519417444"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_userLabel</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="952746705"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_titleLabel</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="507310896"/>
+					</object>
+					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_viewerCountLabel</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="483822019"/>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_redirectButton</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="58927789"/>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -584,7 +640,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">69</int>
+			<int key="maxID">76</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -619,41 +675,41 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="gameLabel">NSTextField</string>
-						<string key="logo">StreamLogoImageView</string>
-						<string key="preview">StreamPreviewImageView</string>
-						<string key="redirectButton">NSButton</string>
-						<string key="titleLabel">NSTextField</string>
-						<string key="userLabel">NSTextField</string>
-						<string key="viewerCountLabel">NSTextField</string>
+						<string key="_gameLabel">NSTextField</string>
+						<string key="_logo">StreamLogoImageView</string>
+						<string key="_preview">StreamPreviewImageView</string>
+						<string key="_redirectButton">NSButton</string>
+						<string key="_titleLabel">NSTextField</string>
+						<string key="_userLabel">NSTextField</string>
+						<string key="_viewerCountLabel">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="gameLabel">
-							<string key="name">gameLabel</string>
+						<object class="IBToOneOutletInfo" key="_gameLabel">
+							<string key="name">_gameLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="logo">
-							<string key="name">logo</string>
+						<object class="IBToOneOutletInfo" key="_logo">
+							<string key="name">_logo</string>
 							<string key="candidateClassName">StreamLogoImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="preview">
-							<string key="name">preview</string>
+						<object class="IBToOneOutletInfo" key="_preview">
+							<string key="name">_preview</string>
 							<string key="candidateClassName">StreamPreviewImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="redirectButton">
-							<string key="name">redirectButton</string>
+						<object class="IBToOneOutletInfo" key="_redirectButton">
+							<string key="name">_redirectButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="titleLabel">
-							<string key="name">titleLabel</string>
+						<object class="IBToOneOutletInfo" key="_titleLabel">
+							<string key="name">_titleLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="userLabel">
-							<string key="name">userLabel</string>
+						<object class="IBToOneOutletInfo" key="_userLabel">
+							<string key="name">_userLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="viewerCountLabel">
-							<string key="name">viewerCountLabel</string>
+						<object class="IBToOneOutletInfo" key="_viewerCountLabel">
+							<string key="name">_viewerCountLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 					</dictionary>
