@@ -1,5 +1,5 @@
 //
-//  StreamListEmptyErrorView.h
+//  EmptyErrorView.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/24/13.
