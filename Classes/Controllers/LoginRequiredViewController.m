@@ -9,7 +9,7 @@
 #import "LoginRequiredViewController.h"
 
 @interface LoginRequiredViewController ()
-
+- (IBAction)login:(id)sender;
 @end
 
 @implementation LoginRequiredViewController

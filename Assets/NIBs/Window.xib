@@ -534,6 +534,86 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">_masterView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="67843978"/>
+					</object>
+					<int key="connectionID">288</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_titleBarView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="629863436"/>
+					</object>
+					<int key="connectionID">289</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_statusImage</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="587222220"/>
+					</object>
+					<int key="connectionID">290</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_statusLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="704749243"/>
+					</object>
+					<int key="connectionID">292</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_userImage</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="844472917"/>
+					</object>
+					<int key="connectionID">293</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_refreshButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="652341569"/>
+					</object>
+					<int key="connectionID">294</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_lastUpdatedLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="990513849"/>
+					</object>
+					<int key="connectionID">295</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_preferencesButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="660897288"/>
+					</object>
+					<int key="connectionID">296</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_contextMenu</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="606350202"/>
+					</object>
+					<int key="connectionID">297</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_usernameLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="704749243"/>
+					</object>
+					<int key="connectionID">298</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="1005"/>
 						<reference key="destination" ref="1001"/>
@@ -797,7 +877,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">287</int>
+			<int key="maxID">298</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -872,56 +952,56 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="contextMenu">NSMenu</string>
-						<string key="lastUpdatedLabel">NSTextField</string>
-						<string key="masterView">NSView</string>
-						<string key="preferencesButton">NSButton</string>
-						<string key="refreshButton">NSButton</string>
-						<string key="statusImage">NSImageView</string>
-						<string key="statusLabel">NSTextField</string>
-						<string key="titleBarView">NSView</string>
-						<string key="userImage">NSImageView</string>
-						<string key="usernameLabel">NSTextField</string>
+						<string key="_contextMenu">NSMenu</string>
+						<string key="_lastUpdatedLabel">NSTextField</string>
+						<string key="_masterView">NSView</string>
+						<string key="_preferencesButton">NSButton</string>
+						<string key="_refreshButton">NSButton</string>
+						<string key="_statusImage">NSImageView</string>
+						<string key="_statusLabel">NSTextField</string>
+						<string key="_titleBarView">NSView</string>
+						<string key="_userImage">NSImageView</string>
+						<string key="_usernameLabel">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="contextMenu">
-							<string key="name">contextMenu</string>
+						<object class="IBToOneOutletInfo" key="_contextMenu">
+							<string key="name">_contextMenu</string>
 							<string key="candidateClassName">NSMenu</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="lastUpdatedLabel">
-							<string key="name">lastUpdatedLabel</string>
+						<object class="IBToOneOutletInfo" key="_lastUpdatedLabel">
+							<string key="name">_lastUpdatedLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="masterView">
-							<string key="name">masterView</string>
+						<object class="IBToOneOutletInfo" key="_masterView">
+							<string key="name">_masterView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="preferencesButton">
-							<string key="name">preferencesButton</string>
+						<object class="IBToOneOutletInfo" key="_preferencesButton">
+							<string key="name">_preferencesButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="refreshButton">
-							<string key="name">refreshButton</string>
+						<object class="IBToOneOutletInfo" key="_refreshButton">
+							<string key="name">_refreshButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="statusImage">
-							<string key="name">statusImage</string>
+						<object class="IBToOneOutletInfo" key="_statusImage">
+							<string key="name">_statusImage</string>
 							<string key="candidateClassName">NSImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="statusLabel">
-							<string key="name">statusLabel</string>
+						<object class="IBToOneOutletInfo" key="_statusLabel">
+							<string key="name">_statusLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="titleBarView">
-							<string key="name">titleBarView</string>
+						<object class="IBToOneOutletInfo" key="_titleBarView">
+							<string key="name">_titleBarView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="userImage">
-							<string key="name">userImage</string>
+						<object class="IBToOneOutletInfo" key="_userImage">
+							<string key="name">_userImage</string>
 							<string key="candidateClassName">NSImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="usernameLabel">
-							<string key="name">usernameLabel</string>
+						<object class="IBToOneOutletInfo" key="_usernameLabel">
+							<string key="name">_usernameLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 					</dictionary>

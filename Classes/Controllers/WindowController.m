@@ -9,7 +9,7 @@
 #import "WindowController.h"
 
 #import "APIClient.h"
-#import "EmptyStreamListViewController.h"
+#import "EmptyErrorViewController.h"
 #import "LoginRequiredViewController.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
@@ -22,22 +22,45 @@
 #import "OAuthViewController.h"
 
 @interface WindowController () {
+    // The master view.
+    IBOutlet NSView *_masterView;
+
+    // Header elements.
+    IBOutlet NSView *_titleBarView;
+    IBOutlet NSImageView *_statusImage;
+    IBOutlet NSTextField *_statusLabel;
+    IBOutlet NSTextField *_usernameLabel;
+    IBOutlet NSImageView *_userImage;
+
+    // Footer elements.
+    IBOutlet NSButton *_refreshButton;
+    IBOutlet NSTextField *_lastUpdatedLabel;
+    IBOutlet NSButton *_preferencesButton;
+        
+    IBOutlet NSMenu *_contextMenu;
+
 @private
     dispatch_source_t _timer;
 }
 
 @property (strong) NSViewController *currentViewController;
-@property (strong) EmptyStreamListViewController *emptyStreamListViewController;
+@property (strong) EmptyErrorViewController *emptyStreamListViewController;
 @property (strong) LoginRequiredViewController *loginRequiredViewController;
 @property (strong) StreamListViewController *streamListViewController;
 @property (strong) NSDate *lastUpdatedTimestamp;
 
--(void) setupControllers;
--(void) swapViewController:(NSViewController *)viewController;
--(void) composeInterface;
+- (void)setupControllers;
+- (void)swapViewController:(NSViewController *)viewController;
+- (void)composeInterface;
 
 - (void)startTimerForLastUpdatedLabel;
 - (void)updateLastUpdatedLabel;
+
+- (void)streamListWasUpdated:(NSNotification *)notification;
+
+- (IBAction)showContextMenu:(NSButton *)sender;
+- (IBAction)showPreferences:(id)sender;
+- (IBAction)refreshStreamList:(NSButton *)sender;
 
 @end
 
@@ -48,9 +71,7 @@
 - (id)init
 {
     self = [super init];
-    if (self) {
-        return [super initWithWindowNibName:@"Window"];
-    }
+    if (self) { return [super initWithWindowNibName:@"Window"]; }
     return self;
 }
 
@@ -87,10 +108,10 @@
 
 - (void)setupControllers
 {
-    self.emptyStreamListViewController = [[EmptyStreamListViewController alloc] initWithNibName:@"EmptyStreamListView" bundle:nil];
+    self.emptyStreamListViewController = [[EmptyErrorViewController alloc] initWithNibName:@"EmptyStreamListView" bundle:nil];
     self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
     self.streamListViewController = [[StreamListViewController alloc] initWithUser:nil];
-    // self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamListView" bundle:nil];
+    // self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamBaseListView" bundle:nil];
 
     if ([[APIClient sharedClient] isAuthenticated]) {
         self.currentViewController = self.streamListViewController;
@@ -98,8 +119,8 @@
         self.currentViewController = self.loginRequiredViewController;
     }
 
-    [self.currentViewController.view setFrame:self.masterView.bounds];
-    [self.masterView addSubview:self.currentViewController.view];
+    [self.currentViewController.view setFrame:_masterView.bounds];
+    [_masterView addSubview:self.currentViewController.view];
 }
 
 - (void)swapViewController:(NSViewController *)viewController
@@ -110,11 +131,11 @@
     NSView *currentView = [self.currentViewController view];
     NSView *swappedView = [viewController view];
 
-    [self.masterView replaceSubview:currentView with:swappedView];
+    [_masterView replaceSubview:currentView with:swappedView];
     self.currentViewController = viewController;
     currentView = swappedView;
 
-    [currentView setFrame:[self.masterView bounds]];
+    [currentView setFrame:[_masterView bounds]];
     [currentView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 }
 
@@ -128,39 +149,39 @@
 
     // Compose our own title bar.
     [window setTitle:@""];
-    [[window toolbarView] addSubview:self.titleBarView];
+    [[window toolbarView] addSubview:_titleBarView];
 
     // Make things pretty.
-    [self.statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [_statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
 
-    [self.refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
-    [self.refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
+    [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
+    [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
 
-    [self.preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
-    [self.preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
+    [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
+    [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
 
-    [[self.statusImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [[_statusImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
-    [self.lastUpdatedLabel setHidden:YES];
-    [self.lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
+    [_lastUpdatedLabel setHidden:YES];
+    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
 
     // The refresh button is disabled by default. We need to enable it if the
     // user is authenticated.
     if ([[APIClient sharedClient] isAuthenticated]) {
-        [self.refreshButton setEnabled:YES];
+        [_refreshButton setEnabled:YES];
     }
 
     // Are we logged in? Set the string value to the current username.
-    [self.usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [_usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
     [User userWithBlock:^(User *user, NSError *error) {
         if (user) {
-            [self.usernameLabel setStringValue:user.name];
-            [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-            [self.usernameLabel setHidden:NO];
-            [self.userImage setHidden:NO];
+            [_usernameLabel setStringValue:user.name];
+            [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+            [_usernameLabel setHidden:NO];
+            [_userImage setHidden:NO];
         }
     }];
 }
@@ -179,12 +200,12 @@
 
 - (void)updateLastUpdatedLabel
 {
-    [self.lastUpdatedLabel setHidden:NO];
+    [_lastUpdatedLabel setHidden:NO];
 
     // Update `lastUpdatedLabel` with the current date (relative).
     SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
     NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-    [self.lastUpdatedLabel setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
+    [_lastUpdatedLabel setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
 }
 
 #pragma mark Notification Observers
@@ -200,8 +221,8 @@
     if ([object isKindOfClass:[StreamListViewController class]]) {
         // Update the interface, swapping in the empty stream list view.
         [self swapViewController:self.emptyStreamListViewController];
-        [self.statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
-        [self.statusLabel setStringValue:@"No live streams"];
+        [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
+        [_statusLabel setStringValue:@"No live streams"];
     }
 }
 
@@ -222,13 +243,13 @@
         } else {
             statusLabelString = [NSString stringWithFormat:@"%lu live streams", (unsigned long)[object.streamArray count]];
         }
-        [[self statusLabel] setStringValue:statusLabelString];
+        [_statusLabel setStringValue:statusLabelString];
 
         self.lastUpdatedTimestamp = [NSDate date];
         [self updateLastUpdatedLabel];
         [self startTimerForLastUpdatedLabel];
 
-        [self.statusImage setImage:[NSImage imageNamed:@"BroadcastActive"]];
+        [_statusImage setImage:[NSImage imageNamed:@"BroadcastActive"]];
     }
 }
 
@@ -239,18 +260,15 @@
 
         [User userWithBlock:^(User *user, NSError *error) {
             if (user) {
-                [self.usernameLabel setStringValue:user.name];
-                [self.userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-                [self.usernameLabel setHidden:NO];
-                [self.userImage setHidden:NO];
+                [_usernameLabel setStringValue:user.name];
+                [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+                [_usernameLabel setHidden:NO];
+                [_userImage setHidden:NO];
             }
         }];
 
-        [self.refreshButton setEnabled:YES];
+        [_refreshButton setEnabled:YES];
         [self swapViewController:self.streamListViewController];
-
-        // Not sure we NEED to do this, but I guess it's just to make sure, eh?
-        [self.streamListViewController loadStreamList];
     }
 }
 
@@ -265,12 +283,12 @@
         [self swapViewController:self.loginRequiredViewController];
 
         // Reset the interface.
-        [self.usernameLabel setHidden:YES];
-        [self.userImage setHidden:YES];
-        [self.lastUpdatedLabel setHidden:YES];
-        [self.refreshButton setEnabled:NO];
-        [self.statusLabel setStringValue:@"Not logged in."];
-        [self.statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
+        [_usernameLabel setHidden:YES];
+        [_userImage setHidden:YES];
+        [_lastUpdatedLabel setHidden:YES];
+        [_refreshButton setEnabled:NO];
+        [_statusLabel setStringValue:@"Not logged in."];
+        [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
     }
 }
 
@@ -278,7 +296,7 @@
 
 - (IBAction)showContextMenu:(NSButton *)sender
 {
-    [self.contextMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(14,26) inView:sender];
+    [_contextMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(14,26) inView:sender];
 }
 
 - (IBAction)showPreferences:(id)sender

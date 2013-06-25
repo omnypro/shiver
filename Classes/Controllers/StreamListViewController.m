@@ -23,9 +23,15 @@
 #import "StreamListViewController.h"
 
 @interface StreamListViewController () {
+    IBOutlet JAListView *_listView;
+
 @private
     dispatch_source_t _timer;
 }
+
+// Legacy
+@property (nonatomic, strong) NSMutableArray *_listItems;
+@property (nonatomic, strong, readwrite) NSArray *streamArray;
 
 // Views.
 @property (nonatomic, strong) NSView *emptyView;
@@ -43,6 +49,7 @@
 @property (atomic) BOOL showingLoading;
 
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
+- (void)loadStreamList;
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
 
@@ -50,7 +57,7 @@
 
 - (id)initWithUser:(User *)user
 {
-    self = [super initWithNibName:@"StreamListView" bundle:nil];
+    self = [super initWithNibName:@"StreamListBaseView" bundle:nil];
     if (self == nil) { return nil; }
 
     self.user = user;
@@ -70,8 +77,8 @@
     [self setUpViewSignals];
     [self setUpDataSignals];
 
-    [self.listView setBackgroundColor:[NSColor clearColor]];
-    [self.listView setCanCallDataSourceInParallel:YES];
+    [_listView setBackgroundColor:[NSColor clearColor]];
+    [_listView setCanCallDataSourceInParallel:YES];
     // [self loadStreamList];
     // [self startTimerForLoadingStreamList];
 }
@@ -80,7 +87,7 @@
 {
     @weakify(self);
 
-    // Show or hide the empty view
+    // Show or hide the empty view.
     [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSNumber *showingEmpty) {
          @strongify(self);
@@ -162,11 +169,11 @@
          // is longer than two (which creates scrolling behavior, add 5 points
          // to the bottom of the view.
          if (self.streamList.count > 2) {
-             [self.listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
+             [_listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
          }
 
          // Reload the table.
-         [self.listView reloadData];
+         [_listView reloadData];
          self.showingLoading = NO;
      }];
 
@@ -217,7 +224,7 @@
         }
 
         // Reload the listView.
-        [self.listView reloadDataAnimated:YES];
+        [_listView reloadDataAnimated:YES];
     }];
 }
 
@@ -266,21 +273,21 @@
 
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
-    if (listView == self.listView) {
+    if (listView == _listView) {
         return;
     }
 }
 
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
-    if (listView == self.listView) {
+    if (listView == _listView) {
         return;
     }
 }
 
 - (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
 {
-    if (listView == self.listView) {
+    if (listView == _listView) {
         return;
     }
 }
