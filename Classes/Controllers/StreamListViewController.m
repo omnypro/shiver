@@ -57,7 +57,7 @@
 
 - (id)initWithUser:(User *)user
 {
-    self = [super initWithNibName:@"StreamListBaseView" bundle:nil];
+    self = [super initWithNibName:@"StreamListView" bundle:nil];
     if (self == nil) { return nil; }
 
     self.user = user;
