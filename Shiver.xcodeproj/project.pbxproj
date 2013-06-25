@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */; };
-		9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyStreamListView.xib */; };
+		9301E9E4176A478300C46750 /* EmptyErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyErrorView.xib */; };
 		9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */; };
-		931E252A1778B7B20081162C /* StreamListEmptyErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* StreamListEmptyErrorView.m */; };
+		931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* EmptyErrorView.m */; };
 		931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */; };
+		931E254217791FC70081162C /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E254117791FC70081162C /* InnerShadowView.m */; };
 		9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239B17728FBF00374EB9 /* EmptyStreamList.png */; };
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
 		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
@@ -34,7 +34,7 @@
 		936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C91764119200146C8A /* StatusBarIcon.pdf */; };
 		936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */; };
 		936327D01764287100146C8A /* StreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327CE1764287100146C8A /* StreamListViewController.m */; };
-		936327D11764287100146C8A /* StreamListBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamListBaseView.xib */; };
+		936327D11764287100146C8A /* StreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamListView.xib */; };
 		936327D51764468500146C8A /* StreamListViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327D41764468500146C8A /* StreamListViewItem.m */; };
 		936327D81764670300146C8A /* StreamListViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327D71764670300146C8A /* StreamListViewItem.xib */; };
 		936327DB1764F9BB00146C8A /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327DA1764F9BB00146C8A /* Channel.m */; };
@@ -43,7 +43,6 @@
 		936959D01769606D00F2F788 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959CF1769606D00F2F788 /* FooterView.m */; };
 		938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A765E176BEAE80094A361 /* NSColor+Hex.m */; };
 		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
-		938A7665177108460094A361 /* StreamListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7664177108460094A361 /* StreamListBaseView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
@@ -102,14 +101,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyStreamListViewController.h; path = Classes/Controllers/EmptyStreamListViewController.h; sourceTree = SOURCE_ROOT; };
-		9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyStreamListViewController.m; path = Classes/Controllers/EmptyStreamListViewController.m; sourceTree = SOURCE_ROOT; };
-		9301E9E2176A478300C46750 /* EmptyStreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyStreamListView.xib; path = Assets/NIBs/EmptyStreamListView.xib; sourceTree = SOURCE_ROOT; };
+		9301E9E2176A478300C46750 /* EmptyErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyErrorView.xib; path = Assets/NIBs/EmptyErrorView.xib; sourceTree = SOURCE_ROOT; };
 		9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchLogoWhite.pdf; path = Assets/Templates/TwitchLogoWhite.pdf; sourceTree = SOURCE_ROOT; };
-		931E25281778B7B20081162C /* StreamListEmptyErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListEmptyErrorView.h; path = Classes/Views/StreamListEmptyErrorView.h; sourceTree = SOURCE_ROOT; };
-		931E25291778B7B20081162C /* StreamListEmptyErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListEmptyErrorView.m; path = Classes/Views/StreamListEmptyErrorView.m; sourceTree = SOURCE_ROOT; };
+		931E25281778B7B20081162C /* EmptyErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyErrorView.h; path = Classes/Views/EmptyErrorView.h; sourceTree = SOURCE_ROOT; };
+		931E25291778B7B20081162C /* EmptyErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyErrorView.m; path = Classes/Views/EmptyErrorView.m; sourceTree = SOURCE_ROOT; };
 		931E253A17790FC20081162C /* NSLayoutConstraint+Equations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+Equations.h"; path = "Extensions/Categories/NSLayoutConstraint+Equations.h"; sourceTree = SOURCE_ROOT; };
 		931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+Equations.m"; path = "Extensions/Categories/NSLayoutConstraint+Equations.m"; sourceTree = SOURCE_ROOT; };
+		931E254017791FC70081162C /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InnerShadowView.h; path = Classes/Views/InnerShadowView.h; sourceTree = SOURCE_ROOT; };
+		931E254117791FC70081162C /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InnerShadowView.m; path = Classes/Views/InnerShadowView.m; sourceTree = SOURCE_ROOT; };
 		9324239B17728FBF00374EB9 /* EmptyStreamList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EmptyStreamList.png; path = Assets/Images/EmptyStreamList.png; sourceTree = SOURCE_ROOT; };
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
 		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
@@ -146,7 +145,7 @@
 		936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIconInverted.pdf; path = Assets/Templates/StatusBarIconInverted.pdf; sourceTree = SOURCE_ROOT; };
 		936327CD1764287100146C8A /* StreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewController.h; path = Classes/Controllers/StreamListViewController.h; sourceTree = SOURCE_ROOT; };
 		936327CE1764287100146C8A /* StreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewController.m; path = Classes/Controllers/StreamListViewController.m; sourceTree = SOURCE_ROOT; };
-		936327CF1764287100146C8A /* StreamListBaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListBaseView.xib; path = Assets/NIBs/StreamListBaseView.xib; sourceTree = SOURCE_ROOT; };
+		936327CF1764287100146C8A /* StreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListView.xib; path = Assets/NIBs/StreamListView.xib; sourceTree = SOURCE_ROOT; };
 		936327D31764468400146C8A /* StreamListViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewItem.h; path = Classes/Views/StreamListViewItem.h; sourceTree = SOURCE_ROOT; };
 		936327D41764468500146C8A /* StreamListViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewItem.m; path = Classes/Views/StreamListViewItem.m; sourceTree = SOURCE_ROOT; };
 		936327D71764670300146C8A /* StreamListViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListViewItem.xib; path = Assets/NIBs/StreamListViewItem.xib; sourceTree = SOURCE_ROOT; };
@@ -161,8 +160,6 @@
 		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Hex.m"; path = "Extensions/Categories/NSColor+Hex.m"; sourceTree = SOURCE_ROOT; };
 		938A7660177105FC0094A361 /* StreamPreviewImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamPreviewImageView.h; path = Classes/Views/StreamPreviewImageView.h; sourceTree = SOURCE_ROOT; };
 		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
-		938A7663177108460094A361 /* StreamListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListBaseView.h; path = Classes/Views/StreamListBaseView.h; sourceTree = SOURCE_ROOT; };
-		938A7664177108460094A361 /* StreamListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListBaseView.m; path = Classes/Views/StreamListBaseView.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
@@ -369,8 +366,6 @@
 				93A3A11E17658E2B00913C9A /* Preferences */,
 				936327BD1763C25B00146C8A /* ApplicationController.h */,
 				936327BE1763C25B00146C8A /* ApplicationController.m */,
-				9301E9E0176A478300C46750 /* EmptyStreamListViewController.h */,
-				9301E9E1176A478300C46750 /* EmptyStreamListViewController.m */,
 				932423A51772954800374EB9 /* LoginRequiredViewController.h */,
 				932423A61772954800374EB9 /* LoginRequiredViewController.m */,
 				936327CD1764287100146C8A /* StreamListViewController.h */,
@@ -400,10 +395,10 @@
 			isa = PBXGroup;
 			children = (
 				93A3A12417658EF600913C9A /* Preferences */,
-				9301E9E2176A478300C46750 /* EmptyStreamListView.xib */,
+				9301E9E2176A478300C46750 /* EmptyErrorView.xib */,
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
-				936327CF1764287100146C8A /* StreamListBaseView.xib */,
+				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327D71764670300146C8A /* StreamListViewItem.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
@@ -434,10 +429,8 @@
 		938A766617710AD30094A361 /* Stream List */ = {
 			isa = PBXGroup;
 			children = (
-				938A7663177108460094A361 /* StreamListBaseView.h */,
-				938A7664177108460094A361 /* StreamListBaseView.m */,
-				931E25281778B7B20081162C /* StreamListEmptyErrorView.h */,
-				931E25291778B7B20081162C /* StreamListEmptyErrorView.m */,
+				931E25281778B7B20081162C /* EmptyErrorView.h */,
+				931E25291778B7B20081162C /* EmptyErrorView.m */,
 				936327D31764468400146C8A /* StreamListViewItem.h */,
 				936327D41764468500146C8A /* StreamListViewItem.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
@@ -494,6 +487,8 @@
 		939E8B9317728326006D6442 /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
+				931E254017791FC70081162C /* InnerShadowView.h */,
+				931E254117791FC70081162C /* InnerShadowView.m */,
 				939E8B69177161A8006D6442 /* ShadowTextField.h */,
 				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
 			);
@@ -514,8 +509,8 @@
 		93A3A12417658EF600913C9A /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				93A3A12117658ED200913C9A /* OAuthView.xib */,
 				93D15BA817736EB100643D95 /* GeneralView.xib */,
+				93A3A12117658ED200913C9A /* OAuthView.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -653,10 +648,10 @@
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
 				936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */,
 				936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */,
-				936327D11764287100146C8A /* StreamListBaseView.xib in Resources */,
+				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListViewItem.xib in Resources */,
 				93A3A12317658ED200913C9A /* OAuthView.xib in Resources */,
-				9301E9E4176A478300C46750 /* EmptyStreamListView.xib in Resources */,
+				9301E9E4176A478300C46750 /* EmptyErrorView.xib in Resources */,
 				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
 				93918311176A828500367399 /* PreferencesGlitch.png in Resources */,
 				93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */,
@@ -773,10 +768,8 @@
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
-				9301E9E3176A478300C46750 /* EmptyStreamListViewController.m in Sources */,
 				938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */,
 				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
-				938A7665177108460094A361 /* StreamListBaseView.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				939E8B6B177161A8006D6442 /* ShadowTextField.m in Sources */,
 				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
@@ -786,8 +779,9 @@
 				932423A71772954800374EB9 /* LoginRequiredViewController.m in Sources */,
 				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
 				934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */,
-				931E252A1778B7B20081162C /* StreamListEmptyErrorView.m in Sources */,
+				931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */,
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
+				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
