@@ -131,7 +131,7 @@
 		932C29C81761AF800049EC1B /* ShiverApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiverApplication.m; sourceTree = SOURCE_ROOT; };
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
-		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Extensions/Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
