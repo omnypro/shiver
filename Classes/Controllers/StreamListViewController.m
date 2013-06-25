@@ -11,12 +11,12 @@
 
 #import "APIClient.h"
 #import "Channel.h"
+#import "EmptyErrorView.h"
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
-#import "StreamListEmptyErrorView.h"
 #import "User.h"
 #import "WindowController.h"
 
@@ -93,7 +93,7 @@
          @strongify(self);
          BOOL isShowingEmpty = [showingEmpty boolValue];
          if (isShowingEmpty && !self.showingError){
-             // self.emptyView = [TCSEmptyErrorView emptyViewWithTitle:@"No charts!" subtitle:subtitle];
+             self.errorView = [[EmptyErrorView init] emptyViewWithTitle:nil subTitle:nil];
              [self.view addSubview:self.emptyView];
          } else {
              [self.emptyView removeFromSuperview];
@@ -112,7 +112,7 @@
              self.showingEmpty = NO;
              self.showingLoading = NO;
              NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-             self.errorView = [StreamListEmptyErrorView errorViewWithTitle:message subTitle:message];
+             self.errorView = [[EmptyErrorView init] errorViewWithTitle:message subTitle:message];
              [self.view addSubview:self.errorView];
              [self.errorView setNeedsDisplay:YES];
          }
@@ -301,8 +301,6 @@
     
     item.object = stream;
     NSLog(@"object: %@", item.object);
-    [item refreshLogo];
-    [item refreshPreview];
     return item;
 }
 
@@ -320,7 +318,10 @@
 {
     WindowController *object = [notification object];
     if ([object isKindOfClass:[WindowController class]]) {
-        [self loadStreamList];
+        // The refresh button should reinstantiate the client to trigger the
+        // reactions. Not sure if this is the correct way to do this.
+        self.client = [APIClient sharedClient];
+        // [self loadStreamList];
     }
 }
 
