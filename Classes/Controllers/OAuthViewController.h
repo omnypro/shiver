@@ -12,15 +12,4 @@
 
 @interface OAuthViewController : NSViewController <RHPreferencesViewControllerProtocol>
 
-@property (weak) IBOutlet NSButton *loginButton;
-@property (weak) IBOutlet NSButton *learnMoreButton;
-@property (weak) IBOutlet NSTextField *connectionStatusLabel;
-
-@property (strong) IBOutlet NSWindow *modalWindow;
-@property (weak) IBOutlet WebView *modalWebView;
-@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
-
-- (IBAction)loginOrLogout:(NSButton *)sender;
-- (IBAction)learnMore:(NSButton *)sender;
-
 @end

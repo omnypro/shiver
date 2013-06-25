@@ -12,7 +12,7 @@
 #import "WindowController.h"
 
 @interface ApplicationController ()
-@property (nonatomic, strong) WindowController *windowController;
+@property (nonatomic, readwrite, strong) WindowController *windowController;
 @end
 
 @implementation ApplicationController

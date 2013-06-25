@@ -10,6 +10,4 @@
 
 @interface LoginRequiredViewController : NSViewController
 
-- (IBAction)login:(id)sender;
-
 @end

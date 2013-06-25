@@ -15,25 +15,4 @@
 
 @property (nonatomic, readonly) RHPreferencesWindowController *preferencesWindowController;
 
-@property (weak) IBOutlet NSView *masterView;
-
-// Header elements.
-@property (weak) IBOutlet NSView *titleBarView;
-@property (weak) IBOutlet NSImageView *statusImage;
-@property (weak) IBOutlet NSTextField *statusLabel;
-@property (weak) IBOutlet NSTextField *usernameLabel;
-@property (weak) IBOutlet NSImageView *userImage;
-
-// Footer elements.
-@property (weak) IBOutlet NSButton *refreshButton;
-@property (weak) IBOutlet NSTextField *lastUpdatedLabel;
-@property (weak) IBOutlet NSButton *preferencesButton;
-
-@property (strong) IBOutlet NSMenu *contextMenu;
-
-- (IBAction)showContextMenu:(NSButton *)sender;
-- (IBAction)showPreferences:(id)sender;
-- (IBAction)refreshStreamList:(NSButton *)sender;
-- (void)streamListWasUpdated:(NSNotification *)notification;
-
 @end
