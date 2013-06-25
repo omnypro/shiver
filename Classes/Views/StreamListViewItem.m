@@ -18,42 +18,35 @@
 
 #import "StreamListViewItem.h"
 
-@interface StreamListViewItem ()
+@interface StreamListViewItem () {
+    IBOutlet NSTextField *_gameLabel;
+    IBOutlet NSTextField *_userLabel;
+    IBOutlet NSTextField *_titleLabel;
+    IBOutlet NSTextField *_viewerCountLabel;
+    IBOutlet NSButton *_redirectButton;
+}
 
 @property (weak) IBOutlet StreamLogoImageView *logo;
-@property (weak) IBOutlet StreamPreviewImageView *preview;
-@property (weak) IBOutlet NSTextField *gameLabel;
-@property (weak) IBOutlet NSTextField *userLabel;
-@property (weak) IBOutlet NSTextField *titleLabel;
-@property (weak) IBOutlet NSTextField *viewerCountLabel;
-@property (weak) IBOutlet NSButton *redirectButton;
-
 @property (nonatomic, strong) NSString *logoURLCache;
+
+@property (weak) IBOutlet StreamPreviewImageView *preview;
 @property (nonatomic, strong) NSString *previewURLCache;
 
 - (IBAction)redirectToStream:(id)sender;
-
 @end
 
 @implementation StreamListViewItem
 
 + (StreamListViewItem *)initItem
 {
-    static NSNib *nib = nil;
-    if(nib == nil) {
-        nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
-    }
-
-    NSArray *objects = nil;
+	NSNib *nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
+	NSArray *objects = nil;
     [nib instantiateWithOwner:nil topLevelObjects:&objects];
-    for(id object in objects) {
-        if ([object isKindOfClass:self]) {
+	for (id object in objects)
+		if ([object isKindOfClass:[JAListViewItem class]]) {
             return object;
         }
-    }
-
-    NSAssert1(NO, @"No view of class %@ found.", NSStringFromClass(self));
-    return nil;
+	return nil;
 }
 
 - (void)setObject:(Stream *)object
@@ -68,15 +61,15 @@
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:14];
     [attrTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrTitle length])];
-    [self.titleLabel setAttributedStringValue:attrTitle];
+    [_titleLabel setAttributedStringValue:attrTitle];
 
-    [self.userLabel setStringValue:object.channel.displayName];
-    [self.userLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [_userLabel setStringValue:object.channel.displayName];
+    [_userLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
 
-    [self.gameLabel setStringValue:object.game];
-    [self.gameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
+    [_gameLabel setStringValue:object.game];
+    [_gameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
 
-    [self.viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", object.viewers]];
+    [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", object.viewers]];
 
     [self refreshLogo];
     [self refreshPreview];
@@ -85,12 +78,12 @@
 - (void)refreshLogo
 {
     static NSImage *placeholderImage = nil;
-    
+
     @weakify(self);
     if (![self.object.channel.logoImageURL.absoluteString isEqualToString:self.logoURLCache]) {
         // Prevent setting the logo unnecessarily.
         NSURLRequest *request = [NSURLRequest requestWithURL:self.object.channel.logoImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
-        [self.preview setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
+        [_logo setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
             @strongify(self);
             [self.logo setImage:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -100,7 +93,7 @@
         self.logoURLCache = self.object.channel.logoImageURL.absoluteString;
     }
     else {
-        [self.logo setImageWithURL:[NSURL URLWithString:self.logoURLCache]];
+        [_logo setImageWithURL:[NSURL URLWithString:self.logoURLCache]];
     }
 }
 
@@ -112,7 +105,7 @@
     if (![self.object.previewImageURL.absoluteString isEqualToString:self.previewURLCache]) {
         // Prevent setting the logo unnecessarily.
         NSURLRequest *request = [NSURLRequest requestWithURL:self.object.previewImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
-        [self.preview setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
+        [_preview setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
             @strongify(self);
             [self.preview setImage:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -122,7 +115,7 @@
         self.previewURLCache = self.object.previewImageURL.absoluteString;
     }
     else {
-        [self.preview setImageWithURL:[NSURL URLWithString:self.previewURLCache]];
+        [_preview setImageWithURL:[NSURL URLWithString:self.previewURLCache]];
     }
 }
 
