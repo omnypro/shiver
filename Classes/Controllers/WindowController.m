@@ -25,10 +25,8 @@
     IBOutlet NSView *_masterView;
     IBOutlet NSView *_titleBarView;
     IBOutlet NSImageView *_statusImage;
-    IBOutlet NSTextField *_statusLabel;
     IBOutlet NSTextField *_usernameLabel;
     IBOutlet NSImageView *_userImage;
-    IBOutlet NSButton *_refreshButton;
     IBOutlet NSTextField *_lastUpdatedLabel;
     IBOutlet NSButton *_preferencesButton;
     IBOutlet NSMenu *_contextMenu;
@@ -55,11 +53,8 @@
 - (void)startTimerForLastUpdatedLabel;
 - (void)updateLastUpdatedLabel;
 
-- (void)streamListWasUpdated:(NSNotification *)notification;
-
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showPreferences:(id)sender;
-- (IBAction)refreshStreamList:(NSButton *)sender;
 @end
 
 @implementation WindowController
@@ -94,7 +89,7 @@
     [[[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
         return (user != nil);
     }] map:^id(User *user) {
-		NSLog(@"Application: Welcome %@!", user);
+		NSLog(@"Application: Welcome %@!", user.name);
         return [[StreamListViewController alloc] initWithUser:user];
     }] toProperty:@keypath(self.currentViewController) onObject:self];
 
@@ -175,12 +170,6 @@
     [_lastUpdatedLabel setHidden:YES];
     [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
 
-    // The refresh button is disabled by default. We need to enable it if the
-    // user is authenticated.
-    if ([[APIClient sharedClient] isAuthenticated]) {
-        [_refreshButton setEnabled:YES];
-    }
-
     // Are we logged in? Set the string value to the current username.
     [_usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
     [User userWithBlock:^(User *user, NSError *error) {
@@ -220,37 +209,6 @@
 - (void)requestToOpenPreferences:(NSNotification *)notification
 {
     [self showPreferences:notification.object];
-}
-
-- (void)streamListIsEmpty:(NSNotification *)notification
-{
-    StreamListViewController *object = [notification object];
-    if ([object isKindOfClass:[StreamListViewController class]]) {
-        // Update the interface, swapping in the empty stream list view.
-        [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
-        [_statusLabel setStringValue:@"No live streams"];
-    }
-}
-
-- (void)streamListWasUpdated:(NSNotification *)notification
-{
-    StreamListViewController *object = [notification object];
-    if ([object isKindOfClass:[StreamListViewController class]]) {
-        // Update the interface, starting with the number of live streams.
-        NSString *statusLabelString = nil;
-        if ([object.streamArray count] == 1) {
-            statusLabelString = [NSString stringWithFormat:@"%lu live stream", (unsigned long)[object.streamArray count]];
-        } else {
-            statusLabelString = [NSString stringWithFormat:@"%lu live streams", (unsigned long)[object.streamArray count]];
-        }
-        [_statusLabel setStringValue:statusLabelString];
-
-        self.lastUpdatedTimestamp = [NSDate date];
-        [self updateLastUpdatedLabel];
-        [self startTimerForLastUpdatedLabel];
-
-        [_statusImage setImage:[NSImage imageNamed:@"BroadcastActive"]];
-    }
 }
 
 - (void)userConnectedAccount:(NSNotification *)notification
