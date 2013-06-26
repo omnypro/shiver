@@ -73,6 +73,20 @@
 {
     @weakify(self);
 
+    _loginButton.rac_command = self.loginCommand;
+    [self.loginCommand subscribeNext:^(id x) {
+        @strongify(self);
+        self.client = [APIClient sharedClient];
+        self.loggingIn = YES;
+    }];
+
+    _disconnectButton.rac_command = self.disconnectCommand;
+    [self.disconnectCommand subscribeNext:^(id x) {
+        @strongify(self);
+        self.client = [APIClient sharedClient];
+        self.user = nil;
+    }];
+
     // Watch to see if the value of user is set. If so, change the respective
     // UI elements to reflect the fact that we have a user present.
     [[[RACAbleWithStart(self.user) filter:^BOOL(id value) {
@@ -92,20 +106,6 @@
         [_connectionStatusLabel setStringValue:@"Not currently connected."];
         [_disconnectButton setHidden:YES];
         [_loginButton setHidden:NO];
-    }];
-
-    _loginButton.rac_command = self.loginCommand;
-    [self.loginCommand subscribeNext:^(id x) {
-        @strongify(self);
-        self.client = [APIClient sharedClient];
-        self.loggingIn = YES;
-    }];
-
-    _disconnectButton.rac_command = self.disconnectCommand;
-    [self.disconnectCommand subscribeNext:^(id x) {
-        @strongify(self);
-        self.client = [APIClient sharedClient];
-        self.user = nil;
     }];
 }
 
