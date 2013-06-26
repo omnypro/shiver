@@ -60,8 +60,6 @@
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
@@ -71,7 +69,7 @@
     // fetch the user from the API and when the value changes, show the
     // stream list.
     self.client = [APIClient sharedClient];
-    RAC(self.user) = [[self.client fetchUser] deliverOn:RACScheduler.mainThreadScheduler];
+    RAC(self.user) = [[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]];
     [[[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
         return (user != nil);
     }] map:^id(User *user) {
@@ -86,6 +84,24 @@
 		NSLog(@"Application: We no longer have a user. :(");
         self.loginView = [LoginRequiredView init];
         [_masterView replaceSubview:self.currentViewController.view with:self.loginView];
+    }];
+
+    // Watch self.user and update the main interface appropriately.
+    [RACAbleWithStart(self.user) subscribeNext:^(User *user) {
+        if (user) {
+            [_usernameLabel setStringValue:user.name];
+            [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
+            [_usernameLabel setHidden:NO];
+            [_userImage setHidden:NO];
+        }
+        else {
+            [_usernameLabel setHidden:YES];
+            [_userImage setHidden:YES];
+            [_lastUpdatedLabel setHidden:YES];
+            [_refreshButton setEnabled:NO];
+            [_statusLabel setStringValue:@"Not logged in."];
+            [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
+        }
     }];
 }
 
@@ -157,38 +173,6 @@
 - (void)requestToOpenPreferences:(NSNotification *)notification
 {
     [self showPreferences:notification.object];
-}
-
-- (void)userConnectedAccount:(NSNotification *)notification
-{
-    OAuthViewController *object = [notification object];
-    if ([object isKindOfClass:[OAuthViewController class]]) {
-
-        [User userWithBlock:^(User *user, NSError *error) {
-            if (user) {
-                [_usernameLabel setStringValue:user.name];
-                [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-                [_usernameLabel setHidden:NO];
-                [_userImage setHidden:NO];
-            }
-        }];
-
-        [_refreshButton setEnabled:YES];
-    }
-}
-
-- (void)userDisconnectedAccount:(NSNotification *)notification
-{
-    OAuthViewController *object = [notification object];
-    if ([object isKindOfClass:[OAuthViewController class]]) {
-        // Reset the interface.
-        [_usernameLabel setHidden:YES];
-        [_userImage setHidden:YES];
-        [_lastUpdatedLabel setHidden:YES];
-        [_refreshButton setEnabled:NO];
-        [_statusLabel setStringValue:@"Not logged in."];
-        [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
-    }
 }
 
 #pragma mark Interface Builder Actions
