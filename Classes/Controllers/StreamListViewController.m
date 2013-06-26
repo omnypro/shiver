@@ -24,9 +24,6 @@
 
 @interface StreamListViewController () {
     IBOutlet JAListView *_listView;
-
-@private
-    dispatch_source_t _timer;
 }
 
 // Legacy
@@ -79,7 +76,6 @@
 
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
-    // [self startTimerForLoadingStreamList];
 }
 
 - (void)setUpViewSignals
@@ -211,6 +207,14 @@
         }
     }];
 
+    // Refresh the stream list at an interval provided by the user.
+    [[[RACAble(self.streamList) map:^id(id value) {
+        return [RACSignal interval:5.0];
+    }] switchToLatest] subscribeNext:^(id x) {
+        NSLog(@"Stream List: Triggering timed refresh.");
+        self.client = [APIClient sharedClient];
+    }];
+
     // Monitor the data source array and show an empty view if it's... empty.
     [RACAble(self.streamList) subscribeNext:^(NSArray *streamList) {
         @strongify(self);
@@ -220,7 +224,6 @@
 }
 
 #pragma mark - Data Source Methods
-
 
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray
 {
@@ -314,17 +317,13 @@
         // The refresh button should reinstantiate the client to trigger the
         // reactions. Not sure if this is the correct way to do this.
         self.client = [APIClient sharedClient];
-        // [self loadStreamList];
     }
 }
 
 - (void)userDisconnectedAccount:(NSNotification *)notification
 {
     OAuthViewController *object = [notification object];
-    if ([object isKindOfClass:[OAuthViewController class]]) {
-        // Ah, don't forget we have a timer. We should stop it.
-        dispatch_source_cancel(_timer);
-    }
+    if ([object isKindOfClass:[OAuthViewController class]]) {}
 }
 
 @end
