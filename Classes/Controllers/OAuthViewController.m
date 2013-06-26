@@ -56,6 +56,7 @@
 
     self.loggingIn = NO;
     self.loginCommand = [RACCommand command];
+    self.disconnectCommand = [RACCommand command];
     self.didLoginSubject = [RACSubject subject];
 
     [self setUpViewSignals];
