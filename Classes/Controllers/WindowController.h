@@ -16,4 +16,8 @@
 
 @property (nonatomic, strong, readonly) RHPreferencesWindowController *preferencesWindowController;
 
+// These are controls that need to be accessed from the stream list controller.
+@property (weak) IBOutlet NSButton *refreshButton;
+@property (weak) IBOutlet NSTextField *statusLabel;
+
 @end

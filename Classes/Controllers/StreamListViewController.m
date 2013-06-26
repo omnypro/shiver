@@ -91,6 +91,26 @@
         self.client = [APIClient sharedClient];
     }];
 
+    // Watch the stream list for changes and enable or disable UI elements
+    // based on those values.
+    [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
+        if (array != nil) {
+            // Update the string based on the number of streams that are live.
+            NSString *singularCount = [NSString stringWithFormat:@"%lu live stream", [array count]];
+            NSString *pluralCount = [NSString stringWithFormat:@"%lu live streams", [array count]];
+            if ([array count] == 1) { [self.windowController.statusLabel setStringValue:singularCount]; }
+            else if ([array count] > 1) { [self.windowController.statusLabel setStringValue:pluralCount]; }
+            else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
+
+            // Enable the refresh button.
+            [self.windowController.refreshButton setEnabled:YES];
+        }
+        else {
+            [self.windowController.statusLabel setStringValue:@"No live streams"];
+            [self.windowController.refreshButton setEnabled:NO];
+        }
+    }];
+
     // Show or hide the empty view.
     [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(NSNumber *showingEmpty) {
