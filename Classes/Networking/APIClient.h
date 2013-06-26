@@ -13,9 +13,9 @@
 @class User;
 @class Stream;
 
-extern NSString * const kTwitchBaseURL;
-extern NSString * const kRedirectURI;
-extern NSString * const kClientID;
+extern NSString *const kTwitchBaseURL;
+extern NSString *const kRedirectURI;
+extern NSString *const kClientID;
 
 @interface APIClient : AFOAuth2Client
 
@@ -24,9 +24,9 @@ extern NSString * const kClientID;
 + (APIClient *)sharedClient;
 
 - (BOOL)isAuthenticated;
-- (void)authorizeUsingResponseURL:(NSURL *)url;
 - (void)logout;
 
+- (RACSignal *)authorizeUsingResponseURL:(NSURL *)url;
 - (RACSignal *)fetchUser;
 - (RACSignal *)fetchStreamList;
 
