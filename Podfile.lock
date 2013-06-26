@@ -3,6 +3,9 @@ PODS:
   - AFOAuth2Client (0.1.1):
     - AFNetworking (~> 1.0)
   - JAListView (0.0.1)
+  - JRSwizzle (1.0)
+  - libextobjc/EXTConcreteProtocol (0.2.5):
+    - libextobjc/RuntimeExtensions
   - libextobjc/EXTKeyPathCoding (0.2.5):
     - libextobjc/RuntimeExtensions
   - libextobjc/EXTScope (0.2.5):
@@ -12,6 +15,16 @@ PODS:
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
   - OBMenuBarWindow (0.0.1)
+  - ReactiveCocoa (1.9.4):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/RACExtensions
+  - ReactiveCocoa/Core (1.9.4):
+    - JRSwizzle (~> 1.0)
+    - libextobjc/EXTConcreteProtocol (~> 0.2.5)
+    - libextobjc/EXTKeyPathCoding (~> 0.2.5)
+    - libextobjc/EXTScope (~> 0.2.5)
+  - ReactiveCocoa/RACExtensions (1.9.4):
+    - ReactiveCocoa/Core
   - RHPreferences (1.0.0)
   - SORelativeDateTransformer (1.1.8)
   - StartAtLoginController (0.0.1)
@@ -22,6 +35,7 @@ DEPENDENCIES:
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.1)
   - OBMenuBarWindow (~> 0.0.1)
+  - ReactiveCocoa (~> 1.9.4)
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.8)
   - StartAtLoginController (~> 0.0.1)
@@ -30,9 +44,11 @@ SPEC CHECKSUMS:
   AFNetworking: e528f20d06b1b818c3571266fb5efa20031a8ace
   AFOAuth2Client: 039596f19e8a4bdd852cb3fc44ddbe45e12c290a
   JAListView: 7fb73768382a93a0cf48e18828709ef3240911fc
+  JRSwizzle: 6242ff38485d870fc2636899048ee1ab883ae587
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aba2facc6ee8f97512a94768dc57c82b7802948c
   OBMenuBarWindow: 70b2741217b6b17670e7427fd29b1ff13d0c349a
+  ReactiveCocoa: 3aa4686bd63a7b0a0c0e2e06b5ee32c6d9291351
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: 96abecdbe7a384ed65974b34a0497222a8878720
   StartAtLoginController: 9cb4e6537cc7d2e3fde1ccbaea2fdecd0c07fe5d
