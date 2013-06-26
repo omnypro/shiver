@@ -158,14 +158,6 @@
 
     // Are we logged in? Set the string value to the current username.
     [_usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
-    [User userWithBlock:^(User *user, NSError *error) {
-        if (user) {
-            [_usernameLabel setStringValue:user.name];
-            [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-            [_usernameLabel setHidden:NO];
-            [_userImage setHidden:NO];
-        }
-    }];
 }
 
 #pragma mark Notification Observers
