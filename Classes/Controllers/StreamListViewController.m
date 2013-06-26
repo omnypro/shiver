@@ -66,7 +66,6 @@
 {
     [super awakeFromNib];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStreamListRefresh:) name:RequestToUpdateStreamNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
@@ -325,16 +324,6 @@
 }
 
 #pragma mark - Notification Observers
-
-- (void)requestStreamListRefresh:(NSNotification *)notification
-{
-    WindowController *object = [notification object];
-    if ([object isKindOfClass:[WindowController class]]) {
-        // The refresh button should reinstantiate the client to trigger the
-        // reactions. Not sure if this is the correct way to do this.
-        self.client = [APIClient sharedClient];
-    }
-}
 
 - (void)userDisconnectedAccount:(NSNotification *)notification
 {
