@@ -18,4 +18,6 @@
 @property (nonatomic, strong, readonly) RACSubject *didLoginSubject;
 @property (nonatomic, strong, readonly) RACSubject *URLProtocolValueSubject;
 
+- (id)initWithUser:(User *)user;
+
 @end

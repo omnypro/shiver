@@ -113,7 +113,7 @@
     // If we have not created the window controller yet, create it now.
     if (_preferencesWindowController == nil) {
         _generalPreferences = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
-        _oauthPreferences = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
+        _oauthPreferences = [[OAuthViewController alloc] initWithUser:self.user];
         NSArray *controllers = @[ _generalPreferences, _oauthPreferences ];
         _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }

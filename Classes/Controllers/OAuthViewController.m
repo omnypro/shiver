@@ -41,6 +41,15 @@
 
 @implementation OAuthViewController
 
+- (id)initWithUser:(User *)user
+{
+    self = [super initWithNibName:@"OAuthView" bundle:nil];
+    if (self == nil) { return nil; }
+
+    self.user = user;
+    return self;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -72,7 +81,6 @@
         [_connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", self.user.name]];
         [_disconnectButton setHidden:NO];
         [_loginButton setHidden:YES];
-
     }];
 
     // This time, we're watching to see if the value of user is `nil`. If so,
