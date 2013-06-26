@@ -10,7 +10,7 @@
 
 #import "APIClient.h"
 #import "EXTKeypathCoding.h"
-#import "LoginRequiredViewController.h"
+#import "LoginRequiredView.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
 #import "SORelativeDateTransformer.h"
@@ -38,9 +38,9 @@
 }
 
 @property (nonatomic, strong) NSViewController *currentViewController;
-@property (nonatomic, strong) LoginRequiredViewController *loginRequiredViewController;
 @property (nonatomic, strong) StreamListViewController *streamListViewController;
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
+@property (nonatomic, strong) NSView *loginView;
 
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
 @property (nonatomic, strong) OAuthViewController *oauthPreferences;
@@ -49,7 +49,6 @@
 @property (nonatomic, strong) APIClient *client;
 @property (nonatomic, strong) User *user;
 
-- (void)setupControllers;
 - (void)swapViewController:(NSViewController *)viewController;
 - (void)composeInterface;
 
@@ -87,7 +86,6 @@
     // and status bar menu item.
     [self composeInterface];
 
-
     // Do we have a user? Check for one by making self.user reactable. Try to
     // fetch the user from the API and when the value changes, show the
     // stream list.
@@ -96,15 +94,17 @@
     [[[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
         return (user != nil);
     }] map:^id(User *user) {
-		NSLog(@"My saved user: %@", user);
+		NSLog(@"Application: Welcome %@!", user);
         return [[StreamListViewController alloc] initWithUser:user];
     }] toProperty:@keypath(self.currentViewController) onObject:self];
 
+    // If self.user ever becomes nil, show the login required view.
     [[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
         return (user == nil);
     }] subscribeNext:^(User *user) {
-        self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
-        [_masterView addSubview:self.loginRequiredViewController.view];
+		NSLog(@"Application: We no longer have a user. :(");
+        self.loginView = [LoginRequiredView init];
+        [_masterView replaceSubview:self.currentViewController.view with:self.loginView];
     }];
 }
 
@@ -127,21 +127,6 @@
     
     _currentViewController = viewController;
     [_currentViewController.view setFrame:_masterView.bounds];
-    [_masterView addSubview:self.currentViewController.view];
-}
-
-- (void)setupControllers
-{
-    self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
-    self.streamListViewController = [[StreamListViewController alloc] initWithUser:self.user];
-
-    if ([[APIClient sharedClient] isAuthenticated]) {
-        self.currentViewController = self.streamListViewController;
-    } else {
-        self.currentViewController = self.loginRequiredViewController;
-    }
-
-    [self.currentViewController.view setFrame:_masterView.bounds];
     [_masterView addSubview:self.currentViewController.view];
 }
 
@@ -293,9 +278,6 @@
     if ([object isKindOfClass:[OAuthViewController class]]) {
         // Ah, don't forget we have a timer. We should stop it.
         dispatch_source_cancel(_timer);
-
-        // We've logged out. Show the login view.
-        [self swapViewController:self.loginRequiredViewController];
 
         // Reset the interface.
         [_usernameLabel setHidden:YES];
