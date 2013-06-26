@@ -34,13 +34,14 @@
 @property (nonatomic, strong, readwrite) NSArray *streamArray;
 
 // Views.
+@property (nonatomic, strong) NSWindow *parentWindow;
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
 
 // Data sources.
-@property (atomic, strong) User *user;
 @property (atomic, strong) APIClient *client;
 @property (atomic, strong) NSArray *streamList;
+@property (atomic, strong) User *user;
 
 // Controller state.
 @property (atomic) BOOL showingError;

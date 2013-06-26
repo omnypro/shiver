@@ -21,21 +21,15 @@
 #import "OAuthViewController.h"
 
 @interface WindowController () {
-    // The master view.
     IBOutlet NSView *_masterView;
-
-    // Header elements.
     IBOutlet NSView *_titleBarView;
     IBOutlet NSImageView *_statusImage;
     IBOutlet NSTextField *_statusLabel;
     IBOutlet NSTextField *_usernameLabel;
     IBOutlet NSImageView *_userImage;
-
-    // Footer elements.
     IBOutlet NSButton *_refreshButton;
     IBOutlet NSTextField *_lastUpdatedLabel;
     IBOutlet NSButton *_preferencesButton;
-        
     IBOutlet NSMenu *_contextMenu;
 
 @private
@@ -45,7 +39,15 @@
 @property (strong) NSViewController *currentViewController;
 @property (strong) LoginRequiredViewController *loginRequiredViewController;
 @property (strong) StreamListViewController *streamListViewController;
+@property (nonatomic, readwrite) RHPreferencesWindowController *preferencesWindowController;
+
+@property (strong) GeneralViewController *generalPreferences;
+@property (strong) OAuthViewController *oauthPreferences;
+
 @property (strong) NSDate *lastUpdatedTimestamp;
+
+@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) User *user;
 
 - (void)setupControllers;
 - (void)swapViewController:(NSViewController *)viewController;
@@ -63,8 +65,6 @@
 @end
 
 @implementation WindowController
-
-@synthesize preferencesWindowController = _preferencesWindowController;
 
 - (id)init
 {
@@ -84,6 +84,69 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
+    self.client = [APIClient sharedClient];
+//    RAC(self.user) = [RACSignal combineLatest:@[ [self.client fetchUser] ] reduce:^(User *user) {
+//        NSLog(@"valuevalue: %@", user);
+//        return user;
+//    }];
+
+    RAC(self.user) = [self.client fetchUser];
+
+
+//    [RACSignal
+//     combineLatest:@[
+//     self.usernameTextField.rac_textSignal,
+//     self.passwordTextField.rac_textSignal,
+//     RACAbleWithStart(LoginManager.sharedManager, loggingIn),
+//     RACAbleWithStart(self.loggedIn)
+//     ] reduce:^(NSString *username, NSString *password, NSNumber *loggingIn, NSNumber *loggedIn) {
+//         return @(username.length > 0 && password.length > 0 && !loggingIn.boolValue && !loggedIn.boolValue);
+//     }];
+
+//    RAC(self.user) = [RACAbleWithStart(APIClient, sharedClient) map:^id(APIClient *client) {
+//        return [client fetchUser];
+//    }];
+//    filter:^BOOL(User *user) {
+//        return user != nil;
+//    }] map:^id(User *user) {
+//        NSLog(@"valuevalue: %@", user);
+//        return user;
+//    }] deliverOn:[RACScheduler scheduler]];
+//
+    // Watch for the client to change
+//    RAC(self.repositories) = [[[[[RACAbleWithStart([GHDataStore sharedStore], client)
+//                                  // Ignore clients that aren't authenticated
+//                                  filter:^ BOOL (OCTClient *client) {
+//                                      return client != nil && client.authenticated;
+//                                  }]
+//                                 // For each client, execute the block. Returns a signal that sends a signal
+//                                 // to fetch the user repositories whenever a new client comes in. A signal of
+//                                 // of signals is often used to do some work in response to some other work.
+//                                 // Often times, you'd want to use `-flattenMap:`, but we're using `-map:` with
+//                                 // `-switchToLatest` so the resultant signal will only send repositories for
+//                                 // the most recent client.
+//                                 map:^(OCTClient *client) {
+//                                     // -collect will send a single value--an NSArray with all of the values
+//                                     // that were send on the original signal.
+//                                     return [[client fetchUserRepositories] collect];
+//                                 }]
+//                                // Switch to the latest signal that was returned from the map block.
+//                                switchToLatest]
+//                               // Execute a block when an error occurs, but don't alter the values sent on
+//                               // the original signal.
+//                               doError:^(NSError *error) {
+//                                   NSLog(@"Error fetching repos: %@",error.localizedDescription);
+//                               }]
+//                              deliverOn:RACScheduler.mainThreadScheduler];
+//
+//
+//
+//    RAC(self.user) = [[[[self.client fetchUser] deliverOn:[RACScheduler scheduler]] map:^(User *user) {
+//        NSLog(@"Application: (Saved User?) %@", user);
+//        return user;
+//    }] deliverOn:[RACScheduler mainThreadScheduler]];
+    NSLog(@"Application: (Saved User??) %@", self.user);
+
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
     [self setupControllers];
@@ -94,9 +157,9 @@
 {
     // If we have not created the window controller yet, create it now.
     if (_preferencesWindowController == nil) {
-        GeneralViewController *general = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
-        OAuthViewController *oauth = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
-        NSArray *controllers = [NSArray arrayWithObjects:general, oauth, nil];
+        _generalPreferences = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
+        _oauthPreferences = [[OAuthViewController alloc] initWithNibName:@"OAuthView" bundle:nil];
+        NSArray *controllers = @[ _generalPreferences, _oauthPreferences ];
         _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }
     return _preferencesWindowController;
@@ -107,8 +170,7 @@
 - (void)setupControllers
 {
     self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
-    self.streamListViewController = [[StreamListViewController alloc] initWithUser:nil];
-    // self.streamListViewController = [[StreamListViewController alloc] initWithNibName:@"StreamBaseListView" bundle:nil];
+    self.streamListViewController = [[StreamListViewController alloc] initWithUser:self.user];
 
     if ([[APIClient sharedClient] isAuthenticated]) {
         self.currentViewController = self.streamListViewController;

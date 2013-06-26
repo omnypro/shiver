@@ -26,6 +26,7 @@
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
+		935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F1177A010B0069AEFC /* NSView+SHExtensions.m */; };
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
 		936327BC1763BB1000146C8A /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327BA1763BB1000146C8A /* Window.xib */; };
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
@@ -134,6 +135,8 @@
 		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Extensions/Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
+		935378F0177A010B0069AEFC /* NSView+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+SHExtensions.h"; path = "Extensions/Categories/NSView+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
+		935378F1177A010B0069AEFC /* NSView+SHExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+SHExtensions.m"; path = "Extensions/Categories/NSView+SHExtensions.m"; sourceTree = SOURCE_ROOT; };
 		936327B81763BB1000146C8A /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = Classes/Controllers/WindowController.h; sourceTree = SOURCE_ROOT; };
 		936327B91763BB1000146C8A /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowController.m; path = Classes/Controllers/WindowController.m; sourceTree = SOURCE_ROOT; };
 		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Assets/NIBs/Window.xib; sourceTree = SOURCE_ROOT; };
@@ -526,6 +529,8 @@
 				934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */,
 				931E253A17790FC20081162C /* NSLayoutConstraint+Equations.h */,
 				931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */,
+				935378F0177A010B0069AEFC /* NSView+SHExtensions.h */,
+				935378F1177A010B0069AEFC /* NSView+SHExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -782,6 +787,7 @@
 				931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */,
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
 				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
+				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
