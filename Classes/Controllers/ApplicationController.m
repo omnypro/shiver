@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "ApplicationController.h"
-
 #import "StartAtLoginController.h"
 #import "WindowController.h"
+
+#import "ApplicationController.h"
 
 @interface ApplicationController ()
 @property (nonatomic, readwrite, strong) WindowController *windowController;
