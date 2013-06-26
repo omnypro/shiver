@@ -208,10 +208,11 @@
     }];
 
     // Refresh the stream list at an interval provided by the user.
+    NSTimeInterval refreshInterval = 300.0;
     [[[RACAble(self.streamList) map:^id(id value) {
-        return [RACSignal interval:5.0];
+        return [RACSignal interval:refreshInterval];
     }] switchToLatest] subscribeNext:^(id x) {
-        NSLog(@"Stream List: Triggering timed refresh.");
+        NSLog(@"Stream List: Triggering timed (%f) refresh.", refreshInterval);
         self.client = [APIClient sharedClient];
     }];
 
