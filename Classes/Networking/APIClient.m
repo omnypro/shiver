@@ -43,13 +43,6 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     return _sharedClient;
 }
 
-- (void)setUser:(User *)twitchUser
-{
-    if (self.user == twitchUser) { return; }
-    self.user = twitchUser;
-
-}
-
 - (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)clientID secret:(NSString *)secret
 {
     self = [super initWithBaseURL:url clientID:clientID secret:secret];
@@ -66,19 +59,6 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 - (BOOL)isAuthenticated
 {
     return (self.credential != nil) ? YES : NO;
-}
-
-- (void)authorizeUsingResponseURL:(NSURL *)url
-{
-    NSString *accessToken = [[self parseQueryStringsFromURL:url] objectForKey:@"access_token"];
-    self.credential = [AFOAuthCredential credentialWithOAuthToken:accessToken tokenType:@"OAuth"];
-    [AFOAuthCredential storeCredential:self.credential withIdentifier:self.serviceProviderIdentifier];
-
-    [self setAuthorizationHeaderWithCredential:self.credential];
-
-    // Store `accessToken` in userDefaults.
-    [[NSUserDefaults standardUserDefaults] setObject:self.credential.accessToken forKey:@"accessToken"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url
@@ -107,7 +87,24 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-# pragma mark ---
+- (RACSignal *)authorizeUsingResponseURL:(NSURL *)url
+{
+    NSLog(@"Authentication: Authorizing with provided URL.");
+    NSString *accessToken = [[self parseQueryStringsFromURL:url] objectForKey:@"access_token"];
+    NSLog(@"Authentication: (Access Token) %@", accessToken);
+    self.credential = [AFOAuthCredential credentialWithOAuthToken:accessToken tokenType:@"OAuth"];
+    [AFOAuthCredential storeCredential:self.credential withIdentifier:self.serviceProviderIdentifier];
+    [self setAuthorizationHeaderWithCredential:self.credential];
+
+    // Store `accessToken` in userDefaults.
+    [[NSUserDefaults standardUserDefaults] setObject:self.credential.accessToken forKey:@"accessToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    RACReplaySubject *subject = [RACReplaySubject subject];
+    [subject sendNext:self.credential];
+    [subject sendCompleted];
+    return [subject deliverOn:[RACScheduler scheduler]];
+}
 
 - (RACSignal *)fetchUser
 {
