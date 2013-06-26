@@ -18,6 +18,8 @@
 
 // These are controls that need to be accessed from the stream list controller.
 @property (weak) IBOutlet NSButton *refreshButton;
+@property (weak) IBOutlet NSTextField *lastUpdatedLabel;
 @property (weak) IBOutlet NSTextField *statusLabel;
+
 
 @end

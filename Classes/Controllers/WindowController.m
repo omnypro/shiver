@@ -6,14 +6,11 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "WindowController.h"
-
 #import "APIClient.h"
 #import "EXTKeypathCoding.h"
 #import "LoginRequiredView.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
-#import "SORelativeDateTransformer.h"
 #import "StreamListViewController.h"
 #import "User.h"
 
@@ -21,18 +18,16 @@
 #import "GeneralViewController.h"
 #import "OAuthViewController.h"
 
+#import "WindowController.h"
+
 @interface WindowController () {
     IBOutlet NSView *_masterView;
     IBOutlet NSView *_titleBarView;
     IBOutlet NSImageView *_statusImage;
     IBOutlet NSTextField *_usernameLabel;
     IBOutlet NSImageView *_userImage;
-    IBOutlet NSTextField *_lastUpdatedLabel;
     IBOutlet NSButton *_preferencesButton;
     IBOutlet NSMenu *_contextMenu;
-
-@private
-    dispatch_source_t _timer;
 }
 
 @property (nonatomic, strong) NSViewController *currentViewController;
@@ -43,15 +38,8 @@
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
 @property (nonatomic, strong) OAuthViewController *oauthPreferences;
 
-@property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) APIClient *client;
 @property (nonatomic, strong) User *user;
-
-- (void)swapViewController:(NSViewController *)viewController;
-- (void)composeInterface;
-
-- (void)startTimerForLastUpdatedLabel;
-- (void)updateLastUpdatedLabel;
 
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showPreferences:(id)sender;
@@ -123,22 +111,6 @@
     [_masterView addSubview:self.currentViewController.view];
 }
 
-- (void)swapViewController:(NSViewController *)viewController
-{
-    // Don't switch the view if it doesn't need switching.
-    if (self.currentViewController == viewController) return;
-
-    NSView *currentView = [self.currentViewController view];
-    NSView *swappedView = [viewController view];
-
-    [_masterView replaceSubview:currentView with:swappedView];
-    self.currentViewController = viewController;
-    currentView = swappedView;
-
-    [currentView setFrame:[_masterView bounds]];
-    [currentView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-}
-
 - (void)composeInterface
 {
     OBMenuBarWindow *window = (OBMenuBarWindow *)[self window];
@@ -180,28 +152,6 @@
     }];
 }
 
-#pragma mark UI Update Methods
-
-- (void)startTimerForLastUpdatedLabel
-{
-    // Schedule a timer to update `lastUpdatedLabel` every 30 seconds.
-    // Keep a strong reference to _timer in ARC.
-    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 30.0 * NSEC_PER_SEC, 1 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(_timer, ^{ [self updateLastUpdatedLabel]; });
-    dispatch_resume(_timer);
-}
-
-- (void)updateLastUpdatedLabel
-{
-    [_lastUpdatedLabel setHidden:NO];
-
-    // Update `lastUpdatedLabel` with the current date (relative).
-    SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
-    NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-    [_lastUpdatedLabel setStringValue:[NSString stringWithFormat:@"Last updated %@", relativeDate]];
-}
-
 #pragma mark Notification Observers
 
 - (void)requestToOpenPreferences:(NSNotification *)notification
@@ -224,7 +174,6 @@
         }];
 
         [_refreshButton setEnabled:YES];
-        [self swapViewController:self.streamListViewController];
     }
 }
 
@@ -232,9 +181,6 @@
 {
     OAuthViewController *object = [notification object];
     if ([object isKindOfClass:[OAuthViewController class]]) {
-        // Ah, don't forget we have a timer. We should stop it.
-        dispatch_source_cancel(_timer);
-
         // Reset the interface.
         [_usernameLabel setHidden:YES];
         [_userImage setHidden:YES];
