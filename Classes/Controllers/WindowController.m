@@ -72,8 +72,6 @@
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListIsEmpty:) name:StreamListIsEmptyNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(streamListWasUpdated:) name:StreamListWasUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
