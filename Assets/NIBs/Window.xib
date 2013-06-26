@@ -442,14 +442,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_lastUpdatedLabel</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="990513849"/>
-					</object>
-					<int key="connectionID">295</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_preferencesButton</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="660897288"/>
@@ -487,6 +479,14 @@
 						<reference key="destination" ref="536232932"/>
 					</object>
 					<int key="connectionID">301</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">lastUpdatedLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="990513849"/>
+					</object>
+					<int key="connectionID">302</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -738,7 +738,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">301</int>
+			<int key="maxID">302</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -817,13 +817,13 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_contextMenu">NSMenu</string>
-						<string key="_lastUpdatedLabel">NSTextField</string>
 						<string key="_masterView">NSView</string>
 						<string key="_preferencesButton">NSButton</string>
 						<string key="_statusImage">NSImageView</string>
 						<string key="_titleBarView">NSView</string>
 						<string key="_userImage">NSImageView</string>
 						<string key="_usernameLabel">NSTextField</string>
+						<string key="lastUpdatedLabel">NSTextField</string>
 						<string key="refreshButton">NSButton</string>
 						<string key="statusLabel">NSTextField</string>
 					</dictionary>
@@ -831,10 +831,6 @@
 						<object class="IBToOneOutletInfo" key="_contextMenu">
 							<string key="name">_contextMenu</string>
 							<string key="candidateClassName">NSMenu</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_lastUpdatedLabel">
-							<string key="name">_lastUpdatedLabel</string>
-							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_masterView">
 							<string key="name">_masterView</string>
@@ -858,6 +854,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="_usernameLabel">
 							<string key="name">_usernameLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lastUpdatedLabel">
+							<string key="name">lastUpdatedLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="refreshButton">

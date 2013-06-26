@@ -15,6 +15,7 @@
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
+#import "SORelativeDateTransformer.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
 #import "User.h"
@@ -37,9 +38,10 @@
 @property (nonatomic, strong) RACCommand *refreshCommand;
 
 // Data sources.
-@property (atomic, strong) APIClient *client;
-@property (atomic, strong) NSArray *streamList;
-@property (atomic, strong) User *user;
+@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) NSArray *streamList;
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 
 // Controller state.
 @property (atomic) BOOL showingError;
@@ -107,6 +109,24 @@
         else {
             [self.windowController.statusLabel setStringValue:@"No live streams"];
             [self.windowController.refreshButton setEnabled:NO];
+        }
+    }];
+
+    // Updated the lastUpdated label every 30 seconds.
+    NSTimeInterval lastUpdatedInterval = 30.0;
+    [[[RACAble(self.streamList) map:^id(id value) {
+        return [RACSignal interval:lastUpdatedInterval];
+    }] switchToLatest] subscribeNext:^(NSArray *array) {
+        NSLog(@"Stream List: Updating the last updated label.");
+        if (array != nil) {
+            [self.windowController.lastUpdatedLabel setHidden:NO];
+            SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
+            NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
+            NSString *relativeStringValue = [NSString stringWithFormat:@"Last updated %@", relativeDate];
+            [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
+        }
+        else {
+            [self.windowController.lastUpdatedLabel setHidden:YES];
         }
     }];
 
