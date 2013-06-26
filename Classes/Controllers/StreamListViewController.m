@@ -50,7 +50,6 @@
 @property (atomic) BOOL showingLoading;
 
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
-- (void)loadStreamList;
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
 
@@ -80,7 +79,6 @@
 
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
-    // [self loadStreamList];
     // [self startTimerForLoadingStreamList];
 }
 
@@ -138,7 +136,6 @@
     // Watch for `user` to change or be populated. If it is, start the process
     // off by spawning the API client.
     [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
-        NSLog(@"value: %@", value);
         return (value != nil);
     }] subscribeNext:^(User *user) {
         NSLog(@"Stream List: Loading client for %@.", user.name);
@@ -170,6 +167,7 @@
      subscribeNext:^(id x){
          @strongify(self);
          NSLog(@"Stream List: Refreshing the stream list.");
+         NSLog(@"Stream List: %lu live streams.", [x count]);
 
          // JAListView includes an internal padding function! So, when the list
          // is longer than two (which creates scrolling behavior, add 5 points
@@ -296,7 +294,6 @@
     StreamListViewItem *item = [StreamListViewItem initItem];
     
     item.object = stream;
-    NSLog(@"object: %@", item.object);
     return item;
 }
 
