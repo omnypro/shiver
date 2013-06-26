@@ -93,11 +93,13 @@
          @strongify(self);
          BOOL isShowingEmpty = [showingEmpty boolValue];
          if (isShowingEmpty && !self.showingError){
+             NSLog(@"Stream List: Showing the empty view.");
              NSString *title = @"Looks like you've got nothing to watch.";
              NSString *subTitle = @"Why don't you follow some new streamers?";
              self.errorView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
              [self.view addSubview:self.emptyView];
          } else {
+             NSLog(@"Stream List: Removing the empty view.");
              [self.emptyView removeFromSuperview];
              self.emptyView = nil;
          }
@@ -110,17 +112,17 @@
          BOOL isShowingError = [showingError boolValue];
          if (isShowingError) {
              // Don't show the empty or loading views if there's an error.
-             NSLog(@"Showing the error view...");
              self.showingEmpty = NO;
              self.showingLoading = NO;
              NSString *title = @"Whoops! Something went wrong.";
              NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
+             NSLog(@"Stream List: Showing the error view with message \"%@\"", message);
              self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
              [self.view addSubview:self.errorView];
              [self.errorView setNeedsDisplay:YES];
          }
          else {
-             NSLog(@"Removing the error view...");
+             NSLog(@"Stream List: Removing the error view.");
              [self.errorView removeFromSuperview];
              self.errorView = nil;
              self.showingErrorMessage = nil;
@@ -135,9 +137,10 @@
     // Watch for `user` to change or be populated. If it is, start the process
     // off by spawning the API client.
     [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
-        return (value == nil); // @@@ Do we really want to pass a user at all?
-    }] subscribeNext:^(id x) {
-        NSLog(@"Loading client...");
+        NSLog(@"value: %@", value);
+        return (value != nil);
+    }] subscribeNext:^(User *user) {
+        NSLog(@"Stream List: Loading client for %@.", user.name);
         @strongify(self);
         self.client = [APIClient sharedClient];
     }];
@@ -147,16 +150,15 @@
     [[[RACAbleWithStart(self.client) filter:^BOOL(id value) {
         return (value != nil);
     }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
-        NSLog(@"Fetching stuff...");
         @strongify(self);
         [[[self.client fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
+            NSLog(@"Stream List: Fetching the stream list.");
             @strongify(self);
             self.streamList = streamList;
             self.showingLoading = YES;
         } error:^(NSError *error) {
             @strongify(self);
-            NSLog(@"Oh no, an error...");
-            NSLog(@"error: %@", error);
+            NSLog(@"Stream List: (Error) %@", error);
             self.showingErrorMessage = [error localizedDescription];
             self.showingError = YES;
         }];
@@ -166,7 +168,7 @@
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id x){
          @strongify(self);
-         NSLog(@"Refreshing the stream list...");
+         NSLog(@"Stream List: Refreshing the stream list.");
 
          // JAListView includes an internal padding function! So, when the list
          // is longer than two (which creates scrolling behavior, add 5 points
