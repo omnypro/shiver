@@ -152,7 +152,7 @@
             NSLog(@"Authentication: (User) %@", user);
             self.user = user;
         }] subscribeCompleted:^{
-            NSLog(@"Authentication: Complete.");
+            NSLog(@"Authentication: Complete for %@.", self.user);
             [self.didLoginSubject sendNext:self.user];
             self.loggingIn = NO;
         }];
