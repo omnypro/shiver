@@ -14,6 +14,6 @@
 
 @interface WindowController : NSWindowController
 
-@property (nonatomic, readonly) RHPreferencesWindowController *preferencesWindowController;
+@property (nonatomic, strong, readonly) RHPreferencesWindowController *preferencesWindowController;
 
 @end

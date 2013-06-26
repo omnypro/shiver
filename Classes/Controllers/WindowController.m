@@ -9,6 +9,7 @@
 #import "WindowController.h"
 
 #import "APIClient.h"
+#import "EXTKeypathCoding.h"
 #import "LoginRequiredViewController.h"
 #import "NSColor+Hex.h"
 #import "OBMenuBarWindow.h"
@@ -36,16 +37,15 @@
     dispatch_source_t _timer;
 }
 
-@property (strong) NSViewController *currentViewController;
-@property (strong) LoginRequiredViewController *loginRequiredViewController;
-@property (strong) StreamListViewController *streamListViewController;
-@property (nonatomic, readwrite) RHPreferencesWindowController *preferencesWindowController;
+@property (nonatomic, strong) NSViewController *currentViewController;
+@property (nonatomic, strong) LoginRequiredViewController *loginRequiredViewController;
+@property (nonatomic, strong) StreamListViewController *streamListViewController;
+@property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
 
-@property (strong) GeneralViewController *generalPreferences;
-@property (strong) OAuthViewController *oauthPreferences;
+@property (nonatomic, strong) GeneralViewController *generalPreferences;
+@property (nonatomic, strong) OAuthViewController *oauthPreferences;
 
-@property (strong) NSDate *lastUpdatedTimestamp;
-
+@property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) APIClient *client;
 @property (nonatomic, strong) User *user;
 
@@ -61,7 +61,6 @@
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)refreshStreamList:(NSButton *)sender;
-
 @end
 
 @implementation WindowController
@@ -84,73 +83,29 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userConnectedAccount:) name:UserDidConnectAccountNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
 
-    self.client = [APIClient sharedClient];
-//    RAC(self.user) = [RACSignal combineLatest:@[ [self.client fetchUser] ] reduce:^(User *user) {
-//        NSLog(@"valuevalue: %@", user);
-//        return user;
-//    }];
-
-    RAC(self.user) = [self.client fetchUser];
-
-
-//    [RACSignal
-//     combineLatest:@[
-//     self.usernameTextField.rac_textSignal,
-//     self.passwordTextField.rac_textSignal,
-//     RACAbleWithStart(LoginManager.sharedManager, loggingIn),
-//     RACAbleWithStart(self.loggedIn)
-//     ] reduce:^(NSString *username, NSString *password, NSNumber *loggingIn, NSNumber *loggedIn) {
-//         return @(username.length > 0 && password.length > 0 && !loggingIn.boolValue && !loggedIn.boolValue);
-//     }];
-
-//    RAC(self.user) = [RACAbleWithStart(APIClient, sharedClient) map:^id(APIClient *client) {
-//        return [client fetchUser];
-//    }];
-//    filter:^BOOL(User *user) {
-//        return user != nil;
-//    }] map:^id(User *user) {
-//        NSLog(@"valuevalue: %@", user);
-//        return user;
-//    }] deliverOn:[RACScheduler scheduler]];
-//
-    // Watch for the client to change
-//    RAC(self.repositories) = [[[[[RACAbleWithStart([GHDataStore sharedStore], client)
-//                                  // Ignore clients that aren't authenticated
-//                                  filter:^ BOOL (OCTClient *client) {
-//                                      return client != nil && client.authenticated;
-//                                  }]
-//                                 // For each client, execute the block. Returns a signal that sends a signal
-//                                 // to fetch the user repositories whenever a new client comes in. A signal of
-//                                 // of signals is often used to do some work in response to some other work.
-//                                 // Often times, you'd want to use `-flattenMap:`, but we're using `-map:` with
-//                                 // `-switchToLatest` so the resultant signal will only send repositories for
-//                                 // the most recent client.
-//                                 map:^(OCTClient *client) {
-//                                     // -collect will send a single value--an NSArray with all of the values
-//                                     // that were send on the original signal.
-//                                     return [[client fetchUserRepositories] collect];
-//                                 }]
-//                                // Switch to the latest signal that was returned from the map block.
-//                                switchToLatest]
-//                               // Execute a block when an error occurs, but don't alter the values sent on
-//                               // the original signal.
-//                               doError:^(NSError *error) {
-//                                   NSLog(@"Error fetching repos: %@",error.localizedDescription);
-//                               }]
-//                              deliverOn:RACScheduler.mainThreadScheduler];
-//
-//
-//
-//    RAC(self.user) = [[[[self.client fetchUser] deliverOn:[RACScheduler scheduler]] map:^(User *user) {
-//        NSLog(@"Application: (Saved User?) %@", user);
-//        return user;
-//    }] deliverOn:[RACScheduler mainThreadScheduler]];
-    NSLog(@"Application: (Saved User??) %@", self.user);
-
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
-    [self setupControllers];
     [self composeInterface];
+
+
+    // Do we have a user? Check for one by making self.user reactable. Try to
+    // fetch the user from the API and when the value changes, show the
+    // stream list.
+    self.client = [APIClient sharedClient];
+    RAC(self.user) = [[self.client fetchUser] deliverOn:RACScheduler.mainThreadScheduler];
+    [[[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
+        return (user != nil);
+    }] map:^id(User *user) {
+		NSLog(@"My saved user: %@", user);
+        return [[StreamListViewController alloc] initWithUser:user];
+    }] toProperty:@keypath(self.currentViewController) onObject:self];
+
+    [[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
+        return (user == nil);
+    }] subscribeNext:^(User *user) {
+        self.loginRequiredViewController = [[LoginRequiredViewController alloc] initWithNibName:@"LoginRequiredView" bundle:nil];
+        [_masterView addSubview:self.loginRequiredViewController.view];
+    }];
 }
 
 - (NSWindowController *)preferencesWindowController
@@ -166,6 +121,14 @@
 }
 
 #pragma mark Window Compositioning
+
+- (void)setCurrentViewController:(NSViewController *)viewController {
+    if (_currentViewController == viewController) { return; }
+    
+    _currentViewController = viewController;
+    [_currentViewController.view setFrame:_masterView.bounds];
+    [_masterView addSubview:self.currentViewController.view];
+}
 
 - (void)setupControllers
 {
