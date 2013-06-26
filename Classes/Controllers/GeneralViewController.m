@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "GeneralViewController.h"
-
 #import "StartAtLoginController.h"
+
+#import "GeneralViewController.h"
 
 @interface GeneralViewController () {
     IBOutlet NSButton *_systemStartupCheckbox;

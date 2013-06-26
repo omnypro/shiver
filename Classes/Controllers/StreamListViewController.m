@@ -96,6 +96,9 @@
     // based on those values.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
         if (array != nil) {
+            [self.windowController.lastUpdatedLabel setHidden:NO];
+            [self.windowController.refreshButton setEnabled:YES];
+
             // Update the string based on the number of streams that are live.
             NSString *singularCount = [NSString stringWithFormat:@"%lu live stream", [array count]];
             NSString *pluralCount = [NSString stringWithFormat:@"%lu live streams", [array count]];
@@ -103,12 +106,11 @@
             else if ([array count] > 1) { [self.windowController.statusLabel setStringValue:pluralCount]; }
             else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
 
-            // Enable the refresh button.
-            [self.windowController.refreshButton setEnabled:YES];
         }
         else {
-            [self.windowController.statusLabel setStringValue:@"No live streams"];
+            [self.windowController.lastUpdatedLabel setHidden:YES];
             [self.windowController.refreshButton setEnabled:NO];
+            [self.windowController.statusLabel setStringValue:@"No live streams"];
         }
     }];
 
@@ -117,17 +119,8 @@
     [[[RACAble(self.streamList) map:^id(id value) {
         return [RACSignal interval:lastUpdatedInterval];
     }] switchToLatest] subscribeNext:^(NSArray *array) {
-        NSLog(@"Stream List: Updating the last updated label.");
-        if (array != nil) {
-            [self.windowController.lastUpdatedLabel setHidden:NO];
-            SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
-            NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-            NSString *relativeStringValue = [NSString stringWithFormat:@"Last updated %@", relativeDate];
-            [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
-        }
-        else {
-            [self.windowController.lastUpdatedLabel setHidden:YES];
-        }
+        NSLog(@"Stream List: Updating the last updated label (on interval).");
+        if (array != nil) { [self updateLastUpdatedLabel]; }
     }];
 
     // Show or hide the empty view.
@@ -220,6 +213,10 @@
              [_listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
          }
 
+         // Update (or reset) the last updated label.
+         self.lastUpdatedTimestamp = [NSDate date];
+         [self updateLastUpdatedLabel];
+
          // Reload the table.
          [_listView reloadDataAnimated:YES];
          self.showingLoading = NO;
@@ -270,6 +267,14 @@
         if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
         else { self.showingEmpty = NO; }
     }];
+}
+
+- (void)updateLastUpdatedLabel
+{
+    SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
+    NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
+    NSString *relativeStringValue = [NSString stringWithFormat:@"Last updated %@", relativeDate];
+    [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
 }
 
 #pragma mark - NSUserNotificationCenter Methods
