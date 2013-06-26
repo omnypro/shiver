@@ -1,16 +1,16 @@
 //
-//  StreamListView.m
+//  InnerShadowView.m
 //  Shiver
 //
-//  Created by Bryan Veloso on 6/18/13.
+//  Created by Bryan Veloso on 6/24/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamListView.h"
-
 #import "NSColor+Hex.h"
 
-@implementation StreamListView
+#import "InnerShadowView.h"
+
+@implementation InnerShadowView
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -18,7 +18,7 @@
     if (self) {
         // Initialization code here.
     }
-    
+
     return self;
 }
 

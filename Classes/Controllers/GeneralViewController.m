@@ -6,12 +6,19 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "GeneralViewController.h"
-
 #import "StartAtLoginController.h"
 
-@interface GeneralViewController ()
+#import "GeneralViewController.h"
 
+@interface GeneralViewController () {
+    IBOutlet NSButton *_systemStartupCheckbox;
+    IBOutlet NSButton *_notificationCheckbox;
+    IBOutlet NSTextField *_refreshTimeField;
+}
+
+- (IBAction)toggleStartOnSystemStartup:(id)sender;
+- (IBAction)showDesktopNotifications:(id)sender;
+- (IBAction)setStreamListRefreshTime:(id)sender;
 @end
 
 @implementation GeneralViewController
@@ -29,8 +36,8 @@
 - (void)awakeFromNib
 {
     StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
-    if (![loginController startAtLogin]) { [self.systemStartupCheckbox setState:NSOffState]; }
-    if ([loginController startAtLogin]) { [self.systemStartupCheckbox setState:NSOnState]; }
+    if (![loginController startAtLogin]) { [_systemStartupCheckbox setState:NSOffState]; }
+    if ([loginController startAtLogin]) { [_systemStartupCheckbox setState:NSOnState]; }
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol
@@ -53,7 +60,7 @@
 - (IBAction)toggleStartOnSystemStartup:(id)sender
 {
     StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
-    if ([self.systemStartupCheckbox state]) {
+    if ([_systemStartupCheckbox state]) {
         if (![loginController startAtLogin]) { [loginController setStartAtLogin:YES]; }
     }
     else {

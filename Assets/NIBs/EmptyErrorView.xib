@@ -27,7 +27,7 @@
 		</object>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<object class="NSCustomObject" id="1001">
-				<string key="NSClassName">EmptyStreamListViewController</string>
+				<string key="NSClassName">NSObject</string>
 			</object>
 			<object class="NSCustomObject" id="1003">
 				<string key="NSClassName">FirstResponder</string>
@@ -36,7 +36,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomView" id="1005">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSImageView" id="135793048">
@@ -52,7 +52,6 @@
 						</set>
 						<string key="NSFrame">{{128, 118}, {64, 64}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="394918565"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
@@ -77,7 +76,6 @@
 						<int key="NSvFlags">298</int>
 						<string key="NSFrame">{{0, 76}, {320, 18}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="735814890">
@@ -112,7 +110,6 @@
 						<int key="NSvFlags">298</int>
 						<string key="NSFrame">{{0, 90}, {320, 24}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="813642189"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
@@ -137,21 +134,59 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 256}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="135793048"/>
-				<string key="NSClassName">StreamListView</string>
+				<string key="NSClassName">EmptyErrorView</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">view</string>
+						<string key="label">imageView</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1005"/>
+						<reference key="destination" ref="135793048"/>
 					</object>
-					<int key="connectionID">2</int>
+					<int key="connectionID">138</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">messageLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="394918565"/>
+					</object>
+					<int key="connectionID">139</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">subTitleLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="813642189"/>
+					</object>
+					<int key="connectionID">140</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">imageView</string>
+						<reference key="source" ref="1005"/>
+						<reference key="destination" ref="135793048"/>
+					</object>
+					<int key="connectionID">141</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">subTitleLabel</string>
+						<reference key="source" ref="1005"/>
+						<reference key="destination" ref="813642189"/>
+					</object>
+					<int key="connectionID">143</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">titleLabel</string>
+						<reference key="source" ref="1005"/>
+						<reference key="destination" ref="394918565"/>
+					</object>
+					<int key="connectionID">144</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -191,17 +226,17 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="394918565"/>
+						<int key="objectID">100</int>
+						<reference key="object" ref="135793048"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="961702529"/>
+							<reference ref="849760794"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="961702529"/>
-						<reference key="parent" ref="394918565"/>
+						<int key="objectID">101</int>
+						<reference key="object" ref="849760794"/>
+						<reference key="parent" ref="135793048"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
@@ -217,17 +252,17 @@
 						<reference key="parent" ref="813642189"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">100</int>
-						<reference key="object" ref="135793048"/>
+						<int key="objectID">3</int>
+						<reference key="object" ref="394918565"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="849760794"/>
+							<reference ref="961702529"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">101</int>
-						<reference key="object" ref="849760794"/>
-						<reference key="parent" ref="135793048"/>
+						<int key="objectID">4</int>
+						<reference key="object" ref="961702529"/>
+						<reference key="parent" ref="394918565"/>
 					</object>
 				</array>
 			</object>
@@ -247,24 +282,43 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">137</int>
+			<int key="maxID">144</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">EmptyStreamListViewController</string>
-					<string key="superclassName">NSViewController</string>
+					<string key="className">EmptyErrorView</string>
+					<string key="superclassName">InnerShadowView</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="imageView">NSImageView</string>
+						<string key="messageLabel">NSTextField</string>
+						<string key="subTitleLabel">NSTextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="imageView">
+							<string key="name">imageView</string>
+							<string key="candidateClassName">NSImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="messageLabel">
+							<string key="name">messageLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="subTitleLabel">
+							<string key="name">subTitleLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/EmptyStreamListViewController.h</string>
+						<string key="minorKey">./Classes/EmptyErrorView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">StreamListView</string>
+					<string key="className">InnerShadowView</string>
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/StreamListView.h</string>
+						<string key="minorKey">./Classes/InnerShadowView.h</string>
 					</object>
 				</object>
 			</array>

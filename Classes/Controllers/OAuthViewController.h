@@ -7,20 +7,17 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RHPreferences/RHPreferences.h>
 #import <WebKit/WebKit.h>
 
+@class OAuthView;
+
 @interface OAuthViewController : NSViewController <RHPreferencesViewControllerProtocol>
 
-@property (weak) IBOutlet NSButton *loginButton;
-@property (weak) IBOutlet NSButton *learnMoreButton;
-@property (weak) IBOutlet NSTextField *connectionStatusLabel;
+@property (nonatomic, strong, readonly) RACSubject *didLoginSubject;
+@property (nonatomic, strong, readonly) RACSubject *URLProtocolValueSubject;
 
-@property (strong) IBOutlet NSWindow *modalWindow;
-@property (weak) IBOutlet WebView *modalWebView;
-@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
-
-- (IBAction)loginOrLogout:(NSButton *)sender;
-- (IBAction)learnMore:(NSButton *)sender;
+- (id)initWithUser:(User *)user;
 
 @end

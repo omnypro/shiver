@@ -12,10 +12,8 @@
 
 @interface StreamListViewController : NSViewController <NSUserNotificationCenterDelegate, JAListViewDataSource, JAListViewDelegate>
 
-@property (nonatomic, strong) IBOutlet JAListView *listView;
-@property (nonatomic, strong) NSMutableArray *_listItems;
-@property (nonatomic, strong) NSArray *streamArray;
+@property (nonatomic, strong, readonly) NSArray *streamArray;
 
-- (void)loadStreamList;
+- (id)initWithUser:(User *)user;
 
 @end

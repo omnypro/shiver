@@ -6,105 +6,273 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamListViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <EXTScope.h>
 
-#import "AFImageRequestOperation.h"
+#import "APIClient.h"
 #import "Channel.h"
+#import "EmptyErrorView.h"
 #import "NSColor+Hex.h"
-#import "NSImageView+AFNetworking.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
+#import "SORelativeDateTransformer.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
+#import "User.h"
 #import "WindowController.h"
 
+#import "StreamListViewController.h"
+
 @interface StreamListViewController () {
-@private
-    dispatch_source_t _timer;
+    IBOutlet JAListView *_listView;
 }
 
-- (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
+// Legacy
+@property (nonatomic, strong) NSMutableArray *_listItems;
+@property (nonatomic, strong, readwrite) NSArray *streamArray;
+
+// Views.
+@property (nonatomic, strong) WindowController *windowController;
+@property (nonatomic, strong) NSView *emptyView;
+@property (nonatomic, strong) NSView *errorView;
+@property (nonatomic, strong) RACCommand *refreshCommand;
+
+// Data sources.
+@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) NSArray *streamList;
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
+
+// Controller state.
+@property (atomic) BOOL showingError;
+@property (atomic) NSString *showingErrorMessage;
+@property (atomic) BOOL showingEmpty;
+@property (atomic) BOOL showingLoading;
+
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
 
 @implementation StreamListViewController
 
+- (id)initWithUser:(User *)user
+{
+    self = [super initWithNibName:@"StreamListView" bundle:nil];
+    if (self == nil) { return nil; }
+
+    self.user = user;
+    self.windowController = [[NSApp delegate] windowController];
+    return self;
+}
+
 - (void)awakeFromNib
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStreamListRefresh:) name:RequestToUpdateStreamNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
+    [super awakeFromNib];
 
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    [self.listView setBackgroundColor:[NSColor clearColor]];
-    [self.listView setCanCallDataSourceInParallel:YES];
+    [self setUpViewSignals];
+    [self setUpDataSignals];
 
-    [self loadStreamList];
-    [self startTimerForLoadingStreamList];
+    [_listView setBackgroundColor:[NSColor clearColor]];
+    [_listView setCanCallDataSourceInParallel:YES];
 }
 
-#pragma mark - Data Source Methods
-
-- (void)startTimerForLoadingStreamList
+- (void)setUpViewSignals
 {
-    // Schedule a timer to run `loadStreamList` every 5 minutes (300 seconds).
-    // Keep a strong reference to _timer in ARC.
-    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(_timer, ^{ [self loadStreamList]; });
-    dispatch_resume(_timer);
-}
+    @weakify(self);
 
-- (void)loadStreamList
-{
-    [Stream streamListWithBlock:^(NSArray *streams, NSError *error) {
-        if (error) { NSLog(@"%@", [error localizedDescription]); }
+    self.refreshCommand = [RACCommand command];
+    self.windowController.refreshButton.rac_command = self.refreshCommand;
+    [self.refreshCommand subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Stream List: Request to manually refresh the stream list.");
+        self.client = [APIClient sharedClient];
+    }];
 
-        // If we have no streams, brodacast a notification so other parts
-        // of the application can update their UIs.
-        if (streams.count == 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:StreamListIsEmptyNotification object:self userInfo:nil];
+    // Watch the stream list for changes and enable or disable UI elements
+    // based on those values.
+    [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
+        if (array != nil) {
+            [self.windowController.lastUpdatedLabel setHidden:NO];
+            [self.windowController.refreshButton setEnabled:YES];
+
+            // Update the string based on the number of streams that are live.
+            NSString *singularCount = [NSString stringWithFormat:@"%lu live stream", [array count]];
+            NSString *pluralCount = [NSString stringWithFormat:@"%lu live streams", [array count]];
+            if ([array count] == 1) { [self.windowController.statusLabel setStringValue:singularCount]; }
+            else if ([array count] > 1) { [self.windowController.statusLabel setStringValue:pluralCount]; }
+            else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
+
         }
         else {
-            // If we've fetched streams before, compared the existing list to
-            // the newly fetched one to check for any new broadcasts. If so,
-            // send those streams to the notification center.
-            if (self.streamArray != nil) {
-                NSSet *newBroadcasts = [self compareExistingStreamList:self.streamArray withNewList:streams];
-                [self sendNewStreamNotificationToUser:newBroadcasts];
-            }
-
-            self.streamArray = streams;
-
-            // Send a notification that the list was reloaded so other parts
-            // of the application can update their UIs.
-            [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
+            [self.windowController.lastUpdatedLabel setHidden:YES];
+            [self.windowController.refreshButton setEnabled:NO];
+            [self.windowController.statusLabel setStringValue:@"No live streams"];
         }
+    }];
 
-        // JAListView includes an internal padding function! So, when the list
-        // is longer than two (which creates scrolling behavior, add 5 points
-        // to the bottom of the view.
-        if (self.streamArray.count > 2) {
-            [self.listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
+    // Updated the lastUpdated label every 30 seconds.
+    NSTimeInterval lastUpdatedInterval = 30.0;
+    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
+        return [RACSignal interval:lastUpdatedInterval];
+    }] switchToLatest] subscribeNext:^(NSArray *array) {
+        NSLog(@"Stream List: Updating the last updated label (on interval).");
+        if (array != nil) { [self updateLastUpdatedLabel]; }
+    }];
+
+    // Show or hide the empty view.
+    [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *showingEmpty) {
+         @strongify(self);
+         BOOL isShowingEmpty = [showingEmpty boolValue];
+         if (isShowingEmpty && !self.showingError){
+             NSLog(@"Stream List: Showing the empty view.");
+             NSString *title = @"Looks like you've got nothing to watch.";
+             NSString *subTitle = @"Why don't you follow some new streamers?";
+             self.errorView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
+             [self.view addSubview:self.emptyView];
+         } else {
+             NSLog(@"Stream List: Removing the empty view.");
+             [self.emptyView removeFromSuperview];
+             self.emptyView = nil;
+         }
+     }];
+
+    // Show or hide the error view.
+    [[[RACAble(self.showingError) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *showingError) {
+         @strongify(self);
+         BOOL isShowingError = [showingError boolValue];
+         if (isShowingError) {
+             // Don't show the empty or loading views if there's an error.
+             self.showingEmpty = NO;
+             self.showingLoading = NO;
+             NSString *title = @"Whoops! Something went wrong.";
+             NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
+             NSLog(@"Stream List: Showing the error view with message \"%@\"", message);
+             self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
+             [self.view addSubview:self.errorView];
+             [self.errorView setNeedsDisplay:YES];
+         }
+         else {
+             NSLog(@"Stream List: Removing the error view.");
+             [self.errorView removeFromSuperview];
+             self.errorView = nil;
+             self.showingErrorMessage = nil;
         }
-
-        // Reload the listView.
-        [self.listView reloadDataAnimated:YES];
-        [self.listView reloadData];
     }];
 }
 
-- (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray
+- (void)setUpDataSignals
 {
-    // Take the `_id` value of each stream in the existing array subtract those
-    // that exist in the recently fetched array. Notifications will be sent for
-    // the results.
-    NSSet *existingStreamSet = [NSSet setWithArray:existingArray];
-    NSSet *existingStreamSetIDs = [existingStreamSet valueForKey:@"_id"];
-    NSSet *newStreamSet = [NSSet setWithArray:newArray];
-    NSSet *xorSet = [newStreamSet filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", existingStreamSetIDs]];
-    return xorSet;
+    @weakify(self);
+
+    // Watch for `user` to change or be populated. If it is, start the process
+    // off by spawning the API client.
+    [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+        return (value != nil);
+    }] subscribeNext:^(User *user) {
+        NSLog(@"Stream List: Loading client for %@.", user.name);
+        @strongify(self);
+        self.client = [APIClient sharedClient];
+    }];
+
+    // Watch for `client` to change or be populated. If so, fetch the stream
+    // list and assign it.
+    [[[RACAbleWithStart(self.client) filter:^BOOL(id value) {
+        return (value != nil);
+    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
+        @strongify(self);
+        [[[self.client fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
+            NSLog(@"Stream List: Fetching the stream list.");
+            @strongify(self);
+            self.streamList = streamList;
+            self.showingLoading = YES;
+        } error:^(NSError *error) {
+            @strongify(self);
+            NSLog(@"Stream List: (Error) %@", error);
+            self.showingErrorMessage = [error localizedDescription];
+            self.showingError = YES;
+        }];
+    }];
+
+    // When the stream list gets changed, reload the table.
+    [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(id x){
+         @strongify(self);
+         NSLog(@"Stream List: Refreshing the stream list.");
+         NSLog(@"Stream List: %lu live streams.", [x count]);
+
+         // JAListView includes an internal padding function! So, when the list
+         // is longer than two (which creates scrolling behavior, add 5 points
+         // to the bottom of the view.
+         if (self.streamList.count > 2) {
+             [_listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
+         }
+
+         // Update (or reset) the last updated label.
+         self.lastUpdatedTimestamp = [NSDate date];
+         [self updateLastUpdatedLabel];
+
+         // Reload the table.
+         [_listView reloadDataAnimated:YES];
+         self.showingLoading = NO;
+    }];
+
+    // If we've fetched streams before, compared the existing list to the newly
+    // fetched one to check for any new broadcasts. If so, send those streams
+    // to the notification center.
+    [[[[[[[[RACAble(self.streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
+        return (value != nil);
+    }] map:^(NSArray *changes) {
+        return [NSSet setWithArray:changes];
+    }] mapPreviousWithStart:[NSSet set] combine:^id(NSSet *previous, NSSet *current) {
+        return [RACTuple tupleWithObjects:previous, current, nil];
+    }] map:^(RACTuple *changes) {
+        RACTupleUnpack(NSSet *previous, NSSet *current) = changes;
+        NSMutableSet *oldStreams = [previous mutableCopy];
+        [oldStreams minusSet:current];
+        NSMutableSet *newStreams = [current mutableCopy];
+        [newStreams minusSet:previous];
+        return [RACTuple tupleWithObjects:oldStreams, newStreams, nil];
+    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(RACTuple *x) {
+        RACTupleUnpack(NSSet *oldStreams, NSSet *newStreams) = x;
+
+        if ([oldStreams count] != 0) {
+            // Take the `_id` value of each stream in the existing array
+            // subtract those that exist in the recently fetched array.
+            // Notifications will be sent for the results.
+            NSSet *oldStreamIDs = [oldStreams valueForKey:@"_id"];
+            NSSet *xorSet = [newStreams filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", oldStreamIDs]];
+            NSLog(@"Notifications: %lu new streams.", (unsigned long)[xorSet count]);
+            [self sendNewStreamNotificationToUser:xorSet];
+        }
+    }];
+
+    // Refresh the stream list at an interval provided by the user.
+    NSTimeInterval refreshInterval = 300.0;
+    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
+        return [RACSignal interval:refreshInterval];
+    }] switchToLatest] subscribeNext:^(id x) {
+        NSLog(@"Stream List: Triggering timed (%f) refresh.", refreshInterval);
+        self.client = [APIClient sharedClient];
+    }];
+
+    // Monitor the data source array and show an empty view if it's... empty.
+    [RACAble(self.streamList) subscribeNext:^(NSArray *streamList) {
+        @strongify(self);
+        if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
+        else { self.showingEmpty = NO; }
+    }];
+}
+
+- (void)updateLastUpdatedLabel
+{
+    SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
+    NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
+    NSString *relativeStringValue = [NSString stringWithFormat:@"Last updated %@", relativeDate];
+    [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
 }
 
 #pragma mark - NSUserNotificationCenter Methods
@@ -140,21 +308,21 @@
 
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
-    if (listView == self.listView) {
+    if (listView == _listView) {
         return;
     }
 }
 
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
-    if (listView == self.listView) {
+    if (listView == _listView) {
         return;
     }
 }
 
 - (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
 {
-    if (listView == self.listView) {
+    if (listView == _listView) {
         return;
     }
 }
@@ -163,61 +331,19 @@
 
 - (JAListViewItem *)listView:(JAListView *)listView viewAtIndex:(NSUInteger)index
 {
-    Stream *stream = [self.streamArray objectAtIndex:index];
+    Stream *stream = [self.streamList objectAtIndex:index];
     StreamListViewItem *item = [StreamListViewItem initItem];
-
-    // Asynchronously load the two images required for every stream cell.
-    [item.streamPreview setImageWithURLRequest:[NSURLRequest requestWithURL:stream.previewImageURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
-        [item.streamPreview setImage:image];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-    [item.streamLogo setImageWithURLRequest:[NSURLRequest requestWithURL:stream.channel.logoImageURL] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
-        [item.streamLogo setImage:image];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-
-    NSMutableAttributedString *attrStreamTitle = [[NSMutableAttributedString alloc] initWithString:stream.channel.status];
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    [style setMaximumLineHeight:14];
-    [attrStreamTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrStreamTitle length])];
-    [item.streamTitleLabel setAttributedStringValue:attrStreamTitle];
-
-    [item.streamUserLabel setStringValue:stream.channel.displayName];
-    [item.streamUserLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
-
-    [item.streamGameLabel setStringValue:stream.game];
-    [item.streamGameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
-
-    [item.streamViewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", stream.viewers]];
     
+    item.object = stream;
     return item;
 }
 
 - (NSUInteger)numberOfItemsInListView:(JAListView *)listView
 {
-    return [self.streamArray count];
-}
-
-#pragma mark - Notification Observers
-
-- (void)requestStreamListRefresh:(NSNotification *)notification
-{
-    WindowController *object = [notification object];
-    if ([object isKindOfClass:[WindowController class]]) {
-        [self loadStreamList];
+    if (self.streamList != nil) {
+        return [self.streamList count];
     }
-}
-
-- (void)userDisconnectedAccount:(NSNotification *)notification
-{
-    OAuthViewController *object = [notification object];
-    if ([object isKindOfClass:[OAuthViewController class]]) {
-        // Ah, don't forget we have a timer. We should stop it.
-        dispatch_source_cancel(_timer);
-    }
+    return 0;
 }
 
 @end
