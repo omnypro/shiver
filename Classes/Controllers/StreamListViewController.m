@@ -46,7 +46,6 @@
 @property (atomic) BOOL showingEmpty;
 @property (atomic) BOOL showingLoading;
 
-- (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray;
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
 
@@ -222,20 +221,6 @@
         if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
         else { self.showingEmpty = NO; }
     }];
-}
-
-#pragma mark - Data Source Methods
-
-- (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray
-{
-    // Take the `_id` value of each stream in the existing array subtract those
-    // that exist in the recently fetched array. Notifications will be sent for
-    // the results.
-    NSSet *existingStreamSet = [NSSet setWithArray:existingArray];
-    NSSet *existingStreamSetIDs = [existingStreamSet valueForKey:@"_id"];
-    NSSet *newStreamSet = [NSSet setWithArray:newArray];
-    NSSet *xorSet = [newStreamSet filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", existingStreamSetIDs]];
-    return xorSet;
 }
 
 #pragma mark - NSUserNotificationCenter Methods
