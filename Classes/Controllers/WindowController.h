@@ -7,33 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RHPreferences/RHPreferences.h>
 
 @class OBMenuBarWindow;
 
 @interface WindowController : NSWindowController
 
-@property (nonatomic, readonly) RHPreferencesWindowController *preferencesWindowController;
+@property (nonatomic, strong, readonly) RHPreferencesWindowController *preferencesWindowController;
 
-@property (weak) IBOutlet NSView *masterView;
-
-// Header elements.
-@property (weak) IBOutlet NSView *titleBarView;
-@property (weak) IBOutlet NSImageView *statusImage;
-@property (weak) IBOutlet NSTextField *statusLabel;
-@property (weak) IBOutlet NSTextField *usernameLabel;
-@property (weak) IBOutlet NSImageView *userImage;
-
-// Footer elements.
+// These are controls that need to be accessed from the stream list controller.
 @property (weak) IBOutlet NSButton *refreshButton;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;
-@property (weak) IBOutlet NSButton *preferencesButton;
+@property (weak) IBOutlet NSTextField *statusLabel;
 
-@property (strong) IBOutlet NSMenu *contextMenu;
-
-- (IBAction)showContextMenu:(NSButton *)sender;
-- (IBAction)showPreferences:(id)sender;
-- (IBAction)refreshStreamList:(NSButton *)sender;
-- (void)streamListWasUpdated:(NSNotification *)notification;
 
 @end

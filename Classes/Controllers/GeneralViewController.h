@@ -12,12 +12,4 @@
 
 @interface GeneralViewController : NSViewController <RHPreferencesViewControllerProtocol>
 
-@property (weak) IBOutlet NSButton *systemStartupCheckbox;
-@property (weak) IBOutlet NSButton *notificationCheckbox;
-@property (weak) IBOutlet NSTextField *refreshTimeField;
-
-- (IBAction)toggleStartOnSystemStartup:(id)sender;
-- (IBAction)showDesktopNotifications:(id)sender;
-- (IBAction)setStreamListRefreshTime:(id)sender;
-
 @end

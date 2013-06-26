@@ -6,30 +6,126 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <EXTScope.h>
+
+#import "AFImageRequestOperation.h"
+#import "Channel.h"
+#import "NSColor+Hex.h"
+#import "NSImageView+AFNetworking.h"
+#import "StreamLogoImageView.h"
+#import "StreamPreviewImageView.h"
+
 #import "StreamListViewItem.h"
 
-#import "Channel.h"
+@interface StreamListViewItem () {
+    IBOutlet NSTextField *_gameLabel;
+    IBOutlet NSTextField *_userLabel;
+    IBOutlet NSTextField *_titleLabel;
+    IBOutlet NSTextField *_viewerCountLabel;
+    IBOutlet NSButton *_redirectButton;
+}
+
+@property (weak) IBOutlet StreamLogoImageView *logo;
+@property (nonatomic, strong) NSString *logoURLCache;
+
+@property (weak) IBOutlet StreamPreviewImageView *preview;
+@property (nonatomic, strong) NSString *previewURLCache;
+
+- (IBAction)redirectToStream:(id)sender;
+@end
 
 @implementation StreamListViewItem
 
 + (StreamListViewItem *)initItem
 {
-    static NSNib *nib = nil;
-    if(nib == nil) {
-        nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
-    }
-
-    NSArray *objects = nil;
+	NSNib *nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
+	NSArray *objects = nil;
     [nib instantiateWithOwner:nil topLevelObjects:&objects];
-    for(id object in objects) {
-        if ([object isKindOfClass:self]) {
+	for (id object in objects) {
+		if ([object isKindOfClass:[JAListViewItem class]]) {
             return object;
         }
     }
-
-    NSAssert1(NO, @"No view of class %@ found.", NSStringFromClass(self));
-    return nil;
+	return nil;
 }
+
+- (void)setObject:(Stream *)object
+{
+    if (_object == object)
+        return;
+
+    _object = object;
+
+    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:object.channel.status];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:14];
+    [attrTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrTitle length])];
+    [_titleLabel setAttributedStringValue:attrTitle];
+
+    [_userLabel setStringValue:object.channel.displayName];
+    [_userLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+
+    [_gameLabel setStringValue:object.game];
+    [_gameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
+
+    [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", object.viewers]];
+
+    [self refreshLogo];
+    [self refreshPreview];
+}
+
+- (void)refreshLogo
+{
+    static NSImage *placeholderImage = nil;
+
+    @weakify(self);
+    if (![self.object.channel.logoImageURL.absoluteString isEqualToString:self.logoURLCache]) {
+        // Prevent setting the logo unnecessarily.
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.object.channel.logoImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
+        [_logo setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
+            @strongify(self);
+            [self.logo setImage:image];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+
+        self.logoURLCache = self.object.channel.logoImageURL.absoluteString;
+    }
+    else {
+        [_logo setImageWithURL:[NSURL URLWithString:self.logoURLCache]];
+    }
+}
+
+- (void)refreshPreview
+{
+    static NSImage *placeholderImage = nil;
+
+    @weakify(self);
+    if (![self.object.previewImageURL.absoluteString isEqualToString:self.previewURLCache]) {
+        // Prevent setting the logo unnecessarily.
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.object.previewImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
+        [_preview setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
+            @strongify(self);
+            [self.preview setImage:image];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+
+        self.previewURLCache = self.object.previewImageURL.absoluteString;
+    }
+    else {
+        [_preview setImageWithURL:[NSURL URLWithString:self.previewURLCache]];
+    }
+}
+
+- (IBAction)redirectToStream:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:self.object.channel.url];
+}
+
+#pragma mark - Drawing Logic
 
 - (void)drawRect:(NSRect)dirtyRect
 {
@@ -75,11 +171,6 @@
         [[transform transformBezierPath:negativePath] fill];
     }
     [NSGraphicsContext restoreGraphicsState];
-}
-
-- (IBAction)redirectToStream:(id)sender
-{
-    [[NSWorkspace sharedWorkspace] openURL:self.stream.channel.url];
 }
 
 @end

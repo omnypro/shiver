@@ -286,68 +286,68 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamUserLabel</string>
-						<reference key="source" ref="309547117"/>
-						<reference key="destination" ref="952746705"/>
-					</object>
-					<int key="connectionID">17</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamViewerCountLabel</string>
-						<reference key="source" ref="309547117"/>
-						<reference key="destination" ref="483822019"/>
-					</object>
-					<int key="connectionID">25</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamLogo</string>
-						<reference key="source" ref="309547117"/>
-						<reference key="destination" ref="29577020"/>
-					</object>
-					<int key="connectionID">34</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamRedirectButton</string>
-						<reference key="source" ref="309547117"/>
-						<reference key="destination" ref="58927789"/>
-					</object>
-					<int key="connectionID">35</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">redirectToStream:</string>
 						<reference key="source" ref="309547117"/>
 						<reference key="destination" ref="58927789"/>
 					</object>
-					<int key="connectionID">42</int>
+					<int key="connectionID">69</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamGameLabel</string>
+						<string key="label">_gameLabel</string>
 						<reference key="source" ref="309547117"/>
 						<reference key="destination" ref="519417444"/>
 					</object>
-					<int key="connectionID">47</int>
+					<int key="connectionID">72</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamTitleLabel</string>
+						<string key="label">_userLabel</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="952746705"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_titleLabel</string>
 						<reference key="source" ref="309547117"/>
 						<reference key="destination" ref="507310896"/>
 					</object>
-					<int key="connectionID">52</int>
+					<int key="connectionID">74</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamPreview</string>
+						<string key="label">_viewerCountLabel</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="483822019"/>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_redirectButton</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="58927789"/>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">logo</string>
+						<reference key="source" ref="309547117"/>
+						<reference key="destination" ref="29577020"/>
+					</object>
+					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">preview</string>
 						<reference key="source" ref="309547117"/>
 						<reference key="destination" ref="189150726"/>
 					</object>
-					<int key="connectionID">55</int>
+					<int key="connectionID">78</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -528,7 +528,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -563,42 +563,42 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="streamGameLabel">NSTextField</string>
-						<string key="streamLogo">StreamLogoImageView</string>
-						<string key="streamPreview">StreamPreviewImageView</string>
-						<string key="streamRedirectButton">NSButton</string>
-						<string key="streamTitleLabel">NSTextField</string>
-						<string key="streamUserLabel">NSTextField</string>
-						<string key="streamViewerCountLabel">NSTextField</string>
+						<string key="_gameLabel">NSTextField</string>
+						<string key="_redirectButton">NSButton</string>
+						<string key="_titleLabel">NSTextField</string>
+						<string key="_userLabel">NSTextField</string>
+						<string key="_viewerCountLabel">NSTextField</string>
+						<string key="logo">StreamLogoImageView</string>
+						<string key="preview">StreamPreviewImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="streamGameLabel">
-							<string key="name">streamGameLabel</string>
+						<object class="IBToOneOutletInfo" key="_gameLabel">
+							<string key="name">_gameLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="streamLogo">
-							<string key="name">streamLogo</string>
-							<string key="candidateClassName">StreamLogoImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="streamPreview">
-							<string key="name">streamPreview</string>
-							<string key="candidateClassName">StreamPreviewImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="streamRedirectButton">
-							<string key="name">streamRedirectButton</string>
+						<object class="IBToOneOutletInfo" key="_redirectButton">
+							<string key="name">_redirectButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="streamTitleLabel">
-							<string key="name">streamTitleLabel</string>
+						<object class="IBToOneOutletInfo" key="_titleLabel">
+							<string key="name">_titleLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="streamUserLabel">
-							<string key="name">streamUserLabel</string>
+						<object class="IBToOneOutletInfo" key="_userLabel">
+							<string key="name">_userLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="streamViewerCountLabel">
-							<string key="name">streamViewerCountLabel</string>
+						<object class="IBToOneOutletInfo" key="_viewerCountLabel">
+							<string key="name">_viewerCountLabel</string>
 							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="logo">
+							<string key="name">logo</string>
+							<string key="candidateClassName">StreamLogoImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="preview">
+							<string key="name">preview</string>
+							<string key="candidateClassName">StreamPreviewImageView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

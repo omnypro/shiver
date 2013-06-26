@@ -457,6 +457,30 @@
 					</object>
 					<int key="connectionID">160</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_systemStartupCheckbox</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="19935209"/>
+					</object>
+					<int key="connectionID">161</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_notificationCheckbox</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="800379168"/>
+					</object>
+					<int key="connectionID">162</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_refreshTimeField</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="788752314"/>
+					</object>
+					<int key="connectionID">163</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -696,7 +720,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">160</int>
+			<int key="maxID">163</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -723,21 +747,21 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="notificationCheckbox">NSButton</string>
-						<string key="refreshTimeField">NSTextField</string>
-						<string key="systemStartupCheckbox">NSButton</string>
+						<string key="_notificationCheckbox">NSButton</string>
+						<string key="_refreshTimeField">NSTextField</string>
+						<string key="_systemStartupCheckbox">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="notificationCheckbox">
-							<string key="name">notificationCheckbox</string>
+						<object class="IBToOneOutletInfo" key="_notificationCheckbox">
+							<string key="name">_notificationCheckbox</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="refreshTimeField">
-							<string key="name">refreshTimeField</string>
+						<object class="IBToOneOutletInfo" key="_refreshTimeField">
+							<string key="name">_refreshTimeField</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="systemStartupCheckbox">
-							<string key="name">systemStartupCheckbox</string>
+						<object class="IBToOneOutletInfo" key="_systemStartupCheckbox">
+							<string key="name">_systemStartupCheckbox</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
 					</dictionary>
