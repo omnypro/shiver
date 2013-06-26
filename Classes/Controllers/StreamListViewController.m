@@ -68,8 +68,6 @@
 {
     [super awakeFromNib];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDisconnectedAccount:) name:UserDidDisconnectAccountNotification object:nil];
-
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
@@ -116,7 +114,7 @@
 
     // Updated the lastUpdated label every 30 seconds.
     NSTimeInterval lastUpdatedInterval = 30.0;
-    [[[RACAble(self.streamList) map:^id(id value) {
+    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
         return [RACSignal interval:lastUpdatedInterval];
     }] switchToLatest] subscribeNext:^(NSArray *array) {
         NSLog(@"Stream List: Updating the last updated label (on interval).");
@@ -254,7 +252,7 @@
 
     // Refresh the stream list at an interval provided by the user.
     NSTimeInterval refreshInterval = 300.0;
-    [[[RACAble(self.streamList) map:^id(id value) {
+    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
         return [RACSignal interval:refreshInterval];
     }] switchToLatest] subscribeNext:^(id x) {
         NSLog(@"Stream List: Triggering timed (%f) refresh.", refreshInterval);
@@ -346,14 +344,6 @@
         return [self.streamList count];
     }
     return 0;
-}
-
-#pragma mark - Notification Observers
-
-- (void)userDisconnectedAccount:(NSNotification *)notification
-{
-    OAuthViewController *object = [notification object];
-    if ([object isKindOfClass:[OAuthViewController class]]) {}
 }
 
 @end
