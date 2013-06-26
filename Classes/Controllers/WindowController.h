@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RHPreferences/RHPreferences.h>
 
 @class OBMenuBarWindow;

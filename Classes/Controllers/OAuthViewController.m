@@ -33,8 +33,8 @@
 @property (nonatomic, assign) BOOL loggingIn;
 @property (nonatomic, strong) RACCommand *disconnectCommand;
 @property (nonatomic, strong) RACCommand *loginCommand;
-@property (nonatomic, strong, readwrite) RACSubject *didLoginSubject;
-@property (nonatomic, strong, readwrite) RACSubject *URLProtocolValueSubject;
+@property (nonatomic, strong) RACSubject *didLoginSubject;
+@property (nonatomic, strong) RACSubject *URLProtocolValueSubject;
 
 - (IBAction)learnMore:(NSButton *)sender;
 @end
