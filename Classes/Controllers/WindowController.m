@@ -304,9 +304,4 @@
     [NSApp activateIgnoringOtherApps:YES];
 }
 
-- (IBAction)refreshStreamList:(NSButton *)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToUpdateStreamNotification object:self userInfo:nil];
-}
-
 @end

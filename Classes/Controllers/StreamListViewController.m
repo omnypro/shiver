@@ -31,9 +31,10 @@
 @property (nonatomic, strong, readwrite) NSArray *streamArray;
 
 // Views.
-@property (nonatomic, strong) NSWindow *parentWindow;
+@property (nonatomic, strong) WindowController *windowController;
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
+@property (nonatomic, strong) RACCommand *refreshCommand;
 
 // Data sources.
 @property (atomic, strong) APIClient *client;
@@ -57,6 +58,7 @@
     if (self == nil) { return nil; }
 
     self.user = user;
+    self.windowController = [[NSApp delegate] windowController];
     return self;
 }
 
@@ -80,6 +82,14 @@
 - (void)setUpViewSignals
 {
     @weakify(self);
+
+    self.refreshCommand = [RACCommand command];
+    self.windowController.refreshButton.rac_command = self.refreshCommand;
+    [self.refreshCommand subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Stream List: Request to manually refresh the stream list.");
+        self.client = [APIClient sharedClient];
+    }];
 
     // Show or hide the empty view.
     [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]

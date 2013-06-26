@@ -326,28 +326,6 @@
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="NSClassName">HeaderView</string>
 			</object>
-			<object class="NSButton" id="849987880">
-				<nil key="NSNextResponder"/>
-				<int key="NSvFlags">268</int>
-				<string key="NSFrameSize">{82, 32}</string>
-				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<bool key="NSEnabled">YES</bool>
-				<object class="NSButtonCell" key="NSCell" id="65015718">
-					<int key="NSCellFlags">67108864</int>
-					<int key="NSCellFlags2">134217728</int>
-					<string key="NSContents">Button</string>
-					<reference key="NSSupport" ref="45535436"/>
-					<string key="NSCellIdentifier">_NS:9</string>
-					<reference key="NSControlView" ref="849987880"/>
-					<int key="NSButtonFlags">-2038284288</int>
-					<int key="NSButtonFlags2">129</int>
-					<string key="NSAlternateContents"/>
-					<string key="NSKeyEquivalent"/>
-					<int key="NSPeriodicDelay">200</int>
-					<int key="NSPeriodicInterval">25</int>
-				</object>
-				<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-			</object>
 			<object class="NSMenu" id="606350202">
 				<string key="NSTitle"/>
 				<array class="NSMutableArray" key="NSMenuItems">
@@ -408,43 +386,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">titleBarView</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="629863436"/>
-					</object>
-					<int key="connectionID">64</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">statusLabel</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="536232932"/>
-					</object>
-					<int key="connectionID">139</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">window</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="1005"/>
 					</object>
 					<int key="connectionID">144</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">masterView</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="67843978"/>
-					</object>
-					<int key="connectionID">162</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">contextMenu</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="606350202"/>
-					</object>
-					<int key="connectionID">241</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -461,78 +407,6 @@
 						<reference key="destination" ref="670260649"/>
 					</object>
 					<int key="connectionID">259</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">streamCountLabel</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="536232932"/>
-					</object>
-					<int key="connectionID">262</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">lastUpdatedLabel</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="990513849"/>
-					</object>
-					<int key="connectionID">263</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">preferencesButton</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="660897288"/>
-					</object>
-					<int key="connectionID">264</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">refreshButton</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="652341569"/>
-					</object>
-					<int key="connectionID">268</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">refreshStreamList:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="652341569"/>
-					</object>
-					<int key="connectionID">269</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">usernameLabel</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="704749243"/>
-					</object>
-					<int key="connectionID">277</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">broadcastStatusImage</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="587222220"/>
-					</object>
-					<int key="connectionID">278</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">statusImage</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="587222220"/>
-					</object>
-					<int key="connectionID">281</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">userImage</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="844472917"/>
-					</object>
-					<int key="connectionID">285</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -560,27 +434,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_statusLabel</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="704749243"/>
-					</object>
-					<int key="connectionID">292</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_userImage</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="844472917"/>
 					</object>
 					<int key="connectionID">293</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">_refreshButton</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="652341569"/>
-					</object>
-					<int key="connectionID">294</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -613,6 +471,22 @@
 						<reference key="destination" ref="704749243"/>
 					</object>
 					<int key="connectionID">298</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">refreshButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="652341569"/>
+					</object>
+					<int key="connectionID">299</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">statusLabel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="536232932"/>
+					</object>
+					<int key="connectionID">301</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -718,19 +592,6 @@
 						<int key="objectID">221</int>
 						<reference key="object" ref="88799930"/>
 						<reference key="parent" ref="990513849"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">222</int>
-						<reference key="object" ref="849987880"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="65015718"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">223</int>
-						<reference key="object" ref="65015718"/>
-						<reference key="parent" ref="849987880"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">230</int>
@@ -847,8 +708,6 @@
 				<string key="220.CustomClassName">ShadowTextField</string>
 				<string key="220.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="221.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="222.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="223.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="224.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="225.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="230.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -879,7 +738,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">298</int>
+			<int key="maxID">301</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -943,15 +802,10 @@
 					<string key="className">WindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="refreshStreamList:">NSButton</string>
 						<string key="showContextMenu:">NSButton</string>
 						<string key="showPreferences:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="refreshStreamList:">
-							<string key="name">refreshStreamList:</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
 						<object class="IBActionInfo" key="showContextMenu:">
 							<string key="name">showContextMenu:</string>
 							<string key="candidateClassName">NSButton</string>
@@ -966,12 +820,12 @@
 						<string key="_lastUpdatedLabel">NSTextField</string>
 						<string key="_masterView">NSView</string>
 						<string key="_preferencesButton">NSButton</string>
-						<string key="_refreshButton">NSButton</string>
 						<string key="_statusImage">NSImageView</string>
-						<string key="_statusLabel">NSTextField</string>
 						<string key="_titleBarView">NSView</string>
 						<string key="_userImage">NSImageView</string>
 						<string key="_usernameLabel">NSTextField</string>
+						<string key="refreshButton">NSButton</string>
+						<string key="statusLabel">NSTextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_contextMenu">
@@ -990,17 +844,9 @@
 							<string key="name">_preferencesButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="_refreshButton">
-							<string key="name">_refreshButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="_statusImage">
 							<string key="name">_statusImage</string>
 							<string key="candidateClassName">NSImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_statusLabel">
-							<string key="name">_statusLabel</string>
-							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="_titleBarView">
 							<string key="name">_titleBarView</string>
@@ -1012,6 +858,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="_usernameLabel">
 							<string key="name">_usernameLabel</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="refreshButton">
+							<string key="name">refreshButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statusLabel">
+							<string key="name">statusLabel</string>
 							<string key="candidateClassName">NSTextField</string>
 						</object>
 					</dictionary>
