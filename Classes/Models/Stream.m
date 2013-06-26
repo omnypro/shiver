@@ -33,25 +33,4 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Channel.class];
 }
 
-+ (void)streamListWithBlock:(void (^)(NSArray *streams, NSError *error))block {
-    [[APIClient sharedClient] getPath:@"streams/followed" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *streamsFromResponse = [responseObject valueForKeyPath:@"streams"];
-        NSMutableArray *mutableStreams = [NSMutableArray arrayWithCapacity:[streamsFromResponse count]];
-
-        for (NSDictionary *dictionary in streamsFromResponse) {
-            NSError *error = nil;
-            Stream *stream = [MTLJSONAdapter modelOfClass:self.class fromJSONDictionary:dictionary error:&error];
-            [mutableStreams addObject:stream];
-        }
-
-        if (block) {
-            block(mutableStreams, nil);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (block) {
-            block([NSArray array], error);
-        }
-    }];
-}
-
 @end
