@@ -179,9 +179,39 @@
          }
 
          // Reload the table.
-         [_listView reloadData];
+         [_listView reloadDataAnimated:YES];
          self.showingLoading = NO;
-     }];
+    }];
+
+    // If we've fetched streams before, compared the existing list to the newly
+    // fetched one to check for any new broadcasts. If so, send those streams
+    // to the notification center.
+    [[[[[[[[RACAble(self.streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
+        return (value != nil);
+    }] map:^(NSArray *changes) {
+        return [NSSet setWithArray:changes];
+    }] mapPreviousWithStart:[NSSet set] combine:^id(NSSet *previous, NSSet *current) {
+        return [RACTuple tupleWithObjects:previous, current, nil];
+    }] map:^(RACTuple *changes) {
+        RACTupleUnpack(NSSet *previous, NSSet *current) = changes;
+        NSMutableSet *oldStreams = [previous mutableCopy];
+        [oldStreams minusSet:current];
+        NSMutableSet *newStreams = [current mutableCopy];
+        [newStreams minusSet:previous];
+        return [RACTuple tupleWithObjects:oldStreams, newStreams, nil];
+    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(RACTuple *x) {
+        RACTupleUnpack(NSSet *oldStreams, NSSet *newStreams) = x;
+
+        if ([oldStreams count] != 0) {
+            // Take the `_id` value of each stream in the existing array
+            // subtract those that exist in the recently fetched array.
+            // Notifications will be sent for the results.
+            NSSet *oldStreamIDs = [oldStreams valueForKey:@"_id"];
+            NSSet *xorSet = [newStreams filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", oldStreamIDs]];
+            NSLog(@"Notifications: %lu new streams.", (unsigned long)[xorSet count]);
+            [self sendNewStreamNotificationToUser:xorSet];
+        }
+    }];
 
     // Monitor the data source array and show an empty view if it's... empty.
     [RACAble(self.streamList) subscribeNext:^(NSArray *streamList) {
@@ -193,46 +223,6 @@
 
 #pragma mark - Data Source Methods
 
-- (void)startTimerForLoadingStreamList
-{
-    // Schedule a timer to run `loadStreamList` every 5 minutes (300 seconds).
-    // Keep a strong reference to _timer in ARC.
-    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 300.0 * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(_timer, ^{ [self loadStreamList]; });
-    dispatch_resume(_timer);
-}
-
-- (void)loadStreamList
-{
-    [Stream streamListWithBlock:^(NSArray *streams, NSError *error) {
-        if (error) { NSLog(@"%@", [error localizedDescription]); }
-
-        // If we have no streams, brodacast a notification so other parts
-        // of the application can update their UIs.
-        if (streams.count == 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:StreamListIsEmptyNotification object:self userInfo:nil];
-        }
-        else {
-            // If we've fetched streams before, compared the existing list to
-            // the newly fetched one to check for any new broadcasts. If so,
-            // send those streams to the notification center.
-            if (self.streamArray != nil) {
-                NSSet *newBroadcasts = [self compareExistingStreamList:self.streamArray withNewList:streams];
-                [self sendNewStreamNotificationToUser:newBroadcasts];
-            }
-
-            self.streamArray = streams;
-
-            // Send a notification that the list was reloaded so other parts
-            // of the application can update their UIs.
-            [[NSNotificationCenter defaultCenter] postNotificationName:StreamListWasUpdatedNotification object:self userInfo:nil];
-        }
-
-        // Reload the listView.
-        [_listView reloadDataAnimated:YES];
-    }];
-}
 
 - (NSSet *)compareExistingStreamList:(NSArray *)existingArray withNewList:(NSArray *)newArray
 {
