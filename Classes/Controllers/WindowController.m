@@ -24,7 +24,6 @@
     IBOutlet NSView *_masterView;
     IBOutlet NSView *_titleBarView;
     IBOutlet NSImageView *_statusImage;
-    IBOutlet NSTextField *_usernameLabel;
     IBOutlet NSImageView *_userImage;
     IBOutlet NSButton *_preferencesButton;
     IBOutlet NSMenu *_contextMenu;
@@ -89,13 +88,10 @@
     // Watch self.user and update the main interface appropriately.
     [RACAbleWithStart(self.user) subscribeNext:^(User *user) {
         if (user) {
-            [_usernameLabel setStringValue:user.name];
             [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-            [_usernameLabel setHidden:NO];
             [_userImage setHidden:NO];
         }
         else {
-            [_usernameLabel setHidden:YES];
             [_userImage setHidden:YES];
             [_lastUpdatedLabel setHidden:YES];
             [_refreshButton setEnabled:NO];
@@ -155,9 +151,6 @@
     // in Interface Builder.
     [_lastUpdatedLabel setHidden:YES];
     [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
-
-    // Are we logged in? Set the string value to the current username.
-    [_usernameLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
 }
 
 #pragma mark Notification Observers
