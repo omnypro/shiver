@@ -27,6 +27,7 @@
 		933EC0EC177C1F210041D020 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 933EC0EB177C1F210041D020 /* AboutView.m */; };
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
+		93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
 		935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F1177A010B0069AEFC /* NSView+SHExtensions.m */; };
 		935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F8177B696F0069AEFC /* LoginRequiredView.m */; };
@@ -137,6 +138,8 @@
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93462A02177CA6FA00C928CA /* NSAttributedString+Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Hyperlink.h"; path = "Extensions/Categories/NSAttributedString+Hyperlink.h"; sourceTree = SOURCE_ROOT; };
+		93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Hyperlink.m"; path = "Extensions/Categories/NSAttributedString+Hyperlink.m"; sourceTree = SOURCE_ROOT; };
 		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Extensions/Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
@@ -529,6 +532,8 @@
 		93A3A1251766DFDF00913C9A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				93462A02177CA6FA00C928CA /* NSAttributedString+Hyperlink.h */,
+				93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */,
 				934C25DD17775ED00038E5DB /* NSColor+Hex.h */,
 				938A765E176BEAE80094A361 /* NSColor+Hex.m */,
 				938A7667177122130094A361 /* NSImage+MGCropExtensions.h */,
@@ -782,6 +787,7 @@
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
 				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
 				936327E11765268200146C8A /* APIClient.m in Sources */,
+				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
 				93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */,
 				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
