@@ -38,7 +38,7 @@
 
 - (NSView *)errorViewWithTitle:(NSString *)title subTitle:(NSString *)subTitle
 {
-    [self.imageView setImage:nil];
+    [self.imageView setImage:[NSImage imageNamed:@"Error"]];
     [self.titleLabel setStringValue:title];
     [self.subTitleLabel setStringValue:[NSString stringWithFormat:@"(%@)", subTitle]];
     return self;
