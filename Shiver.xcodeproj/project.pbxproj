@@ -24,6 +24,7 @@
 		932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29C81761AF800049EC1B /* ShiverApplication.m */; };
 		933EC0E6177C031A0041D020 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 933EC0E3177BDE560041D020 /* AboutWindowController.m */; };
 		933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933EC0E4177BDE560041D020 /* AboutWindow.xib */; };
+		933EC0EC177C1F210041D020 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 933EC0EB177C1F210041D020 /* AboutView.m */; };
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
@@ -131,6 +132,8 @@
 		933EC0E2177BDE560041D020 /* AboutWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = Classes/Controllers/AboutWindowController.h; sourceTree = SOURCE_ROOT; };
 		933EC0E3177BDE560041D020 /* AboutWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = Classes/Controllers/AboutWindowController.m; sourceTree = SOURCE_ROOT; };
 		933EC0E4177BDE560041D020 /* AboutWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutWindow.xib; path = Assets/NIBs/AboutWindow.xib; sourceTree = SOURCE_ROOT; };
+		933EC0EA177C1F210041D020 /* AboutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutView.h; path = Classes/Views/AboutView.h; sourceTree = SOURCE_ROOT; };
+		933EC0EB177C1F210041D020 /* AboutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutView.m; path = Classes/Views/AboutView.m; sourceTree = SOURCE_ROOT; };
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -419,6 +422,8 @@
 				939E8B921772830A006D6442 /* Main Window */,
 				93A3A12817679C6600913C9A /* Preferences */,
 				938A766617710AD30094A361 /* Stream List */,
+				933EC0EA177C1F210041D020 /* AboutView.h */,
+				933EC0EB177C1F210041D020 /* AboutView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */,
 				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
+				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
 				939E8B6B177161A8006D6442 /* ShadowTextField.m in Sources */,
 				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
 				939E8B831771A4CF006D6442 /* HeaderView.m in Sources */,
