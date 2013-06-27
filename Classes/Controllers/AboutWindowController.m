@@ -7,6 +7,7 @@
 //
 
 #import "AboutView.h"
+#import "NSAttributedString+Hyperlink.h"
 #import "NSColor+Hex.h"
 
 #import "AboutWindowController.h"
@@ -16,19 +17,15 @@
     IBOutlet NSTextField *_versionAndBuildLabel;
     IBOutlet NSTextField *_designAndCodeLabel;
     IBOutlet NSTextField *_designAndCodeByLabel;
-    IBOutlet NSButton *_designAndCodeByButton;
+    IBOutlet NSTextField *_designAndCodeByLink;
     IBOutlet NSTextField *_iconLabel;
     IBOutlet NSTextField *_iconByLabel;
-    IBOutlet NSButton *_iconByButton;
+    IBOutlet NSTextField *_iconByLink;
     IBOutlet NSTextField *_copyrightLabel;
     IBOutlet NSTextField *_disclaimerLabel;
 }
 
 @property (weak) IBOutlet AboutView *view;
-
-- (IBAction)designAndCodeRedirect:(id)sender;
-- (IBAction)iconRedirect:(id)sender;
-
 @end
 
 @implementation AboutWindowController
@@ -46,10 +43,6 @@
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
     NSColor *primaryGrayColor = [NSColor colorWithHex:@"#9B9B9B"];
-    NSDictionary *colorDict = @{
-        NSForegroundColorAttributeName: primaryGrayColor,
-        NSBackgroundColorAttributeName: [NSColor clearColor],
-    };
 
     // Set up the colors and paragraph styles for all of the elements...
     // because I prefer to use hex values over Interface Builder's janky
@@ -64,13 +57,11 @@
 
     [_designAndCodeLabel setTextColor:primaryGrayColor];
     [_designAndCodeByLabel setTextColor:[NSColor whiteColor]];
-    NSAttributedString *designStr = [[NSAttributedString alloc] initWithString:[_designAndCodeByButton title] attributes:colorDict];
-    [_designAndCodeByButton setAttributedTitle:designStr];
+    [_designAndCodeByLink setTextColor:primaryGrayColor];
 
     [_iconLabel setTextColor:primaryGrayColor];
     [_iconByLabel setTextColor:[NSColor whiteColor]];
-    NSAttributedString *iconStr = [[NSAttributedString alloc] initWithString:[_iconByButton title] attributes:colorDict];
-    [_iconByButton setAttributedTitle:iconStr];
+    [_iconByLink setTextColor:primaryGrayColor];
 
     [_copyrightLabel setTextColor:primaryGrayColor];
     NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:[_disclaimerLabel stringValue]];
@@ -83,16 +74,6 @@
 
     // This needs to be invoked ... or else everything looks like shit.
     [self.view setNeedsDisplay:YES];
-}
-
-- (IBAction)designAndCodeRedirect:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://twitter.com/bryanveloso"];
-    [[NSWorkspace sharedWorkspace] openURL:url];
-}
-
-- (IBAction)iconRedirect:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://twitter.com/tobiasahlin"];
-    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 @end
