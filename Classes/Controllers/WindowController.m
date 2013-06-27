@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "AboutWindowController.h"
 #import "APIClient.h"
 #import "EXTKeypathCoding.h"
 #import "LoginRequiredView.h"
@@ -35,6 +36,7 @@
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
 @property (nonatomic, strong) NSView *loginView;
 
+@property (nonatomic, strong) AboutWindowController *aboutWindowController;
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
 @property (nonatomic, strong) OAuthViewController *oauthPreferences;
 
@@ -182,13 +184,17 @@
 }
 
 - (IBAction)showAbout:(id)sender {
+    self.aboutWindowController = [[AboutWindowController alloc] init];
+    [self.aboutWindowController.window center];
+    [self.aboutWindowController.window makeKeyAndOrderFront:sender];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (IBAction)showPreferences:(id)sender
 {
     [self.preferencesWindowController.window center];
     [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
-    [self.preferencesWindowController showWindow:sender];
+    [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
     [NSApp activateIgnoringOtherApps:YES];
 }
 

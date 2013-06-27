@@ -22,6 +22,8 @@
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
 		932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932C29C01761AF460049EC1B /* InfoPlist.strings */; };
 		932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29C81761AF800049EC1B /* ShiverApplication.m */; };
+		933EC0E6177C031A0041D020 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 933EC0E3177BDE560041D020 /* AboutWindowController.m */; };
+		933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 933EC0E4177BDE560041D020 /* AboutWindow.xib */; };
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
@@ -128,7 +130,7 @@
 		932C29C81761AF800049EC1B /* ShiverApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiverApplication.m; sourceTree = SOURCE_ROOT; };
 		933EC0E2177BDE560041D020 /* AboutWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = Classes/Controllers/AboutWindowController.h; sourceTree = SOURCE_ROOT; };
 		933EC0E3177BDE560041D020 /* AboutWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = Classes/Controllers/AboutWindowController.m; sourceTree = SOURCE_ROOT; };
-		933EC0E4177BDE560041D020 /* AboutWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutWindowController.xib; path = Assets/NIBs/AboutWindowController.xib; sourceTree = SOURCE_ROOT; };
+		933EC0E4177BDE560041D020 /* AboutWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutWindow.xib; path = Assets/NIBs/AboutWindow.xib; sourceTree = SOURCE_ROOT; };
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -398,7 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				93A3A12417658EF600913C9A /* Preferences */,
-				933EC0E4177BDE560041D020 /* AboutWindowController.xib */,
+				933EC0E4177BDE560041D020 /* AboutWindow.xib */,
 				9301E9E2176A478300C46750 /* EmptyErrorView.xib */,
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
@@ -650,6 +652,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */,
 				936327BC1763BB1000146C8A /* Window.xib in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
@@ -764,6 +767,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				933EC0E6177C031A0041D020 /* AboutWindowController.m in Sources */,
 				932C29BD1761AF0B0049EC1B /* main.m in Sources */,
 				932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */,
 				934626571762740E00F947FE /* Stream.m in Sources */,
