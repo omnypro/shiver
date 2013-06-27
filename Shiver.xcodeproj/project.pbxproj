@@ -28,6 +28,8 @@
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */; };
+		93462A07177CB15400C928CA /* Error.png in Resources */ = {isa = PBXBuildFile; fileRef = 93462A05177CB14D00C928CA /* Error.png */; };
+		93462A08177CB15400C928CA /* Error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93462A06177CB14D00C928CA /* Error@2x.png */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
 		935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F1177A010B0069AEFC /* NSView+SHExtensions.m */; };
 		935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F8177B696F0069AEFC /* LoginRequiredView.m */; };
@@ -140,6 +142,8 @@
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93462A02177CA6FA00C928CA /* NSAttributedString+Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Hyperlink.h"; path = "Extensions/Categories/NSAttributedString+Hyperlink.h"; sourceTree = SOURCE_ROOT; };
 		93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Hyperlink.m"; path = "Extensions/Categories/NSAttributedString+Hyperlink.m"; sourceTree = SOURCE_ROOT; };
+		93462A05177CB14D00C928CA /* Error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Error.png; path = Assets/Images/Error.png; sourceTree = SOURCE_ROOT; };
+		93462A06177CB14D00C928CA /* Error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Error@2x.png"; path = "Assets/Images/Error@2x.png"; sourceTree = SOURCE_ROOT; };
 		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Extensions/Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
@@ -470,6 +474,8 @@
 				939E8B7917717DE1006D6442 /* CogInactive@2x.png */,
 				9324239B17728FBF00374EB9 /* EmptyStreamList.png */,
 				9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */,
+				93462A05177CB14D00C928CA /* Error.png */,
+				93462A06177CB14D00C928CA /* Error@2x.png */,
 				9324239F1772945800374EB9 /* LoginKeys.png */,
 				932423A01772945800374EB9 /* LoginKeys@2x.png */,
 				9391830F176A828500367399 /* PreferencesGlitch.png */,
@@ -674,6 +680,7 @@
 				936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */,
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListViewItem.xib in Resources */,
+				93462A07177CB15400C928CA /* Error.png in Resources */,
 				93A3A12317658ED200913C9A /* OAuthView.xib in Resources */,
 				9301E9E4176A478300C46750 /* EmptyErrorView.xib in Resources */,
 				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
@@ -699,6 +706,7 @@
 				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
 				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
+				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
