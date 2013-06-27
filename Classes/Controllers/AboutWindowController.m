@@ -14,13 +14,10 @@
 
 @implementation AboutWindowController
 
-- (id)initWithWindow:(NSWindow *)window
+- (id)init
 {
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    
+    self = [super init];
+    if (self) { return [super initWithWindowNibName:@"AboutWindow"]; }
     return self;
 }
 
