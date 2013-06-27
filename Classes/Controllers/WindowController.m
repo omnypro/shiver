@@ -27,6 +27,7 @@
     IBOutlet NSImageView *_userImage;
     IBOutlet NSButton *_preferencesButton;
     IBOutlet NSMenu *_contextMenu;
+    IBOutlet NSMenuItem *_userMenuItem;
 }
 
 @property (nonatomic, strong) NSViewController *currentViewController;
@@ -41,6 +42,8 @@
 @property (nonatomic, strong) User *user;
 
 - (IBAction)showContextMenu:(NSButton *)sender;
+- (IBAction)showProfile:(id)sender;
+- (IBAction)showAbout:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 @end
 
@@ -90,9 +93,13 @@
         if (user) {
             [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
             [_userImage setHidden:NO];
+            [_userMenuItem setEnabled:YES];
+            [_userMenuItem setTitle:[NSString stringWithFormat:@"Logged in as %@", self.user.name]];
         }
         else {
             [_userImage setHidden:YES];
+            [_userMenuItem setEnabled:NO];
+            [_userMenuItem setTitle:@"Not Logged In"];
             [_lastUpdatedLabel setHidden:YES];
             [_refreshButton setEnabled:NO];
             [_statusLabel setStringValue:@"Not logged in."];
@@ -165,6 +172,16 @@
 - (IBAction)showContextMenu:(NSButton *)sender
 {
     [_contextMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(14,26) inView:sender];
+}
+
+- (IBAction)showProfile:(id)sender {
+    if (self.user && [_userMenuItem isEnabled]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@", self.user.name]];
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
+}
+
+- (IBAction)showAbout:(id)sender {
 }
 
 - (IBAction)showPreferences:(id)sender
