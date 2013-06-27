@@ -126,6 +126,9 @@
 		932C29C11761AF460049EC1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		932C29C71761AF800049EC1B /* ShiverApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiverApplication.h; sourceTree = SOURCE_ROOT; };
 		932C29C81761AF800049EC1B /* ShiverApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShiverApplication.m; sourceTree = SOURCE_ROOT; };
+		933EC0E2177BDE560041D020 /* AboutWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = Classes/Controllers/AboutWindowController.h; sourceTree = SOURCE_ROOT; };
+		933EC0E3177BDE560041D020 /* AboutWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = Classes/Controllers/AboutWindowController.m; sourceTree = SOURCE_ROOT; };
+		933EC0E4177BDE560041D020 /* AboutWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutWindowController.xib; path = Assets/NIBs/AboutWindowController.xib; sourceTree = SOURCE_ROOT; };
 		934626551762740E00F947FE /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = Classes/Models/Stream.h; sourceTree = SOURCE_ROOT; };
 		934626561762740E00F947FE /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stream.m; path = Classes/Models/Stream.m; sourceTree = SOURCE_ROOT; };
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -364,6 +367,8 @@
 			isa = PBXGroup;
 			children = (
 				93A3A11E17658E2B00913C9A /* Preferences */,
+				933EC0E2177BDE560041D020 /* AboutWindowController.h */,
+				933EC0E3177BDE560041D020 /* AboutWindowController.m */,
 				936327BD1763C25B00146C8A /* ApplicationController.h */,
 				936327BE1763C25B00146C8A /* ApplicationController.m */,
 				936327CD1764287100146C8A /* StreamListViewController.h */,
@@ -393,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				93A3A12417658EF600913C9A /* Preferences */,
+				933EC0E4177BDE560041D020 /* AboutWindowController.xib */,
 				9301E9E2176A478300C46750 /* EmptyErrorView.xib */,
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
