@@ -612,9 +612,14 @@
 		932C298E1761AE0B0049EC1B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = RE;
+				CLASSPREFIX = SH;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Revyver, Inc.";
+				TargetAttributes = {
+					932C29951761AE0B0049EC1B = {
+						DevelopmentTeam = 4T2N7EHXK3;
+					};
+				};
 			};
 			buildConfigurationList = 932C29911761AE0B0049EC1B /* Build configuration list for PBXProject "Shiver" */;
 			compatibilityVersion = "Xcode 3.2";
