@@ -188,7 +188,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="67843978"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 900}}</string>
 				<string key="NSMinSize">{320, 306}</string>
 				<string key="NSMaxSize">{320, 306}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -266,7 +266,7 @@
 						<string key="NSFrame">{{48, 10}, {97, 19}}</string>
 						<reference key="NSSuperview" ref="629863436"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="844472917"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="452139197">
@@ -305,16 +305,16 @@
 			<object class="NSMenu" id="606350202">
 				<string key="NSTitle"/>
 				<array class="NSMutableArray" key="NSMenuItems">
-					<object class="NSMenuItem" id="942446711">
+					<object class="NSMenuItem" id="301423849">
 						<reference key="NSMenu" ref="606350202"/>
 						<string key="NSTitle">Not Logged In</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<object class="NSCustomResource" key="NSOnImage" id="251476158">
+						<object class="NSCustomResource" key="NSOnImage" id="161372441">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NSMenuCheckmark</string>
 						</object>
-						<object class="NSCustomResource" key="NSMixedImage" id="231071347">
+						<object class="NSCustomResource" key="NSMixedImage" id="296851631">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NSMenuMixedState</string>
 						</object>
@@ -326,16 +326,16 @@
 						<string key="NSTitle"/>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="251476158"/>
-						<reference key="NSMixedImage" ref="231071347"/>
+						<reference key="NSOnImage" ref="161372441"/>
+						<reference key="NSMixedImage" ref="296851631"/>
 					</object>
 					<object class="NSMenuItem" id="928821166">
 						<reference key="NSMenu" ref="606350202"/>
 						<string key="NSTitle">About Shiver</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="251476158"/>
-						<reference key="NSMixedImage" ref="231071347"/>
+						<reference key="NSOnImage" ref="161372441"/>
+						<reference key="NSMixedImage" ref="296851631"/>
 					</object>
 					<object class="NSMenuItem" id="670260649">
 						<reference key="NSMenu" ref="606350202"/>
@@ -343,8 +343,8 @@
 						<string key="NSKeyEquiv">,</string>
 						<int key="NSKeyEquivModMask">1048576</int>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="251476158"/>
-						<reference key="NSMixedImage" ref="231071347"/>
+						<reference key="NSOnImage" ref="161372441"/>
+						<reference key="NSMixedImage" ref="296851631"/>
 					</object>
 					<object class="NSMenuItem" id="307996946">
 						<reference key="NSMenu" ref="606350202"/>
@@ -352,8 +352,8 @@
 						<string key="NSKeyEquiv">q</string>
 						<int key="NSKeyEquivModMask">1048576</int>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="251476158"/>
-						<reference key="NSMixedImage" ref="231071347"/>
+						<reference key="NSOnImage" ref="161372441"/>
+						<reference key="NSMixedImage" ref="296851631"/>
 					</object>
 				</array>
 			</object>
@@ -464,6 +464,46 @@
 						<reference key="destination" ref="990513849"/>
 					</object>
 					<string key="id">302</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showAbout:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="928821166"/>
+					</object>
+					<string key="id">Wek-cw-JIh</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">userMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="301423849"/>
+					</object>
+					<string key="id">G0H-tJ-wAq</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">contextMenu</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="606350202"/>
+					</object>
+					<string key="id">NBO-88-giz</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_userMenuItem</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="301423849"/>
+					</object>
+					<string key="id">Soo-Jf-eBd</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showProfile:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="301423849"/>
+					</object>
+					<string key="id">rTu-QA-WhD</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -577,7 +617,7 @@
 							<reference ref="307996946"/>
 							<reference ref="928821166"/>
 							<reference ref="477449086"/>
-							<reference ref="942446711"/>
+							<reference ref="301423849"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -655,7 +695,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<string key="id">eW1-dG-D21</string>
-						<reference key="object" ref="942446711"/>
+						<reference key="object" ref="301423849"/>
 						<reference key="parent" ref="606350202"/>
 					</object>
 				</array>
@@ -760,16 +800,26 @@
 					<string key="className">WindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="showAbout:">id</string>
 						<string key="showContextMenu:">NSButton</string>
 						<string key="showPreferences:">id</string>
+						<string key="showProfile:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="showAbout:">
+							<string key="name">showAbout:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="showContextMenu:">
 							<string key="name">showContextMenu:</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBActionInfo" key="showPreferences:">
 							<string key="name">showPreferences:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showProfile:">
+							<string key="name">showProfile:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -780,6 +830,7 @@
 						<string key="_statusImage">NSImageView</string>
 						<string key="_titleBarView">NSView</string>
 						<string key="_userImage">NSImageView</string>
+						<string key="_userMenuItem">NSMenuItem</string>
 						<string key="lastUpdatedLabel">NSTextField</string>
 						<string key="refreshButton">NSButton</string>
 						<string key="statusLabel">NSTextField</string>
@@ -808,6 +859,10 @@
 						<object class="IBToOneOutletInfo" key="_userImage">
 							<string key="name">_userImage</string>
 							<string key="candidateClassName">NSImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_userMenuItem">
+							<string key="name">_userMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lastUpdatedLabel">
 							<string key="name">lastUpdatedLabel</string>
