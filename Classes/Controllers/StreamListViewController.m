@@ -188,6 +188,7 @@
             NSLog(@"Stream List: Fetching the stream list.");
             @strongify(self);
             self.streamList = streamList;
+            self.showingError = NO;
             self.showingLoading = YES;
         } error:^(NSError *error) {
             @strongify(self);
