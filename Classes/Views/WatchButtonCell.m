@@ -11,7 +11,7 @@
 #import "NSColor+Hex.h"
 
 static const CGFloat bezelMarginTop = 5;
-static const CGFloat bezelMarginBottom = 7;
+static const CGFloat bezelMarginBottom = 8;
 static const CGFloat bezelMarginLeft = 6;
 static const CGFloat bezelMarginRight = 6;
 static const CGFloat cornerRadius = 2;

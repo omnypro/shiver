@@ -205,13 +205,6 @@
          NSLog(@"Stream List: Refreshing the stream list.");
          NSLog(@"Stream List: %lu live streams.", [x count]);
 
-         // JAListView includes an internal padding function! So, when the list
-         // is longer than two (which creates scrolling behavior, add 5 points
-         // to the bottom of the view.
-         if (self.streamList.count > 2) {
-             [_listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
-         }
-
          // Update (or reset) the last updated label.
          self.lastUpdatedTimestamp = [NSDate date];
          [self updateLastUpdatedLabel];
