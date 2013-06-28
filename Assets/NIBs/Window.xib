@@ -12,10 +12,10 @@
                 <action selector="showPreferences:" destination="232" id="259"/>
                 <action selector="showProfile:" destination="eW1-dG-D21" id="rTu-QA-WhD"/>
                 <outlet property="_contextMenu" destination="230" id="297"/>
+                <outlet property="_footerView" destination="204" id="7Xo-Iw-gsN"/>
+                <outlet property="_headerView" destination="63" id="gzc-qm-B3Z"/>
                 <outlet property="_masterView" destination="155" id="288"/>
                 <outlet property="_preferencesButton" destination="224" id="296"/>
-                <outlet property="_statusImage" destination="270" id="290"/>
-                <outlet property="_titleBarView" destination="63" id="289"/>
                 <outlet property="_userImage" destination="282" id="293"/>
                 <outlet property="_userMenuItem" destination="eW1-dG-D21" id="Soo-Jf-eBd"/>
                 <outlet property="contextMenu" destination="230" id="NBO-88-giz"/>
@@ -37,8 +37,6 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="320" height="320"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="320" height="318"/>
-            <value key="maxSize" type="size" width="320" height="318"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,13 +45,8 @@
                         <rect key="frame" x="0.0" y="288" width="320" height="32"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="270">
-                                <rect key="frame" x="8" y="4" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyDown" image="BroadcastInactive" id="271"/>
-                            </imageView>
                             <imageView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="282" customClass="UserImageView">
-                                <rect key="frame" x="295" y="6" width="16" height="16"/>
+                                <rect key="frame" x="294" y="8" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="283"/>
                             </imageView>
@@ -67,8 +60,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96" customClass="ShadowTextField">
-                                <rect key="frame" x="10" y="9" width="97" height="19"/>
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96" customClass="DarkShadowTextField">
+                                <rect key="frame" x="10" y="8" width="97" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" title="No live streams" id="97">
                                     <font key="font" size="12" name="HelveticaNeue-Bold"/>
@@ -76,8 +69,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="220" customClass="ShadowTextField">
-                                <rect key="frame" x="73" y="8" width="181" height="17"/>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="220" customClass="DarkShadowTextField">
+                                <rect key="frame" x="118" y="7" width="140" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Not yet updated" id="221">
                                     <font key="font" size="10" name="HelveticaNeue"/>
@@ -86,17 +79,17 @@
                                 </textFieldCell>
                             </textField>
                             <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                                <rect key="frame" x="286" y="3" width="24" height="25"/>
+                                <rect key="frame" x="294" y="3" width="16" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="225">
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" focusRingType="none" inset="2" id="225">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="265">
-                                <rect key="frame" x="259" y="4" width="24" height="25"/>
+                                <rect key="frame" x="268" y="3" width="16" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" enabled="NO" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="266">
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" enabled="NO" state="on" focusRingType="none" inset="2" id="266">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -124,11 +117,13 @@
         </menu>
     </objects>
     <resources>
-        <image name="BroadcastInactive" width="24" height="24"/>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>
     </resources>
     <classes>
+        <class className="DarkShadowTextField" superclassName="NSTextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DarkShadowTextField.h"/>
+        </class>
         <class className="FooterView" superclassName="NSView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FooterView.h"/>
         </class>
@@ -137,9 +132,6 @@
         </class>
         <class className="InnerShadowView" superclassName="NSView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InnerShadowView.h"/>
-        </class>
-        <class className="ShadowTextField" superclassName="NSTextField">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShadowTextField.h"/>
         </class>
         <class className="UserImageView" superclassName="NSImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserImageView.h"/>
@@ -152,10 +144,11 @@
                 <relationship kind="action" name="showPreferences:"/>
                 <relationship kind="action" name="showProfile:"/>
                 <relationship kind="outlet" name="_contextMenu" candidateClass="NSMenu"/>
+                <relationship kind="outlet" name="_footerView" candidateClass="NSView"/>
+                <relationship kind="outlet" name="_headerView" candidateClass="NSView"/>
                 <relationship kind="outlet" name="_masterView" candidateClass="NSView"/>
                 <relationship kind="outlet" name="_preferencesButton" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="_statusImage" candidateClass="NSImageView"/>
-                <relationship kind="outlet" name="_titleBarView" candidateClass="NSView"/>
                 <relationship kind="outlet" name="_userImage" candidateClass="NSImageView"/>
                 <relationship kind="outlet" name="_userMenuItem" candidateClass="NSMenuItem"/>
                 <relationship kind="outlet" name="lastUpdatedLabel" candidateClass="NSTextField"/>
