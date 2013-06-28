@@ -14,7 +14,6 @@ PODS:
   - Mantle (1.1):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
-  - OBMenuBarWindow (0.0.1)
   - ReactiveCocoa (1.9.4):
     - ReactiveCocoa/Core
     - ReactiveCocoa/RACExtensions
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - AFOAuth2Client (~> 0.1.1)
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.1)
-  - OBMenuBarWindow (~> 0.0.1)
   - ReactiveCocoa (~> 1.9.4)
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.8)
@@ -47,7 +45,6 @@ SPEC CHECKSUMS:
   JRSwizzle: 6242ff38485d870fc2636899048ee1ab883ae587
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aba2facc6ee8f97512a94768dc57c82b7802948c
-  OBMenuBarWindow: 70b2741217b6b17670e7427fd29b1ff13d0c349a
   ReactiveCocoa: 3aa4686bd63a7b0a0c0e2e06b5ee32c6d9291351
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: 96abecdbe7a384ed65974b34a0497222a8878720
