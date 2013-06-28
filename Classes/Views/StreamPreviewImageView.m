@@ -15,39 +15,21 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Abstracted attributes.
-    CGFloat cornerRadius = 2;
-    NSRect frame = dirtyRect;
-
     // Draw the inner rectangle with the bottom rounded corners.
-    NSRect initialRect = NSMakeRect(0, 0, NSWidth(frame), 85);
-    NSRect innerRect = NSInsetRect(initialRect, cornerRadius, cornerRadius);
-    NSBezierPath* path = [NSBezierPath bezierPath];
-    [path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(innerRect), NSMinY(innerRect)) radius:cornerRadius startAngle:180 endAngle:270];
-    [path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(innerRect), NSMinY(innerRect)) radius:cornerRadius startAngle:270 endAngle:360];
-    [path lineToPoint:NSMakePoint(NSMaxX(initialRect), NSMaxY(initialRect))];
-    [path lineToPoint:NSMakePoint(NSMinX(initialRect), NSMaxY(initialRect))];
-    [path closePath];
+    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 90);
     [[NSColor colorWithHex:@"#222222"] setFill];
-    [path fill];
+    NSRectFill(initialRect);
 
     // Crop the preview image, because squishy images suck.
-    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(frame), 85) method:MGImageResizeCropStart];
-    [croppedImage drawInRect:innerRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
+    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 90) method:MGImageResizeCropStart];
+    [croppedImage drawInRect:initialRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
 
     // Draw the title rectangle with the same bottom rounded corners and a
     // translucent black background for the title text to sit on.
-    NSColor* titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
-    NSRect titleRect = NSMakeRect(0, 0, NSWidth(frame), 48);
-    NSRect titleInnerRect = NSInsetRect(titleRect, cornerRadius, cornerRadius);
-    NSBezierPath* titlePath = [NSBezierPath bezierPath];
-    [titlePath appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(titleInnerRect), NSMinY(titleInnerRect)) radius:cornerRadius startAngle:180 endAngle:270];
-    [titlePath appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(titleInnerRect), NSMinY(titleInnerRect)) radius:cornerRadius startAngle:270 endAngle:360];
-    [titlePath lineToPoint:NSMakePoint(NSMaxX(titleRect), NSMaxY(titleRect))];
-    [titlePath lineToPoint:NSMakePoint(NSMinX(titleRect), NSMaxY(titleRect))];
-    [titlePath closePath];
+    NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
+    NSRect titleRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 50);
     [titleBackgroundColor setFill];
-    [titlePath fill];
+    [NSBezierPath fillRect:titleRect];
 }
 
 @end

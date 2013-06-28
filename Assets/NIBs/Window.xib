@@ -35,14 +35,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" showsToolbarButton="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
             <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" transient="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="320" height="320"/>
+            <rect key="contentRect" x="196" y="240" width="320" height="284"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63" customClass="HeaderView">
-                        <rect key="frame" x="0.0" y="288" width="320" height="32"/>
+                        <rect key="frame" x="0.0" y="252" width="320" height="32"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <imageView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="282" customClass="UserImageView">
@@ -53,7 +53,7 @@
                         </subviews>
                     </customView>
                     <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="155" customClass="InnerShadowView">
-                        <rect key="frame" x="0.0" y="31" width="320" height="258"/>
+                        <rect key="frame" x="0.0" y="32" width="320" height="220"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="204" customClass="FooterView">
@@ -61,7 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96" customClass="DarkShadowTextField">
-                                <rect key="frame" x="10" y="8" width="97" height="19"/>
+                                <rect key="frame" x="10" y="9" width="97" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" title="No live streams" id="97">
                                     <font key="font" size="12" name="HelveticaNeue-Bold"/>
@@ -70,7 +70,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="220" customClass="DarkShadowTextField">
-                                <rect key="frame" x="118" y="7" width="140" height="17"/>
+                                <rect key="frame" x="118" y="8" width="140" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Not yet updated" id="221">
                                     <font key="font" size="10" name="HelveticaNeue"/>

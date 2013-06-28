@@ -129,48 +129,24 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Abstracted attributes.
-    CGFloat cornerRadius = 2;
-    NSRect frame = dirtyRect;
-
     // Declare our colors first.
-    NSColor *topColor = [NSColor colorWithCalibratedRed:0.902 green:0.906 blue:0.91 alpha:1];
-    NSColor *bottomColor = [NSColor colorWithCalibratedRed:0.827 green:0.831 blue:0.835 alpha:1];
+    NSColor *topColor = [NSColor colorWithHex:@"#E6E6E6"];
+    NSColor *bottomColor = [NSColor colorWithHex:@"#C6C6C6"];
 
-    // Next, declare the necessary gradient and shadow.
+    // Next, declare the necessary gradient and draw it into the box.
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
-    NSShadow *innerShadow = [[NSShadow alloc] init];
-    [innerShadow setShadowColor:[NSColor whiteColor]];
-    [innerShadow setShadowOffset:NSMakeSize(0.0, -1.0)];
-    [innerShadow setShadowBlurRadius:0];
+    NSRect rect = NSMakeRect(0, 0, NSWidth(dirtyRect), 110);
+    [gradient drawInRect:rect angle:-90];
 
-    // Draw the box.
-    NSRect rect = NSMakeRect(5, 0, NSWidth(frame) - 10, 110);
-    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:cornerRadius yRadius:cornerRadius];
-    [gradient drawInBezierPath:path angle:-90];
+    // Draw boxes for the highlight and shadow too.
+    NSRect highlightRect = NSMakeRect(0, NSHeight(dirtyRect) - 1, NSWidth(dirtyRect), 1);
+    [[NSColor whiteColor] setFill];
+    NSRectFill(highlightRect);
 
-    NSRect borderRect = NSInsetRect([path bounds], -innerShadow.shadowBlurRadius, -innerShadow.shadowBlurRadius);
-    borderRect = NSOffsetRect(borderRect, -innerShadow.shadowOffset.width, -innerShadow.shadowOffset.height);
-    borderRect = NSInsetRect(NSUnionRect(borderRect, [path bounds]), -1, -1);
+    NSRect shadowRect = NSMakeRect(0, NSHeight(dirtyRect) - 20, NSWidth(dirtyRect), 1);
+    [[NSColor colorWithHex:@"#C0C0C0"] setFill];
+    NSRectFill(shadowRect);
 
-    NSBezierPath *negativePath = [NSBezierPath bezierPathWithRect:borderRect];
-    [negativePath appendBezierPath:path];
-    [negativePath setWindingRule:NSEvenOddWindingRule];
-
-    [NSGraphicsContext saveGraphicsState];
-    {
-        NSShadow *shadowWithOffset = [innerShadow copy];
-        CGFloat xOffset = shadowWithOffset.shadowOffset.width + round(borderRect.size.width);
-        CGFloat yOffset = shadowWithOffset.shadowOffset.height;
-        shadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
-        [shadowWithOffset set];
-        [[NSColor grayColor] setFill];
-        [path addClip];
-        NSAffineTransform *transform = [NSAffineTransform transform];
-        [transform translateXBy:-round(borderRect.size.width) yBy: 0];
-        [[transform transformBezierPath:negativePath] fill];
-    }
-    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end
