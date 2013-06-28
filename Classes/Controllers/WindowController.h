@@ -10,8 +10,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RHPreferences/RHPreferences.h>
 
-@class OBMenuBarWindow;
-
 @interface WindowController : NSWindowController
 
 @property (nonatomic, strong, readonly) RHPreferencesWindowController *preferencesWindowController;
@@ -20,6 +18,5 @@
 @property (weak) IBOutlet NSButton *refreshButton;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;
 @property (weak) IBOutlet NSTextField *statusLabel;
-
 
 @end

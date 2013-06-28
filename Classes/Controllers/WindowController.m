@@ -11,7 +11,6 @@
 #import "EXTKeypathCoding.h"
 #import "LoginRequiredView.h"
 #import "NSColor+Hex.h"
-#import "OBMenuBarWindow.h"
 #import "StreamListViewController.h"
 #import "User.h"
 
@@ -64,6 +63,10 @@
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
+
+    [self.window setOpaque:NO];
+    [self.window setBackgroundColor:[NSColor clearColor]];
+    [self.window setLevel:NSFloatingWindowLevel];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
@@ -134,16 +137,6 @@
 
 - (void)composeInterface
 {
-    OBMenuBarWindow *window = (OBMenuBarWindow *)[self window];
-    [window setHasMenuBarIcon:YES];
-    [window setMenuBarIcon:[NSImage imageNamed:@"StatusBarIcon"]];
-    [window setHighlightedMenuBarIcon:[NSImage imageNamed:@"StatusBarIconInverted"]];
-    [window setAttachedToMenuBar:YES];
-
-    // Compose our own title bar.
-    [window setTitle:@""];
-    [[window toolbarView] addSubview:_titleBarView];
-
     // Make things pretty.
     [_statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
 
