@@ -22,7 +22,8 @@
 
 @interface WindowController () {
     IBOutlet NSView *_masterView;
-    IBOutlet NSView *_titleBarView;
+    IBOutlet NSView *_headerView;
+    IBOutlet NSView *_footerView;
     IBOutlet NSImageView *_statusImage;
     IBOutlet NSImageView *_userImage;
     IBOutlet NSButton *_preferencesButton;
@@ -64,7 +65,6 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
-    [self.window setOpaque:NO];
     [self.window setBackgroundColor:[NSColor clearColor]];
     [self.window setLevel:NSFloatingWindowLevel];
 
@@ -138,21 +138,19 @@
 - (void)composeInterface
 {
     // Make things pretty.
-    [_statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
-
-    [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
-    [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
-
-    [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
-    [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
-
-    [[_statusImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [_statusLabel setTextColor:[NSColor colorWithHex:@"#7F7F7F"]];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
     [_lastUpdatedLabel setHidden:YES];
-    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
+    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#666666"]];
+
+    [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
+    [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
+    [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
+    [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
+
 }
 
 #pragma mark Notification Observers
