@@ -12,7 +12,6 @@
 #import "ApplicationController.h"
 
 @interface ApplicationController ()
-@property (strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) StartAtLoginController *loginController;
 @property (nonatomic, readwrite, strong) WindowController *windowController;
 @end
