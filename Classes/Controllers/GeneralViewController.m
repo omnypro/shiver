@@ -13,12 +13,16 @@
 @interface GeneralViewController () {
     IBOutlet NSButton *_systemStartupCheckbox;
     IBOutlet NSButton *_notificationCheckbox;
+    IBOutlet NSButton *_streamCountCheckbox;
     IBOutlet NSTextField *_refreshTimeField;
+    IBOutlet NSButton *_openInPopupCheckbox;
 }
 
 - (IBAction)toggleStartOnSystemStartup:(id)sender;
-- (IBAction)showDesktopNotifications:(id)sender;
+- (IBAction)toggleShowDesktopNotifications:(id)sender;
+- (IBAction)toggleDisplayStreamCount:(id)sender;
 - (IBAction)setStreamListRefreshTime:(id)sender;
+- (IBAction)toggleOpenStreamsInPopup:(id)sender;
 @end
 
 @implementation GeneralViewController
@@ -73,9 +77,15 @@
 
 }
 
+- (IBAction)toggleDisplayStreamCount:(id)sender {
+}
+
 - (IBAction)setStreamListRefreshTime:(id)sender
 {
 
+}
+
+- (IBAction)toggleOpenStreamsInPopup:(id)sender {
 }
 
 @end

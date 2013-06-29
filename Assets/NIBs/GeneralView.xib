@@ -8,15 +8,17 @@
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralViewController">
             <connections>
                 <action selector="setStreamListRefreshTime:" destination="66" id="159"/>
-                <action selector="showDesktopNotifications:" destination="2" id="158"/>
-                <action selector="showDesktopNotifications:" destination="K47-EJ-8uU" id="2hS-ML-ves"/>
-                <action selector="showDesktopNotifications:" destination="8Ul-3R-7gW" id="IBz-S0-MwC"/>
+                <action selector="toggleDisplayStreamCount:" destination="K47-EJ-8uU" id="dkY-5U-uS3"/>
+                <action selector="toggleOpenStreamsInPopup:" destination="8Ul-3R-7gW" id="eto-ea-6cV"/>
+                <action selector="toggleShowDesktopNotifications:" destination="2" id="1eM-xo-JS8"/>
                 <action selector="toggleStartOnSystemStartup:" destination="6" id="160"/>
                 <outlet property="_notificationCheckbox" destination="2" id="162"/>
+                <outlet property="_openInPopupCheckbox" destination="8Ul-3R-7gW" id="Lwg-LB-p5K"/>
                 <outlet property="_refreshTimeField" destination="66" id="163"/>
+                <outlet property="_streamCountCheckbox" destination="K47-EJ-8uU" id="sJc-2n-G5Y"/>
                 <outlet property="_systemStartupCheckbox" destination="6" id="161"/>
-                <outlet property="notificationCheckbox" destination="2" id="155"/>
                 <outlet property="refreshTimeField" destination="66" id="156"/>
+                <outlet property="streamCountCheckbox" destination="K47-EJ-8uU" id="hv9-NE-Dvo"/>
                 <outlet property="systemStartupCheckbox" destination="6" id="154"/>
                 <outlet property="view" destination="1" id="48"/>
             </connections>
@@ -180,9 +182,14 @@
             <relationships>
                 <relationship kind="action" name="setStreamListRefreshTime:"/>
                 <relationship kind="action" name="showDesktopNotifications:"/>
+                <relationship kind="action" name="toggleDisplayStreamCount:"/>
+                <relationship kind="action" name="toggleOpenStreamsInPopup:"/>
+                <relationship kind="action" name="toggleShowDesktopNotifications:"/>
                 <relationship kind="action" name="toggleStartOnSystemStartup:"/>
                 <relationship kind="outlet" name="_notificationCheckbox" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="_openInPopupCheckbox" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="_refreshTimeField" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="_streamCountCheckbox" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="_systemStartupCheckbox" candidateClass="NSButton"/>
             </relationships>
         </class>
