@@ -32,10 +32,11 @@
 @property (nonatomic, strong, readwrite) NSArray *streamArray;
 
 // Views.
-@property (nonatomic, strong) WindowController *windowController;
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
+@property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RACCommand *refreshCommand;
+@property (nonatomic, strong) WindowController *windowController;
 
 // Data sources.
 @property (nonatomic, strong) APIClient *client;
@@ -60,6 +61,7 @@
     if (self == nil) { return nil; }
 
     self.user = user;
+    self.statusItem = [[NSApp delegate] statusItem];
     self.windowController = [[NSApp delegate] windowController];
     return self;
 }
@@ -93,7 +95,8 @@
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
-        if (array != nil) {
+        if ([array count] > 0) {
+            [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [array count]]];
             [self.windowController.lastUpdatedLabel setHidden:NO];
             [self.windowController.refreshButton setEnabled:YES];
 
@@ -103,9 +106,9 @@
             if ([array count] == 1) { [self.windowController.statusLabel setStringValue:singularCount]; }
             else if ([array count] > 1) { [self.windowController.statusLabel setStringValue:pluralCount]; }
             else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
-
         }
         else {
+            [self.statusItem setTitle:nil];
             [self.windowController.lastUpdatedLabel setHidden:YES];
             [self.windowController.refreshButton setEnabled:NO];
             [self.windowController.statusLabel setStringValue:@"No live streams"];
