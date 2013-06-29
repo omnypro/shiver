@@ -18,5 +18,6 @@
 @property (weak) IBOutlet NSButton *refreshButton;
 @property (weak) IBOutlet NSTextField *lastUpdatedLabel;
 @property (weak) IBOutlet NSTextField *statusLabel;
+@property (weak) IBOutlet NSPopUpButton *streamMenu;
 
 @end

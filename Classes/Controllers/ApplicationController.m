@@ -45,7 +45,7 @@
 - (IBAction)toggleWindow:(id)sender
 {
     if ([self.windowController.window isVisible]) {
-        [self.windowController close];
+        [self.windowController.window close];
     }
     else {
         NSDisableScreenUpdates();
@@ -76,7 +76,7 @@
         NSRect windowFrame = NSMakeRect(floor(midX - (windowWidth / 2.0)), floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) - 5.0, windowWidth, windowHeight);
 
         [self.windowController.window setFrameOrigin:windowFrame.origin];
-        [self.windowController showWindow:sender];
+        [self.windowController.window makeKeyAndOrderFront:sender];
         [NSApp activateIgnoringOtherApps:YES];
     }
 }
