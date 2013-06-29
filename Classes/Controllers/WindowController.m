@@ -61,12 +61,11 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [[self window] setAllowsConcurrentViewDrawing:YES];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
-
+    [self.window setAllowsConcurrentViewDrawing:YES];
     [self.window setBackgroundColor:[NSColor clearColor]];
     [self.window setLevel:NSFloatingWindowLevel];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
