@@ -89,9 +89,6 @@
     // Preload the window.
     (void)self.windowController.window;
 
-    // Load our default preferences.
-    [[Preferences sharedPreferences] setupDefaults];
-
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShiverAutoStart"]) {
         [self.loginController setStartAtLogin:YES];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ShiverAutoStart"];
