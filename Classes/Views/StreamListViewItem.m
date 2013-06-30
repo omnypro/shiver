@@ -13,6 +13,7 @@
 #import "Channel.h"
 #import "NSColor+Hex.h"
 #import "NSImageView+AFNetworking.h"
+#import "Preferences.h"
 #import "StreamLogoImageView.h"
 #import "StreamPreviewImageView.h"
 
@@ -122,7 +123,12 @@
 
 - (IBAction)redirectToStream:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:self.object.channel.url];
+    NSURL *streamURL = self.object.channel.url;
+    if ([[Preferences sharedPreferences] streamPopupEnabled]) {
+        streamURL = [streamURL URLByAppendingPathComponent:@"popout"];
+        NSLog(@"%@", streamURL);
+    }
+    [[NSWorkspace sharedWorkspace] openURL:streamURL];
 }
 
 #pragma mark - Drawing Logic

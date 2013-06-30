@@ -48,10 +48,12 @@
 - (void)awakeFromNib
 {
     StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
-    if (![loginController startAtLogin]) { [_systemStartupCheckbox setState:NSOffState]; }
-    if ([loginController startAtLogin]) { [_systemStartupCheckbox setState:NSOnState]; }
+    [_systemStartupCheckbox setState:[loginController startAtLogin]];
 
+    [_notificationCheckbox setState:self.preferences.notificationsEnabled];
+    [_streamCountCheckbox setState:self.preferences.streamCountEnabled];
     [_refreshTimeField setIntegerValue:self.preferences.streamListRefreshTime / 60];
+    [_openInPopupCheckbox setState:self.preferences.streamPopupEnabled];
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol

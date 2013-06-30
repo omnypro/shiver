@@ -286,7 +286,10 @@
         [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
         [notification setInformativeText:stream.channel.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
-        [notification setUserInfo:@{ @"URL": [stream.channel.url absoluteString] }];
+
+        NSURL *streamURL = stream.channel.url;
+        if (self.preferences.streamPopupEnabled) { streamURL = [streamURL URLByAppendingPathComponent:@"popout"]; }
+        [notification setUserInfo:@{ @"URL": [streamURL absoluteString] }];
 
         // Beam it up, Scotty!
         [center deliverNotification:notification];
