@@ -224,7 +224,7 @@
     // fetched one to check for any new broadcasts. If so, send those streams
     // to the notification center.
     [[[[[[[[RACAble(self.streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
-        return (value != nil);
+        return (self.preferences.notificationsEnabled == YES && value != nil);
     }] map:^(NSArray *changes) {
         return [NSSet setWithArray:changes];
     }] mapPreviousWithStart:[NSSet set] combine:^id(NSSet *previous, NSSet *current) {
