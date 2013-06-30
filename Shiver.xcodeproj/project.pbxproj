@@ -82,6 +82,7 @@
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
 		93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */ = {isa = PBXBuildFile; fileRef = 93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */; };
 		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
+		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
 		93BE57C41773D941008CB04E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57C81773D941008CB04E /* InfoPlist.strings */; };
@@ -220,6 +221,8 @@
 		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
 		93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkShadowTextField.h; path = Classes/Views/DarkShadowTextField.h; sourceTree = SOURCE_ROOT; };
 		93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkShadowTextField.m; path = Classes/Views/DarkShadowTextField.m; sourceTree = SOURCE_ROOT; };
+		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
+		93AB1AAC177F97F10038DB27 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Classes/Application/Preferences.m; sourceTree = SOURCE_ROOT; };
 		93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		93BE57C31773D941008CB04E /* ShiverHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiverHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BE57C71773D941008CB04E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -336,6 +339,7 @@
 		93462653176273D500F947FE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				93AB1AAA177F97D80038DB27 /* Application */,
 				936327B71763BAE100146C8A /* Controllers */,
 				93462654176273E500F947FE /* Models */,
 				936327DE1765262E00146C8A /* Networking */,
@@ -569,6 +573,15 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		93AB1AAA177F97D80038DB27 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				93AB1AAB177F97F10038DB27 /* Preferences.h */,
+				93AB1AAC177F97F10038DB27 /* Preferences.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		93BE57C51773D941008CB04E /* ShiverHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,6 +811,7 @@
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
+				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
