@@ -98,8 +98,14 @@
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
+        @strongify(self);
         if ([array count] > 0) {
-            [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [array count]]];
+            // Set the status item's title to the number of live streams if the
+            // user has asked for it in the preferences.
+            if (self.preferences.streamCountEnabled) {
+                [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [array count]]];
+            }
+
             [self.windowController.lastUpdatedLabel setHidden:NO];
             [self.windowController.refreshButton setEnabled:YES];
 
@@ -255,6 +261,7 @@
         NSLog(@"Stream List: Refresh set to %ld seconds.", [interval integerValue]);
     }];
     [[RACSignal interval:self.preferences.streamListRefreshTime] subscribeNext:^(id x) {
+        @strongify(self);
         NSLog(@"Stream List: Triggering timed refresh.");
         self.client = [APIClient sharedClient];
     }];
