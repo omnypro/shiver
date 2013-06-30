@@ -10,6 +10,10 @@
 #import <RHPreferences/RHPreferences.h>
 #import <ServiceManagement/ServiceManagement.h>
 
+@class Preferences;
+
 @interface GeneralViewController : NSViewController <RHPreferencesViewControllerProtocol>
+
+@property (nonatomic, strong) Preferences *preferences;
 
 @end
