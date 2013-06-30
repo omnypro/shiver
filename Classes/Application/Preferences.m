@@ -26,17 +26,6 @@ static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
     return _sharedPreferences;
 }
 
-- (void)setupDefaults
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults registerDefaults:@{
-         NotificationSetting: @(YES),
-         DisplayStreamCountSetting: @(YES),
-         StreamListRefreshTimeSetting: @(5),
-         OpenStreamsInPopupSetting: @(YES)
-     }];
-}
-
 - (BOOL)notificationsEnabled
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

@@ -16,6 +16,5 @@
 @property (nonatomic, assign) BOOL streamPopupEnabled;
 
 + (Preferences *)sharedPreferences;
-- (void)setupDefaults;
 
 @end

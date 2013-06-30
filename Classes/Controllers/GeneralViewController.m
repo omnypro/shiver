@@ -51,7 +51,7 @@
     if (![loginController startAtLogin]) { [_systemStartupCheckbox setState:NSOffState]; }
     if ([loginController startAtLogin]) { [_systemStartupCheckbox setState:NSOnState]; }
 
-    [_separatorBox setFillColor:[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.25]];
+    [_refreshTimeField setIntegerValue:self.preferences.streamListRefreshTime / 60];
 }
 
 #pragma mark - RHPreferencesViewControllerProtocol

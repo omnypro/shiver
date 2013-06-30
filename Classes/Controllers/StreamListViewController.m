@@ -15,6 +15,7 @@
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
+#import "Preferences.h"
 #import "SORelativeDateTransformer.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
@@ -45,6 +46,7 @@
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 
 // Controller state.
+@property (nonatomic, strong) Preferences *preferences;
 @property (atomic) BOOL showingError;
 @property (atomic) NSString *showingErrorMessage;
 @property (atomic) BOOL showingEmpty;
@@ -62,6 +64,7 @@
 
     self.user = user;
     self.statusItem = [[NSApp delegate] statusItem];
+    self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
     return self;
 }
@@ -248,11 +251,11 @@
     }];
 
     // Refresh the stream list at an interval provided by the user.
-    NSTimeInterval refreshInterval = 300.0;
-    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
-        return [RACSignal interval:refreshInterval];
-    }] switchToLatest] subscribeNext:^(id x) {
-        NSLog(@"Stream List: Triggering timed (%f) refresh.", refreshInterval);
+    [[RACAbleWithStart(self.preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
+        NSLog(@"Stream List: Refresh set to %ld seconds.", [interval integerValue]);
+    }];
+    [[RACSignal interval:self.preferences.streamListRefreshTime] subscribeNext:^(id x) {
+        NSLog(@"Stream List: Triggering timed refresh.");
         self.client = [APIClient sharedClient];
     }];
 
