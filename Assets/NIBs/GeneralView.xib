@@ -39,9 +39,9 @@
                     </textFieldCell>
                 </textField>
                 <button id="6">
-                    <rect key="frame" x="144" y="242" width="212" height="18"/>
+                    <rect key="frame" x="144" y="242" width="168" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Start Shiver on system startup" bezelStyle="regularSquare" imagePosition="left" inset="2" id="7">
+                    <buttonCell key="cell" type="check" title="Open Shiver on startup" bezelStyle="regularSquare" imagePosition="left" inset="2" id="7">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -106,12 +106,15 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
-                <box autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="153">
-                    <rect key="frame" x="12" y="126" width="458" height="5"/>
+                <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" id="ZNW-RN-2GL">
+                    <rect key="frame" x="12" y="128" width="458" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="456" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="borderColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <font key="titleFont" metaFont="system"/>
                 </box>
                 <textField verticalHuggingPriority="750" id="131">
                     <rect key="frame" x="55" y="88" width="79" height="17"/>
@@ -126,16 +129,22 @@
                     <rect key="frame" x="332" y="85" width="32" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="5" drawsBackground="YES" id="67">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#" negativeFormat="#" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" minimumFractionDigits="0" maximumFractionDigits="0" id="72">
+                        <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#" negativeFormat="#" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" minimumFractionDigits="0" maximumFractionDigits="0" id="xq7-rI-pTk">
                             <real key="roundingIncrement" value="0.0"/>
+                            <integer key="minimum" value="1"/>
+                            <integer key="maximum" value="60"/>
                             <metadata>
                                 <bool key="localizesFormat" value="YES"/>
+                                <real key="inspectorSampleValue" value="1"/>
                             </metadata>
                         </numberFormatter>
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="9Cq-43-WgE"/>
+                    </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="82">
                     <rect key="frame" x="143" y="88" width="184" height="17"/>
@@ -181,7 +190,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralViewController.h"/>
             <relationships>
                 <relationship kind="action" name="setStreamListRefreshTime:"/>
-                <relationship kind="action" name="showDesktopNotifications:"/>
                 <relationship kind="action" name="toggleDisplayStreamCount:"/>
                 <relationship kind="action" name="toggleOpenStreamsInPopup:"/>
                 <relationship kind="action" name="toggleShowDesktopNotifications:"/>
@@ -189,6 +197,7 @@
                 <relationship kind="outlet" name="_notificationCheckbox" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="_openInPopupCheckbox" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="_refreshTimeField" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="_separatorBox" candidateClass="NSBox"/>
                 <relationship kind="outlet" name="_streamCountCheckbox" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="_systemStartupCheckbox" candidateClass="NSButton"/>
             </relationships>
