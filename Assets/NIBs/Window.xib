@@ -7,9 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WindowController">
             <connections>
-                <action selector="showAbout:" destination="231" id="Wek-cw-JIh"/>
+                <action selector="showAbout:" destination="231" id="TlT-9i-eWp"/>
                 <action selector="showContextMenu:" destination="224" id="255"/>
-                <action selector="showPreferences:" destination="232" id="259"/>
+                <action selector="showPreferences:" destination="232" id="mZI-dF-hTN"/>
                 <action selector="showProfile:" destination="eW1-dG-D21" id="rTu-QA-WhD"/>
                 <outlet property="_contextMenu" destination="230" id="297"/>
                 <outlet property="_footerView" destination="204" id="7Xo-Iw-gsN"/>
@@ -32,7 +32,7 @@
                 <action selector="terminate:" destination="233" id="235"/>
             </connections>
         </customObject>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" showsToolbarButton="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" showsToolbarButton="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1" customClass="MainWindow">
             <windowCollectionBehavior key="collectionBehavior" canJoinAllSpaces="YES" transient="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="320" height="284"/>
@@ -99,7 +99,7 @@
                 </subviews>
             </view>
             <connections>
-                <outlet property="delegate" destination="-2" id="4"/>
+                <outlet property="delegate" destination="-2" id="c6K-1c-g8p"/>
             </connections>
         </window>
         <menu id="230">
@@ -132,6 +132,9 @@
         </class>
         <class className="InnerShadowView" superclassName="NSView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InnerShadowView.h"/>
+        </class>
+        <class className="MainWindow" superclassName="NSWindow">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainWindow.h"/>
         </class>
         <class className="UserImageView" superclassName="NSImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserImageView.h"/>
