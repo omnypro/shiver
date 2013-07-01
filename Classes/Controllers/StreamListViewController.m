@@ -278,7 +278,7 @@
 {
     SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
     NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-    NSString *relativeStringValue = [NSString stringWithFormat:@"Last updated %@", relativeDate];
+    NSString *relativeStringValue = [NSString stringWithFormat:@"Updated %@", relativeDate];
     [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
 }
 

@@ -124,7 +124,7 @@
     return _preferencesWindowController;
 }
 
-#pragma mark Window Compositioning
+#pragma mark - Window Compositioning
 
 - (void)setCurrentViewController:(NSViewController *)viewController {
     if (_currentViewController == viewController) { return; }
@@ -152,7 +152,7 @@
 
 }
 
-#pragma mark Notification Observers
+#pragma mark - Notification Observers
 
 - (void)requestToOpenPreferences:(NSNotification *)notification
 {
@@ -169,7 +169,7 @@
 {
 }
 
-#pragma mark Interface Builder Actions
+#pragma mark - Interface Builder Actions
 
 - (IBAction)showContextMenu:(NSButton *)sender
 {
