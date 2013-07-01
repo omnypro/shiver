@@ -66,6 +66,7 @@
     [self.window setLevel:NSFloatingWindowLevel];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:self.window];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
