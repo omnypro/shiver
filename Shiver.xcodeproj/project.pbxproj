@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9301E9E4176A478300C46750 /* EmptyErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyErrorView.xib */; };
 		9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */; };
+		9310D0F01780FBA80052C25C /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310D0EF1780FBA80052C25C /* MainWindow.m */; };
 		931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* EmptyErrorView.m */; };
 		931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */; };
 		931E254217791FC70081162C /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E254117791FC70081162C /* InnerShadowView.m */; };
@@ -112,6 +113,8 @@
 /* Begin PBXFileReference section */
 		9301E9E2176A478300C46750 /* EmptyErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyErrorView.xib; path = Assets/NIBs/EmptyErrorView.xib; sourceTree = SOURCE_ROOT; };
 		9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchLogoWhite.pdf; path = Assets/Templates/TwitchLogoWhite.pdf; sourceTree = SOURCE_ROOT; };
+		9310D0EE1780FBA80052C25C /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindow.h; path = Classes/Views/MainWindow.h; sourceTree = SOURCE_ROOT; };
+		9310D0EF1780FBA80052C25C /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindow.m; path = Classes/Views/MainWindow.m; sourceTree = SOURCE_ROOT; };
 		931E25281778B7B20081162C /* EmptyErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyErrorView.h; path = Classes/Views/EmptyErrorView.h; sourceTree = SOURCE_ROOT; };
 		931E25291778B7B20081162C /* EmptyErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyErrorView.m; path = Classes/Views/EmptyErrorView.m; sourceTree = SOURCE_ROOT; };
 		931E253A17790FC20081162C /* NSLayoutConstraint+Equations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+Equations.h"; path = "Extensions/Categories/NSLayoutConstraint+Equations.h"; sourceTree = SOURCE_ROOT; };
@@ -506,6 +509,8 @@
 				939E8B821771A4CF006D6442 /* HeaderView.m */,
 				935378F7177B696F0069AEFC /* LoginRequiredView.h */,
 				935378F8177B696F0069AEFC /* LoginRequiredView.m */,
+				9310D0EE1780FBA80052C25C /* MainWindow.h */,
+				9310D0EF1780FBA80052C25C /* MainWindow.m */,
 				939E8B8C17727456006D6442 /* UserImageView.h */,
 				939E8B8D17727456006D6442 /* UserImageView.m */,
 			);
@@ -837,6 +842,7 @@
 				931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */,
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
 				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
+				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 			);
