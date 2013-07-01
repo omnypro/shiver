@@ -52,6 +52,7 @@
         NSDisableScreenUpdates();
         NSImage *image = [self.statusItem image];
         NSImage *alternateImage = [self.statusItem alternateImage];
+        NSString *title = [self.statusItem title];
         id target = [self.statusItem target];
         SEL action = [self.statusItem action];
         NSView *dummyView = [[NSView alloc] initWithFrame:NSZeroRect];
@@ -67,6 +68,7 @@
         [self.statusItem setAlternateImage:alternateImage];
         [self.statusItem setHighlightMode:YES];
         [self.statusItem setTarget:target];
+        [self.statusItem setTitle:title];
         [self.statusItem setAction:action];
         NSEnableScreenUpdates();
 
