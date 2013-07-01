@@ -159,6 +159,16 @@
     [self showPreferences:notification.object];
 }
 
+#pragma mark - NSWindowDelegate Methods
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+}
+
 #pragma mark Interface Builder Actions
 
 - (IBAction)showContextMenu:(NSButton *)sender

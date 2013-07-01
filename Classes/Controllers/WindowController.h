@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RHPreferences/RHPreferences.h>
 
-@interface WindowController : NSWindowController
+@interface WindowController : NSWindowController <NSWindowDelegate>
 
 @property (nonatomic, strong, readonly) RHPreferencesWindowController *preferencesWindowController;
 
