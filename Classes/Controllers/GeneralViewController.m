@@ -65,7 +65,7 @@
 
 - (NSImage*)toolbarItemImage
 {
-    return [NSImage imageNamed:@""];
+    return [NSImage imageNamed:@"PreferencesGeneral"];
 }
 
 -(NSString*)toolbarItemLabel
