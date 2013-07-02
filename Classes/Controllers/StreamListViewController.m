@@ -95,6 +95,21 @@
         self.client = [APIClient sharedClient];
     }];
 
+    // Watch to see if the user has asked to see the stream count in the status
+    // bar (via its preference) and set the status item's title to the number
+    // of live streams.
+    [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
+        return ([value boolValue] == YES);
+    }] subscribeNext:^(id x) {
+        if ([self.streamList count] > 0) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
+        else { [self.statusItem setTitle:nil]; }
+    }];
+    [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
+        return ([value boolValue] != YES);
+    }] subscribeNext:^(id x) {
+        [self.statusItem setTitle:nil];
+    }];
+
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
@@ -103,7 +118,7 @@
             // Set the status item's title to the number of live streams if the
             // user has asked for it in the preferences.
             if (self.preferences.streamCountEnabled) {
-                [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [array count]]];
+                [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]];
             }
 
             [self.windowController.lastUpdatedLabel setHidden:NO];
