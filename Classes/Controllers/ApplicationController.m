@@ -76,7 +76,7 @@
         CGFloat midX = NSMidX(statusItemScreenRect);
         CGFloat windowWidth = NSWidth([self.windowController.window frame]);
         CGFloat windowHeight = NSHeight([self.windowController.window frame]);
-        NSRect windowFrame = NSMakeRect(floor(midX - (windowWidth / 2.0)), floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) - 5.0, windowWidth, windowHeight);
+		NSRect windowFrame = NSMakeRect(floor(midX - (windowWidth / 2.0)), floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) + 12, windowWidth, windowHeight);
 
         [self.windowController.window setFrameOrigin:windowFrame.origin];
         [self.windowController.window makeKeyAndOrderFront:sender];
