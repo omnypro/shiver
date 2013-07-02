@@ -373,9 +373,9 @@
 		934C25DC17775E790038E5DB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				93A3A1251766DFDF00913C9A /* Categories */,
 				939A7B6B17837097009121D6 /* YRKSpinningProgressIndicator.h */,
 				939A7B6C17837097009121D6 /* YRKSpinningProgressIndicator.m */,
-				93A3A1251766DFDF00913C9A /* Categories */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
