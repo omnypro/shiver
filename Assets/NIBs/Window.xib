@@ -104,7 +104,7 @@
         </window>
         <menu id="230">
             <items>
-                <menuItem title="Not Logged In" id="eW1-dG-D21">
+                <menuItem title="Not Logged In" enabled="NO" id="eW1-dG-D21">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="234"/>
@@ -157,6 +157,7 @@
                 <relationship kind="outlet" name="lastUpdatedLabel" candidateClass="NSTextField"/>
                 <relationship kind="outlet" name="refreshButton" candidateClass="NSButton"/>
                 <relationship kind="outlet" name="statusLabel" candidateClass="NSTextField"/>
+                <relationship kind="outlet" name="streamMenu" candidateClass="NSPopUpButton"/>
             </relationships>
         </class>
     </classes>
