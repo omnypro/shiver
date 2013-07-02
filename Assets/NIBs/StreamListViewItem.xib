@@ -10,7 +10,7 @@
         <customObject id="-3" userLabel="Application"/>
         <customView id="2" customClass="StreamListViewItem">
             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView id="53" customClass="StreamPreviewImageView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>

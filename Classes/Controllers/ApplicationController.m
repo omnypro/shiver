@@ -15,6 +15,7 @@
 @interface ApplicationController ()
 @property (nonatomic, strong) StartAtLoginController *loginController;
 @property (nonatomic, readwrite, strong) WindowController *windowController;
+@property (nonatomic, strong) Preferences *preferences;
 @end
 
 @implementation ApplicationController
@@ -29,6 +30,7 @@
 	self = [super init];
 	if (self == nil) { return nil; }
 
+    _preferences = [Preferences sharedPreferences];
     _loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
     _windowController = [[WindowController alloc] init];
     return self;
@@ -76,7 +78,14 @@
         CGFloat midX = NSMidX(statusItemScreenRect);
         CGFloat windowWidth = NSWidth([self.windowController.window frame]);
         CGFloat windowHeight = NSHeight([self.windowController.window frame]);
-		NSRect windowFrame = NSMakeRect(floor(midX - (windowWidth / 2.0)), floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) + 12, windowWidth, windowHeight);
+
+        // There is a 22 point difference when the window is offset from a
+        // status item with a count versus without one. We need to take that
+        // into consideration.
+        float offset = -10;
+        if (self.preferences.streamCountEnabled) { offset = 12; }
+
+		NSRect windowFrame = NSMakeRect(floor(midX - (windowWidth / 2.0)), floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) + offset, windowWidth, windowHeight);
 
         [self.windowController.window setFrameOrigin:windowFrame.origin];
         [self.windowController.window makeKeyAndOrderFront:sender];

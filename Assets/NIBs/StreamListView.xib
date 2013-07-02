@@ -39,8 +39,8 @@
                         <rect key="frame" x="-100" y="-100" width="360" height="11"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="mini" id="81">
-                        <rect key="frame" x="306" y="0.0" width="14" height="200"/>
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" id="81">
+                        <rect key="frame" x="306" y="0.0" width="11" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
