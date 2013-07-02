@@ -15,6 +15,7 @@
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
+#import "LoadingView.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
 #import "Stream.h"
@@ -35,6 +36,7 @@
 // Views.
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
+@property (nonatomic, strong) NSView *loadingView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) WindowController *windowController;
@@ -147,6 +149,26 @@
         NSLog(@"Stream List: Updating the last updated label (on interval).");
         if (array != nil) { [self updateLastUpdatedLabel]; }
     }];
+
+
+    // Show or hide the loading view.
+    [[[RACAble(self.showingLoading) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
+     subscribeNext:^(NSNumber *showingLoading) {
+         @strongify(self);
+         BOOL isShowingLoading = [showingLoading boolValue];
+         if (isShowingLoading) {
+             NSLog(@"Stream List: Showing the loading view.");
+             self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
+             [self.view addSubview:self.loadingView];
+             [[self.loadingView animator] setAlphaValue:1.0];
+         }
+         else {
+             NSLog(@"Stream List: Removing the loading view.");
+             [[self.loadingView animator] setAlphaValue:0.0];
+             [self.loadingView removeFromSuperview];
+             self.loadingView = nil;
+         }
+     }];
 
     // Show or hide the empty view.
     [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
