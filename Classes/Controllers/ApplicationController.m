@@ -38,8 +38,8 @@
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [self.statusItem setAction:@selector(toggleWindow:)];
-    [self.statusItem setImage:[NSImage imageNamed:@"StatusBarIcon"]];
-    [self.statusItem setAlternateImage:[NSImage imageNamed:@"StatusBarIconInverted"]];
+    [self.statusItem setImage:[NSImage imageNamed:@"StatusItem"]];
+    [self.statusItem setAlternateImage:[NSImage imageNamed:@"StatusItemAlternate"]];
     [self.statusItem setHighlightMode:YES];
 }
 

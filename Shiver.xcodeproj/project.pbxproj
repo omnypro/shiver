@@ -54,8 +54,9 @@
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
-		93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93918313176A981800367399 /* LiveStreamsTemplate.pdf */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
+		939A7B591782A537009121D6 /* StatusItem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B581782A472009121D6 /* StatusItem.pdf */; };
+		939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */; };
 		939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B6A177161A8006D6442 /* LightShadowTextField.m */; };
 		939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */; };
 		939E8B7217717BAF006D6442 /* RefreshActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6E17717BAF006D6442 /* RefreshActive.png */; };
@@ -187,7 +188,8 @@
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
-		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
+		939A7B581782A472009121D6 /* StatusItem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItem.pdf; path = Assets/Templates/StatusItem.pdf; sourceTree = SOURCE_ROOT; };
+		939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItemAlternate.pdf; path = Assets/Templates/StatusItemAlternate.pdf; sourceTree = SOURCE_ROOT; };
 		939E8B69177161A8006D6442 /* LightShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightShadowTextField.h; path = Classes/Views/LightShadowTextField.h; sourceTree = SOURCE_ROOT; };
 		939E8B6A177161A8006D6442 /* LightShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightShadowTextField.m; path = Classes/Views/LightShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ViewersTemplate.pdf; path = Assets/Templates/ViewersTemplate.pdf; sourceTree = SOURCE_ROOT; };
@@ -405,7 +407,8 @@
 		936327C01763C8AE00146C8A /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				93918313176A981800367399 /* LiveStreamsTemplate.pdf */,
+				939A7B581782A472009121D6 /* StatusItem.pdf */,
+				939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */,
 				936327C91764119200146C8A /* StatusBarIcon.pdf */,
 				936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */,
 				936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */,
@@ -710,7 +713,6 @@
 				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
 				93918311176A828500367399 /* PreferencesGlitch.png in Resources */,
 				93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */,
-				93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */,
 				939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */,
 				93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */,
 				939E8B7217717BAF006D6442 /* RefreshActive.png in Resources */,
@@ -728,8 +730,10 @@
 				9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */,
 				9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */,
 				932423A11772945800374EB9 /* LoginKeys.png in Resources */,
+				939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */,
 				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
 				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
+				939A7B591782A537009121D6 /* StatusItem.pdf in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
 				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
 			);
