@@ -57,6 +57,9 @@
 		939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */; };
 		939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B651783462B009121D6 /* PreferencesGeneral.png */; };
 		939A7B681783462B009121D6 /* PreferencesGeneral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */; };
+		939A7B6A17836D28009121D6 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B6917836D28009121D6 /* LoadingView.xib */; };
+		939A7B6D17837097009121D6 /* YRKSpinningProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 939A7B6C17837097009121D6 /* YRKSpinningProgressIndicator.m */; };
+		939A7B701783723D009121D6 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939A7B6F1783723D009121D6 /* LoadingView.m */; };
 		939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B6A177161A8006D6442 /* LightShadowTextField.m */; };
 		939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */; };
 		939E8B7217717BAF006D6442 /* RefreshActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6E17717BAF006D6442 /* RefreshActive.png */; };
@@ -186,6 +189,11 @@
 		939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItemAlternate.pdf; path = Assets/Templates/StatusItemAlternate.pdf; sourceTree = SOURCE_ROOT; };
 		939A7B651783462B009121D6 /* PreferencesGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGeneral.png; path = Assets/Images/PreferencesGeneral.png; sourceTree = SOURCE_ROOT; };
 		939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGeneral@2x.png"; path = "Assets/Images/PreferencesGeneral@2x.png"; sourceTree = SOURCE_ROOT; };
+		939A7B6917836D28009121D6 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadingView.xib; path = Assets/NIBs/LoadingView.xib; sourceTree = SOURCE_ROOT; };
+		939A7B6B17837097009121D6 /* YRKSpinningProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRKSpinningProgressIndicator.h; path = Extensions/YRKSpinningProgressIndicator.h; sourceTree = SOURCE_ROOT; };
+		939A7B6C17837097009121D6 /* YRKSpinningProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRKSpinningProgressIndicator.m; path = Extensions/YRKSpinningProgressIndicator.m; sourceTree = SOURCE_ROOT; };
+		939A7B6E1783723D009121D6 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Classes/Views/LoadingView.h; sourceTree = SOURCE_ROOT; };
+		939A7B6F1783723D009121D6 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Classes/Views/LoadingView.m; sourceTree = SOURCE_ROOT; };
 		939E8B69177161A8006D6442 /* LightShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightShadowTextField.h; path = Classes/Views/LightShadowTextField.h; sourceTree = SOURCE_ROOT; };
 		939E8B6A177161A8006D6442 /* LightShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightShadowTextField.m; path = Classes/Views/LightShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ViewersTemplate.pdf; path = Assets/Templates/ViewersTemplate.pdf; sourceTree = SOURCE_ROOT; };
@@ -365,6 +373,8 @@
 		934C25DC17775E790038E5DB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				939A7B6B17837097009121D6 /* YRKSpinningProgressIndicator.h */,
+				939A7B6C17837097009121D6 /* YRKSpinningProgressIndicator.m */,
 				93A3A1251766DFDF00913C9A /* Categories */,
 			);
 			path = Extensions;
@@ -416,6 +426,7 @@
 				93A3A12417658EF600913C9A /* Preferences */,
 				933EC0E4177BDE560041D020 /* AboutWindow.xib */,
 				9301E9E2176A478300C46750 /* EmptyErrorView.xib */,
+				939A7B6917836D28009121D6 /* LoadingView.xib */,
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
@@ -453,6 +464,8 @@
 			children = (
 				931E25281778B7B20081162C /* EmptyErrorView.h */,
 				931E25291778B7B20081162C /* EmptyErrorView.m */,
+				939A7B6E1783723D009121D6 /* LoadingView.h */,
+				939A7B6F1783723D009121D6 /* LoadingView.m */,
 				936327D31764468400146C8A /* StreamListViewItem.h */,
 				936327D41764468500146C8A /* StreamListViewItem.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
@@ -686,6 +699,7 @@
 				933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */,
 				939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */,
 				936327BC1763BB1000146C8A /* Window.xib in Resources */,
+				939A7B6A17836D28009121D6 /* LoadingView.xib in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
@@ -805,6 +819,7 @@
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
 				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
+				939A7B6D17837097009121D6 /* YRKSpinningProgressIndicator.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
@@ -813,6 +828,7 @@
 				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
 				93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */,
 				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,
+				939A7B701783723D009121D6 /* LoadingView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
