@@ -36,12 +36,6 @@
 #define COCOAPODS_VERSION_MINOR_Mantle 1
 #define COCOAPODS_VERSION_PATCH_Mantle 0
 
-// OBMenuBarWindow
-#define COCOAPODS_POD_AVAILABLE_OBMenuBarWindow
-#define COCOAPODS_VERSION_MAJOR_OBMenuBarWindow 0
-#define COCOAPODS_VERSION_MINOR_OBMenuBarWindow 0
-#define COCOAPODS_VERSION_PATCH_OBMenuBarWindow 1
-
 // RHPreferences
 #define COCOAPODS_POD_AVAILABLE_RHPreferences
 #define COCOAPODS_VERSION_MAJOR_RHPreferences 1

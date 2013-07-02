@@ -15,37 +15,27 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Abstracted attributes.
-    CGFloat cornerRadius = 5;
+    [super drawRect:dirtyRect];
 
     // Declare our colors first.
-    NSColor* topColor = [NSColor colorWithHex:@"#464646"];
-    NSColor* bottomColor = [NSColor colorWithHex:@"#262626"];
-    NSColor* highlightColor = [NSColor colorWithHex:@"#555"];
+    NSColor *topColor = [NSColor colorWithHex:@"#F4F4F5"];
+    NSColor *bottomColor = [NSColor colorWithHex:@"#C4C4C5"];
+    NSColor *highlightColor = [NSColor colorWithHex:@"#FFF"];
+    NSColor *shadowColor = [NSColor colorWithHex:@"9A9B9F"];
 
     // We're only drawing the left side of the two-tone header.
-    NSRect rect = NSMakeRect(0, 0, 38, 34);
-    NSRect innerRect = NSInsetRect(rect, cornerRadius, cornerRadius);
-    NSBezierPath* path = [NSBezierPath bezierPath];
-    [path moveToPoint:NSMakePoint(NSMinX(rect), NSMinY(rect))];
-    [path lineToPoint:NSMakePoint(NSMaxX(rect), NSMinY(rect))];
-    [path lineToPoint:NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
-    [path appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(innerRect), NSMaxY(innerRect)) radius:cornerRadius startAngle:90 endAngle:180];
-    [path closePath];
+    NSRect rect = NSMakeRect(0, 0, 320, 32);
+    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
+    [gradient drawInRect:rect angle:-90];
 
-    NSGradient* gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
-    [gradient drawInBezierPath:path angle:-90];
+    // Draw boxes for the highlight and shadow too.
+    NSRect shadowRect = NSMakeRect(0, 0, 320, 1);
+    [shadowColor setFill];
+    NSRectFill(shadowRect);
 
-    // Draw a box for the highlight too.
-    NSRect highlightRect = NSMakeRect(4, 33.5, 33, 0.5);
+    NSRect highlightRect = NSMakeRect(0, 31, 320, 1);
     [highlightColor setFill];
     NSRectFill(highlightRect);
-
-    // Draw a "faked" shadow to separate the two sides of the footer.
-    [bottomColor setFill];
-    NSRectFill(NSMakeRect(37, 0, 1, 33.5));
-
-    [super drawRect:dirtyRect];
 }
 
 @end
