@@ -39,8 +39,6 @@
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
 		936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */; };
 		936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */; };
-		936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C91764119200146C8A /* StatusBarIcon.pdf */; };
-		936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */; };
 		936327D01764287100146C8A /* StreamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327CE1764287100146C8A /* StreamListViewController.m */; };
 		936327D11764287100146C8A /* StreamListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327CF1764287100146C8A /* StreamListView.xib */; };
 		936327D51764468500146C8A /* StreamListViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327D41764468500146C8A /* StreamListViewItem.m */; };
@@ -165,8 +163,6 @@
 		936327BE1763C25B00146C8A /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = Classes/Controllers/ApplicationController.m; sourceTree = SOURCE_ROOT; };
 		936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchPurple.pdf; path = Assets/Templates/TwitchGlitchPurple.pdf; sourceTree = SOURCE_ROOT; };
 		936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchWhite.pdf; path = Assets/Templates/TwitchGlitchWhite.pdf; sourceTree = SOURCE_ROOT; };
-		936327C91764119200146C8A /* StatusBarIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIcon.pdf; path = Assets/Templates/StatusBarIcon.pdf; sourceTree = SOURCE_ROOT; };
-		936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusBarIconInverted.pdf; path = Assets/Templates/StatusBarIconInverted.pdf; sourceTree = SOURCE_ROOT; };
 		936327CD1764287100146C8A /* StreamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewController.h; path = Classes/Controllers/StreamListViewController.h; sourceTree = SOURCE_ROOT; };
 		936327CE1764287100146C8A /* StreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewController.m; path = Classes/Controllers/StreamListViewController.m; sourceTree = SOURCE_ROOT; };
 		936327CF1764287100146C8A /* StreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListView.xib; path = Assets/NIBs/StreamListView.xib; sourceTree = SOURCE_ROOT; };
@@ -409,8 +405,6 @@
 			children = (
 				939A7B581782A472009121D6 /* StatusItem.pdf */,
 				939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */,
-				936327C91764119200146C8A /* StatusBarIcon.pdf */,
-				936327CB176424AF00146C8A /* StatusBarIconInverted.pdf */,
 				936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */,
 				936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */,
 				9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */,
@@ -703,8 +697,6 @@
 				934626591762798100F947FE /* Podfile in Resources */,
 				936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */,
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
-				936327CA1764119200146C8A /* StatusBarIcon.pdf in Resources */,
-				936327CC176424AF00146C8A /* StatusBarIconInverted.pdf in Resources */,
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListViewItem.xib in Resources */,
 				93462A07177CB15400C928CA /* Error.png in Resources */,
