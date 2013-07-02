@@ -90,6 +90,7 @@
 
 - (void) dealloc
 {
+    [super dealloc];
     if (_isAnimating) [self stopAnimation:self];
 }
 
