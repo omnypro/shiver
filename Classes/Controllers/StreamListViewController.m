@@ -15,6 +15,7 @@
 #import "NSColor+Hex.h"
 #import "OAuthViewController.h"
 #import "JAListView.h"
+#import "Preferences.h"
 #import "SORelativeDateTransformer.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
@@ -32,10 +33,11 @@
 @property (nonatomic, strong, readwrite) NSArray *streamArray;
 
 // Views.
-@property (nonatomic, strong) WindowController *windowController;
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
+@property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RACCommand *refreshCommand;
+@property (nonatomic, strong) WindowController *windowController;
 
 // Data sources.
 @property (nonatomic, strong) APIClient *client;
@@ -44,6 +46,7 @@
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 
 // Controller state.
+@property (nonatomic, strong) Preferences *preferences;
 @property (atomic) BOOL showingError;
 @property (atomic) NSString *showingErrorMessage;
 @property (atomic) BOOL showingEmpty;
@@ -60,6 +63,8 @@
     if (self == nil) { return nil; }
 
     self.user = user;
+    self.statusItem = [[NSApp delegate] statusItem];
+    self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
     return self;
 }
@@ -93,7 +98,14 @@
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
-        if (array != nil) {
+        @strongify(self);
+        if ([array count] > 0) {
+            // Set the status item's title to the number of live streams if the
+            // user has asked for it in the preferences.
+            if (self.preferences.streamCountEnabled) {
+                [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [array count]]];
+            }
+
             [self.windowController.lastUpdatedLabel setHidden:NO];
             [self.windowController.refreshButton setEnabled:YES];
 
@@ -103,9 +115,9 @@
             if ([array count] == 1) { [self.windowController.statusLabel setStringValue:singularCount]; }
             else if ([array count] > 1) { [self.windowController.statusLabel setStringValue:pluralCount]; }
             else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
-
         }
         else {
+            [self.statusItem setTitle:nil];
             [self.windowController.lastUpdatedLabel setHidden:YES];
             [self.windowController.refreshButton setEnabled:NO];
             [self.windowController.statusLabel setStringValue:@"No live streams"];
@@ -205,13 +217,6 @@
          NSLog(@"Stream List: Refreshing the stream list.");
          NSLog(@"Stream List: %lu live streams.", [x count]);
 
-         // JAListView includes an internal padding function! So, when the list
-         // is longer than two (which creates scrolling behavior, add 5 points
-         // to the bottom of the view.
-         if (self.streamList.count > 2) {
-             [_listView setPadding:JAEdgeInsetsMake(0, 0, 5, 0)];
-         }
-
          // Update (or reset) the last updated label.
          self.lastUpdatedTimestamp = [NSDate date];
          [self updateLastUpdatedLabel];
@@ -225,7 +230,7 @@
     // fetched one to check for any new broadcasts. If so, send those streams
     // to the notification center.
     [[[[[[[[RACAble(self.streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
-        return (value != nil);
+        return (self.preferences.notificationsEnabled == YES && value != nil);
     }] map:^(NSArray *changes) {
         return [NSSet setWithArray:changes];
     }] mapPreviousWithStart:[NSSet set] combine:^id(NSSet *previous, NSSet *current) {
@@ -252,11 +257,12 @@
     }];
 
     // Refresh the stream list at an interval provided by the user.
-    NSTimeInterval refreshInterval = 300.0;
-    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
-        return [RACSignal interval:refreshInterval];
-    }] switchToLatest] subscribeNext:^(id x) {
-        NSLog(@"Stream List: Triggering timed (%f) refresh.", refreshInterval);
+    [[RACAbleWithStart(self.preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
+        NSLog(@"Stream List: Refresh set to %ld seconds.", [interval integerValue]);
+    }];
+    [[RACSignal interval:self.preferences.streamListRefreshTime] subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Stream List: Triggering timed refresh.");
         self.client = [APIClient sharedClient];
     }];
 
@@ -272,7 +278,7 @@
 {
     SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
     NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-    NSString *relativeStringValue = [NSString stringWithFormat:@"Last updated %@", relativeDate];
+    NSString *relativeStringValue = [NSString stringWithFormat:@"Updated %@", relativeDate];
     [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
 }
 
@@ -287,7 +293,10 @@
         [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
         [notification setInformativeText:stream.channel.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
-        [notification setUserInfo:@{ @"URL": [stream.channel.url absoluteString] }];
+
+        NSURL *streamURL = stream.channel.url;
+        if (self.preferences.streamPopupEnabled) { streamURL = [streamURL URLByAppendingPathComponent:@"popout"]; }
+        [notification setUserInfo:@{ @"URL": [streamURL absoluteString] }];
 
         // Beam it up, Scotty!
         [center deliverNotification:notification];

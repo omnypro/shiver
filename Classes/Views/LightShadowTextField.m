@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "ShadowTextField.h"
+#import "LightShadowTextField.h"
 
-@implementation ShadowTextField
+@implementation LightShadowTextField
 
 - (void)setup
 {
