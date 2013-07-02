@@ -78,6 +78,7 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
+    self.showingLoading = YES;
     [self setUpViewSignals];
     [self setUpDataSignals];
 
@@ -160,11 +161,9 @@
              NSLog(@"Stream List: Showing the loading view.");
              self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
              [self.view addSubview:self.loadingView];
-             [[self.loadingView animator] setAlphaValue:1.0];
          }
          else {
              NSLog(@"Stream List: Removing the loading view.");
-             [[self.loadingView animator] setAlphaValue:0.0];
              [self.loadingView removeFromSuperview];
              self.loadingView = nil;
          }
@@ -225,6 +224,7 @@
         NSLog(@"Stream List: Loading client for %@.", user.name);
         @strongify(self);
         self.client = [APIClient sharedClient];
+        [self.windowController.statusLabel setStringValue:@"Loading..."];
     }];
 
     // Watch for `client` to change or be populated. If so, fetch the stream
@@ -382,6 +382,7 @@
     StreamListViewItem *item = [StreamListViewItem initItem];
     
     item.object = stream;
+    [item setNeedsDisplay:YES];
     return item;
 }
 

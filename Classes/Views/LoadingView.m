@@ -6,15 +6,7 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "YRKSpinningProgressIndicator.h"
-
 #import "LoadingView.h"
-
-@interface LoadingView () {
-    IBOutlet YRKSpinningProgressIndicator *_progressIndicator;
-}
-
-@end
 
 @implementation LoadingView
 
@@ -34,7 +26,7 @@
 {
     [_progressIndicator setColor:[NSColor whiteColor]];
     [_progressIndicator setBackgroundColor:[NSColor clearColor]];
-    [_progressIndicator setUsesThreadedAnimation:YES];
+    [_progressIndicator startAnimation:self];
     return self;
 }
 

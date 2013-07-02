@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "YRKSpinningProgressIndicator.h"
+
 #import <Cocoa/Cocoa.h>
 
 @interface LoadingView : NSView
+
+@property (weak) IBOutlet YRKSpinningProgressIndicator *progressIndicator;
 
 + (id)init;
 - (NSView *)loadingViewWithProgressIndicator;
