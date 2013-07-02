@@ -11,7 +11,6 @@
 #import "EXTKeypathCoding.h"
 #import "LoginRequiredView.h"
 #import "NSColor+Hex.h"
-#import "OBMenuBarWindow.h"
 #import "StreamListViewController.h"
 #import "User.h"
 
@@ -23,7 +22,8 @@
 
 @interface WindowController () {
     IBOutlet NSView *_masterView;
-    IBOutlet NSView *_titleBarView;
+    IBOutlet NSView *_headerView;
+    IBOutlet NSView *_footerView;
     IBOutlet NSImageView *_statusImage;
     IBOutlet NSImageView *_userImage;
     IBOutlet NSButton *_preferencesButton;
@@ -61,9 +61,12 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [[self window] setAllowsConcurrentViewDrawing:YES];
+    [self.window setAllowsConcurrentViewDrawing:YES];
+    [self.window setBackgroundColor:[NSColor clearColor]];
+    [self.window setLevel:NSFloatingWindowLevel];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:self.window];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
@@ -122,7 +125,7 @@
     return _preferencesWindowController;
 }
 
-#pragma mark Window Compositioning
+#pragma mark - Window Compositioning
 
 - (void)setCurrentViewController:(NSViewController *)viewController {
     if (_currentViewController == viewController) { return; }
@@ -134,42 +137,40 @@
 
 - (void)composeInterface
 {
-    OBMenuBarWindow *window = (OBMenuBarWindow *)[self window];
-    [window setHasMenuBarIcon:YES];
-    [window setMenuBarIcon:[NSImage imageNamed:@"StatusBarIcon"]];
-    [window setHighlightedMenuBarIcon:[NSImage imageNamed:@"StatusBarIconInverted"]];
-    [window setAttachedToMenuBar:YES];
-
-    // Compose our own title bar.
-    [window setTitle:@""];
-    [[window toolbarView] addSubview:_titleBarView];
-
     // Make things pretty.
-    [_statusLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
-
-    [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
-    [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
-
-    [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
-    [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
-
-    [[_statusImage cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [_statusLabel setTextColor:[NSColor colorWithHex:@"#7F7F7F"]];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
     [_lastUpdatedLabel setHidden:YES];
-    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#9B9B9B"]];
+    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#666666"]];
+
+    [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
+    [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
+    [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
+    [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
+
 }
 
-#pragma mark Notification Observers
+#pragma mark - Notification Observers
 
 - (void)requestToOpenPreferences:(NSNotification *)notification
 {
     [self showPreferences:notification.object];
 }
 
-#pragma mark Interface Builder Actions
+#pragma mark - NSWindowDelegate Methods
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+}
+
+#pragma mark - Interface Builder Actions
 
 - (IBAction)showContextMenu:(NSButton *)sender
 {

@@ -15,6 +15,8 @@
 
 @interface ApplicationController : NSObject <ShiverApplicationDelegate> {}
 
+@property (strong) NSStatusItem *statusItem;
+@property (nonatomic, strong) NSString *streamCountString;
 @property (nonatomic, readonly, strong) WindowController *windowController;
 
 + (ApplicationController *)sharedInstance;

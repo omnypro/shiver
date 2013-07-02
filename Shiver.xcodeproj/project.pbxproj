@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9301E9E4176A478300C46750 /* EmptyErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E2176A478300C46750 /* EmptyErrorView.xib */; };
 		9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */; };
+		9310D0F01780FBA80052C25C /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310D0EF1780FBA80052C25C /* MainWindow.m */; };
 		931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* EmptyErrorView.m */; };
 		931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */; };
 		931E254217791FC70081162C /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E254117791FC70081162C /* InnerShadowView.m */; };
@@ -55,7 +56,7 @@
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 93918313176A981800367399 /* LiveStreamsTemplate.pdf */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
-		939E8B6B177161A8006D6442 /* ShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B6A177161A8006D6442 /* ShadowTextField.m */; };
+		939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B6A177161A8006D6442 /* LightShadowTextField.m */; };
 		939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */; };
 		939E8B7217717BAF006D6442 /* RefreshActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6E17717BAF006D6442 /* RefreshActive.png */; };
 		939E8B7317717BAF006D6442 /* RefreshActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6F17717BAF006D6442 /* RefreshActive@2x.png */; };
@@ -80,6 +81,9 @@
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
+		93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */ = {isa = PBXBuildFile; fileRef = 93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */; };
+		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
+		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
 		93BE57C41773D941008CB04E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57C81773D941008CB04E /* InfoPlist.strings */; };
@@ -109,6 +113,8 @@
 /* Begin PBXFileReference section */
 		9301E9E2176A478300C46750 /* EmptyErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyErrorView.xib; path = Assets/NIBs/EmptyErrorView.xib; sourceTree = SOURCE_ROOT; };
 		9301E9E5176A635800C46750 /* TwitchLogoWhite.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchLogoWhite.pdf; path = Assets/Templates/TwitchLogoWhite.pdf; sourceTree = SOURCE_ROOT; };
+		9310D0EE1780FBA80052C25C /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindow.h; path = Classes/Views/MainWindow.h; sourceTree = SOURCE_ROOT; };
+		9310D0EF1780FBA80052C25C /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindow.m; path = Classes/Views/MainWindow.m; sourceTree = SOURCE_ROOT; };
 		931E25281778B7B20081162C /* EmptyErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyErrorView.h; path = Classes/Views/EmptyErrorView.h; sourceTree = SOURCE_ROOT; };
 		931E25291778B7B20081162C /* EmptyErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyErrorView.m; path = Classes/Views/EmptyErrorView.m; sourceTree = SOURCE_ROOT; };
 		931E253A17790FC20081162C /* NSLayoutConstraint+Equations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+Equations.h"; path = "Extensions/Categories/NSLayoutConstraint+Equations.h"; sourceTree = SOURCE_ROOT; };
@@ -182,8 +188,8 @@
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		93918313176A981800367399 /* LiveStreamsTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = LiveStreamsTemplate.pdf; path = Assets/Templates/LiveStreamsTemplate.pdf; sourceTree = SOURCE_ROOT; };
-		939E8B69177161A8006D6442 /* ShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadowTextField.h; path = Classes/Views/ShadowTextField.h; sourceTree = SOURCE_ROOT; };
-		939E8B6A177161A8006D6442 /* ShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShadowTextField.m; path = Classes/Views/ShadowTextField.m; sourceTree = SOURCE_ROOT; };
+		939E8B69177161A8006D6442 /* LightShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightShadowTextField.h; path = Classes/Views/LightShadowTextField.h; sourceTree = SOURCE_ROOT; };
+		939E8B6A177161A8006D6442 /* LightShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightShadowTextField.m; path = Classes/Views/LightShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ViewersTemplate.pdf; path = Assets/Templates/ViewersTemplate.pdf; sourceTree = SOURCE_ROOT; };
 		939E8B6E17717BAF006D6442 /* RefreshActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshActive.png; path = Assets/Images/RefreshActive.png; sourceTree = SOURCE_ROOT; };
 		939E8B6F17717BAF006D6442 /* RefreshActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshActive@2x.png"; path = "Assets/Images/RefreshActive@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -216,6 +222,10 @@
 		93A3A1321768571B00913C9A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Classes/Constants.m; sourceTree = SOURCE_ROOT; };
 		93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamLogoImageView.h; path = Classes/Views/StreamLogoImageView.h; sourceTree = SOURCE_ROOT; };
 		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
+		93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkShadowTextField.h; path = Classes/Views/DarkShadowTextField.h; sourceTree = SOURCE_ROOT; };
+		93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkShadowTextField.m; path = Classes/Views/DarkShadowTextField.m; sourceTree = SOURCE_ROOT; };
+		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
+		93AB1AAC177F97F10038DB27 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Classes/Application/Preferences.m; sourceTree = SOURCE_ROOT; };
 		93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		93BE57C31773D941008CB04E /* ShiverHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiverHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BE57C71773D941008CB04E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -332,6 +342,7 @@
 		93462653176273D500F947FE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				93AB1AAA177F97D80038DB27 /* Application */,
 				936327B71763BAE100146C8A /* Controllers */,
 				93462654176273E500F947FE /* Models */,
 				936327DE1765262E00146C8A /* Networking */,
@@ -498,6 +509,8 @@
 				939E8B821771A4CF006D6442 /* HeaderView.m */,
 				935378F7177B696F0069AEFC /* LoginRequiredView.h */,
 				935378F8177B696F0069AEFC /* LoginRequiredView.m */,
+				9310D0EE1780FBA80052C25C /* MainWindow.h */,
+				9310D0EF1780FBA80052C25C /* MainWindow.m */,
 				939E8B8C17727456006D6442 /* UserImageView.h */,
 				939E8B8D17727456006D6442 /* UserImageView.m */,
 			);
@@ -507,10 +520,12 @@
 		939E8B9317728326006D6442 /* Custom UI */ = {
 			isa = PBXGroup;
 			children = (
+				93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */,
+				93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */,
 				931E254017791FC70081162C /* InnerShadowView.h */,
 				931E254117791FC70081162C /* InnerShadowView.m */,
-				939E8B69177161A8006D6442 /* ShadowTextField.h */,
-				939E8B6A177161A8006D6442 /* ShadowTextField.m */,
+				939E8B69177161A8006D6442 /* LightShadowTextField.h */,
+				939E8B6A177161A8006D6442 /* LightShadowTextField.m */,
 			);
 			name = "Custom UI";
 			sourceTree = "<group>";
@@ -561,6 +576,15 @@
 				93A3A12A17679C8100913C9A /* OAuthView.m */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		93AB1AAA177F97D80038DB27 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				93AB1AAB177F97F10038DB27 /* Preferences.h */,
+				93AB1AAC177F97F10038DB27 /* Preferences.m */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 		93BE57C51773D941008CB04E /* ShiverHelper */ = {
@@ -688,6 +712,7 @@
 				93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */,
 				93918314176A981800367399 /* LiveStreamsTemplate.pdf in Resources */,
 				939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */,
+				93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */,
 				939E8B7217717BAF006D6442 /* RefreshActive.png in Resources */,
 				939E8B7317717BAF006D6442 /* RefreshActive@2x.png in Resources */,
 				939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */,
@@ -790,6 +815,8 @@
 				932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */,
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
+				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
+				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
@@ -806,7 +833,7 @@
 				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
-				939E8B6B177161A8006D6442 /* ShadowTextField.m in Sources */,
+				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
 				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
 				939E8B831771A4CF006D6442 /* HeaderView.m in Sources */,
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
@@ -815,6 +842,7 @@
 				931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */,
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
 				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
+				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 			);
