@@ -26,7 +26,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="41">
-                    <rect key="frame" x="0.0" y="73" width="320" height="18"/>
+                    <rect key="frame" x="0.0" y="72" width="320" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="(Click on the button below to get started.)" id="44">
                         <font key="font" size="11" name="HelveticaNeue"/>
@@ -40,7 +40,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LoginKeys" id="101"/>
                 </imageView>
                 <button verticalHuggingPriority="750" id="138">
-                    <rect key="frame" x="87" y="44.5" width="147" height="32"/>
+                    <rect key="frame" x="87" y="42.5" width="147" height="32"/>
                     <buttonCell key="cell" type="push" title="Connect with Twitch" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="139" customClass="WatchButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="11" name="HelveticaNeue-Bold"/>
