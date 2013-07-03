@@ -83,9 +83,12 @@
         // status item with a count versus without one. We need to take that
         // into consideration.
         float offset = -10;
-        if (self.preferences.streamCountEnabled) { offset = 12; }
+        if (self.preferences.streamCountEnabled && [self.statusItem.title isNotEqualTo:@""] ) { offset = 12; }
 
-		NSRect windowFrame = NSMakeRect(floor(midX - (windowWidth / 2.0)), floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) + offset, windowWidth, windowHeight);
+		NSRect windowFrame = NSMakeRect(
+            floor(midX - (windowWidth / 2.0)),
+            floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) + offset,
+            windowWidth, windowHeight);
 
         [self.windowController.window setFrameOrigin:windowFrame.origin];
         [self.windowController.window makeKeyAndOrderFront:sender];
