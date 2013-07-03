@@ -35,13 +35,10 @@
     return _preferences;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    
+    self = [super initWithNibName:@"OAuthView" bundle:nil];
+    if (self == nil) { return nil; }
     return self;
 }
 

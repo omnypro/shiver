@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) Preferences *preferences;
 
+- (id)init;
+
 @end
