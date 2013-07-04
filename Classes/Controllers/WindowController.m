@@ -27,7 +27,6 @@
     IBOutlet NSView *_masterView;
     IBOutlet NSView *_headerView;
     IBOutlet NSView *_footerView;
-    IBOutlet NSImageView *_statusImage;
     IBOutlet NSImageView *_userImage;
     IBOutlet NSButton *_preferencesButton;
     IBOutlet NSMenu *_contextMenu;
