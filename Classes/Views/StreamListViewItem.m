@@ -126,7 +126,6 @@
     NSURL *streamURL = self.object.channel.url;
     if ([[Preferences sharedPreferences] streamPopupEnabled]) {
         streamURL = [streamURL URLByAppendingPathComponent:@"popout"];
-        NSLog(@"%@", streamURL);
     }
     [[NSWorkspace sharedWorkspace] openURL:streamURL];
 }
