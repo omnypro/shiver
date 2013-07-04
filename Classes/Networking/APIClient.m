@@ -7,7 +7,6 @@
 //
 
 #import "AFJSONRequestOperation.h"
-#import "FeaturedStream.h"
 #import "Mantle.h"
 #import "OAuthViewController.h"
 #import "Stream.h"
@@ -122,9 +121,9 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil]
         map:^id(id responseObject) { return [responseObject valueForKeyPath:@"streams"]; }]
         map:^id(NSArray *streamsFromResponse) {
-            return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictonary) {
+            return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictionary) {
                 NSError *error = nil;
-                Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictonary error:&error];
+                Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
                 return stream;
             }] array];
         }];
@@ -135,9 +134,16 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured" parameters:nil]
         map:^id(id responseObject) { return [responseObject valueForKeyPath:@"featured"]; }]
         map:^id(NSArray *streamsFromResponse) {
-            return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictonary) {
+            return [[streamsFromResponse.rac_sequence map:^id(NSMutableDictionary *dictionary) {
                 NSError *error = nil;
-                FeaturedStream *stream = [MTLJSONAdapter modelOfClass:FeaturedStream.class fromJSONDictionary:dictonary error:&error];
+
+                // Twitch's featured streams nests a Stream object alongside
+                // metadata that is used for their front page. We don't need
+                // this data, so we'll just grab the nested object.
+                dictionary = [dictionary valueForKeyPath:@"stream"];
+                NSLog(@"%@", dictionary);
+
+                Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
                 return stream;
             }] array];
         }];
