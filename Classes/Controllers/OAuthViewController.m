@@ -75,7 +75,8 @@
     @weakify(self);
 
     _loginButton.rac_command = self.loginCommand;
-    [self.loginCommand subscribeNext:^(id x) {
+    [[self.loginCommand
+      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Authentication: Kicking off the login process.");
         self.client = [APIClient sharedClient];
@@ -83,7 +84,8 @@
     }];
 
     _disconnectButton.rac_command = self.disconnectCommand;
-    [self.disconnectCommand subscribeNext:^(id x) {
+    [[self.disconnectCommand
+      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Authentication: Logging out and removing credentials.");
         self.client = [APIClient sharedClient];
@@ -164,17 +166,16 @@
         NSLog(@"Authentication: We've been granted access.");
 
         closeSheet();
-        [[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^(AFOAuthCredential *credential, User *user) {
+        [[[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^(AFOAuthCredential *credential, User *user) {
             @strongify(self);
             NSLog(@"Authentication: (Credential) %@", credential.accessToken);
             NSLog(@"Authentication: (User) %@", user.name);
             self.credential = credential;
             self.user = user;
-        }] subscribeCompleted:^{
+        }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeCompleted:^{
             @strongify(self);
             NSLog(@"Authentication: Complete for %@.", self.user.name);
             [self.didLoginSubject sendNext:RACTuplePack(self.credential, self.user)];
-            [self.didLoginSubject sendCompleted];
             self.loggingIn = NO;
         }];
     }];
