@@ -18,11 +18,9 @@
                 <outlet property="_preferencesButton" destination="224" id="296"/>
                 <outlet property="_userImage" destination="282" id="293"/>
                 <outlet property="_userMenuItem" destination="eW1-dG-D21" id="Soo-Jf-eBd"/>
-                <outlet property="contextMenu" destination="230" id="NBO-88-giz"/>
                 <outlet property="lastUpdatedLabel" destination="220" id="302"/>
                 <outlet property="refreshButton" destination="265" id="299"/>
                 <outlet property="statusLabel" destination="96" id="301"/>
-                <outlet property="userMenuItem" destination="eW1-dG-D21" id="G0H-tJ-wAq"/>
                 <outlet property="window" destination="1" id="144"/>
             </connections>
         </customObject>
@@ -63,7 +61,7 @@
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96" customClass="DarkShadowTextField">
                                 <rect key="frame" x="36" y="9" width="97" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" title="No live streams" id="97">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" title="Not logged in" id="97">
                                     <font key="font" size="12" name="HelveticaNeue-Bold"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
