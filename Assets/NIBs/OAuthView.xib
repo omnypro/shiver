@@ -309,7 +309,6 @@
 						<string key="NSFrame">{{14, 13}, {124, 32}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="44903704">
@@ -395,7 +394,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="402305416">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="WebView" id="107893635">
@@ -420,7 +419,6 @@
 							</set>
 							<string key="NSFrameSize">{440, 560}</string>
 							<reference key="NSSuperview" ref="402305416"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="FrameName"/>
@@ -441,15 +439,12 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{212, 272}, {16, 16}}</string>
 							<reference key="NSSuperview" ref="402305416"/>
-							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:945</string>
 							<int key="NSpiFlags">20746</int>
 							<double key="NSMaxValue">100</double>
 						</object>
 					</array>
 					<string key="NSFrameSize">{440, 560}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="107893635"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>

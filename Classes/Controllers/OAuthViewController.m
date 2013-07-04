@@ -35,7 +35,6 @@
 @property (nonatomic, strong) RACCommand *disconnectCommand;
 @property (nonatomic, strong) RACCommand *loginCommand;
 
-- (IBAction)learnMore:(NSButton *)sender;
 @end
 
 @implementation OAuthViewController

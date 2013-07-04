@@ -299,7 +299,8 @@
 
          // Reload the table.
          [_listView reloadDataAnimated:YES];
-         self.showingLoading = NO;
+    } completed:^{
+        self.showingLoading = NO;
     }];
 
     // If we've fetched streams before, compared the existing list to the newly
