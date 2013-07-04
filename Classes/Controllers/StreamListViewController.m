@@ -13,9 +13,10 @@
 #import "Channel.h"
 #import "EmptyErrorView.h"
 #import "NSColor+Hex.h"
-#import "OAuthViewController.h"
+#import "NSView+Animations.h"
 #import "JAListView.h"
 #import "LoadingView.h"
+#import "LoginRequiredView.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
 #import "Stream.h"
@@ -31,23 +32,24 @@
 
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
-@property (nonatomic, strong) NSView *loadingView;
+@property (nonatomic, strong) LoadingView *loadingView;
+@property (nonatomic, strong) NSView *loginView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) WindowController *windowController;
 
-@property (nonatomic, assign) BOOL loggedIn;
-@property (nonatomic, strong) APIClient *client;
 @property (nonatomic, strong) AFOAuthCredential *credential;
+@property (nonatomic, strong) APIClient *client;
 @property (nonatomic, strong) NSArray *streamList;
-@property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
-
 @property (nonatomic, strong) Preferences *preferences;
+@property (nonatomic, strong) User *user;
+
+@property (nonatomic, assign) BOOL loggedIn;
 @property (atomic) BOOL showingError;
-@property (atomic) NSString *showingErrorMessage;
 @property (atomic) BOOL showingEmpty;
 @property (atomic) BOOL showingLoading;
+@property (atomic) NSString *showingErrorMessage;
 
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
@@ -59,9 +61,9 @@
     self = [super initWithNibName:@"StreamListView" bundle:nil];
     if (self == nil) { return nil; }
 
-    self.user = user;
     self.statusItem = [[NSApp delegate] statusItem];
     self.preferences = [Preferences sharedPreferences];
+    self.user = user;
     self.windowController = [[NSApp delegate] windowController];
     return self;
 }
@@ -73,12 +75,15 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    self.showingLoading = YES;
+    self.loginView = [LoginRequiredView init];
+    self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
+
     [self setUpViewSignals];
     [self setUpDataSignals];
 
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
+    [_listView setConditionallyUseLayerBacking:YES];
 }
 
 - (void)setUpViewSignals
@@ -89,7 +94,7 @@
     self.windowController.refreshButton.rac_command = self.refreshCommand;
     [self.refreshCommand subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Stream List: Request to manually refresh the stream list.");
+        NSLog(@"Application (%@): Request to manually refresh the stream list.", [self class]);
         self.client = [APIClient sharedClient];
     }];
 
@@ -99,18 +104,20 @@
     [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
+        @strongify(self);
         if ([self.streamList count] > 0) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
         else { [self.statusItem setTitle:nil]; }
     }];
     [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
         return ([value boolValue] != YES);
     }] subscribeNext:^(id x) {
+        @strongify(self);
         [self.statusItem setTitle:nil];
     }];
 
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
-    [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
+    [[RACAbleWithStart(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
         @strongify(self);
         if ([array count] > 0) {
             // Set the status item's title to the number of live streams if the
@@ -119,7 +126,6 @@
                 [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]];
             }
 
-            [self.windowController.lastUpdatedLabel setHidden:NO];
             [self.windowController.refreshButton setEnabled:YES];
 
             // Update the string based on the number of streams that are live.
@@ -131,7 +137,6 @@
         }
         else {
             [self.statusItem setTitle:nil];
-            [self.windowController.lastUpdatedLabel setHidden:YES];
             [self.windowController.refreshButton setEnabled:NO];
             [self.windowController.statusLabel setStringValue:@"No live streams"];
         }
@@ -139,69 +144,97 @@
 
     // Updated the lastUpdated label every 30 seconds.
     NSTimeInterval lastUpdatedInterval = 30.0;
-    [[[RACAbleWithStart(self.streamList) map:^id(id value) {
+    [[[[RACAbleWithStart(self.streamList) filter:^BOOL(NSArray *array) {
+        return (array != nil);
+    }] map:^id(id value) {
         return [RACSignal interval:lastUpdatedInterval];
     }] switchToLatest] subscribeNext:^(NSArray *array) {
-        NSLog(@"Stream List: Updating the last updated label (on interval).");
+        @strongify(self);
+        NSLog(@"Application (%@): Updating the last updated label (on interval).", [self class]);
         if (array != nil) { [self updateLastUpdatedLabel]; }
     }];
 
     // Show or hide the loading view.
-    [[[RACAble(self.showingLoading) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(NSNumber *showingLoading) {
+    [[[RACAble(self.showingLoading) distinctUntilChanged]
+      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingLoading) {
          @strongify(self);
          BOOL isShowingLoading = [showingLoading boolValue];
          if (isShowingLoading) {
-             NSLog(@"Stream List: Showing the loading view.");
-             self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
-             [self.view addSubview:self.loadingView];
+             NSLog(@"Application (%@): Showing the loading view.", [self class]);
+             [self.loadingView.progressIndicator startAnimation:self];
+             [_listView addSubview:self.loadingView animated:YES];
+             [_listView setNeedsLayout:YES];
          }
          else {
-             NSLog(@"Stream List: Removing the loading view.");
-             [self.loadingView removeFromSuperview];
+             NSLog(@"Application (%@): Removing the loading view.", [self class]);
+             [self.loadingView removeFromSuperviewAnimated:YES];
+             [self.loadingView.progressIndicator stopAnimation:self];
              self.loadingView = nil;
          }
      }];
 
     // Show or hide the empty view.
-    [[[RACAble(self.showingEmpty) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(NSNumber *showingEmpty) {
-         @strongify(self);
-         BOOL isShowingEmpty = [showingEmpty boolValue];
-         if (isShowingEmpty && !self.showingError){
-             NSLog(@"Stream List: Showing the empty view.");
-             NSString *title = @"Looks like you've got nothing to watch.";
-             NSString *subTitle = @"Why don't you follow some new streamers?";
-             self.errorView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
-             [self.view addSubview:self.emptyView];
-         } else {
-             NSLog(@"Stream List: Removing the empty view.");
-             [self.emptyView removeFromSuperview];
-             self.emptyView = nil;
-         }
-     }];
+    [[[RACAble(self.showingEmpty) distinctUntilChanged]
+      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingEmpty) {
+        @strongify(self);
+        BOOL isShowingEmpty = [showingEmpty boolValue];
+        if (isShowingEmpty && !self.showingError){
+            NSLog(@"Application (%@): Showing the empty view.", [self class]);
+            NSString *title = @"Looks like you've got nothing to watch.";
+            NSString *subTitle = @"Why don't you follow some new streamers?";
+            self.emptyView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
+            [self.view addSubview:self.emptyView animated:YES];
+            [self.view setNeedsLayout:YES];
+        } else {
+            NSLog(@"Application (%@): Removing the empty view.", [self class]);
+            [self.emptyView removeFromSuperviewAnimated:YES];
+            self.emptyView = nil;
+        }
+    }];
 
     // Show or hide the error view.
-    [[[RACAble(self.showingError) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(NSNumber *showingError) {
-         @strongify(self);
-         BOOL isShowingError = [showingError boolValue];
-         if (isShowingError) {
-             // Don't show the empty or loading views if there's an error.
-             self.showingEmpty = NO;
-             self.showingLoading = NO;
-             NSString *title = @"Whoops! Something went wrong.";
-             NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-             NSLog(@"Stream List: Showing the error view with message \"%@\"", message);
-             self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
-             [self.view addSubview:self.errorView];
-             [self.errorView setNeedsDisplay:YES];
-         }
-         else {
-             NSLog(@"Stream List: Removing the error view.");
-             [self.errorView removeFromSuperview];
-             self.errorView = nil;
-             self.showingErrorMessage = nil;
+    [[[RACAble(self.showingError) distinctUntilChanged]
+      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingError) {
+        @strongify(self);
+        BOOL isShowingError = [showingError boolValue];
+        if (isShowingError) {
+            // Don't show the empty or loading views if there's an error.
+            self.showingEmpty = NO;
+            self.showingLoading = NO;
+            NSString *title = @"Whoops! Something went wrong.";
+            NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
+            NSLog(@"Application (%@): Showing the error view with message \"%@\"", [self class], message);
+            self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
+            [self.view addSubview:self.errorView animated:YES];
+            [self.view setNeedsLayout:YES];
+        }
+        else {
+            NSLog(@"Application (%@): Removing the error view.", [self class]);
+            [self.errorView removeFromSuperviewAnimated:YES];
+            self.errorView = nil;
+            self.showingErrorMessage = nil;
+        }
+    }];
+
+    // Show or hide the login view.
+    [[[RACAble(self.loggedIn) distinctUntilChanged]
+      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingLogin) {
+        @strongify(self);
+        BOOL isShowingLogin = [showingLogin boolValue];
+        if (!isShowingLogin) {
+            NSLog(@"Application (%@): Showing the login view.", [self class]);
+            // Don't show any of the other views if we're going to show login.
+            self.errorView = NO;
+            self.loadingView = NO;
+            [self.view addSubview:self.loginView animated:YES];
+            [self.view setNeedsLayout:YES];
+
+            // A little extra work, make sure the status item's title is nil.
+            [self.statusItem setTitle:nil];
+        }
+        else {
+            NSLog(@"Application (%@): Removing the login view.", [self class]);
+            [self.loginView removeFromSuperviewAnimated:YES];
         }
     }];
 }
@@ -215,10 +248,21 @@
     [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
         return (value != nil);
     }] subscribeNext:^(User *user) {
-        NSLog(@"Stream List: Loading client for %@.", user.name);
+        NSLog(@"Application (%@): Loading client for %@.", [self class], user.name);
         @strongify(self);
         self.client = [APIClient sharedClient];
+        self.loggedIn = YES;
         [self.windowController.statusLabel setStringValue:@"Loading..."];
+    }];
+
+    // We pass a nil user to this controller in order to "reset" the interface.
+    // We'll watch that value, filter then reset the interface.
+    [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+        return (value == nil);
+    }] subscribeNext:^(User *user) {
+        self.client = nil;
+        self.loggedIn = NO;
+        self.streamList = nil;
     }];
 
     // Watch for `client` to change or be populated. If so, fetch the stream
@@ -227,15 +271,16 @@
         return (value != nil);
     }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        [[[self.client fetchStreamList] deliverOn:[RACScheduler scheduler]] subscribeNext:^(NSArray *streamList) {
-            NSLog(@"Stream List: Fetching the stream list.");
+        self.showingLoading = YES;
+        [[[self.client fetchStreamList]
+          deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *streamList) {
+            NSLog(@"Application (%@): Fetching the stream list.", [self class]);
             @strongify(self);
             self.streamList = streamList;
             self.showingError = NO;
-            self.showingLoading = YES;
         } error:^(NSError *error) {
             @strongify(self);
-            NSLog(@"Stream List: (Error) %@", error);
+            NSLog(@"Application (%@): (Error) %@", [self class], error);
             self.showingErrorMessage = [error localizedDescription];
             self.showingError = YES;
         }];
@@ -245,8 +290,8 @@
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id x){
          @strongify(self);
-         NSLog(@"Stream List: Refreshing the stream list.");
-         NSLog(@"Stream List: %lu live streams.", [x count]);
+         NSLog(@"Application (%@): Refreshing the stream list.", [self class]);
+         NSLog(@"Application (%@): %lu live streams.", [self class], [x count]);
 
          // Update (or reset) the last updated label.
          self.lastUpdatedTimestamp = [NSDate date];
@@ -289,11 +334,11 @@
 
     // Refresh the stream list at an interval provided by the user.
     [[RACAbleWithStart(self.preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
-        NSLog(@"Stream List: Refresh set to %ld seconds.", [interval integerValue]);
+        NSLog(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
     }];
     [[RACSignal interval:self.preferences.streamListRefreshTime] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Stream List: Triggering timed refresh.");
+        NSLog(@"Application (%@): Triggering timed refresh.", [self class]);
         self.client = [APIClient sharedClient];
     }];
 
