@@ -28,25 +28,30 @@
 }
 
 @property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) User *user;
 
 @property (nonatomic, assign) BOOL loggingIn;
 @property (nonatomic, strong) RACCommand *disconnectCommand;
 @property (nonatomic, strong) RACCommand *loginCommand;
-@property (nonatomic, strong) RACSubject *didLoginSubject;
-@property (nonatomic, strong) RACSubject *URLProtocolValueSubject;
 
 - (IBAction)learnMore:(NSButton *)sender;
 @end
 
 @implementation OAuthViewController
 
-- (id)initWithUser:(User *)user
+- (id)init
 {
     self = [super initWithNibName:@"OAuthView" bundle:nil];
     if (self == nil) { return nil; }
 
-    self.user = user;
+    self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
+    self.loginCommand = [RACCommand command];
+    self.disconnectCommand = [RACCommand command];
+    self.didLogoutSubject = [RACReplaySubject subject];
+    self.didLoginSubject = [RACReplaySubject subject];
+
+    [self setUpAuthenticationSignals];
     return self;
 }
 
@@ -55,16 +60,12 @@
     [super awakeFromNib];
 
     self.loggingIn = NO;
-    self.loginCommand = [RACCommand command];
-    self.disconnectCommand = [RACCommand command];
-    self.didLoginSubject = [RACSubject subject];
-
-    [self setUpViewSignals];
-    [self setUpAuthenticationSignals];
 
     // Call the -sharedAppleEventManager and set an event handler to grab the
     // callbacks from Twitch's authentication system.
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleAppleEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+
+    [self setUpViewSignals];
 
     [_modalWebView setFrameLoadDelegate:self];
 }
@@ -76,6 +77,7 @@
     _loginButton.rac_command = self.loginCommand;
     [self.loginCommand subscribeNext:^(id x) {
         @strongify(self);
+        NSLog(@"Authentication: Kicking off the login process.");
         self.client = [APIClient sharedClient];
         self.loggingIn = YES;
     }];
@@ -83,26 +85,33 @@
     _disconnectButton.rac_command = self.disconnectCommand;
     [self.disconnectCommand subscribeNext:^(id x) {
         @strongify(self);
+        NSLog(@"Authentication: Logging out and removing credentials.");
         self.client = [APIClient sharedClient];
+        self.credential = nil;
         self.user = nil;
+
+        [self.client logout];
+        [self.didLogoutSubject sendNext:RACTuplePack(self.credential, self.user)];
     }];
 
     // Watch to see if the value of user is set. If so, change the respective
     // UI elements to reflect the fact that we have a user present.
-    [[[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+    [[RACAbleWithStart(self.credential) filter:^BOOL(id value) {
         return (value != nil);
-    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
+    }] subscribeNext:^(id x) {
         @strongify(self);
-        [_connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", self.user.name]];
+        [_connectionStatusLabel setStringValue:@"You're logged in."];
         [_disconnectButton setHidden:NO];
         [_loginButton setHidden:YES];
+
+        if (self.user) { [_connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", self.user.name]]; }
     }];
 
     // This time, we're watching to see if the value of user is `nil`. If so,
     // we'll revert all of the UI elements back to their original forms.
-    [[[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+    [[RACAbleWithStart(self.credential) filter:^BOOL(id value) {
         return (value == nil);
-    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
+    }] subscribeNext:^(id x) {
         [_connectionStatusLabel setStringValue:@"Not currently connected."];
         [_disconnectButton setHidden:YES];
         [_loginButton setHidden:NO];
@@ -157,12 +166,15 @@
         closeSheet();
         [[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^(AFOAuthCredential *credential, User *user) {
             @strongify(self);
-            NSLog(@"Authentication: (Credential) %@", credential);
-            NSLog(@"Authentication: (User) %@", user);
+            NSLog(@"Authentication: (Credential) %@", credential.accessToken);
+            NSLog(@"Authentication: (User) %@", user.name);
+            self.credential = credential;
             self.user = user;
         }] subscribeCompleted:^{
-            NSLog(@"Authentication: Complete for %@.", self.user);
-            [self.didLoginSubject sendNext:self.user];
+            @strongify(self);
+            NSLog(@"Authentication: Complete for %@.", self.user.name);
+            [self.didLoginSubject sendNext:RACTuplePack(self.credential, self.user)];
+            [self.didLoginSubject sendCompleted];
             self.loggingIn = NO;
         }];
     }];

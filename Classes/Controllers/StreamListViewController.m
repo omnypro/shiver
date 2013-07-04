@@ -42,7 +42,9 @@
 @property (nonatomic, strong) WindowController *windowController;
 
 // Data sources.
+@property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) NSArray *streamList;
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
@@ -150,7 +152,6 @@
         NSLog(@"Stream List: Updating the last updated label (on interval).");
         if (array != nil) { [self updateLastUpdatedLabel]; }
     }];
-
 
     // Show or hide the loading view.
     [[[RACAble(self.showingLoading) distinctUntilChanged] deliverOn:[RACScheduler mainThreadScheduler]]
