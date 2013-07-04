@@ -15,6 +15,6 @@
 @property (weak) IBOutlet YRKSpinningProgressIndicator *progressIndicator;
 
 + (id)init;
-- (NSView *)loadingViewWithProgressIndicator;
+- (LoadingView *)loadingViewWithProgressIndicator;
 
 @end
