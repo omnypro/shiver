@@ -200,13 +200,14 @@
 - (void)composeInterface
 {
     // Make things pretty.
+    [_sectionLabel setTextColor:[NSColor colorWithHex:@"#666"]];
     [_statusLabel setTextColor:[NSColor colorWithHex:@"#7F7F7F"]];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
     [_lastUpdatedLabel setHidden:YES];
-    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#666666"]];
+    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#4F4F4F"]];
 
     [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
     [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
