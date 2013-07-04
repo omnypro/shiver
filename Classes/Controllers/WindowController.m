@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <EXTScope.h>
+#import <EXTKeypathCoding.h>
+
 #import "AboutWindowController.h"
 #import "APIClient.h"
-#import "EXTKeypathCoding.h"
 #import "LoginRequiredView.h"
 #import "NSColor+Hex.h"
 #import "StreamListViewController.h"
@@ -36,12 +39,14 @@
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
 @property (nonatomic, strong) NSView *loginView;
 
+@property (nonatomic, assign) BOOL loggedIn;
+@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) AFOAuthCredential *credential;
+@property (nonatomic, strong) User *user;
+
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
-@property (nonatomic, strong) OAuthViewController *oauthPreferences;
-
-@property (nonatomic, strong) APIClient *client;
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) OAuthViewController *oAuthPreferences;
 
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showProfile:(id)sender;
@@ -65,62 +70,119 @@
     [self.window setBackgroundColor:[NSColor clearColor]];
     [self.window setLevel:NSFloatingWindowLevel];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:self.window];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSWindowDidResignKeyNotification object:self.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
+    [self initializeControllers];
     [self composeInterface];
 
-    // Do we have a user? Check for one by making self.user reactable. Try to
-    // fetch the user from the API and when the value changes, show the
-    // stream list.
-    self.client = [APIClient sharedClient];
-    RAC(self.user) = [[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]];
-    [[[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
-        return (user != nil);
-    }] map:^id(User *user) {
-		NSLog(@"Application: Welcome %@!", user.name);
-        return [[StreamListViewController alloc] initWithUser:user];
-    }] toProperty:@keypath(self.currentViewController) onObject:self];
+    @weakify(self);
 
-    // If self.user ever becomes nil, show the login required view.
-    [[RACAbleWithStart(self.user) filter:^BOOL(User *user) {
-        return (user == nil);
-    }] subscribeNext:^(User *user) {
-		NSLog(@"Application: We no longer have a user. :(");
-        self.loginView = [LoginRequiredView init];
-        [_masterView replaceSubview:self.currentViewController.view with:self.loginView];
+    self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
+    [[[RACAbleWithStart(self.credential) distinctUntilChanged] filter:^BOOL(AFOAuthCredential *credential) {
+        return (credential != nil);
+    }] subscribeNext:^(AFOAuthCredential *credential) {
+        @strongify(self);
+        NSLog(@"Application (%@): We have a credential.", [self class]);
+        self.loggedIn = YES;
+        self.client = [APIClient sharedClient];
+        if (self.user == nil) {
+            [[[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
+                NSLog(@"Application (%@): We have a user. (%@)", [self class], user.name);
+                self.user = user;
+            }];
+        }
+    }];
+    [[[RACAbleWithStart(self.credential) distinctUntilChanged] filter:^BOOL(AFOAuthCredential *credential) {
+        return (credential == nil);
+    }] subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Application (%@): We do not have a credential.", [self class]);
+        self.loggedIn = NO;
+        self.client = nil;
     }];
 
-    // Watch self.user and update the main interface appropriately.
-    [RACAbleWithStart(self.user) subscribeNext:^(User *user) {
+    // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
+    // fetch the user from the API and when the value changes, then show the
+    // stream list.
+    [[[[RACSignal combineLatest:@[ RACAbleWithStart(self.loggedIn), RACAbleWithStart(self.user) ] reduce:^(NSNumber *loggedIn, User *user) {
+        BOOL isLoggedIn = [loggedIn boolValue];
+        return @((isLoggedIn == YES) && (user != nil));
+    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
+        return ([value boolValue] == YES);
+    }] subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
+//        if (self.currentViewController.view == self.loginView) { [self.loginView removeFromSuperview]; }
+//        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
+//        [self setCurrentViewController:listController];
+    }];
+    [[[RACAbleWithStart(self.loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
+        return ([loggedIn boolValue] == NO);
+    }] subscribeNext:^(id x) {
+        @strongify(self);
+		NSLog(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
+//        NSLog(@"Application (%@): Displaying the login view.", [self class]);
+//        self.loginView = [LoginRequiredView init];
+//        [_masterView addSubview:self.loginView];
+    }];
+
+    // Watch -isHidden and update the main interface appropriately.
+    [self->_lastUpdatedLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
+    [self->_statusLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
+    [self->_refreshButton rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.loggedIn)];
+    [self->_userImage rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
+    [self->_userMenuItem rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.loggedIn)];
+
+    RACSignal *hasUserSignal = RACAbleWithStart(self.user);
+    [hasUserSignal subscribeNext:^(User *user) {
+        @strongify(self);
         if (user) {
+            [_statusLabel setStringValue:@"Welcome"];
             [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-            [_userImage setHidden:NO];
-            [_userMenuItem setEnabled:YES];
             [_userMenuItem setTitle:[NSString stringWithFormat:@"Logged in as %@", self.user.name]];
         }
         else {
-            [_userImage setHidden:YES];
-            [_userMenuItem setEnabled:NO];
-            [_userMenuItem setTitle:@"Not Logged In"];
-            [_lastUpdatedLabel setHidden:YES];
-            [_refreshButton setEnabled:NO];
-            [_statusLabel setStringValue:@"Not logged in."];
-            [_statusImage setImage:[NSImage imageNamed:@"BroadcastInactive"]];
+            [_statusLabel setStringValue:@"Not logged in"];
+            [_userImage setImage:nil];
+            [_userMenuItem setTitle:@"Not logged in"];
         }
     }];
+
+    // Subscribe to -didLoginSubject and -didLogoutSubject so that we may react
+    // to changes in the login system (logging in, logging out, etc.).
+    [self.oAuthPreferences.didLoginSubject subscribeNext:^(RACTuple *tuple) {
+        @strongify(self);
+        RACTupleUnpack(AFOAuthCredential *credential, User *user) = tuple;
+        NSLog(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
+        self.loggedIn = YES;
+        self.credential = credential;
+        self.user = user;
+    }];
+    [self.oAuthPreferences.didLogoutSubject subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
+        self.loggedIn = NO;
+        self.credential = nil;
+        self.user = nil;
+    }];
+}
+
+- (void)initializeControllers
+{
+    self.aboutWindowController = [[AboutWindowController alloc] init];
+    self.generalPreferences = [[GeneralViewController alloc] init];
+    self.oAuthPreferences = [[OAuthViewController alloc] init];
 }
 
 - (NSWindowController *)preferencesWindowController
 {
     // If we have not created the window controller yet, create it now.
     if (_preferencesWindowController == nil) {
-        _generalPreferences = [[GeneralViewController alloc] initWithNibName:@"GeneralView" bundle:nil];
-        _oauthPreferences = [[OAuthViewController alloc] initWithUser:self.user];
-        NSArray *controllers = @[ _generalPreferences, _oauthPreferences ];
+        NSArray *controllers = @[ self.generalPreferences, self.oAuthPreferences ];
         _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }
     return _preferencesWindowController;
@@ -151,7 +213,6 @@
     [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
     [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
     [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
-
 }
 
 #pragma mark - Notification Observers
@@ -186,7 +247,6 @@
 }
 
 - (IBAction)showAbout:(id)sender {
-    self.aboutWindowController = [[AboutWindowController alloc] init];
     [self.aboutWindowController.window center];
     [self.aboutWindowController.window makeKeyAndOrderFront:sender];
     [NSApp activateIgnoringOtherApps:YES];
