@@ -20,6 +20,7 @@
                 <outlet property="_userMenuItem" destination="eW1-dG-D21" id="Soo-Jf-eBd"/>
                 <outlet property="lastUpdatedLabel" destination="220" id="302"/>
                 <outlet property="refreshButton" destination="265" id="299"/>
+                <outlet property="sectionLabel" destination="Dsb-0o-cg0" id="ZIi-Xa-fHH"/>
                 <outlet property="statusLabel" destination="96" id="301"/>
                 <outlet property="window" destination="1" id="144"/>
             </connections>
@@ -48,6 +49,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="283"/>
                             </imageView>
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dsb-0o-cg0" customClass="LightShadowTextField">
+                                <rect key="frame" x="10" y="9" width="136" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" focusRingType="none" title="Your Followed Streams" id="PMZ-9f-xdi">
+                                    <font key="font" size="12" name="HelveticaNeue-Bold"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                     <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="155" customClass="InnerShadowView">
@@ -131,6 +141,9 @@
         <class className="InnerShadowView" superclassName="NSView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InnerShadowView.h"/>
         </class>
+        <class className="LightShadowTextField" superclassName="NSTextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LightShadowTextField.h"/>
+        </class>
         <class className="MainWindow" superclassName="NSWindow">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainWindow.h"/>
         </class>
@@ -149,11 +162,11 @@
                 <relationship kind="outlet" name="_headerView" candidateClass="NSView"/>
                 <relationship kind="outlet" name="_masterView" candidateClass="NSView"/>
                 <relationship kind="outlet" name="_preferencesButton" candidateClass="NSButton"/>
-                <relationship kind="outlet" name="_statusImage" candidateClass="NSImageView"/>
                 <relationship kind="outlet" name="_userImage" candidateClass="NSImageView"/>
                 <relationship kind="outlet" name="_userMenuItem" candidateClass="NSMenuItem"/>
                 <relationship kind="outlet" name="lastUpdatedLabel" candidateClass="NSTextField"/>
                 <relationship kind="outlet" name="refreshButton" candidateClass="NSButton"/>
+                <relationship kind="outlet" name="sectionLabel" candidateClass="NSTextField"/>
                 <relationship kind="outlet" name="statusLabel" candidateClass="NSTextField"/>
                 <relationship kind="outlet" name="streamMenu" candidateClass="NSPopUpButton"/>
             </relationships>
