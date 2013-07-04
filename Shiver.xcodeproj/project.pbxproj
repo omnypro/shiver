@@ -34,6 +34,7 @@
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
 		935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F1177A010B0069AEFC /* NSView+SHExtensions.m */; };
 		935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F8177B696F0069AEFC /* LoginRequiredView.m */; };
+		936314181785346300AED886 /* NSView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 936314171785346300AED886 /* NSView+Animations.m */; };
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
 		936327BC1763BB1000146C8A /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327BA1763BB1000146C8A /* Window.xib */; };
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
@@ -157,6 +158,8 @@
 		935378F1177A010B0069AEFC /* NSView+SHExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+SHExtensions.m"; path = "Extensions/Categories/NSView+SHExtensions.m"; sourceTree = SOURCE_ROOT; };
 		935378F7177B696F0069AEFC /* LoginRequiredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequiredView.h; path = Classes/Views/LoginRequiredView.h; sourceTree = SOURCE_ROOT; };
 		935378F8177B696F0069AEFC /* LoginRequiredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginRequiredView.m; path = Classes/Views/LoginRequiredView.m; sourceTree = SOURCE_ROOT; };
+		936314161785346300AED886 /* NSView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+Animations.h"; path = "Extensions/Categories/NSView+Animations.h"; sourceTree = SOURCE_ROOT; };
+		936314171785346300AED886 /* NSView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+Animations.m"; path = "Extensions/Categories/NSView+Animations.m"; sourceTree = SOURCE_ROOT; };
 		936327B81763BB1000146C8A /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = Classes/Controllers/WindowController.h; sourceTree = SOURCE_ROOT; };
 		936327B91763BB1000146C8A /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowController.m; path = Classes/Controllers/WindowController.m; sourceTree = SOURCE_ROOT; };
 		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Assets/NIBs/Window.xib; sourceTree = SOURCE_ROOT; };
@@ -569,6 +572,8 @@
 				931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */,
 				935378F0177A010B0069AEFC /* NSView+SHExtensions.h */,
 				935378F1177A010B0069AEFC /* NSView+SHExtensions.m */,
+				936314161785346300AED886 /* NSView+Animations.h */,
+				936314171785346300AED886 /* NSView+Animations.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
 				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
+				936314181785346300AED886 /* NSView+Animations.m in Sources */,
 				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
 				939E8B831771A4CF006D6442 /* HeaderView.m in Sources */,
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
