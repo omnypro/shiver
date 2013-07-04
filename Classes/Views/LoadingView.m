@@ -22,11 +22,11 @@
 	return nil;
 }
 
-- (NSView *)loadingViewWithProgressIndicator
+- (LoadingView *)loadingViewWithProgressIndicator
 {
     [_progressIndicator setColor:[NSColor whiteColor]];
     [_progressIndicator setBackgroundColor:[NSColor clearColor]];
-    [_progressIndicator startAnimation:self];
+    [_progressIndicator setUsesThreadedAnimation:NO];
     return self;
 }
 
