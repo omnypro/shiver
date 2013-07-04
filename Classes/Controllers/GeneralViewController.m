@@ -37,7 +37,7 @@
 
 - (id)init
 {
-    self = [super initWithNibName:@"OAuthView" bundle:nil];
+    self = [super initWithNibName:@"GeneralView" bundle:nil];
     if (self == nil) { return nil; }
     return self;
 }
