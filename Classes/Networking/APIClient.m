@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "APIClient.h"
-
 #import "AFJSONRequestOperation.h"
+#import "FeaturedStream.h"
 #import "Mantle.h"
 #import "OAuthViewController.h"
 #import "Stream.h"
 #import "User.h"
+
+#import "APIClient.h"
 
 NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
 NSString * const kRedirectURI = @"shiver://authorize";
@@ -124,6 +125,19 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
             return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictonary) {
                 NSError *error = nil;
                 Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictonary error:&error];
+                return stream;
+            }] array];
+        }];
+}
+
+- (RACSignal *)fetchFeaturedStreamList
+{
+    return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured" parameters:nil]
+        map:^id(id responseObject) { return [responseObject valueForKeyPath:@"featured"]; }]
+        map:^id(NSArray *streamsFromResponse) {
+            return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictonary) {
+                NSError *error = nil;
+                FeaturedStream *stream = [MTLJSONAdapter modelOfClass:FeaturedStream.class fromJSONDictionary:dictonary error:&error];
                 return stream;
             }] array];
         }];
