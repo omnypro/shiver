@@ -116,18 +116,18 @@
     }] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
-//        if (self.currentViewController.view == self.loginView) { [self.loginView removeFromSuperview]; }
-//        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
-//        [self setCurrentViewController:listController];
+        NSLog(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
+        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
+        [self setCurrentViewController:listController];
     }];
     [[[RACAbleWithStart(self.loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
         return ([loggedIn boolValue] == NO);
     }] subscribeNext:^(id x) {
         @strongify(self);
 		NSLog(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
-//        NSLog(@"Application (%@): Displaying the login view.", [self class]);
-//        self.loginView = [LoginRequiredView init];
-//        [_masterView addSubview:self.loginView];
+        NSLog(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
+        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
+        [self setCurrentViewController:listController];
     }];
 
     // Watch -isHidden and update the main interface appropriately.
