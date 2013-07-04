@@ -29,11 +29,6 @@
     IBOutlet JAListView *_listView;
 }
 
-// Legacy
-@property (nonatomic, strong) NSMutableArray *_listItems;
-@property (nonatomic, strong, readwrite) NSArray *streamArray;
-
-// Views.
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) NSView *loadingView;
@@ -41,7 +36,6 @@
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) WindowController *windowController;
 
-// Data sources.
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, strong) APIClient *client;
 @property (nonatomic, strong) AFOAuthCredential *credential;
@@ -49,7 +43,6 @@
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 
-// Controller state.
 @property (nonatomic, strong) Preferences *preferences;
 @property (atomic) BOOL showingError;
 @property (atomic) NSString *showingErrorMessage;
