@@ -1,5 +1,5 @@
 //
-//  APIClient.m
+//  TwitchAPIClient.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/9/13.
@@ -12,25 +12,25 @@
 #import "Stream.h"
 #import "User.h"
 
-#import "APIClient.h"
+#import "TwitchAPIClient.h"
 
 NSString * const kTwitchBaseURL = @"https://api.twitch.tv/kraken/";
 NSString * const kRedirectURI = @"shiver://authorize";
 NSString * const kClientID = @"rh02ow0o6qsss1psrb3q2cceg34tg9s";
 NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
-@interface APIClient ()
+@interface TwitchAPIClient ()
 @property (strong, nonatomic) AFOAuthCredential *credential;
 @property (nonatomic, strong) User *user;
 
 - (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url;
 @end
 
-@implementation APIClient
+@implementation TwitchAPIClient
 
-+ (APIClient *)sharedClient
++ (TwitchAPIClient *)sharedClient
 {
-    static APIClient *_sharedClient = nil;
+    static TwitchAPIClient *_sharedClient = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kTwitchBaseURL] clientID:kClientID secret:kClientSecret];

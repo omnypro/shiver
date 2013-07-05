@@ -12,6 +12,7 @@
 #import "AFImageRequestOperation.h"
 #import "Channel.h"
 #import "NSColor+Hex.h"
+#import "NSImage+MGCropExtensions.h"
 #import "NSImageView+AFNetworking.h"
 #import "Preferences.h"
 #import "StreamLogoImageView.h"
@@ -30,7 +31,7 @@
 @property (weak) IBOutlet StreamLogoImageView *logo;
 @property (nonatomic, strong) NSString *logoURLCache;
 
-@property (weak) IBOutlet StreamPreviewImageView *preview;
+@property (nonatomic, strong) NSImageView *preview;
 @property (nonatomic, strong) NSString *previewURLCache;
 
 - (IBAction)redirectToStream:(id)sender;
@@ -151,6 +152,24 @@
     NSRect shadowRect = NSMakeRect(0, NSHeight(dirtyRect) - 20, NSWidth(dirtyRect), 1);
     [[NSColor colorWithHex:@"#C0C0C0"] setFill];
     NSRectFill(shadowRect);
+
+    // Now let's focus on the imagery.
+    // Draw the inner rectangle with the bottom rounded corners.
+    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 90);
+    [[NSColor colorWithHex:@"#222222"] setFill];
+    NSRectFill(initialRect);
+
+    // Crop the preview image, because squishy images suck.
+    NSImage *croppedImage = [_preview.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 90) method:MGImageResizeCropStart];
+    [croppedImage drawInRect:initialRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
+
+    // Draw the title rectangle with the same bottom rounded corners and a
+    // translucent black background for the title text to sit on.
+    NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
+    NSRect titleRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 50);
+    [titleBackgroundColor setFill];
+    [NSBezierPath fillRect:titleRect];
+
 
 }
 

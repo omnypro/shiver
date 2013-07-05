@@ -8,7 +8,7 @@
 
 #import "Stream.h"
 
-#import "APIClient.h"
+#import "TwitchAPIClient.h"
 #import "Mantle.h"
 #import "Channel.h"
 

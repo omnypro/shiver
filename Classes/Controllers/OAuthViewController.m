@@ -9,7 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <EXTScope.h>
 
-#import "APIClient.h"
+#import "TwitchAPIClient.h"
 #import "NSView+SHExtensions.h"
 #import "OAuthView.h"
 #import "User.h"
@@ -27,7 +27,7 @@
     IBOutlet NSProgressIndicator *_progressIndicator;
 }
 
-@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) User *user;
 
@@ -78,7 +78,7 @@
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Authentication: Kicking off the login process.");
-        self.client = [APIClient sharedClient];
+        self.client = [TwitchAPIClient sharedClient];
         self.loggingIn = YES;
     }];
 
@@ -87,7 +87,7 @@
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Authentication: Logging out and removing credentials.");
-        self.client = [APIClient sharedClient];
+        self.client = [TwitchAPIClient sharedClient];
         self.credential = nil;
         self.user = nil;
 
