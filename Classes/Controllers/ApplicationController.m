@@ -43,6 +43,8 @@
     [self.statusItem setImage:[NSImage imageNamed:@"StatusItem"]];
     [self.statusItem setAlternateImage:[NSImage imageNamed:@"StatusItemAlternate"]];
     [self.statusItem setHighlightMode:YES];
+
+    [[Preferences sharedPreferences] setupDefaults];
 }
 
 - (IBAction)toggleWindow:(id)sender

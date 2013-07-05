@@ -107,8 +107,10 @@
 
 - (IBAction)setStreamListRefreshTime:(id)sender
 {
-    [[self preferences] setStreamListRefreshTime:[_refreshTimeField integerValue] * 60];
-    NSLog(@"Preferences: Stream list will be refreshed every %ld minutes.", [_refreshTimeField integerValue]);
+    if ([_refreshTimeField integerValue] > 0) {
+        [[self preferences] setStreamListRefreshTime:[_refreshTimeField integerValue] * 60];
+        NSLog(@"Preferences: Stream list will be refreshed every %ld minutes.", [_refreshTimeField integerValue]);
+    }
 }
 
 - (IBAction)toggleOpenStreamsInPopup:(id)sender
