@@ -38,4 +38,9 @@
     NSRectFill(highlightRect);
 }
 
+- (BOOL)isOpaque
+{
+    return YES;
+}
+
 @end

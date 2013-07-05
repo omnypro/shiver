@@ -66,7 +66,6 @@
 {
     [super windowDidLoad];
     [self.window setAllowsConcurrentViewDrawing:YES];
-    [self.window setBackgroundColor:[NSColor clearColor]];
     [self.window setLevel:NSFloatingWindowLevel];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:self.window];
