@@ -9,7 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <EXTScope.h>
 
-#import "APIClient.h"
+#import "TwitchAPIClient.h"
 #import "Channel.h"
 #import "EmptyErrorView.h"
 #import "NSColor+Hex.h"
@@ -39,7 +39,7 @@
 @property (nonatomic, strong) WindowController *windowController;
 
 @property (nonatomic, strong) AFOAuthCredential *credential;
-@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) NSArray *streamList;
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) Preferences *preferences;
@@ -95,7 +95,7 @@
     [self.refreshCommand subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Application (%@): Request to manually refresh the stream list.", [self class]);
-        self.client = [APIClient sharedClient];
+        self.client = [TwitchAPIClient sharedClient];
     }];
 
     // Watch to see if the user has asked to see the stream count in the status
@@ -250,7 +250,7 @@
     }] subscribeNext:^(User *user) {
         NSLog(@"Application (%@): Loading client for %@.", [self class], user.name);
         @strongify(self);
-        self.client = [APIClient sharedClient];
+        self.client = [TwitchAPIClient sharedClient];
         self.loggedIn = YES;
         [self.windowController.statusLabel setStringValue:@"Loading..."];
     }];
@@ -340,7 +340,7 @@
     [[RACSignal interval:self.preferences.streamListRefreshTime] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"Application (%@): Triggering timed refresh.", [self class]);
-        self.client = [APIClient sharedClient];
+        self.client = [TwitchAPIClient sharedClient];
     }];
 
     // Monitor the data source array and show an empty view if it's... empty.

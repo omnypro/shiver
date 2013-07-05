@@ -8,7 +8,7 @@
 
 #import "User.h"
 
-#import "APIClient.h"
+#import "TwitchAPIClient.h"
 #import "Mantle.h"
 
 @implementation User

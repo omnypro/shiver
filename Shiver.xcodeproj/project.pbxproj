@@ -45,7 +45,7 @@
 		936327D51764468500146C8A /* StreamListViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327D41764468500146C8A /* StreamListViewItem.m */; };
 		936327D81764670300146C8A /* StreamListViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327D71764670300146C8A /* StreamListViewItem.xib */; };
 		936327DB1764F9BB00146C8A /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327DA1764F9BB00146C8A /* Channel.m */; };
-		936327E11765268200146C8A /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327E01765268200146C8A /* APIClient.m */; };
+		936327E11765268200146C8A /* TwitchAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327E01765268200146C8A /* TwitchAPIClient.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		936959D01769606D00F2F788 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959CF1769606D00F2F788 /* FooterView.m */; };
 		938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A765E176BEAE80094A361 /* NSColor+Hex.m */; };
@@ -176,8 +176,8 @@
 		936327D91764F9BB00146C8A /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Channel.h; path = Classes/Models/Channel.h; sourceTree = SOURCE_ROOT; };
 		936327DA1764F9BB00146C8A /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Channel.m; path = Classes/Models/Channel.m; sourceTree = SOURCE_ROOT; };
 		936327DC1765150000146C8A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		936327DF1765268200146C8A /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIClient.h; path = Classes/Networking/APIClient.h; sourceTree = SOURCE_ROOT; };
-		936327E01765268200146C8A /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APIClient.m; path = Classes/Networking/APIClient.m; sourceTree = SOURCE_ROOT; };
+		936327DF1765268200146C8A /* TwitchAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitchAPIClient.h; path = Classes/Networking/TwitchAPIClient.h; sourceTree = SOURCE_ROOT; };
+		936327E01765268200146C8A /* TwitchAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitchAPIClient.m; path = Classes/Networking/TwitchAPIClient.m; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		936959CE1769606D00F2F788 /* FooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FooterView.h; path = Classes/Views/FooterView.h; sourceTree = SOURCE_ROOT; };
 		936959CF1769606D00F2F788 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FooterView.m; path = Classes/Views/FooterView.m; sourceTree = SOURCE_ROOT; };
@@ -456,8 +456,8 @@
 		936327DE1765262E00146C8A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				936327DF1765268200146C8A /* APIClient.h */,
-				936327E01765268200146C8A /* APIClient.m */,
+				936327DF1765268200146C8A /* TwitchAPIClient.h */,
+				936327E01765268200146C8A /* TwitchAPIClient.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -829,7 +829,7 @@
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
 				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
-				936327E11765268200146C8A /* APIClient.m in Sources */,
+				936327E11765268200146C8A /* TwitchAPIClient.m in Sources */,
 				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
 				93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */,
 				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,

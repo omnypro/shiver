@@ -11,7 +11,7 @@
 #import <EXTKeypathCoding.h>
 
 #import "AboutWindowController.h"
-#import "APIClient.h"
+#import "TwitchAPIClient.h"
 #import "LoginRequiredView.h"
 #import "NSColor+Hex.h"
 #import "StreamListViewController.h"
@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSView *loginView;
 
 @property (nonatomic, assign) BOOL loggedIn;
-@property (nonatomic, strong) APIClient *client;
+@property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) User *user;
 
@@ -86,7 +86,7 @@
         @strongify(self);
         NSLog(@"Application (%@): We have a credential.", [self class]);
         self.loggedIn = YES;
-        self.client = [APIClient sharedClient];
+        self.client = [TwitchAPIClient sharedClient];
         if (self.user == nil) {
             [[[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
                 NSLog(@"Application (%@): We have a user. (%@)", [self class], user.name);

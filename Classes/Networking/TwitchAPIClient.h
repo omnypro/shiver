@@ -1,5 +1,5 @@
 //
-//  APIClient.h
+//  TwitchAPIClient.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/9/13.
@@ -17,11 +17,11 @@ extern NSString *const kTwitchBaseURL;
 extern NSString *const kRedirectURI;
 extern NSString *const kClientID;
 
-@interface APIClient : AFOAuth2Client
+@interface TwitchAPIClient : AFOAuth2Client
 
 @property (nonatomic, strong) NSString *userHandle;
 
-+ (APIClient *)sharedClient;
++ (TwitchAPIClient *)sharedClient;
 
 - (BOOL)isAuthenticated;
 - (void)logout;
