@@ -21,7 +21,7 @@
     NSRectFill(initialRect);
 
     // Crop the preview image, because squishy images suck.
-    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 80) method:MGImageResizeCropStart];
+    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 80) method:MGImageResizeCrop];
     [croppedImage drawInRect:initialRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
 
     // Draw the title rectangle with the same bottom rounded corners and a
