@@ -68,8 +68,8 @@
     [self.window setAllowsConcurrentViewDrawing:YES];
     [self.window setLevel:NSFloatingWindowLevel];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:self.window];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSWindowDidResignKeyNotification object:self.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSWindowDidResignKeyNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
     // Set up our initial controllers and initialize and display the window
@@ -219,16 +219,6 @@
 - (void)requestToOpenPreferences:(NSNotification *)notification
 {
     [self showPreferences:notification.object];
-}
-
-#pragma mark - NSWindowDelegate Methods
-
-- (void)windowDidBecomeKey:(NSNotification *)notification
-{
-}
-
-- (void)windowDidResignKey:(NSNotification *)notification
-{
 }
 
 #pragma mark - Interface Builder Actions
