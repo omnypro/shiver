@@ -11,11 +11,12 @@
 #import <Cocoa/Cocoa.h>
 #import <ServiceManagement/ServiceManagement.h>
 
+@class StatusItemView;
 @class WindowController;
 
 @interface ApplicationController : NSObject <ShiverApplicationDelegate> {}
 
-@property (strong) NSStatusItem *statusItem;
+@property (strong) StatusItemView *statusItem;
 @property (nonatomic, strong) NSString *streamCountString;
 @property (nonatomic, readonly, strong) WindowController *windowController;
 

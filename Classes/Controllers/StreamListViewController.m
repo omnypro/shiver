@@ -19,6 +19,7 @@
 #import "LoginRequiredView.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
+#import "StatusItemView.h"
 #import "Stream.h"
 #import "StreamListViewItem.h"
 #import "User.h"
@@ -34,7 +35,7 @@
 @property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) NSView *loginView;
-@property (nonatomic, strong) NSStatusItem *statusItem;
+@property (nonatomic, strong) StatusItemView *statusItem;
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) WindowController *windowController;
 
@@ -107,13 +108,13 @@
     }] subscribeNext:^(id x) {
         @strongify(self);
         if ([self.streamList count] > 0) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
-        else { [self.statusItem setTitle:nil]; }
+        else { [self.statusItem setTitle:@""]; }
     }];
     [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
         return ([value boolValue] != YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        [self.statusItem setTitle:nil];
+        [self.statusItem setTitle:@""];
     }];
 
     // Watch the stream list for changes and enable or disable UI elements
@@ -137,7 +138,7 @@
             else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
         }
         else {
-            [self.statusItem setTitle:nil];
+            [self.statusItem setTitle:@""];
             [self.windowController.refreshButton setEnabled:NO];
             [self.windowController.statusLabel setStringValue:@"No live streams"];
         }

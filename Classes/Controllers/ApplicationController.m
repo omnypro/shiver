@@ -8,6 +8,7 @@
 
 #import "Preferences.h"
 #import "StartAtLoginController.h"
+#import "StatusItemView.h"
 #import "WindowController.h"
 
 #import "ApplicationController.h"
@@ -38,64 +39,12 @@
 
 - (void)awakeFromNib
 {
-    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    [self.statusItem setAction:@selector(toggleWindow:)];
-    [self.statusItem setImage:[NSImage imageNamed:@"StatusItem"]];
-    [self.statusItem setAlternateImage:[NSImage imageNamed:@"StatusItemAlternate"]];
-    [self.statusItem setHighlightMode:YES];
-
     [[Preferences sharedPreferences] setupDefaults];
-}
 
-- (IBAction)toggleWindow:(id)sender
-{
-    if ([self.windowController.window isVisible]) {
-        [self.windowController.window close];
-    }
-    else {
-        NSDisableScreenUpdates();
-        NSImage *image = [self.statusItem image];
-        NSImage *alternateImage = [self.statusItem alternateImage];
-        NSString *title = [self.statusItem title];
-        id target = [self.statusItem target];
-        SEL action = [self.statusItem action];
-        NSView *dummyView = [[NSView alloc] initWithFrame:NSZeroRect];
-        self.statusItem.view = dummyView;
-        // A bit of a cheat, but we know here that the last click was in the
-        // status item (remember that all menu items are rendered as windows).
-        NSWindow *statusItemWindow = [dummyView window];
-
-        // Apparently setting a view has a number of nasty consequences,
-        // so let's repatch everything here.
-        [self.statusItem setView:nil];
-        [self.statusItem setImage:image];
-        [self.statusItem setAlternateImage:alternateImage];
-        [self.statusItem setHighlightMode:YES];
-        [self.statusItem setTarget:target];
-        [self.statusItem setTitle:title];
-        [self.statusItem setAction:action];
-        NSEnableScreenUpdates();
-
-        NSRect statusItemScreenRect = [statusItemWindow frame];
-        CGFloat midX = NSMidX(statusItemScreenRect);
-        CGFloat windowWidth = NSWidth([self.windowController.window frame]);
-        CGFloat windowHeight = NSHeight([self.windowController.window frame]);
-
-        // There is a 22 point difference when the window is offset from a
-        // status item with a count versus without one. We need to take that
-        // into consideration.
-        float offset = -10;
-        if (self.preferences.streamCountEnabled && [self.statusItem.title isNotEqualTo:@""] ) { offset = 12; }
-
-		NSRect windowFrame = NSMakeRect(
-            floor(midX - (windowWidth / 2.0)),
-            floor(NSMinY(statusItemScreenRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]) + offset,
-            windowWidth, windowHeight);
-
-        [self.windowController.window setFrameOrigin:windowFrame.origin];
-        [self.windowController.window makeKeyAndOrderFront:sender];
-        [NSApp activateIgnoringOtherApps:YES];
-    }
+    NSImage *image = [NSImage imageNamed:@"StatusItem"];
+    NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
+    NSWindow *window = self.windowController.window;
+    self.statusItem = [[StatusItemView alloc] initWithWindow:window image:image alternateImage:alternateImage label:nil];
 }
 
 #pragma mark - NSApplicationDelegate
