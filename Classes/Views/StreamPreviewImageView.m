@@ -32,4 +32,9 @@
     [NSBezierPath fillRect:titleRect];
 }
 
+- (BOOL)isOpaque
+{
+    return YES;
+}
+
 @end
