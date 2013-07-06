@@ -289,17 +289,16 @@
     // When the stream list gets changed, reload the table.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id x){
-         @strongify(self);
-         NSLog(@"Application (%@): Refreshing the stream list.", [self class]);
-         NSLog(@"Application (%@): %lu live streams.", [self class], [x count]);
+        @strongify(self);
+        NSLog(@"Application (%@): Refreshing the stream list.", [self class]);
+        NSLog(@"Application (%@): %lu live streams.", [self class], [x count]);
 
-         // Update (or reset) the last updated label.
-         self.lastUpdatedTimestamp = [NSDate date];
-         [self updateLastUpdatedLabel];
+        // Update (or reset) the last updated label.
+        self.lastUpdatedTimestamp = [NSDate date];
+        [self updateLastUpdatedLabel];
 
-         // Reload the table.
-         [_listView reloadDataAnimated:YES];
-    } completed:^{
+        // Reload the table.
+        [_listView reloadDataAnimated:YES];
         self.showingLoading = NO;
     }];
 
