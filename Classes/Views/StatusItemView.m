@@ -114,7 +114,7 @@
         floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight] - 10),
         windowWidth, windowHeight);
     [self.mainWindow setFrameOrigin:windowFrame.origin];
-    [self.mainWindow fadeIn:nil];
+    [self.mainWindow makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
 }
 
