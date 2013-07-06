@@ -16,20 +16,20 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Draw the inner rectangle with the bottom rounded corners.
-    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 90);
+    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 80);
     [[NSColor colorWithHex:@"#222222"] setFill];
     NSRectFill(initialRect);
 
     // Crop the preview image, because squishy images suck.
-    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 90) method:MGImageResizeCropStart];
+    NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 80) method:MGImageResizeCropStart];
     [croppedImage drawInRect:initialRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
 
     // Draw the title rectangle with the same bottom rounded corners and a
     // translucent black background for the title text to sit on.
-    NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
-    NSRect titleRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 50);
-    [titleBackgroundColor setFill];
-    [NSBezierPath fillRect:titleRect];
+    NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.9];
+    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor clearColor] endingColor:titleBackgroundColor];
+    NSRect titleRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 80);
+    [gradient drawInRect:titleRect angle:-90];
 }
 
 - (BOOL)isOpaque
