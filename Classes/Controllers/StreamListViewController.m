@@ -96,6 +96,7 @@
         @strongify(self);
         NSLog(@"Application (%@): Request to manually refresh the stream list.", [self class]);
         self.client = [TwitchAPIClient sharedClient];
+        self.showingLoading = YES;
     }];
 
     // Watch to see if the user has asked to see the stream count in the status
@@ -340,6 +341,7 @@
         @strongify(self);
         NSLog(@"Application (%@): Triggering timed refresh.", [self class]);
         self.client = [TwitchAPIClient sharedClient];
+        self.showingLoading = YES;
     }];
 
     // Monitor the data source array and show an empty view if it's... empty.
