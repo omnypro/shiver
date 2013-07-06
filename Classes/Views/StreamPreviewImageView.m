@@ -15,7 +15,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Draw the inner rectangle with the bottom rounded corners.
+    // Draw the inner rectangle.
     NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 80);
     [[NSColor colorWithHex:@"#222222"] setFill];
     NSRectFill(initialRect);
@@ -24,8 +24,8 @@
     NSImage *croppedImage = [self.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 80) method:MGImageResizeCrop];
     [croppedImage drawInRect:initialRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
 
-    // Draw the title rectangle with the same bottom rounded corners and a
-    // translucent black background for the title text to sit on.
+    // Draw the title rectangle and a gradiented clear-to-black black
+    // background for the title text to sit on.
     NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.9];
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor clearColor] endingColor:titleBackgroundColor];
     NSRect titleRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 80);
