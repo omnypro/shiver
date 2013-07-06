@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "NSWindow+SHExtensions.h"
+
 #import "StatusItemView.h"
 
 @interface StatusItemView ()
@@ -95,7 +97,7 @@
 - (void)hideWindow
 {
     self.active = NO;
-    [self.mainWindow orderOut:nil];
+    [self.mainWindow fadeOut:nil];
 }
 
 - (void)showWindow
@@ -112,7 +114,7 @@
         floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight] - 10),
         windowWidth, windowHeight);
     [self.mainWindow setFrameOrigin:windowFrame.origin];
-    [self.mainWindow makeKeyAndOrderFront:nil];
+    [self.mainWindow fadeIn:nil];
     [NSApp activateIgnoringOtherApps:YES];
 }
 
