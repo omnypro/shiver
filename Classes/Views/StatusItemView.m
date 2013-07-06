@@ -161,4 +161,10 @@
     NSLog(@"Application (%@): Hiding main window.", [self class]);
 }
 
+- (void)windowWillClose:(NSNotification *)notification
+{
+    self.active = NO;
+    NSLog(@"Application (%@): Closing main window.", [self class]);
+}
+
 @end
