@@ -51,7 +51,7 @@ CGFloat const StreamImageViewHighlightCurveEndYOffset = 5.0;
     static NSGradient *highlightGrad = nil;
     if (highlightGrad == nil) {
         NSColor *startColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.2];
-        NSColor *endColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.0];
+        NSColor *endColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.1];
         highlightGrad = [[NSGradient alloc] initWithStartingColor:startColor endingColor:endColor];
     }
 

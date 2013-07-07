@@ -164,8 +164,7 @@
          if (isShowingLoading) {
              NSLog(@"Application (%@): Showing the loading view.", [self class]);
              [self.loadingView.progressIndicator startAnimation:self];
-             [_listView addSubview:self.loadingView animated:YES];
-             [_listView setNeedsLayout:YES];
+             [self.view addSubview:self.loadingView positioned:NSWindowAbove relativeTo:nil];
          }
          else {
              NSLog(@"Application (%@): Removing the loading view.", [self class]);
@@ -186,7 +185,6 @@
             NSString *subTitle = @"Why don't you follow some new streamers?";
             self.emptyView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
             [self.view addSubview:self.emptyView animated:YES];
-            [self.view setNeedsLayout:YES];
         } else {
             NSLog(@"Application (%@): Removing the empty view.", [self class]);
             [self.emptyView removeFromSuperviewAnimated:YES];
@@ -208,7 +206,6 @@
             NSLog(@"Application (%@): Showing the error view with message \"%@\"", [self class], message);
             self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
             [self.view addSubview:self.errorView animated:YES];
-            [self.view setNeedsLayout:YES];
         }
         else {
             NSLog(@"Application (%@): Removing the error view.", [self class]);
@@ -229,7 +226,6 @@
             self.errorView = NO;
             self.loadingView = NO;
             [self.view addSubview:self.loginView animated:YES];
-            [self.view setNeedsLayout:YES];
 
             // A little extra work, make sure the status item's title is nil.
             [self.statusItem setTitle:nil];
