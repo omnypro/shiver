@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_AFOAuth2Client 1
 #define COCOAPODS_VERSION_PATCH_AFOAuth2Client 1
 
+// CocoaLumberjack
+#define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
+#define COCOAPODS_VERSION_MAJOR_CocoaLumberjack 1
+#define COCOAPODS_VERSION_MINOR_CocoaLumberjack 6
+#define COCOAPODS_VERSION_PATCH_CocoaLumberjack 2
+
 // JAListView
 #define COCOAPODS_POD_AVAILABLE_JAListView
 #define COCOAPODS_VERSION_MAJOR_JAListView 0
