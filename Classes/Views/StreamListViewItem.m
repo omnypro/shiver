@@ -59,9 +59,10 @@
 
     _object = object;
 
+    [_titleLabel setAttributedStringValue:[self attributedTitleWithString:_object.channel.status]];
 
-    [_userLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
     [_userLabel setStringValue:_object.channel.displayName];
+    [_userLabel setTextColor:[NSColor colorWithHex:@"#BFBFBF"]];
 
     [_gameLabel setStringValue:_object.game];
     [_gameLabel setTextColor:[NSColor colorWithHex:@"#808080"]];
@@ -82,11 +83,18 @@
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:14];
+
     // Now add a shadow.
+    NSShadow* shadow = [[NSShadow alloc] init];
     [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.8]];
+    [shadow setShadowOffset: NSMakeSize(0.1, -1.1)];
     [shadow setShadowBlurRadius: 2];
+
+    // Put it all together and send it off.
     NSMutableDictionary *attributes = [@{
+        NSShadowAttributeName: shadow,
         NSParagraphStyleAttributeName: style
+        } mutableCopy];
     [attrTitle addAttributes:attributes range:NSMakeRange(0, [attrTitle length])];
     return attrTitle;
 }
@@ -148,42 +156,47 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Declare our colors first.
-    NSColor *topColor = [NSColor colorWithHex:@"#E6E6E6"];
-    NSColor *bottomColor = [NSColor colorWithHex:@"#C6C6C6"];
-
-    // Next, declare the necessary gradient and draw it into the box.
-    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
-    NSRect rect = NSMakeRect(0, 0, NSWidth(dirtyRect), 110);
-    [gradient drawInRect:rect angle:-90];
-
-    // Draw boxes for the highlight and shadow too.
-    NSRect highlightRect = NSMakeRect(0, NSHeight(dirtyRect) - 1, NSWidth(dirtyRect), 1);
-    [[NSColor whiteColor] setFill];
-    NSRectFill(highlightRect);
-
-    NSRect shadowRect = NSMakeRect(0, NSHeight(dirtyRect) - 20, NSWidth(dirtyRect), 1);
-    [[NSColor colorWithHex:@"#C0C0C0"] setFill];
-    NSRectFill(shadowRect);
-
-    // Now let's focus on the imagery.
-    // Draw the inner rectangle with the bottom rounded corners.
-    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 90);
-    [[NSColor colorWithHex:@"#222222"] setFill];
+    // Draw the initial rectangle.
+    NSRect initialRect = NSMakeRect(0, 20, NSWidth(dirtyRect), 90);
+    [[NSColor colorWithHex:@"#222"] setFill];
     NSRectFill(initialRect);
 
-    // Crop the preview image, because squishy images suck.
-    NSImage *croppedImage = [_preview.image imageToFitSize:NSMakeSize(NSWidth(dirtyRect), 90) method:MGImageResizeCropStart];
-    [croppedImage drawInRect:initialRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.8];
+    // Draw the sidebar that'll "house" the watch button, viewer count, and
+    // part of the avatar.
+    NSRect sidebarRect = NSMakeRect(0, -20, 60, 140);
+    [[NSColor colorWithHex:@"#222"] setFill];
+    NSRectFill(sidebarRect);
 
-    // Draw the title rectangle with the same bottom rounded corners and a
-    // translucent black background for the title text to sit on.
-    NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
-    NSRect titleRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 50);
-    [titleBackgroundColor setFill];
-    [NSBezierPath fillRect:titleRect];
+    // Delcare an inner shadow for the sidebar.
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.75]];
+    [shadow setShadowOffset:NSMakeSize(0, 0)];
+    [shadow setShadowBlurRadius:16];
 
+    NSBezierPath *insetPath = [NSBezierPath bezierPathWithRect:sidebarRect];
+    NSRect insetRect = NSInsetRect([insetPath bounds], -shadow.shadowBlurRadius, -shadow.shadowBlurRadius);
+    insetRect = NSOffsetRect(insetRect, -shadow.shadowOffset.width, -shadow.shadowOffset.height);
+    insetRect = NSInsetRect(NSUnionRect(insetRect, [insetPath bounds]), -1, -1);
 
+    NSBezierPath *insetNegativePath = [NSBezierPath bezierPathWithRect:insetRect];
+    [insetNegativePath appendBezierPath:insetPath];
+    [insetNegativePath setWindingRule:NSEvenOddWindingRule];
+
+    [NSGraphicsContext saveGraphicsState];
+    {
+        NSShadow* shadowWithOffset = [shadow copy];
+        CGFloat xOffset = shadowWithOffset.shadowOffset.width + round(insetRect.size.width);
+        CGFloat yOffset = shadowWithOffset.shadowOffset.height;
+        shadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
+        [shadowWithOffset set];
+        [[NSColor grayColor] setFill];
+        [insetPath addClip];
+
+        NSAffineTransform *transform = [NSAffineTransform transform];
+        [transform translateXBy:-round(insetRect.size.width) yBy:0];
+        [[transform transformBezierPath:insetNegativePath] fill];
+    }
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end
