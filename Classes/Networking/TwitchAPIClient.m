@@ -89,9 +89,9 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)authorizeUsingResponseURL:(NSURL *)url
 {
-    NSLog(@"Authentication: Authorizing with provided URL.");
+    DDLogInfo(@"Authentication: Authorizing with provided URL.");
     NSString *accessToken = [self parseQueryStringsFromURL:url][@"access_token"];
-    NSLog(@"Authentication: (Access Token) %@", accessToken);
+    DDLogVerbose(@"Authentication: (Access Token) %@", accessToken);
     self.credential = [AFOAuthCredential credentialWithOAuthToken:accessToken tokenType:@"OAuth"];
     [AFOAuthCredential storeCredential:self.credential withIdentifier:self.serviceProviderIdentifier];
     [self setAuthorizationHeaderWithCredential:self.credential];
@@ -141,7 +141,6 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
                 // metadata that is used for their front page. We don't need
                 // this data, so we'll just grab the nested object.
                 dictionary = [dictionary valueForKeyPath:@"stream"];
-                NSLog(@"%@", dictionary);
 
                 Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
                 return stream;

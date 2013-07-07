@@ -85,12 +85,12 @@
         return (credential != nil);
     }] subscribeNext:^(AFOAuthCredential *credential) {
         @strongify(self);
-        NSLog(@"Application (%@): We have a credential.", [self class]);
+        DDLogInfo(@"Application (%@): We have a credential.", [self class]);
         self.loggedIn = YES;
         self.client = [TwitchAPIClient sharedClient];
         if (self.user == nil) {
             [[[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
-                NSLog(@"Application (%@): We have a user. (%@)", [self class], user.name);
+                DDLogInfo(@"Application (%@): We have a user. (%@)", [self class], user.name);
                 self.user = user;
             }];
         }
@@ -99,7 +99,7 @@
         return (credential == nil);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Application (%@): We do not have a credential.", [self class]);
+        DDLogInfo(@"Application (%@): We do not have a credential.", [self class]);
         self.loggedIn = NO;
         self.client = nil;
     }];
@@ -114,8 +114,8 @@
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
-        NSLog(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
+        DDLogInfo(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
+        DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
         [self setCurrentViewController:listController];
     }];
@@ -123,8 +123,8 @@
         return ([loggedIn boolValue] == NO);
     }] subscribeNext:^(id x) {
         @strongify(self);
-		NSLog(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
-        NSLog(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
+		DDLogInfo(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
+        DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
         [self setCurrentViewController:listController];
     }];
@@ -156,14 +156,14 @@
     [self.oAuthPreferences.didLoginSubject subscribeNext:^(RACTuple *tuple) {
         @strongify(self);
         RACTupleUnpack(AFOAuthCredential *credential, User *user) = tuple;
-        NSLog(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
+        DDLogInfo(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
         self.loggedIn = YES;
         self.credential = credential;
         self.user = user;
     }];
     [self.oAuthPreferences.didLogoutSubject subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
+        DDLogInfo(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
         self.loggedIn = NO;
         self.credential = nil;
         self.user = nil;

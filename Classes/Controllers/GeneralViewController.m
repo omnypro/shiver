@@ -85,11 +85,11 @@
 {
     if ([_notificationCheckbox state]) {
         [[self preferences] setNotificationsEnabled:YES];
-        NSLog(@"Preferences: Notifications have been enabled.");
+        DDLogInfo(@"Preferences: Notifications have been enabled.");
     }
     else {
         [[self preferences] setNotificationsEnabled:NO];
-        NSLog(@"Preferences: Notifications have been disabled.");
+        DDLogInfo(@"Preferences: Notifications have been disabled.");
     }
 }
 
@@ -97,11 +97,11 @@
 {
     if ([_streamCountCheckbox state]) {
         [[self preferences] setStreamCountEnabled:YES];
-        NSLog(@"Preferences: Stream count will be displayed in the menu item.");
+        DDLogInfo(@"Preferences: Stream count will be displayed in the menu item.");
     }
     else {
         [[self preferences] setStreamCountEnabled:NO];
-        NSLog(@"Preferences: Stream count will not be displayed in the menu item.");
+        DDLogInfo(@"Preferences: Stream count will not be displayed in the menu item.");
     }
 }
 
@@ -109,7 +109,7 @@
 {
     if ([_refreshTimeField integerValue] > 0) {
         [[self preferences] setStreamListRefreshTime:[_refreshTimeField integerValue] * 60];
-        NSLog(@"Preferences: Stream list will be refreshed every %ld minutes.", [_refreshTimeField integerValue]);
+        DDLogInfo(@"Preferences: Stream list will be refreshed every %ld minutes.", [_refreshTimeField integerValue]);
     }
 }
 
@@ -117,11 +117,11 @@
 {
     if ([_openInPopupCheckbox state]) {
         [[self preferences] setStreamPopupEnabled:YES];
-        NSLog(@"Preferences: Streams will be displayed in their popup form.");
+        DDLogInfo(@"Preferences: Streams will be displayed in their popup form.");
     }
     else {
         [[self preferences] setStreamPopupEnabled:NO];
-        NSLog(@"Preferences: Streams will be displayed normally.");
+        DDLogInfo(@"Preferences: Streams will be displayed normally.");
     }
 }
 

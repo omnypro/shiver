@@ -11,8 +11,12 @@
 NSString *const ShiverIdentifier = @"com.revyver.Shiver";
 NSString *const ShiverHelperIdentifier = @"com.revyver.ShiverHelper";
 NSString *const RequestToOpenPreferencesNotification = @"com.revyver.Shiver.RequestToOpenPreferencesNotification";
-NSString *const UserDidConnectAccountNotification = @"com.revyver.Shiver.UserDidConnectAccountNotification";
-NSString *const UserDidDisconnectAccountNotification = @"com.revyver.Shiver.UserDidDisconnectAccountNotification";
+
+#ifdef DEBUG
+const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+const int ddLogLevel = LOG_LEVEL_WARN;
+#endif
 
 @implementation Constants
 
