@@ -7,8 +7,8 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <EXTScope.h>
 #import <EXTKeypathCoding.h>
+#import <EXTScope.h>
 
 #import "AboutWindowController.h"
 #import "HexColor.h"
