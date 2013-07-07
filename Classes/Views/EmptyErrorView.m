@@ -49,4 +49,9 @@
     [super drawRect:dirtyRect];
 }
 
+- (BOOL)isOpaque
+{
+    return YES;
+}
+
 @end

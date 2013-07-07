@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "NSWindow+SHExtensions.h"
+
 #import "StatusItemView.h"
 
 @interface StatusItemView ()
@@ -95,7 +97,7 @@
 - (void)hideWindow
 {
     self.active = NO;
-    [self.mainWindow orderOut:nil];
+    [self.mainWindow fadeOut:nil];
 }
 
 - (void)showWindow
@@ -157,6 +159,12 @@
 {
     self.active = NO;
     NSLog(@"Application (%@): Hiding main window.", [self class]);
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    self.active = NO;
+    NSLog(@"Application (%@): Closing main window.", [self class]);
 }
 
 @end
