@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 @interface StatusItemView : NSView <NSWindowDelegate>
 
 @property (nonatomic, assign, getter=isActive) BOOL active;

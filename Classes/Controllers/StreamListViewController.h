@@ -8,8 +8,6 @@
 
 #import "JAListView.h"
 
-#import <Cocoa/Cocoa.h>
-
 @interface StreamListViewController : NSViewController <NSUserNotificationCenterDelegate, JAListViewDataSource, JAListViewDelegate>
 
 - (id)initWithUser:(User *)user;
