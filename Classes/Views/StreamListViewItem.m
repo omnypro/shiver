@@ -111,7 +111,8 @@
             @strongify(self);
             [self.logo setImage:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            NSLog(@"%@", error);
+            @strongify(self);
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
 
         self.logoURLCache = self.object.channel.logoImageURL.absoluteString;
@@ -133,7 +134,8 @@
             @strongify(self);
             [self.preview setImage:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            NSLog(@"%@", error);
+            @strongify(self);
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
 
         self.previewURLCache = self.object.previewImageURL.absoluteString;

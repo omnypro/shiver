@@ -95,7 +95,7 @@
     self.windowController.refreshButton.rac_command = self.refreshCommand;
     [self.refreshCommand subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Application (%@): Request to manually refresh the stream list.", [self class]);
+        DDLogInfo(@"Application (%@): Request to manually refresh the stream list.", [self class]);
         self.client = [TwitchAPIClient sharedClient];
         self.showingLoading = YES;
     }];
@@ -152,7 +152,7 @@
         return [RACSignal interval:lastUpdatedInterval];
     }] switchToLatest] subscribeNext:^(NSArray *array) {
         @strongify(self);
-        NSLog(@"Application (%@): Updating the last updated label (on interval).", [self class]);
+        DDLogVerbose(@"Application (%@): Updating the last updated label (on interval).", [self class]);
         if (array != nil) { [self updateLastUpdatedLabel]; }
     }];
 
@@ -162,12 +162,12 @@
          @strongify(self);
          BOOL isShowingLoading = [showingLoading boolValue];
          if (isShowingLoading) {
-             NSLog(@"Application (%@): Showing the loading view.", [self class]);
+             DDLogInfo(@"Application (%@): Showing the loading view.", [self class]);
              [self.loadingView.progressIndicator startAnimation:self];
              [self.view addSubview:self.loadingView positioned:NSWindowAbove relativeTo:nil];
          }
          else {
-             NSLog(@"Application (%@): Removing the loading view.", [self class]);
+             DDLogInfo(@"Application (%@): Removing the loading view.", [self class]);
              [self.loadingView removeFromSuperviewAnimated:YES];
              [self.loadingView.progressIndicator stopAnimation:self];
              self.loadingView = nil;
@@ -180,13 +180,13 @@
         @strongify(self);
         BOOL isShowingEmpty = [showingEmpty boolValue];
         if (isShowingEmpty && !self.showingError){
-            NSLog(@"Application (%@): Showing the empty view.", [self class]);
+            DDLogInfo(@"Application (%@): Showing the empty view.", [self class]);
             NSString *title = @"Looks like you've got nothing to watch.";
             NSString *subTitle = @"Why don't you follow some new streamers?";
             self.emptyView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
             [self.view addSubview:self.emptyView animated:YES];
         } else {
-            NSLog(@"Application (%@): Removing the empty view.", [self class]);
+            DDLogInfo(@"Application (%@): Removing the empty view.", [self class]);
             [self.emptyView removeFromSuperviewAnimated:YES];
             self.emptyView = nil;
         }
@@ -203,12 +203,12 @@
             self.showingLoading = NO;
             NSString *title = @"Whoops! Something went wrong.";
             NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-            NSLog(@"Application (%@): Showing the error view with message \"%@\"", [self class], message);
+            DDLogError(@"Application (%@): Showing the error view with message \"%@\"", [self class], message);
             self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
             [self.view addSubview:self.errorView animated:YES];
         }
         else {
-            NSLog(@"Application (%@): Removing the error view.", [self class]);
+            DDLogInfo(@"Application (%@): Removing the error view.", [self class]);
             [self.errorView removeFromSuperviewAnimated:YES];
             self.errorView = nil;
             self.showingErrorMessage = nil;
@@ -221,7 +221,7 @@
         @strongify(self);
         BOOL isShowingLogin = [showingLogin boolValue];
         if (!isShowingLogin) {
-            NSLog(@"Application (%@): Showing the login view.", [self class]);
+            DDLogInfo(@"Application (%@): Showing the login view.", [self class]);
             // Don't show any of the other views if we're going to show login.
             self.errorView = NO;
             self.loadingView = NO;
@@ -231,7 +231,7 @@
             [self.statusItem setTitle:nil];
         }
         else {
-            NSLog(@"Application (%@): Removing the login view.", [self class]);
+            DDLogInfo(@"Application (%@): Removing the login view.", [self class]);
             [self.loginView removeFromSuperviewAnimated:YES];
         }
     }];
@@ -246,7 +246,7 @@
     [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
         return (value != nil);
     }] subscribeNext:^(User *user) {
-        NSLog(@"Application (%@): Loading client for %@.", [self class], user.name);
+        DDLogInfo(@"Application (%@): Loading client for %@.", [self class], user.name);
         @strongify(self);
         self.client = [TwitchAPIClient sharedClient];
         self.loggedIn = YES;
@@ -272,13 +272,13 @@
         self.showingLoading = YES;
         [[[self.client fetchStreamList]
           deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *streamList) {
-            NSLog(@"Application (%@): Fetching the stream list.", [self class]);
+            DDLogInfo(@"Application (%@): Fetching the stream list.", [self class]);
             @strongify(self);
             self.streamList = streamList;
             self.showingError = NO;
         } error:^(NSError *error) {
             @strongify(self);
-            NSLog(@"Application (%@): (Error) %@", [self class], error);
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
             self.showingErrorMessage = [error localizedDescription];
             self.showingError = YES;
         }];
@@ -288,8 +288,8 @@
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
      subscribeNext:^(id x){
         @strongify(self);
-        NSLog(@"Application (%@): Refreshing the stream list.", [self class]);
-        NSLog(@"Application (%@): %lu live streams.", [self class], [x count]);
+        DDLogInfo(@"Application (%@): Refreshing the stream list.", [self class]);
+        DDLogInfo(@"Application (%@): %lu live streams.", [self class], [x count]);
 
         // Update (or reset) the last updated label.
         self.lastUpdatedTimestamp = [NSDate date];
@@ -325,18 +325,18 @@
             // Notifications will be sent for the results.
             NSSet *oldStreamIDs = [oldStreams valueForKey:@"_id"];
             NSSet *xorSet = [newStreams filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", oldStreamIDs]];
-            NSLog(@"Notifications: %lu new streams.", (unsigned long)[xorSet count]);
+            DDLogInfo(@"Notifications: %lu new streams.", (unsigned long)[xorSet count]);
             [self sendNewStreamNotificationToUser:xorSet];
         }
     }];
 
     // Refresh the stream list at an interval provided by the user.
     [[RACAbleWithStart(self.preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
-        NSLog(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
+        DDLogInfo(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
     }];
     [[RACSignal interval:self.preferences.streamListRefreshTime] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Application (%@): Triggering timed refresh.", [self class]);
+        DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
         self.client = [TwitchAPIClient sharedClient];
         self.showingLoading = YES;
     }];

@@ -152,19 +152,19 @@
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
     self.active = YES;
-    NSLog(@"Application (%@): Displaying main window.", [self class]);
+    DDLogVerbose(@"Application (%@): Displaying main window.", [self class]);
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification
 {
     self.active = NO;
-    NSLog(@"Application (%@): Hiding main window.", [self class]);
+    DDLogVerbose(@"Application (%@): Hiding main window.", [self class]);
 }
 
 - (void)windowWillClose:(NSNotification *)notification
 {
     self.active = NO;
-    NSLog(@"Application (%@): Closing main window.", [self class]);
+    DDLogVerbose(@"Application (%@): Closing main window.", [self class]);
 }
 
 @end

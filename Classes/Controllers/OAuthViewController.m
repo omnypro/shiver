@@ -77,7 +77,7 @@
     [[self.loginCommand
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Authentication: Kicking off the login process.");
+        DDLogInfo(@"Authentication: Kicking off the login process.");
         self.client = [TwitchAPIClient sharedClient];
         self.loggingIn = YES;
     }];
@@ -86,7 +86,7 @@
     [[self.disconnectCommand
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Authentication: Logging out and removing credentials.");
+        DDLogInfo(@"Authentication: Logging out and removing credentials.");
         self.client = [TwitchAPIClient sharedClient];
         self.credential = nil;
         self.user = nil;
@@ -150,7 +150,7 @@
         return ([url query] != nil && [[url query] rangeOfString:@"access_denied"].location != NSNotFound);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Authentication: We've been denied.");
+        DDLogInfo(@"Authentication: We've been denied.");
 
         closeSheet();
         self.loggingIn = NO;
@@ -162,18 +162,18 @@
         return ([url fragment] != nil && [[url fragment] rangeOfString:@"access_token"].location != NSNotFound);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"Authentication: We've been granted access.");
+        DDLogInfo(@"Authentication: We've been granted access.");
 
         closeSheet();
         [[[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^(AFOAuthCredential *credential, User *user) {
             @strongify(self);
-            NSLog(@"Authentication: (Credential) %@", credential.accessToken);
-            NSLog(@"Authentication: (User) %@", user.name);
+            DDLogVerbose(@"Authentication: (Credential) %@", credential.accessToken);
+            DDLogVerbose(@"Authentication: (User) %@", user.name);
             self.credential = credential;
             self.user = user;
         }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeCompleted:^{
             @strongify(self);
-            NSLog(@"Authentication: Complete for %@.", self.user.name);
+            DDLogInfo(@"Authentication: Complete for %@.", self.user.name);
             [self.didLoginSubject sendNext:RACTuplePack(self.credential, self.user)];
             self.loggingIn = NO;
         }];
@@ -187,7 +187,7 @@
     // Despite this being a general URL string handler, we're only ever going to
     // track one type of event: callbacks from Twitch's authentication service.
     NSString *urlString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
-    NSLog(@"Authentication: (URLString) %@", urlString);
+    DDLogVerbose(@"Authentication: (URLString) %@", urlString);
     [self.URLProtocolValueSubject sendNext:[NSURL URLWithString:[urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 }
 

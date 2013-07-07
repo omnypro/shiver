@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
 #import "Preferences.h"
 #import "StartAtLoginController.h"
 #import "StatusItemView.h"
@@ -58,6 +60,22 @@
         [self.loginController setStartAtLogin:YES];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ShiverAutoStart"];
     }
+
+    [self initializeLogging];
+}
+
+- (void)initializeLogging
+{
+    // We log too verbosely for the console in development. Let's only add it
+    // when running a release build.
+#ifndef DEBUG
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+#endif
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+
+    NSString *productName =  [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+    NSString *shortVersionString = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+    DDLogInfo(@"Application: Loaded %@ v%@", productName, shortVersionString);
 }
 
 @end
