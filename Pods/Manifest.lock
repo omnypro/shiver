@@ -16,6 +16,7 @@ PODS:
   - Mantle (1.1):
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
+  - Reachability (3.1.0)
   - ReactiveCocoa (1.9.5):
     - ReactiveCocoa/Core
     - ReactiveCocoa/RACExtensions
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - HexColors (~> 2.0.0)
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.1)
+  - Reachability (~> 3.1.0)
   - ReactiveCocoa (~> 1.9.5)
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.9)
@@ -51,6 +53,7 @@ SPEC CHECKSUMS:
   JRSwizzle: 6242ff38485d870fc2636899048ee1ab883ae587
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aba2facc6ee8f97512a94768dc57c82b7802948c
+  Reachability: ba94ecd4eaa037be3d0588b38956672588530c5b
   ReactiveCocoa: 591f49bb58dc2756e4876d3c1c3df55730a05505
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: 8ece03a3bb1676594ff117be5f8b3ccbacf7bba8
