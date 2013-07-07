@@ -228,7 +228,7 @@
             [self.view addSubview:self.loginView animated:YES];
 
             // A little extra work, make sure the status item's title is nil.
-            [self.statusItem setTitle:nil];
+            [self.statusItem setTitle:@""];
         }
         else {
             DDLogInfo(@"Application (%@): Removing the login view.", [self class]);
