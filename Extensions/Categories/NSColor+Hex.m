@@ -38,7 +38,7 @@
                 unsigned number;
                 
                 while([scanner scanHexInt:&number]){
-                    [rgb addObject:[NSNumber numberWithFloat:(float)(number / (float)255)]];
+                    [rgb addObject:@((float)(number / (float)255))];
                 }
                 segment = @"";
             }
@@ -46,9 +46,9 @@
         }
      
         // Pad the array out (for cases where we're given invalid input),
-        while ([rgb count] != 3) [rgb addObject:[NSNumber numberWithFloat:0.0]];
+        while ([rgb count] != 3) [rgb addObject:@0.0f];
         
-        return [NSColor colorWithCalibratedRed:[[rgb objectAtIndex:0] floatValue] green:[[rgb objectAtIndex:1] floatValue] blue:[[rgb objectAtIndex:2] floatValue] alpha:1];
+        return [NSColor colorWithCalibratedRed:[rgb[0] floatValue] green:[rgb[1] floatValue] blue:[rgb[2] floatValue] alpha:1];
     }
     else {
         NSException* invalidHexException = [NSException exceptionWithName:@"InvalidHexException" reason:@"Hex color not three or six characters (excluding hash)." userInfo:nil];

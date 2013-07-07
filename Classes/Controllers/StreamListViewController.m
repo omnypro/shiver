@@ -416,7 +416,7 @@
 
 - (JAListViewItem *)listView:(JAListView *)listView viewAtIndex:(NSUInteger)index
 {
-    Stream *stream = [self.streamList objectAtIndex:index];
+    Stream *stream = (self.streamList)[index];
     StreamListViewItem *item = [StreamListViewItem initItem];
     
     item.object = stream;
