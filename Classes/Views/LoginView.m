@@ -1,14 +1,14 @@
 //
-//  OAuthView.m
+//  LoginView.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/11/13.
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "OAuthView.h"
+#import "LoginView.h"
 
-@implementation OAuthView
+@implementation LoginView
 
 - (id)initWithFrame:(NSRect)frame
 {

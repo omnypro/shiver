@@ -1,5 +1,5 @@
 //
-//  OAuthViewController.h
+//  LoginViewController.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/9/13.
@@ -10,11 +10,11 @@
 #import <RHPreferences/RHPreferences.h>
 #import <WebKit/WebKit.h>
 
-@class OAuthView;
+@class LoginView;
 @class RACReplaySubject;
 @class RACSubject;
 
-@interface OAuthViewController : NSViewController <RHPreferencesViewControllerProtocol>
+@interface LoginViewController : NSViewController <RHPreferencesViewControllerProtocol>
 
 @property (nonatomic, strong) RACReplaySubject *didLoginSubject;
 @property (nonatomic, strong) RACReplaySubject *didLogoutSubject;
