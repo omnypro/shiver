@@ -1,5 +1,5 @@
 //
-//  OAuthView.h
+//  LoginView.h
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/11/13.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface OAuthView : NSView
+@interface LoginView : NSView
 
 @end

@@ -1,5 +1,5 @@
 //
-//  OAuthViewController.m
+//  LoginViewController.m
 //  Shiver
 //
 //  Created by Bryan Veloso on 6/9/13.
@@ -11,12 +11,12 @@
 
 #import "TwitchAPIClient.h"
 #import "NSView+SHExtensions.h"
-#import "OAuthView.h"
+#import "LoginView.h"
 #import "User.h"
 
-#import "OAuthViewController.h"
+#import "LoginViewController.h"
 
-@interface OAuthViewController () {
+@interface LoginViewController () {
     IBOutlet NSButton *_disconnectButton;
     IBOutlet NSButton *_loginButton;
     IBOutlet NSButton *_learnMoreButton;
@@ -37,11 +37,11 @@
 
 @end
 
-@implementation OAuthViewController
+@implementation LoginViewController
 
 - (id)init
 {
-    self = [super initWithNibName:@"OAuthView" bundle:nil];
+    self = [super initWithNibName:@"LoginView" bundle:nil];
     if (self == nil) { return nil; }
 
     self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];

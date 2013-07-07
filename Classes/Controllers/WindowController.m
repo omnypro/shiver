@@ -19,7 +19,7 @@
 
 // Preferences-related imports.
 #import "GeneralViewController.h"
-#import "OAuthViewController.h"
+#import "LoginViewController.h"
 
 #import "WindowController.h"
 
@@ -45,7 +45,7 @@
 
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
-@property (nonatomic, strong) OAuthViewController *oAuthPreferences;
+@property (nonatomic, strong) LoginViewController *loginPreferences;
 
 - (IBAction)showContextMenu:(NSButton *)sender;
 - (IBAction)showProfile:(id)sender;
@@ -153,7 +153,7 @@
 
     // Subscribe to -didLoginSubject and -didLogoutSubject so that we may react
     // to changes in the login system (logging in, logging out, etc.).
-    [self.oAuthPreferences.didLoginSubject subscribeNext:^(RACTuple *tuple) {
+    [self.loginPreferences.didLoginSubject subscribeNext:^(RACTuple *tuple) {
         @strongify(self);
         RACTupleUnpack(AFOAuthCredential *credential, User *user) = tuple;
         DDLogInfo(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
@@ -161,7 +161,7 @@
         self.credential = credential;
         self.user = user;
     }];
-    [self.oAuthPreferences.didLogoutSubject subscribeNext:^(id x) {
+    [self.loginPreferences.didLogoutSubject subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
         self.loggedIn = NO;
@@ -174,14 +174,14 @@
 {
     self.aboutWindowController = [[AboutWindowController alloc] init];
     self.generalPreferences = [[GeneralViewController alloc] init];
-    self.oAuthPreferences = [[OAuthViewController alloc] init];
+    self.loginPreferences = [[LoginViewController alloc] init];
 }
 
 - (NSWindowController *)preferencesWindowController
 {
     // If we have not created the window controller yet, create it now.
     if (_preferencesWindowController == nil) {
-        NSArray *controllers = @[ self.generalPreferences, self.oAuthPreferences ];
+        NSArray *controllers = @[ self.generalPreferences, self.loginPreferences ];
         _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
     }
     return _preferencesWindowController;

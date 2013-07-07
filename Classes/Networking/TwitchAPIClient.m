@@ -8,7 +8,7 @@
 
 #import "AFJSONRequestOperation.h"
 #import "Mantle.h"
-#import "OAuthViewController.h"
+#import "LoginViewController.h"
 #import "Stream.h"
 #import "User.h"
 

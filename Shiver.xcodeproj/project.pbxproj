@@ -76,10 +76,10 @@
 		939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B7F17719251006D6442 /* WatchButtonCell.m */; };
 		939E8B831771A4CF006D6442 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B821771A4CF006D6442 /* HeaderView.m */; };
 		939E8B8E17727456006D6442 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B8D17727456006D6442 /* UserImageView.m */; };
-		93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* OAuthViewController.m */; };
-		93A3A12317658ED200913C9A /* OAuthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* OAuthView.xib */; };
+		93A3A12217658ED200913C9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* LoginViewController.m */; };
+		93A3A12317658ED200913C9A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* LoginView.xib */; };
 		93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A1261766E25300913C9A /* WebKit.framework */; };
-		93A3A12B17679C8100913C9A /* OAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12A17679C8100913C9A /* OAuthView.m */; };
+		93A3A12B17679C8100913C9A /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12A17679C8100913C9A /* LoginView.m */; };
 		93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A3A12C1767A66F00913C9A /* CoreServices.framework */; };
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
@@ -220,12 +220,12 @@
 		939E8B821771A4CF006D6442 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = Classes/Views/HeaderView.m; sourceTree = SOURCE_ROOT; };
 		939E8B8C17727456006D6442 /* UserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserImageView.h; path = Classes/Views/UserImageView.h; sourceTree = SOURCE_ROOT; };
 		939E8B8D17727456006D6442 /* UserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserImageView.m; path = Classes/Views/UserImageView.m; sourceTree = SOURCE_ROOT; };
-		93A3A11F17658ED200913C9A /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthViewController.h; path = Classes/Controllers/OAuthViewController.h; sourceTree = SOURCE_ROOT; };
-		93A3A12017658ED200913C9A /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthViewController.m; path = Classes/Controllers/OAuthViewController.m; sourceTree = SOURCE_ROOT; };
-		93A3A12117658ED200913C9A /* OAuthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAuthView.xib; path = Assets/NIBs/OAuthView.xib; sourceTree = SOURCE_ROOT; };
+		93A3A11F17658ED200913C9A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/Controllers/LoginViewController.h; sourceTree = SOURCE_ROOT; };
+		93A3A12017658ED200913C9A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Classes/Controllers/LoginViewController.m; sourceTree = SOURCE_ROOT; };
+		93A3A12117658ED200913C9A /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView.xib; path = Assets/NIBs/LoginView.xib; sourceTree = SOURCE_ROOT; };
 		93A3A1261766E25300913C9A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		93A3A12917679C8100913C9A /* OAuthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthView.h; path = Classes/Views/OAuthView.h; sourceTree = SOURCE_ROOT; };
-		93A3A12A17679C8100913C9A /* OAuthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAuthView.m; path = Classes/Views/OAuthView.m; sourceTree = SOURCE_ROOT; };
+		93A3A12917679C8100913C9A /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginView.h; path = Classes/Views/LoginView.h; sourceTree = SOURCE_ROOT; };
+		93A3A12A17679C8100913C9A /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginView.m; path = Classes/Views/LoginView.m; sourceTree = SOURCE_ROOT; };
 		93A3A12C1767A66F00913C9A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		93A3A12E1768071C00913C9A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Classes/Models/User.h; sourceTree = SOURCE_ROOT; };
 		93A3A12F1768071C00913C9A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Classes/Models/User.m; sourceTree = SOURCE_ROOT; };
@@ -550,8 +550,8 @@
 			children = (
 				93D15BAA17736ED900643D95 /* GeneralViewController.h */,
 				93D15BAB17736ED900643D95 /* GeneralViewController.m */,
-				93A3A11F17658ED200913C9A /* OAuthViewController.h */,
-				93A3A12017658ED200913C9A /* OAuthViewController.m */,
+				93A3A11F17658ED200913C9A /* LoginViewController.h */,
+				93A3A12017658ED200913C9A /* LoginViewController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -560,7 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				93D15BA817736EB100643D95 /* GeneralView.xib */,
-				93A3A12117658ED200913C9A /* OAuthView.xib */,
+				93A3A12117658ED200913C9A /* LoginView.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -591,8 +591,8 @@
 		93A3A12817679C6600913C9A /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				93A3A12917679C8100913C9A /* OAuthView.h */,
-				93A3A12A17679C8100913C9A /* OAuthView.m */,
+				93A3A12917679C8100913C9A /* LoginView.h */,
+				93A3A12A17679C8100913C9A /* LoginView.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -725,7 +725,7 @@
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListViewItem.xib in Resources */,
 				93462A07177CB15400C928CA /* Error.png in Resources */,
-				93A3A12317658ED200913C9A /* OAuthView.xib in Resources */,
+				93A3A12317658ED200913C9A /* LoginView.xib in Resources */,
 				9301E9E4176A478300C46750 /* EmptyErrorView.xib in Resources */,
 				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
 				93918311176A828500367399 /* PreferencesGlitch.png in Resources */,
@@ -841,8 +841,8 @@
 				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
 				936327E11765268200146C8A /* TwitchAPIClient.m in Sources */,
 				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
-				93A3A12217658ED200913C9A /* OAuthViewController.m in Sources */,
-				93A3A12B17679C8100913C9A /* OAuthView.m in Sources */,
+				93A3A12217658ED200913C9A /* LoginViewController.m in Sources */,
+				93A3A12B17679C8100913C9A /* LoginView.m in Sources */,
 				939A7B701783723D009121D6 /* LoadingView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
