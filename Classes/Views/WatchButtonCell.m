@@ -25,7 +25,7 @@ static const CGFloat cornerRadius = 2;
 
     NSShadow *shadow = [[NSShadow alloc] init];
     [shadow setShadowOffset:NSMakeSize(0, 1)];
-    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.1]];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.1]];
     [buttonTitle addAttribute:NSShadowAttributeName value:shadow range:NSMakeRange(0, buttonTitle.length)];
     self.attributedTitle = buttonTitle;
 }
@@ -55,13 +55,13 @@ static const CGFloat cornerRadius = 2;
         [[NSGraphicsContext currentContext] saveGraphicsState];
         CGContextSetBlendMode([[NSGraphicsContext currentContext] graphicsPort], kCGBlendModeOverlay);
 
-        [[NSColor colorWithCalibratedWhite:1 alpha:0.1] setStroke];
+        [[NSColor colorWithHexString:@"#FFFFFF" alpha:0.1] setStroke];
         [[NSBezierPath bezierPathWithRoundedRect:NSOffsetRect(strokeRect, 0, 1) xRadius:cornerRadius yRadius:cornerRadius] stroke];
 
         [[NSGraphicsContext currentContext] restoreGraphicsState];
     }
 
-    [[NSColor colorWithCalibratedWhite:0 alpha:0.5] setStroke];
+    [[NSColor colorWithHexString:@"#000000" alpha:0.5] setStroke];
     [strokePath stroke];
 }
 

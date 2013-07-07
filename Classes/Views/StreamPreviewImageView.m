@@ -27,12 +27,12 @@
     // Draw a highlight box on the image to help with the separation between
     // stream items.
     NSRect imageHighlightRect = NSMakeRect(0, 99, NSWidth(dirtyRect), 1);
-    [[NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:0.15] setFill];
+    [[NSColor colorWithHexString:@"#FFFFFF" alpha:0.15] setFill];
     [NSBezierPath fillRect:imageHighlightRect];
 
     // Draw the title rectangle and a gradiented clear-to-black black
     // background for the title text to sit on.
-    NSColor *titleBackgroundColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.7];
+    NSColor *titleBackgroundColor = [NSColor colorWithHexString:@"#000000" alpha:0.7];
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor clearColor] endingColor:titleBackgroundColor];
     NSRect titleRect = NSMakeRect(0, 20, NSWidth(dirtyRect), 70);
     [gradient drawInRect:titleRect angle:-90];
@@ -42,13 +42,13 @@
     //
     // Declare the necessary gradient and draw it into the box. Then draw and
     // fill the cooresponding box for the highlight too.
-    NSColor *metadataTopColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.85];
-    NSColor *metadataBottomColor = [NSColor colorWithCalibratedRed:0.06 green:0.06 blue:0.06 alpha:0.90];
+    NSColor *metadataTopColor = [NSColor colorWithHexString:@"#000000" alpha:0.85];
+    NSColor *metadataBottomColor = [NSColor colorWithHexString:@"#161616" alpha:0.90];
     NSGradient *metadataGradient = [[NSGradient alloc] initWithStartingColor:metadataTopColor endingColor:metadataBottomColor];
     NSRect metadataRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 20);
     [metadataGradient drawInRect:metadataRect angle:-90];
     NSRect highlightRect = NSMakeRect(0, 20, NSWidth(dirtyRect), 1);
-    [[NSColor colorWithCalibratedRed:1 green:1 blue:1 alpha:0.10] setFill];
+    [[NSColor colorWithHexString:@"#FFFFFF" alpha:0.10] setFill];
     [NSBezierPath fillRect:highlightRect];
 }
 

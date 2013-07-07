@@ -86,7 +86,7 @@
 
     // Now add a shadow.
     NSShadow* shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.8]];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.8]];
     [shadow setShadowOffset: NSMakeSize(0.1, -1.1)];
     [shadow setShadowBlurRadius: 2];
 
@@ -171,7 +171,7 @@
 
     // Delcare an inner shadow for the sidebar.
     NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.75]];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.75]];
     [shadow setShadowOffset:NSMakeSize(0, 0)];
     [shadow setShadowBlurRadius:16];
 
