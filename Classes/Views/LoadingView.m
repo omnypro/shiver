@@ -35,7 +35,7 @@
     [super drawRect:dirtyRect];
 
     NSRect rect = dirtyRect;
-    [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.8];
+    [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.5];
     [NSBezierPath fillRect:rect];
 }
 
