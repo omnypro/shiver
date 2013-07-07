@@ -129,7 +129,7 @@
         [self setCurrentViewController:listController];
     }];
 
-    // Watch -isHidden and update the main interface appropriately.
+    // Watch -loggedIn and update the main interface appropriately.
     [self->_lastUpdatedLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
     [self->_sectionLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
     [self->_statusLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
