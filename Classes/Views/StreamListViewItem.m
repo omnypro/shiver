@@ -59,23 +59,36 @@
 
     _object = object;
 
-    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:object.channel.status];
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    [style setMaximumLineHeight:14];
-    [attrTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrTitle length])];
-    [_titleLabel setAttributedStringValue:attrTitle];
 
-    [_userLabel setStringValue:object.channel.displayName];
     [_userLabel setTextColor:[NSColor colorWithHex:@"#4A4A4A"]];
+    [_userLabel setStringValue:_object.channel.displayName];
 
-    [_gameLabel setStringValue:object.game];
-    [_gameLabel setTextColor:[NSColor colorWithHex:@"#9D9D9E"]];
+    [_gameLabel setStringValue:_object.game];
+    [_gameLabel setTextColor:[NSColor colorWithHex:@"#808080"]];
 
-    [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", object.viewers]];
+    [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", _object.viewers]];
+    [_viewerCountLabel setTextColor:[NSColor colorWithHex:@"#808080"]];
 
     [self refreshLogo];
     [self refreshPreview];
+}
+
+- (NSAttributedString *)attributedTitleWithString:(NSString *)string
+{
+    NSString *truncatedString = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
+    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:truncatedString];
+
+    // Tame the line height first.
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:14];
+    // Now add a shadow.
+    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.8]];
+    [shadow setShadowBlurRadius: 2];
+    NSMutableDictionary *attributes = [@{
+        NSParagraphStyleAttributeName: style
+    [attrTitle addAttributes:attributes range:NSMakeRange(0, [attrTitle length])];
+    return attrTitle;
 }
 
 - (void)refreshLogo
