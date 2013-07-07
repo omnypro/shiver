@@ -13,6 +13,7 @@
 #import "AboutWindowController.h"
 #import "HexColor.h"
 #import "LoginRequiredView.h"
+#import "Reachability.h"
 #import "StreamListViewController.h"
 #import "TwitchAPIClient.h"
 #import "User.h"
@@ -38,9 +39,11 @@
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
 @property (nonatomic, strong) NSView *loginView;
 
+@property (nonatomic, assign) BOOL isOnline;
 @property (nonatomic, assign) BOOL loggedIn;
-@property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) AFOAuthCredential *credential;
+@property (nonatomic, strong) TwitchAPIClient *client;
+@property (nonatomic, strong) Reachability *reach;
 @property (nonatomic, strong) User *user;
 
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
@@ -77,6 +80,7 @@
     // and status bar menu item.
     [self initializeControllers];
     [self initializeInterface];
+    [self initializeReachability];
 
     @weakify(self);
 
@@ -176,6 +180,23 @@
     self.aboutWindowController = [[AboutWindowController alloc] init];
     self.generalPreferences = [[GeneralViewController alloc] init];
     self.loginPreferences = [[LoginViewController alloc] init];
+}
+
+- (void)initializeReachability
+{
+    @weakify(self);
+
+    self.reachSignal = [RACSubject subject];
+    [self.reachSignal subscribeNext:^(Reachability *reach) {
+        @strongify(self);
+        self.isOnline = reach.isReachable;
+    }];
+
+    [[[RACAbleWithStart(self.isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+        return ([reachable boolValue] == NO);
+    }] subscribeNext:^(id x) {
+        NSLog(@"Time to shut shit down.");
+    }];
 }
 
 - (NSWindowController *)preferencesWindowController
