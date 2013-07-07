@@ -65,7 +65,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 {
     NSMutableDictionary *queryStrings = [@{} mutableCopy];
     for (NSString *qs in [[url fragment] componentsSeparatedByString:@"&"]) {
-        [queryStrings setValue:[[[[qs componentsSeparatedByString:@"="] objectAtIndex:1] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:[[qs componentsSeparatedByString:@"="] objectAtIndex:0]];
+        [queryStrings setValue:[[[qs componentsSeparatedByString:@"="][1] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:[qs componentsSeparatedByString:@"="][0]];
     }
 
     return queryStrings;
@@ -90,7 +90,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 - (RACSignal *)authorizeUsingResponseURL:(NSURL *)url
 {
     NSLog(@"Authentication: Authorizing with provided URL.");
-    NSString *accessToken = [[self parseQueryStringsFromURL:url] objectForKey:@"access_token"];
+    NSString *accessToken = [self parseQueryStringsFromURL:url][@"access_token"];
     NSLog(@"Authentication: (Access Token) %@", accessToken);
     self.credential = [AFOAuthCredential credentialWithOAuthToken:accessToken tokenType:@"OAuth"];
     [AFOAuthCredential storeCredential:self.credential withIdentifier:self.serviceProviderIdentifier];

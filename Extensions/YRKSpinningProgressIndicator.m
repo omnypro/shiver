@@ -142,7 +142,7 @@
 
         for (int i=0; i<_numFins; i++) {
             if(_isAnimating) {
-                [((NSColor*)[_finColors objectAtIndex:i]) set];
+                [((NSColor*)_finColors[i]) set];
             }
             else {
                 [[_foreColor colorWithAlphaComponent:kAlphaWhenStopped] set];
@@ -208,8 +208,8 @@
         // generate all the fin colors, with the alpha components
         // they already have
         for (int i=0; i<_numFins; i++) {
-            CGFloat alpha = [[_finColors objectAtIndex:i] alphaComponent];
-            [_finColors replaceObjectAtIndex:i withObject:[_foreColor colorWithAlphaComponent:alpha]];
+            CGFloat alpha = [_finColors[i] alphaComponent];
+            _finColors[i] = [_foreColor colorWithAlphaComponent:alpha];
         }
 
         [self setNeedsDisplay:YES];
@@ -299,17 +299,17 @@
     CGFloat minAlpha = _displayedWhenStopped ? kAlphaWhenStopped : 0.01;
     for (int i=0; i<_numFins; i++) {
         // want each fin to fade exponentially over _numFins frames of animation
-        CGFloat newAlpha = [[_finColors objectAtIndex:i] alphaComponent] * kFadeMultiplier;
+        CGFloat newAlpha = [_finColors[i] alphaComponent] * kFadeMultiplier;
         if (newAlpha < minAlpha)
             newAlpha = minAlpha;
-        [_finColors replaceObjectAtIndex:i withObject:[_foreColor colorWithAlphaComponent:newAlpha]];
+        _finColors[i] = [_foreColor colorWithAlphaComponent:newAlpha];
     }
 
     if (_isFadingOut) {
         // check if the fadeout is done
         BOOL done = YES;
         for (int i=0; i<_numFins; i++) {
-            if (fabs([[_finColors objectAtIndex:i] alphaComponent] - minAlpha) > 0.01) {
+            if (fabs([_finColors[i] alphaComponent] - minAlpha) > 0.01) {
                 done = NO;
                 break;
             }
@@ -320,7 +320,7 @@
     }
     else {
         // "light up" the next fin (with full alpha)
-        [_finColors replaceObjectAtIndex:_position withObject:_foreColor];
+        _finColors[_position] = _foreColor;
     }
 
     if (_usesThreadedAnimation) {
@@ -396,7 +396,7 @@
     for (int i=0; i<_numFins; i++) {
         NSColor *oldColor = _finColors[i];
         CGFloat alpha = [oldColor alphaComponent];
-        [_finColors replaceObjectAtIndex:i withObject:[_foreColor colorWithAlphaComponent:alpha]];
+        _finColors[i] = [_foreColor colorWithAlphaComponent:alpha];
     }
 }
 
