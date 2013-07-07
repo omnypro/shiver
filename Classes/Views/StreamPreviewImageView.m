@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamPreviewImageView.h"
-
 #import "NSColor+Hex.h"
 #import "NSImage+MGCropExtensions.h"
+
+#import "StreamPreviewImageView.h"
 
 @implementation StreamPreviewImageView
 
