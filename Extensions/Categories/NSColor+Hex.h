@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Revyver, Inc. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 @interface NSColor (Hex)
 
 + (NSColor *) colorWithHex:(NSString *)hexColor;

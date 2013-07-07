@@ -8,8 +8,6 @@
 
 #import "YRKSpinningProgressIndicator.h"
 
-#import <Cocoa/Cocoa.h>
-
 @interface LoadingView : NSView
 
 @property (weak) IBOutlet YRKSpinningProgressIndicator *progressIndicator;

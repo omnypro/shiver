@@ -5,8 +5,6 @@
 //  Created by Matt Gemmell on 16/03/2006.
 //
 
-#import <Cocoa/Cocoa.h>
-
 @interface NSImage (MGCropExtensions)
 
 typedef enum {

@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 #import "JAListViewItem.h"
 #import "Stream.h"
 
