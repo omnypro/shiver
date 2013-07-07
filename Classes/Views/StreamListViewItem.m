@@ -166,7 +166,7 @@
     // Draw the sidebar that'll "house" the watch button, viewer count, and
     // part of the avatar.
     NSRect sidebarRect = NSMakeRect(0, -20, 60, 140);
-    [[NSColor colorWithHexString:@"#222222" alpha:1] setFill];
+    [[NSColor colorWithHexString:@"#1D1D1D" alpha:1] setFill];
     NSRectFill(sidebarRect);
 
     // Delcare an inner shadow for the sidebar.
