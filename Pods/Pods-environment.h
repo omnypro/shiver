@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_CocoaLumberjack 6
 #define COCOAPODS_VERSION_PATCH_CocoaLumberjack 2
 
+// HexColors
+#define COCOAPODS_POD_AVAILABLE_HexColors
+#define COCOAPODS_VERSION_MAJOR_HexColors 2
+#define COCOAPODS_VERSION_MINOR_HexColors 0
+#define COCOAPODS_VERSION_PATCH_HexColors 0
+
 // JAListView
 #define COCOAPODS_POD_AVAILABLE_JAListView
 #define COCOAPODS_VERSION_MAJOR_JAListView 0
