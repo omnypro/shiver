@@ -76,7 +76,7 @@
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
     [self initializeControllers];
-    [self composeInterface];
+    [self initializeInterface];
 
     @weakify(self);
 
@@ -198,7 +198,7 @@
     [_masterView addSubview:self.currentViewController.view];
 }
 
-- (void)composeInterface
+- (void)initializeInterface
 {
     // Make things pretty.
     [_sectionLabel setTextColor:[NSColor colorWithHexString:@"#666666" alpha:1]];
