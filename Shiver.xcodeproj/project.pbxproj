@@ -48,7 +48,6 @@
 		936327E11765268200146C8A /* TwitchAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327E01765268200146C8A /* TwitchAPIClient.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
 		936959D01769606D00F2F788 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959CF1769606D00F2F788 /* FooterView.m */; };
-		938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A765E176BEAE80094A361 /* NSColor+Hex.m */; };
 		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
@@ -153,7 +152,6 @@
 		93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Hyperlink.m"; path = "Extensions/Categories/NSAttributedString+Hyperlink.m"; sourceTree = SOURCE_ROOT; };
 		93462A05177CB14D00C928CA /* Error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Error.png; path = Assets/Images/Error.png; sourceTree = SOURCE_ROOT; };
 		93462A06177CB14D00C928CA /* Error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Error@2x.png"; path = "Assets/Images/Error@2x.png"; sourceTree = SOURCE_ROOT; };
-		934C25DD17775ED00038E5DB /* NSColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSColor+Hex.h"; path = "Extensions/Categories/NSColor+Hex.h"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
 		935378F0177A010B0069AEFC /* NSView+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+SHExtensions.h"; path = "Extensions/Categories/NSView+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
@@ -183,7 +181,6 @@
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		936959CE1769606D00F2F788 /* FooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FooterView.h; path = Classes/Views/FooterView.h; sourceTree = SOURCE_ROOT; };
 		936959CF1769606D00F2F788 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FooterView.m; path = Classes/Views/FooterView.m; sourceTree = SOURCE_ROOT; };
-		938A765E176BEAE80094A361 /* NSColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSColor+Hex.m"; path = "Extensions/Categories/NSColor+Hex.m"; sourceTree = SOURCE_ROOT; };
 		938A7660177105FC0094A361 /* StreamPreviewImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamPreviewImageView.h; path = Classes/Views/StreamPreviewImageView.h; sourceTree = SOURCE_ROOT; };
 		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
@@ -570,8 +567,6 @@
 			children = (
 				93462A02177CA6FA00C928CA /* NSAttributedString+Hyperlink.h */,
 				93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */,
-				934C25DD17775ED00038E5DB /* NSColor+Hex.h */,
-				938A765E176BEAE80094A361 /* NSColor+Hex.m */,
 				938A7667177122130094A361 /* NSImage+MGCropExtensions.h */,
 				938A7668177122130094A361 /* NSImage+MGCropExtensions.m */,
 				934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */,
@@ -848,7 +843,6 @@
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
-				938A765F176BEAE80094A361 /* NSColor+Hex.m in Sources */,
 				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,

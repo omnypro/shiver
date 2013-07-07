@@ -12,7 +12,7 @@
 #import "TwitchAPIClient.h"
 #import "Channel.h"
 #import "EmptyErrorView.h"
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 #import "NSView+Animations.h"
 #import "JAListView.h"
 #import "LoadingView.h"

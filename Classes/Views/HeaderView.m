@@ -8,7 +8,7 @@
 
 #import "HeaderView.h"
 
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 
 
 @implementation HeaderView
@@ -18,10 +18,10 @@
     [super drawRect:dirtyRect];
 
     // Declare our colors first.
-    NSColor *topColor = [NSColor colorWithHex:@"#F4F4F5"];
-    NSColor *bottomColor = [NSColor colorWithHex:@"#C4C4C5"];
-    NSColor *highlightColor = [NSColor colorWithHex:@"#FFF"];
-    NSColor *shadowColor = [NSColor colorWithHex:@"9A9B9F"];
+    NSColor *topColor = [NSColor colorWithHexString:@"#F4F4F5" alpha:1];
+    NSColor *bottomColor = [NSColor colorWithHexString:@"#C4C4C5" alpha:1];
+    NSColor *highlightColor = [NSColor colorWithHexString:@"#FFFFFF" alpha:1];
+    NSColor *shadowColor = [NSColor colorWithHexString:@"#9A9B9F" alpha:1];
 
     // We're only drawing the left side of the two-tone header.
     NSRect rect = NSMakeRect(0, 0, 320, 32);

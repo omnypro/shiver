@@ -11,10 +11,10 @@
 #import <EXTKeypathCoding.h>
 
 #import "AboutWindowController.h"
-#import "TwitchAPIClient.h"
+#import "HexColor.h"
 #import "LoginRequiredView.h"
-#import "NSColor+Hex.h"
 #import "StreamListViewController.h"
+#import "TwitchAPIClient.h"
 #import "User.h"
 
 // Preferences-related imports.
@@ -66,7 +66,7 @@
 {
     [super windowDidLoad];
     [self.window setAllowsConcurrentViewDrawing:YES];
-    [self.window setBackgroundColor:[NSColor colorWithHex:@"#222"]];
+    [self.window setBackgroundColor:[NSColor colorWithHexString:@"#222222" alpha:1]];
     [self.window setLevel:NSFloatingWindowLevel];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:nil];
@@ -200,14 +200,14 @@
 - (void)composeInterface
 {
     // Make things pretty.
-    [_sectionLabel setTextColor:[NSColor colorWithHex:@"#666"]];
-    [_statusLabel setTextColor:[NSColor colorWithHex:@"#7F7F7F"]];
+    [_sectionLabel setTextColor:[NSColor colorWithHexString:@"#666666" alpha:1]];
+    [_statusLabel setTextColor:[NSColor colorWithHexString:@"#7F7F7F" alpha:1]];
 
     // Set the lastUpdatedLabel to a blank string when we initially compose
     // the interface. Reason being, I want a field with text in it to position
     // in Interface Builder.
     [_lastUpdatedLabel setHidden:YES];
-    [_lastUpdatedLabel setTextColor:[NSColor colorWithHex:@"#4F4F4F"]];
+    [_lastUpdatedLabel setTextColor:[NSColor colorWithHexString:@"#4F4F4F" alpha:1]];
 
     [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
     [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
