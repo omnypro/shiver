@@ -7,8 +7,8 @@
 //
 
 #import "AboutView.h"
+#import "HexColor.h"
 #import "NSAttributedString+Hyperlink.h"
-#import "NSColor+Hex.h"
 
 #import "AboutWindowController.h"
 
@@ -42,7 +42,7 @@
     [super windowDidLoad];
     [[self window] setAllowsConcurrentViewDrawing:YES];
 
-    NSColor *primaryGrayColor = [NSColor colorWithHex:@"#9B9B9B"];
+    NSColor *primaryGrayColor = [NSColor colorWithHexString:@"#9B9B9B" alpha:1];
 
     // Set up the colors and paragraph styles for all of the elements...
     // because I prefer to use hex values over Interface Builder's janky
@@ -70,7 +70,7 @@
     [style setMaximumLineHeight:12];
     [attrTitle addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [attrTitle length])];
     [_disclaimerLabel setAttributedStringValue:attrTitle];
-    [_versionAndBuildLabel setTextColor:[NSColor colorWithHex:@"#686868"]];
+    [_versionAndBuildLabel setTextColor:[NSColor colorWithHexString:@"#686868" alpha:1]];
 
     // This needs to be invoked ... or else everything looks like shit.
     [self.view setNeedsDisplay:YES];

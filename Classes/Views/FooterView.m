@@ -8,7 +8,7 @@
 
 #import "FooterView.h"
 
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 
 @implementation FooterView
 
@@ -17,9 +17,9 @@
     [super drawRect:dirtyRect];
 
     // Declare our colors first. There's a lot of them.
-    NSColor *topColor = [NSColor colorWithHex:@"#2f2f2f"];;
-    NSColor *bottomColor = [NSColor colorWithHex:@"#141414"];
-    NSColor *highlightColor = [NSColor colorWithHex:@"#3F3F40"];
+    NSColor *topColor = [NSColor colorWithHexString:@"#2f2f2f" alpha:1];;
+    NSColor *bottomColor = [NSColor colorWithHexString:@"#141414" alpha:1];
+    NSColor *highlightColor = [NSColor colorWithHexString:@"#3F3F40" alpha:1];
 
     // Draw the left side of the two-tone footer first.
     NSRect leftRect = NSMakeRect(0, 0, 320, 32);

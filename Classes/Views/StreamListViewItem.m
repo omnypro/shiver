@@ -11,7 +11,7 @@
 
 #import "AFImageRequestOperation.h"
 #import "Channel.h"
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 #import "NSImage+MGCropExtensions.h"
 #import "NSImageView+AFNetworking.h"
 #import "Preferences.h"
@@ -62,13 +62,13 @@
     [_titleLabel setAttributedStringValue:[self attributedTitleWithString:_object.channel.status]];
 
     [_userLabel setStringValue:_object.channel.displayName];
-    [_userLabel setTextColor:[NSColor colorWithHex:@"#BFBFBF"]];
+    [_userLabel setTextColor:[NSColor colorWithHexString:@"#BFBFBF" alpha:1]];
 
     [_gameLabel setStringValue:_object.game];
-    [_gameLabel setTextColor:[NSColor colorWithHex:@"#808080"]];
+    [_gameLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
 
     [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", _object.viewers]];
-    [_viewerCountLabel setTextColor:[NSColor colorWithHex:@"#808080"]];
+    [_viewerCountLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
 
     [self refreshLogo];
     [self refreshPreview];
@@ -160,13 +160,13 @@
 {
     // Draw the initial rectangle.
     NSRect initialRect = NSMakeRect(0, 20, NSWidth(dirtyRect), 90);
-    [[NSColor colorWithHex:@"#222"] setFill];
+    [[NSColor colorWithHexString:@"#222222" alpha:1] setFill];
     NSRectFill(initialRect);
 
     // Draw the sidebar that'll "house" the watch button, viewer count, and
     // part of the avatar.
     NSRect sidebarRect = NSMakeRect(0, -20, 60, 140);
-    [[NSColor colorWithHex:@"#222"] setFill];
+    [[NSColor colorWithHexString:@"#222222" alpha:1] setFill];
     NSRectFill(sidebarRect);
 
     // Delcare an inner shadow for the sidebar.

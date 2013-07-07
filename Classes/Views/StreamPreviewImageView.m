@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 #import "NSImage+MGCropExtensions.h"
 
 #import "StreamPreviewImageView.h"
@@ -17,7 +17,7 @@
 {
     // Draw the inner rectangle and fill it with black.
     NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 100);
-    [[NSColor colorWithHex:@"#000"] setFill];
+    [[NSColor colorWithHexString:@"#000000" alpha:1] setFill];
     NSRectFill(initialRect);
 
     // Crop the preview image, because squishy images suck.

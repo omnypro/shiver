@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 
 #import "AboutView.h"
 
@@ -27,8 +27,8 @@
     [super drawRect:dirtyRect];
 
     // Delcare our colors and main gradient first.
-    NSColor *topColor = [NSColor colorWithHex:@"#131414"];
-    NSColor *bottomColor = [NSColor colorWithHex:@"2F3030"];
+    NSColor *topColor = [NSColor colorWithHexString:@"#131414" alpha:1];
+    NSColor *bottomColor = [NSColor colorWithHexString:@"2F3030" alpha:1];
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
 
     // Draw the main rectangle that'll contain the custom gradient.
@@ -37,11 +37,11 @@
 
     // Draw the two horizontal lines that'll separate the panel's content.
     NSRect topLine = NSMakeRect(10, NSHeight(dirtyRect) - 20, NSWidth(dirtyRect) - 20, 1);
-    [[NSColor colorWithHex:@"#303030"] setFill];
+    [[NSColor colorWithHexString:@"#303030" alpha:1] setFill];
     NSRectFill(topLine);
 
     NSRect bottomLine = NSMakeRect(10, 90, NSWidth(dirtyRect) - 20, 1);
-    [[NSColor colorWithHex:@"#4A4A4A"] setFill];
+    [[NSColor colorWithHexString:@"#4A4A4A" alpha:1] setFill];
     NSRectFill(bottomLine);
 }
 

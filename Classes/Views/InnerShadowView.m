@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 
 #import "InnerShadowView.h"
 
@@ -25,7 +25,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Drawing code here.
-    [[NSColor colorWithHex:@"#222222"] setFill];
+    [[NSColor colorWithHexString:@"#222222" alpha:1] setFill];
     NSRectFill(dirtyRect);
 
     // Delcare our inner shadow.

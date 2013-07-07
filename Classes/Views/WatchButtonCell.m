@@ -8,7 +8,7 @@
 
 #import "WatchButtonCell.h"
 
-#import "NSColor+Hex.h"
+#import "HexColor.h"
 
 static const CGFloat bezelMarginTop = 4;
 static const CGFloat bezelMarginBottom = 7;
@@ -45,7 +45,7 @@ static const CGFloat cornerRadius = 2;
         [[NSGraphicsContext currentContext] saveGraphicsState];
         [strokePath addClip];
 
-        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHex:@"#5ABC0E"] endingColor:[NSColor colorWithHex:@"#93DF22"]];
+        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#5ABC0E" alpha:1] endingColor:[NSColor colorWithHexString:@"#93DF22" alpha:1]];
         [gradient drawInRect:bezelFrame angle:self.isHighlighted ? 90 : 270];
 
         [[NSGraphicsContext currentContext] restoreGraphicsState];
