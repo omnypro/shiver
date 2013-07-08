@@ -47,10 +47,10 @@
 @property (nonatomic, strong) User *user;
 
 @property (nonatomic, assign) BOOL loggedIn;
-@property (atomic) BOOL showingError;
-@property (atomic) BOOL showingEmpty;
-@property (atomic) BOOL showingLoading;
-@property (atomic) NSString *showingErrorMessage;
+@property (nonatomic, assign) BOOL showingError;
+@property (nonatomic, assign) BOOL showingEmpty;
+@property (nonatomic, assign) BOOL showingLoading;
+@property (nonatomic, strong) NSString *showingErrorMessage;
 
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
 @end
