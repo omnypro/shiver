@@ -279,7 +279,7 @@
         } error:^(NSError *error) {
             @strongify(self);
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
-            self.showingErrorMessage = [error localizedDescription];
+            self.showingErrorMessage = [self formatError:[error localizedDescription]];
             self.showingError = YES;
         }];
     }];
@@ -347,6 +347,16 @@
         if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
         else { self.showingEmpty = NO; }
     }];
+}
+
+- (NSString *)formatError:(NSString *)errorString
+{
+    NSString *string = errorString;
+    if ([string rangeOfString:@"408"].location != NSNotFound) { string = @"Our request for streams timed out. Try refreshing."; }
+    if ([string rangeOfString:@"500"].location != NSNotFound) { string = @"Twitch's servers are erroring out. Try refreshing."; }
+    if ([string rangeOfString:@"502"].location != NSNotFound) { string = @"Twitch isn't listening to us right now. Try refreshing."; }
+    if ([string rangeOfString:@"503"].location != NSNotFound) { string = @"Twitch is down at the moment. Come back later."; }
+    return string;
 }
 
 - (void)updateLastUpdatedLabel
