@@ -11,8 +11,10 @@
 #import <EXTScope.h>
 
 #import "AboutWindowController.h"
+#import "EmptyErrorView.h"
 #import "HexColor.h"
 #import "LoginRequiredView.h"
+#import "NSView+Animations.h"
 #import "Reachability.h"
 #import "StreamListViewController.h"
 #import "TwitchAPIClient.h"
@@ -34,16 +36,16 @@
     IBOutlet NSMenuItem *_userMenuItem;
 }
 
+@property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) NSViewController *currentViewController;
 @property (nonatomic, strong) StreamListViewController *streamListViewController;
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
-@property (nonatomic, strong) NSView *loginView;
 
 @property (nonatomic, assign) BOOL isOnline;
 @property (nonatomic, assign) BOOL loggedIn;
+@property (nonatomic, assign) BOOL isUIActive;
 @property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) TwitchAPIClient *client;
-@property (nonatomic, strong) Reachability *reach;
 @property (nonatomic, strong) User *user;
 
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
@@ -85,17 +87,25 @@
     @weakify(self);
 
     self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
-    [[[RACAbleWithStart(self.credential) distinctUntilChanged] filter:^BOOL(AFOAuthCredential *credential) {
-        return (credential != nil);
-    }] subscribeNext:^(AFOAuthCredential *credential) {
+
+    [[[[RACSignal combineLatest:@[ RACAbleWithStart(self.credential), RACAbleWithStart(self.isOnline) ]
+      reduce:^(AFOAuthCredential *credential, NSNumber *online) {
+        BOOL isOnline = [online boolValue];
+        return @((credential != nil) && (isOnline == YES));
+    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
+        return ([value boolValue] == YES);
+    }] subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We have a credential.", [self class]);
+        self.isUIActive = YES;
         self.loggedIn = YES;
         self.client = [TwitchAPIClient sharedClient];
         if (self.user == nil) {
             [[[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
                 DDLogInfo(@"Application (%@): We have a user. (%@)", [self class], user.name);
                 self.user = user;
+            } error:^(NSError *error) {
+                DDLogError(@"Application (%@): We couldn't fetch a user. (%@)", [self class], [error localizedDescription]);
             }];
         }
     }];
@@ -111,21 +121,21 @@
     // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
     // fetch the user from the API and when the value changes, then show the
     // stream list.
-    [[[[RACSignal combineLatest:@[ RACAbleWithStart(self.loggedIn), RACAbleWithStart(self.user) ] reduce:^(NSNumber *loggedIn, User *user) {
+    [[[[[RACSignal combineLatest:@[ RACAbleWithStart(self.loggedIn), RACAbleWithStart(self.user) ] reduce:^(NSNumber *loggedIn, User *user) {
         BOOL isLoggedIn = [loggedIn boolValue];
         return @((isLoggedIn == YES) && (user != nil));
     }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
         return ([value boolValue] == YES);
-    }] subscribeNext:^(id x) {
+    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
         DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
         [self setCurrentViewController:listController];
     }];
-    [[[RACAbleWithStart(self.loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
+    [[[[RACAbleWithStart(self.loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
         return ([loggedIn boolValue] == NO);
-    }] subscribeNext:^(id x) {
+    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
 		DDLogInfo(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
         DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
@@ -133,13 +143,13 @@
         [self setCurrentViewController:listController];
     }];
 
-    // Watch -loggedIn and update the main interface appropriately.
-    [self->_lastUpdatedLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
-    [self->_sectionLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
-    [self->_statusLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
-    [self->_refreshButton rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.loggedIn)];
-    [self->_userImage rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.loggedIn)];
-    [self->_userMenuItem rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.loggedIn)];
+    // Watch -isUIActive and update the main interface appropriately.
+    [self->_lastUpdatedLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
+    [self->_sectionLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
+    [self->_statusLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
+    [self->_refreshButton rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.isUIActive)];
+    [self->_userImage rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
+    [self->_userMenuItem rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.isUIActive)];
 
     RACSignal *hasUserSignal = RACAbleWithStart(self.user);
     [hasUserSignal subscribeNext:^(User *user) {
@@ -192,10 +202,27 @@
         self.isOnline = reach.isReachable;
     }];
 
-    [[[RACAbleWithStart(self.isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[RACAbleWithStart(self.isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == NO);
-    }] subscribeNext:^(id x) {
-        NSLog(@"Time to shut shit down.");
+    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        @strongify(self);
+        NSString *title = @"Whoops! Something went wrong.";
+        NSString *message = @"Looks like your internet is down.";
+        DDLogError(@"Application (%@): Showing the error view with message, \"%@\"", [self class], message);
+        self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
+        [self->_masterView addSubview:self.errorView animated:YES];
+
+        // Reset dat UI.
+        self.isUIActive = NO;
+    }];
+    [[[[RACAble(self.isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+        return ([reachable boolValue] == YES);
+    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        @strongify(self);
+        DDLogInfo(@"Application (%@): Removing the error view.", [self class]);
+        [self.errorView removeFromSuperviewAnimated:YES];
+        self.errorView = nil;
+        self.isUIActive = YES;
     }];
 }
 
