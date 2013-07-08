@@ -79,15 +79,15 @@
     self.loginView = [LoginRequiredView init];
     self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
 
-    [self setUpViewSignals];
-    [self setUpDataSignals];
+    [self initializeViewSignals];
+    [self initializeDataSignals];
 
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
     [_listView setConditionallyUseLayerBacking:YES];
 }
 
-- (void)setUpViewSignals
+- (void)initializeViewSignals
 {
     @weakify(self);
 
@@ -203,7 +203,7 @@
             self.showingLoading = NO;
             NSString *title = @"Whoops! Something went wrong.";
             NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-            DDLogError(@"Application (%@): Showing the error view with message \"%@\"", [self class], message);
+            DDLogError(@"Application (%@): Showing the error view with message, \"%@\"", [self class], message);
             self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
             [self.view addSubview:self.errorView animated:YES];
         }
@@ -237,7 +237,7 @@
     }];
 }
 
-- (void)setUpDataSignals
+- (void)initializeDataSignals
 {
     @weakify(self);
 
