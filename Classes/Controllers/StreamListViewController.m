@@ -139,7 +139,6 @@
         }
         else {
             [self.statusItem setTitle:@""];
-            [self.windowController.refreshButton setEnabled:NO];
             [self.windowController.statusLabel setStringValue:@"No live streams"];
         }
     }];
