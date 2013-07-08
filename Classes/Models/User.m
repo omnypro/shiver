@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "User.h"
-
-#import "TwitchAPIClient.h"
 #import "Mantle.h"
+#import "TwitchAPIClient.h"
+
+#import "User.h"
 
 @implementation User
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "WatchButtonCell.h"
-
 #import "HexColor.h"
+
+#import "WatchButtonCell.h"
 
 static const CGFloat bezelMarginTop = 4;
 static const CGFloat bezelMarginBottom = 7;

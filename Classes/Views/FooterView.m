@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "FooterView.h"
-
 #import "HexColor.h"
+
+#import "FooterView.h"
 
 @implementation FooterView
 
