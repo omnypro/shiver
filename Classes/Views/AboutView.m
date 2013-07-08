@@ -28,7 +28,7 @@
 
     // Delcare our colors and main gradient first.
     NSColor *topColor = [NSColor colorWithHexString:@"#131414" alpha:1];
-    NSColor *bottomColor = [NSColor colorWithHexString:@"2F3030" alpha:1];
+    NSColor *bottomColor = [NSColor colorWithHexString:@"#2F3030" alpha:1];
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:topColor endingColor:bottomColor];
 
     // Draw the main rectangle that'll contain the custom gradient.
