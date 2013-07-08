@@ -109,8 +109,12 @@
             }];
         }
     }];
-    [[[RACAbleWithStart(self.credential) distinctUntilChanged] filter:^BOOL(AFOAuthCredential *credential) {
-        return (credential == nil);
+    [[[[RACSignal combineLatest:@[ RACAbleWithStart(self.credential), RACAbleWithStart(self.isOnline) ]
+      reduce:^(AFOAuthCredential *credential, NSNumber *online) {
+        BOOL isOnline = [online boolValue];
+        return @((credential == nil) && (isOnline == YES));
+    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
+        return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We do not have a credential.", [self class]);
