@@ -87,8 +87,8 @@
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">71304192</int>
 							<string key="NSContents">Viewers</string>
-							<object class="NSFont" key="NSSupport" id="39132973">
-								<string key="NSName">HelveticaNeue-Bold</string>
+							<object class="NSFont" key="NSSupport">
+								<string key="NSName">HelveticaNeue-Medium</string>
 								<double key="NSSize">9</double>
 								<int key="NSfFlags">16</int>
 							</object>
@@ -130,7 +130,7 @@
 							<int key="NSCellFlags2">4194560</int>
 							<string key="NSContents">Multiline Label</string>
 							<object class="NSFont" key="NSSupport">
-								<string key="NSName">HelveticaNeue-Bold</string>
+								<string key="NSName">HelveticaNeue-Medium</string>
 								<double key="NSSize">13</double>
 								<int key="NSfFlags">16</int>
 							</object>
@@ -188,7 +188,11 @@
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Watch</string>
-							<reference key="NSSupport" ref="39132973"/>
+							<object class="NSFont" key="NSSupport">
+								<string key="NSName">HelveticaNeue-Bold</string>
+								<double key="NSSize">9</double>
+								<int key="NSfFlags">16</int>
+							</object>
 							<reference key="NSControlView" ref="103824817"/>
 							<int key="NSButtonFlags">-2038284288</int>
 							<int key="NSButtonFlags2">129</int>
@@ -216,8 +220,8 @@
 							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">71305216</int>
 							<string key="NSContents">Game</string>
-							<object class="NSFont" key="NSSupport" id="24283633">
-								<string key="NSName">HelveticaNeue-Medium</string>
+							<object class="NSFont" key="NSSupport" id="856841493">
+								<string key="NSName">HelveticaNeue</string>
 								<double key="NSSize">10</double>
 								<int key="NSfFlags">16</int>
 							</object>
@@ -240,7 +244,7 @@
 							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">272631808</int>
 							<string key="NSContents">User</string>
-							<reference key="NSSupport" ref="24283633"/>
+							<reference key="NSSupport" ref="856841493"/>
 							<reference key="NSControlView" ref="278026387"/>
 							<reference key="NSBackgroundColor" ref="718457390"/>
 							<reference key="NSTextColor" ref="1072076833"/>
