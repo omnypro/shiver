@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "HeaderView.h"
-
 #import "HexColor.h"
 
+#import "HeaderView.h"
 
 @implementation HeaderView
 

@@ -8,8 +8,6 @@
 
 #import "UserImageView.h"
 
-#import "User.h"
-
 @implementation UserImageView
 
 - (void)drawRect:(NSRect)dirtyRect

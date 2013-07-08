@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "Stream.h"
-
-#import "TwitchAPIClient.h"
-#import "Mantle.h"
 #import "Channel.h"
+#import "Mantle.h"
+#import "TwitchAPIClient.h"
+
+#import "Stream.h"
 
 @implementation Stream
 
