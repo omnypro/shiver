@@ -60,7 +60,7 @@
 							<array class="NSMutableArray" key="NSSubviews">
 								<object class="NSTextField" id="70368503">
 									<reference key="NSNextResponder" ref="131381317"/>
-									<int key="NSvFlags">1292</int>
+									<int key="NSvFlags">-2147482356</int>
 									<object class="NSPSMatrix" key="NSFrameMatrix"/>
 									<string key="NSFrame">{{10, 9}, {78, 19}}</string>
 									<reference key="NSSuperview" ref="131381317"/>
