@@ -17,7 +17,9 @@ i, p, ul { font-family: "prenton", "helvetica neue", helvetica, sans-serif; }
 
 header {
     background-color: #666;
-    background-image: url('http://static.simpledesktops.com/uploads/desktops/2013/06/11/pixelmavs.png');
+    background-image: url('../images/ice.jpg');
+    background-position: 50% 50%;
+    background-size: 100% auto;
     color: #fff;
 
     padding-top: 40px;
@@ -37,6 +39,7 @@ header p {
 
 
 .main h2 {
+    color: #333;
     font-weight: 200;
     line-height: 1.1;
     text-align: right;
@@ -44,9 +47,9 @@ header p {
     margin-top: 8px;
     padding-left: 5%; }
 .main p {
+    color: #999;
     font-size: 14px;
-    line-height: 1.5;
-    color: #999; }
+    line-height: 1.5; }
 
 .features {
     color: #666;
@@ -75,7 +78,7 @@ header p {
     width: 348px; height: 292px;
 
     position: absolute;
-    top: 0px; left: 32px;
+    top: 0px; left: 20px;
     z-index: 10; }
 .mac {
     background-image: url('../images/mac.png');
