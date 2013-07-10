@@ -162,6 +162,36 @@ h2 {
     color: #ccc;
     font-size: 14px;
     line-height: 1.5; }
+.suggestions .button {
+    background: #8260ae;
+    background: -moz-linear-gradient(top, #8260ae 0%, #593787 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8260ae), color-stop(100%, #593787));
+    background: -webkit-linear-gradient(top, #8260ae 0%, #593787 100%);
+    background: -o-linear-gradient(top, #8260ae 0%, #593787 100%);
+    background: -ms-linear-gradient(top, #8260ae 0%, #593787 100%);
+    background: linear-gradient(to bottom, #8260ae 0%, #593787 100%);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px #111, inset 0 1px 0 #9071B7;
+    color: #fff;
+    font-size: 12px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+
+    padding: 5px 12px 6px;
+    position: relative;
+    top: -1px; }
+.suggestions .button:active {
+    background: #593787;
+    background: -moz-linear-gradient(top, #593787 0%, #8260ae 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #593787), color-stop(100%, #8260ae));
+    background: -webkit-linear-gradient(top, #593787 0%, #8260ae 100%);
+    background: -o-linear-gradient(top, #593787 0%, #8260ae 100%);
+    background: -ms-linear-gradient(top, #593787 0%, #8260ae 100%);
+    background: linear-gradient(to bottom, #593787 0%, #8260ae 100%); }
+.suggestions hr {
+    border: 0;
+    background: #666;
+    height: 1px; }
+
 .recommendations {
     list-style: none;
     margin-top: 11px;
@@ -187,32 +217,7 @@ h2 {
 .recommendations p {
     font-size: 12px;
     margin-top: 0.5em; }
-.recommendations .button {
-    background: #8260ae;
-    background: -moz-linear-gradient(top, #8260ae 0%, #593787 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8260ae), color-stop(100%, #593787));
-    background: -webkit-linear-gradient(top, #8260ae 0%, #593787 100%);
-    background: -o-linear-gradient(top, #8260ae 0%, #593787 100%);
-    background: -ms-linear-gradient(top, #8260ae 0%, #593787 100%);
-    background: linear-gradient(to bottom, #8260ae 0%, #593787 100%);
-    border-radius: 2px;
-    box-shadow: 0 1px 2px #111, inset 0 1px 0 #9071B7;
-    color: #fff;
-    font-size: 12px;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-
-    float: right;
-    padding: 5px 12px 6px;
-    position: relative;
-    top: -1px; }
-.recommendations .button:active {
-    background: #593787;
-    background: -moz-linear-gradient(top, #593787 0%, #8260ae 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #593787), color-stop(100%, #8260ae));
-    background: -webkit-linear-gradient(top, #593787 0%, #8260ae 100%);
-    background: -o-linear-gradient(top, #593787 0%, #8260ae 100%);
-    background: -ms-linear-gradient(top, #593787 0%, #8260ae 100%);
-    background: linear-gradient(to bottom, #593787 0%, #8260ae 100%); }
+.recommendations .button { float: right; }
 
 .footer {
     border-top: 1px solid #eee;
