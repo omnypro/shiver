@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
 		<string key="IBDocument.SystemVersion">12E55</string>
-		<string key="IBDocument.InterfaceBuilderVersion">4457.6</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">4457.6</string>
+			<string key="NS.object.0">3084</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSCustomObject</string>
@@ -56,6 +56,7 @@
 							<string key="NSFrame">{{17, 182}, {126, 44}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="179904138"/>
 							<bool key="NSViewCanDrawConcurrently">YES</bool>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
@@ -92,6 +93,7 @@
 							<string key="NSFrame">{{20, 167}, {203, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="1028164439"/>
 							<bool key="NSViewCanDrawConcurrently">YES</bool>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
@@ -120,6 +122,7 @@
 							<string key="NSFrame">{{20, 123}, {112, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="526790526"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="62264806">
@@ -140,6 +143,7 @@
 							<string key="NSFrame">{{20, 105}, {112, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="302374391"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="481027128">
@@ -160,12 +164,13 @@
 							<string key="NSFrame">{{128, 105}, {112, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="334173162"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="852589248">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">@tobiasahlin</string>
+								<string key="NSContents">shiverapp.com</string>
 								<reference key="NSSupport" ref="819988563"/>
 								<reference key="NSControlView" ref="1005871147"/>
 								<reference key="NSBackgroundColor" ref="504061729"/>
@@ -180,12 +185,13 @@
 							<string key="NSFrame">{{128, 123}, {112, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="1005871147"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="96436698">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Tobias Ahlin</string>
+								<string key="NSContents">@shiverapp</string>
 								<reference key="NSSupport" ref="819988563"/>
 								<reference key="NSControlView" ref="302374391"/>
 								<reference key="NSBackgroundColor" ref="504061729"/>
@@ -200,6 +206,7 @@
 							<string key="NSFrame">{{20, 137}, {112, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="538093599"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="969463176">
@@ -227,12 +234,13 @@
 							<string key="NSFrame">{{128, 137}, {112, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="980608913"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="432501322">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Icon</string>
+								<string key="NSContents">Need Help?</string>
 								<reference key="NSSupport" ref="795731749"/>
 								<reference key="NSControlView" ref="526790526"/>
 								<reference key="NSBackgroundColor" ref="504061729"/>
@@ -250,6 +258,7 @@
 							<string key="NSFrame">{{20, 61}, {200, 19}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="312412253"/>
 							<string key="NSHuggingPriority">{251, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="1043779272">
@@ -277,6 +286,7 @@
 							<string key="NSFrame">{{20, 11}, {200, 45}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSAntiCompressionPriority">{250, 750}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="326801338">
@@ -314,6 +324,7 @@
 							<string key="NSFrame">{{20, 231}, {96, 96}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="897330486"/>
 							<string key="NSHuggingPriority">{251, 251}</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="10649273">
@@ -332,6 +343,7 @@
 					<string key="NSFrameSize">{240, 360}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView" ref="440824454"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
@@ -797,14 +809,31 @@
 						<string key="minorKey">./Classes/AboutWindowController.h</string>
 					</object>
 				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSWindow</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="fadeIn:">id</string>
+						<string key="fadeOut:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="fadeIn:">
+							<string key="name">fadeIn:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="fadeOut:">
+							<string key="name">fadeOut:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSWindow.h</string>
+					</object>
+				</object>
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<real value="1080" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
 			<integer value="4600" key="NS.object.0"/>
