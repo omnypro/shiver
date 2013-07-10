@@ -3,25 +3,79 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
 
-a { text-decoration: none; }
+a {
+    color: #48970B;
+    text-decoration: none; }
+body { margin-bottom: 40px; }
 
 .wrapper {
     margin: 0 auto;
     width: 990px; }
 
 header {
-    background-color: #000;
+    background-color: #666;
+    background-image: url('http://static.simpledesktops.com/uploads/desktops/2013/06/11/pixelmavs.png');
     color: #fff;
+
+    padding-top: 40px;
+    padding-bottom: 254px;
 }
 header h1 {
     font-size: 40px;
+    font-weight: 100;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
-    margin: 0;
+    margin: 0 0 6px;
 }
 header p {
     font-size: 13px;
+    text-align: right;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
     margin: 10px 0 0;
+}
+
+
+.main h2 {
+    font-weight: 100;
+    line-height: 1.1;
+    text-align: right;
+
+    margin-top: 10px;
+    padding-left: 5%;
+}
+.main p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.features {
+    color: #666;
+    line-height: 1.5;
+    list-style: none;
+    padding-left: 0;
+}
+
+.imagery { position: relative; }
+.app {
+    background-image: url('../images/app.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 348px; height: 292px;
+
+    position: absolute;
+    top: 0px; left: 32px;
+    z-index: 10;
+}
+.mac {
+    background-image: url('../images/mac.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    width: 434px; height: 346px;
+    position: absolute;
+    top: 14px;
 }
 
 .download {
@@ -29,25 +83,38 @@ header p {
     border-radius: 4px;
     text-align: center;
 
-    padding: 4px;
-}
+    margin-top: 120px; margin-bottom: 20px;
+    padding: 4px; }
 .download .button {
     background: #96e123;
     background: -moz-linear-gradient(top, #96e123 0%, #5dbe0f 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#96e123), color-stop(100%,#5dbe0f));
-    background: -webkit-linear-gradient(top, #96e123 0%,#5dbe0f 100%);
-    background: -o-linear-gradient(top, #96e123 0%,#5dbe0f 100%);
-    background: -ms-linear-gradient(top, #96e123 0%,#5dbe0f 100%);
-    background: linear-gradient(to bottom, #96e123 0%,#5dbe0f 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #96e123), color-stop(100%, #5dbe0f));
+    background: -webkit-linear-gradient(top, #96e123 0%, #5dbe0f 100%);
+    background: -o-linear-gradient(top, #96e123 0%, #5dbe0f 100%);
+    background: -ms-linear-gradient(top, #96e123 0%, #5dbe0f 100%);
+    background: linear-gradient(to bottom, #96e123 0%, #5dbe0f 100%);
     border-radius: 2px;
     box-shadow: 0 1px 0 #48970B;
     color: #fff;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.1);
 
+    display: block;
+    padding: 12px; }
+.download .button:active {
+    background: #5dbe0f;
+    background: -moz-linear-gradient(top, #5dbe0f 0%, #96e123 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5dbe0f), color-stop(100%, #96e123));
+    background: -webkit-linear-gradient(top, #5dbe0f 0%, #96e123 100%);
+    background: -o-linear-gradient(top, #5dbe0f 0%, #96e123 100%);
+    background: -ms-linear-gradient(top, #5dbe0f 0%, #96e123 100%);
+    background: linear-gradient(to bottom, #5dbe0f 0%, #96e123 100%);
+    border-radius: 2px;
+    box-shadow: 0 1px 0 #48970B;
+    color: #fff;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.1);
 
     display: block;
-    padding: 12px;
-}
+    padding: 12px; }
 .download a { color: #999; }
 .download i {
     color: #999;
@@ -55,7 +122,40 @@ header p {
     font-style: normal;
 
     display: block;
-    margin: 10px 0 6px;
+    margin: 10px 0 6px; }
+
+.footer {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin: 20px 0; }
+footer p { text-align: right; }
+footer .us {
+    color: #666;
+    font-size: 12px;
+    margin: 0;
+}
+footer .them {
+    color: #999;
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+
+/* Retina Imagery */
+@media
+    only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 3/2),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (min-device-pixel-ratio: 1.5) {
+
+    .app {
+        background-image: url('../images/app@2x.png');
+        background-size: 348px auto;
+    }
+    .mac {
+        background-image: url('../images/mac@2x.png');
+        background-size: 430px auto;
+    }
 }
 
 
