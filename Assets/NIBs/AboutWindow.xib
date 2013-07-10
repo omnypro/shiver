@@ -170,7 +170,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="852589248">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">shiverapp.com</string>
+								<string key="NSContents">@shiverapp</string>
 								<reference key="NSSupport" ref="819988563"/>
 								<reference key="NSControlView" ref="1005871147"/>
 								<reference key="NSBackgroundColor" ref="504061729"/>
@@ -191,7 +191,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="96436698">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">@shiverapp</string>
+								<string key="NSContents">shiverapp.com</string>
 								<reference key="NSSupport" ref="819988563"/>
 								<reference key="NSControlView" ref="302374391"/>
 								<reference key="NSBackgroundColor" ref="504061729"/>
