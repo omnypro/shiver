@@ -55,6 +55,21 @@ header p {
     line-height: 1.5;
     list-style: none;
     padding-left: 0;
+    position: relative;
+    top: -1px;
+}
+.features li {
+    font-size: 12px;
+    margin-bottom: 1em;
+    padding-left: 46px; padding-right: 20%;
+    position: relative;
+}
+.features .image {
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #666;
+    position: absolute;
+    left: 0;
+    width: 36px; height: 36px;
 }
 
 .imagery { position: relative; }
