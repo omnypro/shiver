@@ -32,16 +32,3 @@ Then, while in the project's directory:
 You should be able to build the application. If you're having any problems,
 please be so kind and [file an
 issue](https://github.com/bryanveloso/shiver/issues/new).
-
-Some Notes
-----------
-
-* As of the current build, the design is not complete. 
-* Authentication is done via OAuth in Shiver's Preferences panel, but it hasn't 
-been thoroughly tested beyond it "just working" for me. 
-* Shiver lives in your menu bar. Currently, it'll check for new streams every 
-5 minutes and notify you via OS X's Notification Center if a streamer you 
-follow goes live; In future versions that'll be configurable. If you want to test
-out the notifications, head on over to Twitch, follow somebody new and refresh
-the stream list.
-
