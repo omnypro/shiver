@@ -161,6 +161,7 @@ footer .them {
     color: #999;
     font-size: 11px;
     margin-top: 6px; }
+footer .twitter { text-align: right; }
 
 /* Retina Imagery */
 @media
