@@ -16,7 +16,7 @@ i, p, ul { font-family: "prenton", "helvetica neue", helvetica, sans-serif; }
     width: 990px; }
 
 header {
-    background-color: #666;
+    background-color: #000;
     background-image: url('../images/ice.jpg');
     background-position: 50% 50%;
     background-size: 100% auto;
@@ -107,8 +107,7 @@ header p {
 
     width: 24px; height: 24px;
     position: absolute;
-    top: -4px; left: 0px;
-}
+    top: -4px; left: 0px; }
 .download .button {
     background: #96e123;
     background: -moz-linear-gradient(top, #96e123 0%, #5dbe0f 100%);
@@ -157,14 +156,11 @@ footer p { text-align: right; }
 footer .us {
     color: #666;
     font-size: 12px;
-    margin: 0;
-}
+    margin: 0; }
 footer .them {
     color: #999;
     font-size: 11px;
-    margin-top: 6px;
-}
-
+    margin-top: 6px; }
 
 /* Retina Imagery */
 @media
@@ -182,7 +178,6 @@ footer .them {
         background-size: 430px auto;
     }
 }
-
 
 /* Clearfix */
 .clearfix:before,
