@@ -9,7 +9,7 @@ a {
     text-decoration: none; }
 body { margin-bottom: 40px; }
 h1, h2 { font-family: "helvetica neue", helvetica, sans-serif; }
-p, ul { font-family: "prenton", "helvetica neue", helvetica, sans-serif; }
+i, p, ul { font-family: "prenton", "helvetica neue", helvetica, sans-serif; }
 
 .wrapper {
     margin: 0 auto;
