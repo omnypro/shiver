@@ -197,8 +197,7 @@ h2 {
     background: linear-gradient(to bottom, #f3f3f3 0%, #dedede 100%);
     box-shadow: 0 1px 2px #111, inset 0 1px 0 #fff;
     color: #6441A5;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
-}
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75); }
 .suggestions .button.browse:active {
     background: #dedede;
     background: -moz-linear-gradient(top, #dedede 0%, #f3f3f3 100%);
