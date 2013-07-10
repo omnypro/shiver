@@ -161,7 +161,13 @@ footer .them {
     color: #999;
     font-size: 11px;
     margin-top: 6px; }
-footer .twitter { text-align: right; }
+.twitter-follow-button,
+.twitter-share-button,
+.fb-like {
+    display: inline;
+    float: left;
+    margin-bottom: 3px;
+    text-align: left; }
 
 /* Retina Imagery */
 @media
