@@ -105,15 +105,20 @@
     self.active = YES;
 
     NSRect statusItemRect = [self.window frame];
-    CGFloat midX = NSMidX(statusItemRect);
     CGFloat windowWidth = NSWidth([self.mainWindow frame]);
     CGFloat windowHeight = NSHeight([self.mainWindow frame]);
 
-    NSRect windowFrame = NSMakeRect(
-        floor(midX - (windowWidth / 2.0)),
-        floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight] - 10),
-        floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]),
-        windowWidth, windowHeight);
+    // Figure out the width of the main screen and a temporary "rightmost
+    // point" relative to the main screen.
+    CGFloat screenWidth = NSWidth([self.window.screen frame]);
+    CGFloat rightmostPoint = NSMaxX(statusItemRect) + windowWidth;
+
+    // Compare rightmostPoint and the screen's width. If it's greater (which
+    // means part of the window is off-screen, set the window's origin in
+    // such a way to "pin" the window to the right. Otherwise, pin the window
+    // to the left.
+    CGFloat pinPoint = (screenWidth < rightmostPoint) ? NSMaxX(statusItemRect) - windowWidth : NSMinX(statusItemRect);
+    NSRect windowFrame = NSMakeRect(floor(pinPoint), floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]), windowWidth, windowHeight);
     [self.mainWindow setFrameOrigin:windowFrame.origin];
     [self.mainWindow makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
