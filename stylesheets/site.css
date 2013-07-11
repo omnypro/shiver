@@ -256,8 +256,8 @@ footer .them {
 .twitter-follow-button,
 .twitter-share-button,
 .fb-like {
-    display: inline;
-    float: left;
+    display: inline-block;
+    float: none;
     margin-bottom: 3px;
     text-align: left; }
 
