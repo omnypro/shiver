@@ -106,7 +106,7 @@
 
         // Send a signal off to our WindowController's -reachSignal
         // to update the UI, etc.
-        NSLog(@"Application (%@): %@", [self class], reach.isReachable ? @"We have internets." : @"We don't have internets.");
+        DDLogInfo(@"Application (%@): %@", [self class], reach.isReachable ? @"We have internets." : @"We don't have internets.");
         [self.windowController.reachSignal sendNext:reach];
     }];
 
