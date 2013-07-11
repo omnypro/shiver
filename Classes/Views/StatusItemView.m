@@ -112,6 +112,7 @@
     NSRect windowFrame = NSMakeRect(
         floor(midX - (windowWidth / 2.0)),
         floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight] - 10),
+        floor(NSMaxY(statusItemRect) - windowHeight - [[NSApp mainMenu] menuBarHeight]),
         windowWidth, windowHeight);
     [self.mainWindow setFrameOrigin:windowFrame.origin];
     [self.mainWindow makeKeyAndOrderFront:nil];
