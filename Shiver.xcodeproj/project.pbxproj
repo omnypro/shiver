@@ -13,6 +13,7 @@
 		931E252A1778B7B20081162C /* EmptyErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* EmptyErrorView.m */; };
 		931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */; };
 		931E254217791FC70081162C /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E254117791FC70081162C /* InnerShadowView.m */; };
+		93224BF717929A7900546E25 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 93224BF617929A7900546E25 /* Logo.png */; };
 		9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239B17728FBF00374EB9 /* EmptyStreamList.png */; };
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
 		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
@@ -123,6 +124,7 @@
 		931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+Equations.m"; path = "Extensions/Categories/NSLayoutConstraint+Equations.m"; sourceTree = SOURCE_ROOT; };
 		931E254017791FC70081162C /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InnerShadowView.h; path = Classes/Views/InnerShadowView.h; sourceTree = SOURCE_ROOT; };
 		931E254117791FC70081162C /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InnerShadowView.m; path = Classes/Views/InnerShadowView.m; sourceTree = SOURCE_ROOT; };
+		93224BF617929A7900546E25 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Assets/Images/Logo.png; sourceTree = SOURCE_ROOT; };
 		9324239B17728FBF00374EB9 /* EmptyStreamList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EmptyStreamList.png; path = Assets/Images/EmptyStreamList.png; sourceTree = SOURCE_ROOT; };
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
 		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
@@ -497,6 +499,7 @@
 				93462A06177CB14D00C928CA /* Error@2x.png */,
 				9324239F1772945800374EB9 /* LoginKeys.png */,
 				932423A01772945800374EB9 /* LoginKeys@2x.png */,
+				93224BF617929A7900546E25 /* Logo.png */,
 				939A7B651783462B009121D6 /* PreferencesGeneral.png */,
 				939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */,
 				9391830F176A828500367399 /* PreferencesGlitch.png */,
@@ -744,6 +747,7 @@
 				939A7B591782A537009121D6 /* StatusItem.pdf in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
 				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
+				93224BF717929A7900546E25 /* Logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
