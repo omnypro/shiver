@@ -16,13 +16,13 @@ i, p, ul { font-family: "prenton", "helvetica neue", helvetica, sans-serif; }
     width: 990px; }
 
 header {
-    background-color: #000;
-    background-image: url('../images/ice.jpg');
-    background-position: 50% 50%;
-    background-size: 100% auto;
+    background-image: url('../images/icon.png'), url('../images/ice.jpg');
+    background-position: 50% 12px, 50% 84px;
+    background-size: 128px auto, 100% auto;
+    background-repeat: no-repeat, no-repeat;
     color: #fff;
 
-    padding-top: 40px;
+    padding-top: 140px;
     padding-bottom: 254px; }
 header h1 {
     font-size: 40px;
@@ -37,6 +37,7 @@ header p {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 
     margin: 10px 0 0; }
+header .d1 { position: relative; }
 
 h2 {
     font-weight: 200;
