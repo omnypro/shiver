@@ -87,6 +87,7 @@
 		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
 		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
 		93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB41793D9EA001A0C6F /* Icon.iconset */; };
+		93BD3CB71793E15F001A0C6F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB61793E15F001A0C6F /* Icon.icns */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
 		93BE57C41773D941008CB04E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57C81773D941008CB04E /* InfoPlist.strings */; };
@@ -236,6 +237,7 @@
 		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
 		93AB1AAC177F97F10038DB27 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Classes/Application/Preferences.m; sourceTree = SOURCE_ROOT; };
 		93BD3CB41793D9EA001A0C6F /* Icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Icon.iconset; path = Assets/Images/Icon.iconset; sourceTree = SOURCE_ROOT; };
+		93BD3CB61793E15F001A0C6F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Assets/Images/Icon.icns; sourceTree = SOURCE_ROOT; };
 		93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		93BE57C31773D941008CB04E /* ShiverHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiverHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BE57C71773D941008CB04E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -489,7 +491,6 @@
 		9391830E176A827300367399 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				93BD3CB41793D9EA001A0C6F /* Icon.iconset */,
 				939E8B7617717DE1006D6442 /* CogActive.png */,
 				939E8B7717717DE1006D6442 /* CogActive@2x.png */,
 				939E8B7817717DE1006D6442 /* CogInactive.png */,
@@ -498,6 +499,8 @@
 				9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */,
 				93462A05177CB14D00C928CA /* Error.png */,
 				93462A06177CB14D00C928CA /* Error@2x.png */,
+				93BD3CB61793E15F001A0C6F /* Icon.icns */,
+				93BD3CB41793D9EA001A0C6F /* Icon.iconset */,
 				9324239F1772945800374EB9 /* LoginKeys.png */,
 				932423A01772945800374EB9 /* LoginKeys@2x.png */,
 				939A7B651783462B009121D6 /* PreferencesGeneral.png */,
@@ -748,6 +751,7 @@
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
 				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
 				93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */,
+				93BD3CB71793E15F001A0C6F /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
