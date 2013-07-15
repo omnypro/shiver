@@ -321,7 +321,7 @@
 								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
 								<string>NeXT TIFF v4.0 pasteboard type</string>
 							</set>
-							<string key="NSFrame">{{20, 231}, {96, 96}}</string>
+							<string key="NSFrame">{{8, 226}, {96, 96}}</string>
 							<reference key="NSSuperview" ref="431081985"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="897330486"/>
@@ -332,7 +332,7 @@
 								<int key="NSCellFlags2">33554432</int>
 								<object class="NSCustomResource" key="NSContents">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Logo</string>
+									<string key="NSResourceName">Icon</string>
 								</object>
 								<int key="NSAlign">0</int>
 								<int key="NSScale">0</int>
@@ -845,8 +845,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">Logo</string>
-			<string key="NS.object.0">{1024, 1024}</string>
+			<string key="NS.key.0">Icon</string>
+			<string key="NS.object.0">{512, 512}</string>
 		</object>
 	</data>
 </archive>
