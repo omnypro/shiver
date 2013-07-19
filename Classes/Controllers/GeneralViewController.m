@@ -74,10 +74,16 @@
 {
     StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
     if ([_systemStartupCheckbox state]) {
-        if (![loginController startAtLogin]) { [loginController setStartAtLogin:YES]; }
+        if (![loginController startAtLogin]) {
+            [loginController setStartAtLogin:YES];
+            DDLogInfo(@"Preferences: Launch agent has been enabled.");
+        }
     }
     else {
-        if ([loginController startAtLogin]) { [loginController setStartAtLogin:NO]; }
+        if ([loginController startAtLogin]) {
+            [loginController setStartAtLogin:NO];
+            DDLogInfo(@"Preferences: Launch agent has been disabled.");
+        }
     }
 }
 
