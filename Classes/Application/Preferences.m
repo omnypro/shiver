@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import "StartAtLoginController.h"
+
 #import "Preferences.h"
 
 static NSString *const AutoStartSetting = @"autoStart";
@@ -48,6 +50,8 @@ static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
 - (void)setAutoStartEnabled:(BOOL)autoStartEnabled
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
+    [loginController setStartAtLogin:autoStartEnabled];
     [userDefaults setBool:YES forKey:AutoStartSetting];
     [userDefaults synchronize];
 }
