@@ -8,6 +8,7 @@
 
 #import "Preferences.h"
 
+static NSString *const AutoStartSetting = @"autoStart";
 static NSString *const NotificationSetting = @"displayNotifications";
 static NSString *const DisplayStreamCountSetting = @"displayStreamCount";
 static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
@@ -30,11 +31,25 @@ static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:@{
+        AutoStartSetting: @(NO),
         NotificationSetting: @(YES),
         DisplayStreamCountSetting: @(YES),
         StreamListRefreshTimeSetting: @5,
         OpenStreamsInPopupSetting: @(NO),
     }];
+}
+
+- (BOOL)autoStartEnabled
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:AutoStartSetting];
+}
+
+- (void)setAutoStartEnabled:(BOOL)autoStartEnabled
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:YES forKey:AutoStartSetting];
+    [userDefaults synchronize];
 }
 
 - (BOOL)notificationsEnabled
