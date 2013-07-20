@@ -7,7 +7,6 @@
 //
 
 #import "Preferences.h"
-#import "StartAtLoginController.h"
 
 #import "GeneralViewController.h"
 
@@ -44,9 +43,7 @@
 
 - (void)awakeFromNib
 {
-    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
-    [_systemStartupCheckbox setState:[loginController startAtLogin]];
-
+    [_systemStartupCheckbox setState:self.preferences.autoStartEnabled];
     [_notificationCheckbox setState:self.preferences.notificationsEnabled];
     [_streamCountCheckbox setState:self.preferences.streamCountEnabled];
     [_refreshTimeField setIntegerValue:self.preferences.streamListRefreshTime / 60];
@@ -72,18 +69,13 @@
 
 - (IBAction)toggleStartOnSystemStartup:(id)sender
 {
-    StartAtLoginController *loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
     if ([_systemStartupCheckbox state]) {
-        if (![loginController startAtLogin]) {
-            [loginController setStartAtLogin:YES];
-            DDLogInfo(@"Preferences: Launch agent has been enabled.");
-        }
+        [[self preferences] setAutoStartEnabled:YES];
+        DDLogInfo(@"Preferences: Launch agent has been enabled.");
     }
     else {
-        if ([loginController startAtLogin]) {
-            [loginController setStartAtLogin:NO];
-            DDLogInfo(@"Preferences: Launch agent has been disabled.");
-        }
+        [[self preferences] setAutoStartEnabled:NO];
+        DDLogInfo(@"Preferences: Launch agent has been disabled.");
     }
 }
 
