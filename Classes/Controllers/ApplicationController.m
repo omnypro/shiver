@@ -62,11 +62,6 @@
     // Preload the window.
     (void)self.windowController.window;
 
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ShiverAutoStart"]) {
-        [self.loginController setStartAtLogin:YES];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ShiverAutoStart"];
-    }
-
     [self initializeLogging];
     [self initializeReachability];
 }
