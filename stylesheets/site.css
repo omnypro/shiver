@@ -47,7 +47,8 @@ h2 {
     margin-top: 8px;
     padding-left: 5%; }
 .main h2 { color: #333; }
-.main p {
+.main p,
+.main li {
     color: #999;
     font-size: 14px;
     line-height: 1.5; }
@@ -148,6 +149,16 @@ h2 {
 
     display: block;
     margin: 10px 0 6px; }
+
+.testimonials {
+    list-style: none;
+    padding-left: 0; }
+.testimonials li {
+    border-left: 2px solid #eee;
+    font-family: "ff-meta-serif-web-pro", serif;
+    font-style: italic;
+    margin-bottom: 1em;
+    padding-top: 0.5em; padding-bottom: 0.5em; padding-left: 1em; }
 
 .suggestions {
     background: #222222;
