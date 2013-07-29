@@ -107,7 +107,7 @@
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        if ([self.streamList count] > 0) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
+        if ([self.streamList count] > 0 && self.user != nil) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
         else { [self.statusItem setTitle:@""]; }
     }];
     [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
@@ -121,7 +121,7 @@
     // based on those values.
     [[RACAbleWithStart(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
         @strongify(self);
-        if ([array count] > 0) {
+        if ([array count] > 0 && self.user != nil) {
             // Set the status item's title to the number of live streams if the
             // user has asked for it in the preferences.
             if (self.preferences.streamCountEnabled) {
@@ -151,8 +151,10 @@
         return [RACSignal interval:lastUpdatedInterval];
     }] switchToLatest] subscribeNext:^(NSArray *array) {
         @strongify(self);
-        DDLogVerbose(@"Application (%@): Updating the last updated label (on interval).", [self class]);
-        if (array != nil) { [self updateLastUpdatedLabel]; }
+        if (array != nil && self.user != nil) {
+            DDLogVerbose(@"Application (%@): Updating the last updated label (on interval).", [self class]);
+            [self updateLastUpdatedLabel];
+        }
     }];
 
     // Show or hide the loading view.
@@ -285,18 +287,25 @@
 
     // When the stream list gets changed, reload the table.
     [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
-     subscribeNext:^(id x){
+      subscribeNext:^(id x){
         @strongify(self);
-        DDLogInfo(@"Application (%@): Refreshing the stream list.", [self class]);
-        DDLogInfo(@"Application (%@): %lu live streams.", [self class], [x count]);
+        DDLogInfo(@"Application (%@): Asked to refresh the stream list.", [self class]);
+        
+        if (self.user) {
+            DDLogInfo(@"Application (%@): Refreshing the stream list.", [self class]);
+            DDLogInfo(@"Application (%@): %lu live streams.", [self class], [x count]);
 
-        // Update (or reset) the last updated label.
-        self.lastUpdatedTimestamp = [NSDate date];
-        [self updateLastUpdatedLabel];
+            // Update (or reset) the last updated label.
+            self.lastUpdatedTimestamp = [NSDate date];
+            [self updateLastUpdatedLabel];
 
-        // Reload the table.
-        [_listView reloadDataAnimated:YES];
-        self.showingLoading = NO;
+            // Reload the table.
+            [_listView reloadDataAnimated:YES];
+            self.showingLoading = NO;
+        }
+        
+        // If we don't have a user, don't run this!
+        else { DDLogInfo(@"Application (%@): We don't have a user; not refreshing the list.", [self class]); }
     }];
 
     // If we've fetched streams before, compared the existing list to the newly
