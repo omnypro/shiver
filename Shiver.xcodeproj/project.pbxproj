@@ -86,6 +86,7 @@
 		93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */ = {isa = PBXBuildFile; fileRef = 93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */; };
 		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
 		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
+		93B3DD9E17A7108D0007942A /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93B3DD9D17A7108D0007942A /* Icon.icns */; };
 		93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB41793D9EA001A0C6F /* Icon.iconset */; };
 		93BD3CB71793E15F001A0C6F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB61793E15F001A0C6F /* Icon.icns */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
@@ -236,6 +237,7 @@
 		93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkShadowTextField.m; path = Classes/Views/DarkShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
 		93AB1AAC177F97F10038DB27 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Classes/Application/Preferences.m; sourceTree = SOURCE_ROOT; };
+		93B3DD9D17A7108D0007942A /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		93BD3CB41793D9EA001A0C6F /* Icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Icon.iconset; path = Assets/Images/Icon.iconset; sourceTree = SOURCE_ROOT; };
 		93BD3CB61793E15F001A0C6F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Assets/Images/Icon.icns; sourceTree = SOURCE_ROOT; };
 		93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
@@ -612,6 +614,7 @@
 			children = (
 				93BE57D11773D941008CB04E /* ApplicationDelegate.h */,
 				93BE57D21773D941008CB04E /* ApplicationDelegate.m */,
+				93B3DD9D17A7108D0007942A /* Icon.icns */,
 				93BE57D41773D941008CB04E /* Menu.xib */,
 				93BE57C61773D941008CB04E /* Supporting Files */,
 			);
@@ -762,6 +765,7 @@
 				93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */,
 				93BE57D01773D941008CB04E /* Credits.rtf in Resources */,
 				93BE57D61773D941008CB04E /* Menu.xib in Resources */,
+				93B3DD9E17A7108D0007942A /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
