@@ -47,8 +47,6 @@
 
 - (void)awakeFromNib
 {
-    [[Preferences sharedPreferences] setupDefaults];
-
     NSImage *image = [NSImage imageNamed:@"StatusItem"];
     NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
     NSWindow *window = self.windowController.window;
@@ -59,6 +57,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [[Preferences sharedPreferences] setupDefaults];
+
     // Preload the window.
     (void)self.windowController.window;
 
