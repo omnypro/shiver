@@ -36,7 +36,7 @@ static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
         AutoStartSetting: @(NO),
         NotificationSetting: @(YES),
         DisplayStreamCountSetting: @(YES),
-        StreamListRefreshTimeSetting: @300,
+        StreamListRefreshTimeSetting: @5,
         OpenStreamsInPopupSetting: @(NO),
     }];
     DDLogInfo(@"Application: The defaults have been set!");

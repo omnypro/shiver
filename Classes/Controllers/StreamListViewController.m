@@ -333,7 +333,10 @@
     [[RACAbleWithStart(self.preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
         DDLogInfo(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
     }];
-    [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue]] subscribeNext:^(id x) {
+    
+    // We store the stream list refresh time in minutes, so take
+    // that value and multiply it by 60 for great justice.
+    [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue] * 60] subscribeNext:^(id x) {
         @strongify(self);
         DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
         self.client = [TwitchAPIClient sharedClient];

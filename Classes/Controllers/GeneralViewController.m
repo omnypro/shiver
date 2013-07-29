@@ -46,7 +46,7 @@
     [_systemStartupCheckbox setState:self.preferences.autoStartEnabled];
     [_notificationCheckbox setState:self.preferences.notificationsEnabled];
     [_streamCountCheckbox setState:self.preferences.streamCountEnabled];
-    [_refreshTimeField setIntegerValue:[self.preferences.streamListRefreshTime integerValue] / 60];
+    [_refreshTimeField setIntegerValue:[self.preferences.streamListRefreshTime integerValue]];
     [_openInPopupCheckbox setState:self.preferences.streamPopupEnabled];
 }
 
@@ -106,7 +106,7 @@
 - (IBAction)setStreamListRefreshTime:(id)sender
 {
     if ([_refreshTimeField integerValue] > 0) {
-        [[self preferences] setStreamListRefreshTime:[NSNumber numberWithInteger:[_refreshTimeField integerValue] * 60]];
+        [[self preferences] setStreamListRefreshTime:[NSNumber numberWithInteger:[_refreshTimeField integerValue]]];
         DDLogInfo(@"Preferences: Stream list will be refreshed every %ld minutes.", [_refreshTimeField integerValue]);
     }
 }
