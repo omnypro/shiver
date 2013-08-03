@@ -83,7 +83,6 @@
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
-		93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */ = {isa = PBXBuildFile; fileRef = 93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */; };
 		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
 		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
 		93B3DD9E17A7108D0007942A /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93B3DD9D17A7108D0007942A /* Icon.icns */; };
@@ -735,7 +734,6 @@
 				93918311176A828500367399 /* PreferencesGlitch.png in Resources */,
 				93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */,
 				939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */,
-				93AB1A9F177DF5850038DB27 /* DarkShadowTextField.h in Resources */,
 				939E8B7217717BAF006D6442 /* RefreshActive.png in Resources */,
 				939E8B7317717BAF006D6442 /* RefreshActive@2x.png in Resources */,
 				939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */,

@@ -57,6 +57,6 @@ SPEC CHECKSUMS:
   ReactiveCocoa: 591f49bb58dc2756e4876d3c1c3df55730a05505
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: 8ece03a3bb1676594ff117be5f8b3ccbacf7bba8
-  StartAtLoginController: 9cb4e6537cc7d2e3fde1ccbaea2fdecd0c07fe5d
+  StartAtLoginController: 7ab3011175dbcce1f887cc004fb5faabf29aba8d
 
-COCOAPODS: 0.20.2
+COCOAPODS: 0.22.3
