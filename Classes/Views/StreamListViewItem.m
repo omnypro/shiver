@@ -59,16 +59,23 @@
 
     _object = object;
 
-    [_titleLabel setAttributedStringValue:[self attributedTitleWithString:_object.channel.status]];
+    if (_object.channel.status) { [_titleLabel setAttributedStringValue:[self attributedTitleWithString:_object.channel.status]]; }
+    else { [_titleLabel setAttributedStringValue:[self attributedTitleWithString:@""]]; }
 
-    [_userLabel setStringValue:_object.channel.displayName];
-    [_userLabel setTextColor:[NSColor colorWithHexString:@"#BFBFBF" alpha:1]];
+    if (_object.channel.displayName) {
+        [_userLabel setStringValue:_object.channel.displayName];
+        [_userLabel setTextColor:[NSColor colorWithHexString:@"#BFBFBF" alpha:1]];
+    }
 
-    [_gameLabel setStringValue:_object.game];
-    [_gameLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
+    if (_object.game) {
+        [_gameLabel setStringValue:_object.game];
+        [_gameLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
+    }
 
-    [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", _object.viewers]];
-    [_viewerCountLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
+    if (_object.viewers) {
+        [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", _object.viewers]];
+        [_viewerCountLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
+    }
 
     [self refreshLogo];
     [self refreshPreview];
