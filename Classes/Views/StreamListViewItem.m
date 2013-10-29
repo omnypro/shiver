@@ -67,7 +67,8 @@
         [_userLabel setTextColor:[NSColor colorWithHexString:@"#BFBFBF" alpha:1]];
     }
 
-    if (_object.game) {
+    if (_object.game == nil || [_object.game isKindOfClass:[NSNull class]]) { [_gameLabel setStringValue:@""]; }
+    else {
         [_gameLabel setStringValue:_object.game];
         [_gameLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
     }
