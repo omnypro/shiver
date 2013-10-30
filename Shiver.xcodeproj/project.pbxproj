@@ -648,6 +648,7 @@
 				932C29941761AE0B0049EC1B /* Resources */,
 				ADBB9DB2641844318B22B995 /* Copy Pods Resources */,
 				93BE57DA1773DA73008CB04E /* CopyFiles */,
+				93B7B54C18208A9B00B7EF45 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -800,6 +801,19 @@
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/Tools/bump_build_number.sh \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 			showEnvVarsInLog = 0;
+		};
+		93B7B54C18208A9B00B7EF45 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\nrm ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Library/LoginItems/${PRODUCT_NAME}Helper.app/Contents/embedded.provisionprofile";
 		};
 		93BE57DC1773DAFC008CB04E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -990,7 +1004,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1013,13 +1027,14 @@
 			baseConfigurationReference = AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Shiver.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "80F46D9E-0188-4E64-9DC3-C016A9D68852";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1030,7 +1045,7 @@
 			baseConfigurationReference = AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Shiver.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1038,6 +1053,7 @@
 				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "80F46D9E-0188-4E64-9DC3-C016A9D68852";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1047,14 +1063,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShiverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "AC774B37-E5CD-46A5-91EC-A896A35B10A7";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
@@ -1065,14 +1080,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShiverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "AC774B37-E5CD-46A5-91EC-A896A35B10A7";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
