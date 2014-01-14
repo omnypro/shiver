@@ -333,8 +333,13 @@
             // Notifications will be sent for the results.
             NSSet *oldStreamIDs = [oldStreams valueForKey:@"_id"];
             NSSet *xorSet = [newStreams filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", oldStreamIDs]];
-            DDLogInfo(@"Notifications: %lu new streams.", (unsigned long)[xorSet count]);
-            [self sendNewStreamNotificationToUser:xorSet];
+            // With the way we instantiate our xorSet, there's a
+            // possibility that duplicates can pass through.
+            // Throwing the set into another set could be a way
+            // to fix the problem of duplicates.
+            NSSet *uniqueSet = [NSSet setWithSet:xorSet];
+            DDLogInfo(@"Notifications: %lu new streams.", (unsigned long)[uniqueSet count]);
+            [self sendNewStreamNotificationToUser:uniqueSet];
         }
     }];
 
