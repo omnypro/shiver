@@ -50,6 +50,7 @@
 		936959D01769606D00F2F788 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936959CF1769606D00F2F788 /* FooterView.m */; };
 		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
@@ -187,6 +188,7 @@
 		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
+		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		939411331787ECE2003D1346 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemView.h; path = Classes/Views/StatusItemView.h; sourceTree = SOURCE_ROOT; };
@@ -439,6 +441,7 @@
 				9301E9E2176A478300C46750 /* EmptyErrorView.xib */,
 				939A7B6917836D28009121D6 /* LoadingView.xib */,
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
+				938CD21018A5AA160062C4D0 /* MainWindow.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327D71764670300146C8A /* StreamListViewItem.xib */,
@@ -754,6 +757,7 @@
 				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
 				939A7B591782A537009121D6 /* StatusItem.pdf in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
+				938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */,
 				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
 				93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */,
 				93BD3CB71793E15F001A0C6F /* Icon.icns in Resources */,
