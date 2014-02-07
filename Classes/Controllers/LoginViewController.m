@@ -45,8 +45,6 @@
     if (self == nil) { return nil; }
 
     self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
-    self.loginCommand = [RACCommand command];
-    self.disconnectCommand = [RACCommand command];
     self.didLogoutSubject = [RACReplaySubject subject];
     self.didLoginSubject = [RACReplaySubject subject];
 
@@ -73,18 +71,14 @@
 {
     @weakify(self);
 
-    _loginButton.rac_command = self.loginCommand;
-    [[self.loginCommand
-      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+    _loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
         DDLogInfo(@"Authentication: Kicking off the login process.");
         self.client = [TwitchAPIClient sharedClient];
         self.loggingIn = YES;
     }];
 
-    _disconnectButton.rac_command = self.disconnectCommand;
-    [[self.disconnectCommand
-      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+    _disconnectButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
         DDLogInfo(@"Authentication: Logging out and removing credentials.");
         self.client = [TwitchAPIClient sharedClient];
@@ -97,7 +91,7 @@
 
     // Watch to see if the value of user is set. If so, change the respective
     // UI elements to reflect the fact that we have a user present.
-    [[RACAbleWithStart(self.credential) filter:^BOOL(id value) {
+    [[RACObserve(self, credential) filter:^BOOL(id value) {
         return (value != nil);
     }] subscribeNext:^(id x) {
         @strongify(self);
@@ -110,7 +104,7 @@
 
     // This time, we're watching to see if the value of user is `nil`. If so,
     // we'll revert all of the UI elements back to their original forms.
-    [[RACAbleWithStart(self.credential) filter:^BOOL(id value) {
+    [[RACObserve(self, credential) filter:^BOOL(id value) {
         return (value == nil);
     }] subscribeNext:^(id x) {
         [_connectionStatusLabel setStringValue:@"Not currently connected."];
@@ -124,7 +118,7 @@
     @weakify(self);
 
     // Spectate loggingIn. If true, open the modal and start the journey.
-    [[RACAble(self.loggingIn) distinctUntilChanged] subscribeNext:^(NSNumber *loggingIn) {
+    [[RACObserve(self, loggingIn) distinctUntilChanged] subscribeNext:^(NSNumber *loggingIn) {
         @strongify(self);
         BOOL isLoggingIn = [loggingIn boolValue];
         if (isLoggingIn) {
@@ -165,7 +159,7 @@
         DDLogInfo(@"Authentication: We've been granted access.");
 
         closeSheet();
-        [[[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^(AFOAuthCredential *credential, User *user) {
+        [[[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^id(AFOAuthCredential *credential, User *user) {
             @strongify(self);
             DDLogVerbose(@"Authentication: (Credential) %@", credential.accessToken);
             DDLogVerbose(@"Authentication: (User) %@", user.name);

@@ -88,7 +88,7 @@
 
     self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
 
-    [[[[RACSignal combineLatest:@[ RACAbleWithStart(self.credential), RACAbleWithStart(self.isOnline) ]
+    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), RACObserve(self, isOnline) ]
       reduce:^(AFOAuthCredential *credential, NSNumber *online) {
         BOOL isOnline = [online boolValue];
         return @((credential != nil) && (isOnline == YES));
@@ -109,7 +109,7 @@
             }];
         }
     }];
-    [[[[RACSignal combineLatest:@[ RACAbleWithStart(self.credential), RACAbleWithStart(self.isOnline) ]
+    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), RACObserve(self, isOnline) ]
       reduce:^(AFOAuthCredential *credential, NSNumber *online) {
         BOOL isOnline = [online boolValue];
         return @((credential == nil) && (isOnline == YES));
@@ -125,7 +125,7 @@
     // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
     // fetch the user from the API and when the value changes, then show the
     // stream list.
-    [[[[[RACSignal combineLatest:@[ RACAbleWithStart(self.loggedIn), RACAbleWithStart(self.user) ] reduce:^(NSNumber *loggedIn, User *user) {
+    [[[[[RACSignal combineLatest:@[ RACObserve(self, loggedIn), RACObserve(self, user) ] reduce:^(NSNumber *loggedIn, User *user) {
         BOOL isLoggedIn = [loggedIn boolValue];
         return @((isLoggedIn == YES) && (user != nil));
     }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
@@ -137,7 +137,7 @@
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
         [self setCurrentViewController:listController];
     }];
-    [[[[RACAbleWithStart(self.loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
+    [[[[RACObserve(self, loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
         return ([loggedIn boolValue] == NO);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
@@ -148,14 +148,15 @@
     }];
 
     // Watch -isUIActive and update the main interface appropriately.
-    [self->_lastUpdatedLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
-    [self->_sectionLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
-    [self->_statusLabel rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
-    [self->_refreshButton rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.isUIActive)];
-    [self->_userImage rac_bind:NSHiddenBinding toObject:self withNegatedKeyPath:@keypath(self.isUIActive)];
-    [self->_userMenuItem rac_bind:NSEnabledBinding toObject:self withKeyPath:@keypath(self.isUIActive)];
-
-    RACSignal *hasUserSignal = RACAbleWithStart(self.user);
+    // NSDictionary *options = @{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName };
+    // [self->_lastUpdatedLabel bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:options];
+    // [self->_sectionLabel bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
+    // [self->_statusLabel bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
+    // [self->_refreshButton bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
+    // [self->_userImage bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
+    // [self->_userMenuItem bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
+    
+    RACSignal *hasUserSignal = RACObserve(self, user);
     [hasUserSignal subscribeNext:^(User *user) {
         @strongify(self);
         if (user) {
@@ -206,7 +207,7 @@
         self.isOnline = reach.isReachable;
     }];
 
-    [[[[RACAbleWithStart(self.isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[RACObserve(self, isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == NO);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
@@ -219,7 +220,7 @@
         // Reset dat UI.
         self.isUIActive = NO;
     }];
-    [[[[RACAble(self.isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[RACObserve(self, isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == YES);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);

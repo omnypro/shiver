@@ -91,9 +91,7 @@
 {
     @weakify(self);
 
-    self.refreshCommand = [RACCommand command];
-    self.windowController.refreshButton.rac_command = self.refreshCommand;
-    [self.refreshCommand subscribeNext:^(id x) {
+    self.windowController.refreshButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
         DDLogInfo(@"Application (%@): Request to manually refresh the stream list.", [self class]);
         self.client = [TwitchAPIClient sharedClient];
@@ -103,14 +101,14 @@
     // Watch to see if the user has asked to see the stream count in the status
     // bar (via its preference) and set the status item's title to the number
     // of live streams.
-    [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
+    [[[RACObserve(self, preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
         if ([self.streamList count] > 0 && self.user != nil) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
         else { [self.statusItem setTitle:@""]; }
     }];
-    [[[RACAbleWithStart(self.preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
+    [[[RACObserve(self, preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
         return ([value boolValue] != YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
@@ -119,7 +117,7 @@
 
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
-    [[RACAbleWithStart(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
+    [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
         @strongify(self);
         if ([array count] > 0 && self.user != nil) {
             // Set the status item's title to the number of live streams if the
@@ -145,10 +143,10 @@
 
     // Updated the lastUpdated label every 30 seconds.
     NSTimeInterval lastUpdatedInterval = 30.0;
-    [[[[RACAbleWithStart(self.streamList) filter:^BOOL(NSArray *array) {
+    [[[[RACObserve(self, streamList) filter:^BOOL(NSArray *array) {
         return (array != nil);
     }] map:^id(id value) {
-        return [RACSignal interval:lastUpdatedInterval];
+        return [RACSignal interval:lastUpdatedInterval onScheduler:[RACScheduler scheduler]];
     }] switchToLatest] subscribeNext:^(NSArray *array) {
         @strongify(self);
         if (array != nil && self.user != nil) {
@@ -158,7 +156,7 @@
     }];
 
     // Show or hide the loading view.
-    [[[RACAble(self.showingLoading) distinctUntilChanged]
+    [[[RACObserve(self, showingLoading) distinctUntilChanged]
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingLoading) {
          @strongify(self);
          BOOL isShowingLoading = [showingLoading boolValue];
@@ -176,7 +174,7 @@
      }];
 
     // Show or hide the empty view.
-    [[[RACAble(self.showingEmpty) distinctUntilChanged]
+    [[[RACObserve(self, showingEmpty) distinctUntilChanged]
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingEmpty) {
         @strongify(self);
         BOOL isShowingEmpty = [showingEmpty boolValue];
@@ -194,7 +192,7 @@
     }];
 
     // Show or hide the error view.
-    [[[RACAble(self.showingError) distinctUntilChanged]
+    [[[RACObserve(self, showingError) distinctUntilChanged]
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingError) {
         @strongify(self);
         BOOL isShowingError = [showingError boolValue];
@@ -217,7 +215,7 @@
     }];
 
     // Show or hide the login view.
-    [[[RACAble(self.loggedIn) distinctUntilChanged]
+    [[[RACObserve(self, loggedIn) distinctUntilChanged]
       deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingLogin) {
         @strongify(self);
         BOOL isShowingLogin = [showingLogin boolValue];
@@ -244,7 +242,7 @@
 
     // Watch for `user` to change or be populated. If it is, start the process
     // off by spawning the API client.
-    [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+    [[RACObserve(self, user) filter:^BOOL(id value) {
         return (value != nil);
     }] subscribeNext:^(User *user) {
         DDLogInfo(@"Application (%@): Loading client for %@.", [self class], user.name);
@@ -256,7 +254,7 @@
 
     // We pass a nil user to this controller in order to "reset" the interface.
     // We'll watch that value, filter then reset the interface.
-    [[RACAbleWithStart(self.user) filter:^BOOL(id value) {
+    [[RACObserve(self, user) filter:^BOOL(id value) {
         return (value == nil);
     }] subscribeNext:^(User *user) {
         self.client = nil;
@@ -266,7 +264,7 @@
 
     // Watch for `client` to change or be populated. If so, fetch the stream
     // list and assign it.
-    [[[RACAbleWithStart(self.client) filter:^BOOL(id value) {
+    [[[RACObserve(self, client) filter:^BOOL(id value) {
         return (value != nil);
     }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
         @strongify(self);
@@ -286,7 +284,7 @@
     }];
 
     // When the stream list gets changed, reload the table.
-    [[RACAble(self.streamList) deliverOn:[RACScheduler mainThreadScheduler]]
+    [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]]
       subscribeNext:^(id x){
         @strongify(self);
         DDLogInfo(@"Application (%@): Asked to refresh the stream list.", [self class]);
@@ -311,11 +309,11 @@
     // If we've fetched streams before, compared the existing list to the newly
     // fetched one to check for any new broadcasts. If so, send those streams
     // to the notification center.
-    [[[[[[[[RACAble(self.streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
+    [[[[[[[[RACObserve(self, streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
         return (self.preferences.notificationsEnabled == YES && value != nil);
     }] map:^(NSArray *changes) {
         return [NSSet setWithArray:changes];
-    }] mapPreviousWithStart:[NSSet set] combine:^id(NSSet *previous, NSSet *current) {
+    }] combinePreviousWithStart:[NSSet set] reduce:^id(NSSet *previous, NSSet *current) {
         return [RACTuple tupleWithObjects:previous, current, nil];
     }] map:^(RACTuple *changes) {
         RACTupleUnpack(NSSet *previous, NSSet *current) = changes;
@@ -344,13 +342,13 @@
     }];
 
     // Refresh the stream list at an interval provided by the user.
-    [[RACAbleWithStart(self.preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
+    [[RACObserve(self, preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
         DDLogInfo(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
     }];
     
     // We store the stream list refresh time in minutes, so take
     // that value and multiply it by 60 for great justice.
-    [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue] * 60] subscribeNext:^(id x) {
+    [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue] * 60 onScheduler:[RACScheduler scheduler]] subscribeNext:^(id x) {
         @strongify(self);
         DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
         self.client = [TwitchAPIClient sharedClient];
@@ -358,7 +356,7 @@
     }];
 
     // Monitor the data source array and show an empty view if it's... empty.
-    [RACAble(self.streamList) subscribeNext:^(NSArray *streamList) {
+    [RACObserve(self, streamList) subscribeNext:^(NSArray *streamList) {
         @strongify(self);
         if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
         else { self.showingEmpty = NO; }
