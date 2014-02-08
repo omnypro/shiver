@@ -8,6 +8,7 @@ PODS:
   - CocoaLumberjack/Extensions (1.8.0):
     - CocoaLumberjack/Core
   - HexColors (2.2.1)
+  - INAppStoreWindow (1.4)
   - JAListView (0.0.1)
   - Mantle (1.3.1):
     - Mantle/extobjc
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - AFOAuth2Client (~> 0.1.2)
   - CocoaLumberjack (~> 1.8.0)
   - HexColors (~> 2.2.1)
+  - INAppStoreWindow (~> 1.4)
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.1)
   - Reachability (~> 3.1.0)
@@ -41,6 +43,7 @@ SPEC CHECKSUMS:
   AFOAuth2Client: 579d6f298b0047dfd5a6eec6ab5b28c01f6b4547
   CocoaLumberjack: 6ed94046d2ca7fde03a73b3d01b8cfc56574b314
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
+  INAppStoreWindow: 5a9eedcedc3ec95e7d8a12292de584b760d96c76
   JAListView: 7fb73768382a93a0cf48e18828709ef3240911fc
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
