@@ -11,6 +11,7 @@
 #import <EXTScope.h>
 
 #import "AboutWindowController.h"
+#import "AccountManager.h"
 #import "EmptyErrorView.h"
 #import "HexColor.h"
 #import "LoginRequiredView.h"
@@ -41,7 +42,6 @@
 @property (nonatomic, strong) StreamListViewController *streamListViewController;
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
 
-@property (nonatomic, assign) BOOL isOnline;
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, assign) BOOL isUIActive;
 @property (nonatomic, strong) AFOAuthCredential *credential;
@@ -88,7 +88,7 @@
 
     self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
 
-    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), RACObserve(self, isOnline) ]
+    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), [[AccountManager sharedManager] reachableSignal] ]
       reduce:^(AFOAuthCredential *credential, NSNumber *online) {
         BOOL isOnline = [online boolValue];
         return @((credential != nil) && (isOnline == YES));
@@ -109,7 +109,7 @@
             }];
         }
     }];
-    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), RACObserve(self, isOnline) ]
+    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), [[AccountManager sharedManager] reachableSignal] ]
       reduce:^(AFOAuthCredential *credential, NSNumber *online) {
         BOOL isOnline = [online boolValue];
         return @((credential == nil) && (isOnline == YES));
@@ -201,13 +201,7 @@
 {
     @weakify(self);
 
-    self.reachSignal = [RACSubject subject];
-    [self.reachSignal subscribeNext:^(Reachability *reach) {
-        @strongify(self);
-        self.isOnline = reach.isReachable;
-    }];
-
-    [[[[RACObserve(self, isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[[[AccountManager sharedManager] reachableSignal] distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == NO);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
@@ -220,7 +214,7 @@
         // Reset dat UI.
         self.isUIActive = NO;
     }];
-    [[[[RACObserve(self, isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[[[AccountManager sharedManager] reachableSignal] distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == YES);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
