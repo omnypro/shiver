@@ -44,7 +44,6 @@
 
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, assign) BOOL isUIActive;
-@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) User *user;
 
@@ -86,18 +85,13 @@
 
     @weakify(self);
 
-    self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
+    RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[[[AccountManager sharedManager] readySignal], [[AccountManager sharedManager] reachableSignal]]] and] distinctUntilChanged];
+    RAC(self, isUIActive, @NO) = [readyAndReachable filter:^(NSNumber *value) { DDLogInfo(@"%@.", value); return [value boolValue]; }];
 
-    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), [[AccountManager sharedManager] reachableSignal] ]
-      reduce:^(AFOAuthCredential *credential, NSNumber *online) {
-        BOOL isOnline = [online boolValue];
-        return @((credential != nil) && (isOnline == YES));
-    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
+    [[readyAndReachable filter:^BOOL(NSNumber *value) {
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        DDLogInfo(@"Application (%@): We have a credential.", [self class]);
-        self.isUIActive = YES;
         self.loggedIn = YES;
         self.client = [TwitchAPIClient sharedClient];
         if (self.user == nil) {
@@ -109,12 +103,9 @@
             }];
         }
     }];
-    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), [[AccountManager sharedManager] reachableSignal] ]
-      reduce:^(AFOAuthCredential *credential, NSNumber *online) {
-        BOOL isOnline = [online boolValue];
-        return @((credential == nil) && (isOnline == YES));
-    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
-        return ([value boolValue] == YES);
+
+    [[readyAndReachable filter:^BOOL(NSNumber *value) {
+        return ([value boolValue] == NO);
     }] subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We do not have a credential.", [self class]);
@@ -178,14 +169,12 @@
         RACTupleUnpack(AFOAuthCredential *credential, User *user) = tuple;
         DDLogInfo(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
         self.loggedIn = YES;
-        self.credential = credential;
         self.user = user;
     }];
     [self.loginPreferences.didLogoutSubject subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
         self.loggedIn = NO;
-        self.credential = nil;
         self.user = nil;
     }];
 }

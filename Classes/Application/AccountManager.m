@@ -24,9 +24,28 @@
         _sharedManager = [[super alloc] init];
 
         [[Reachability reachabilityWithHostname:@"twitch.tv"] startNotifier];
+
+        // Let'se see if a credential is already stored in the user's keychain.
+        AFOAuthCredential *credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
+        if (credential != nil) { _sharedManager.credential = credential; }
     }
 
     return _sharedManager;
+}
+
+#pragma mark - Status Signals
+
+- (RACSignal *)readySignal
+{
+    RACMulticastConnection *_isReady;
+    if (_isReady == nil) {
+        _isReady = [[RACObserve(self, credential) map:^id(AFOAuthCredential *credential) {
+            DDLogInfo(@"Application (%@): %@", [self class], credential != nil ? @"We have a credential." : @"We don't have a credential.");
+            return @(credential != nil);
+        }] multicast:[RACReplaySubject replaySubjectWithCapacity:1]];
+        [_isReady connect];
+    }
+    return _isReady.signal;
 }
 
 - (RACSignal *)reachableSignal

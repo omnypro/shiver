@@ -39,7 +39,6 @@
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) WindowController *windowController;
 
-@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) NSArray *streamList;
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
