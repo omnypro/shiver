@@ -52,6 +52,8 @@
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
 		938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22118AB3A370062C4D0 /* AccountManager.m */; };
+		938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */; };
+		938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23218AD7E720062C4D0 /* SHViewController.m */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
@@ -192,6 +194,10 @@
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		938CD22018AB3A370062C4D0 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Classes/Application/AccountManager.h; sourceTree = SOURCE_ROOT; };
 		938CD22118AB3A370062C4D0 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Classes/Application/AccountManager.m; sourceTree = SOURCE_ROOT; };
+		938CD22E18AD7E5D0062C4D0 /* SHWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHWindowController.h; path = Classes/Superclasses/SHWindowController.h; sourceTree = SOURCE_ROOT; };
+		938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHWindowController.m; path = Classes/Superclasses/SHWindowController.m; sourceTree = SOURCE_ROOT; };
+		938CD23118AD7E720062C4D0 /* SHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHViewController.h; path = Classes/Superclasses/SHViewController.h; sourceTree = SOURCE_ROOT; };
+		938CD23218AD7E720062C4D0 /* SHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHViewController.m; path = Classes/Superclasses/SHViewController.m; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		939411331787ECE2003D1346 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemView.h; path = Classes/Views/StatusItemView.h; sourceTree = SOURCE_ROOT; };
@@ -364,6 +370,7 @@
 				936327B71763BAE100146C8A /* Controllers */,
 				93462654176273E500F947FE /* Models */,
 				936327DE1765262E00146C8A /* Networking */,
+				938CD22D18AD7E170062C4D0 /* Superclasses */,
 				936327D61764468B00146C8A /* Views */,
 				93A3A1311768571A00913C9A /* Constants.h */,
 				93A3A1321768571B00913C9A /* Constants.m */,
@@ -493,6 +500,17 @@
 				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
 			name = "Stream List";
+			sourceTree = "<group>";
+		};
+		938CD22D18AD7E170062C4D0 /* Superclasses */ = {
+			isa = PBXGroup;
+			children = (
+				938CD23118AD7E720062C4D0 /* SHViewController.h */,
+				938CD23218AD7E720062C4D0 /* SHViewController.m */,
+				938CD22E18AD7E5D0062C4D0 /* SHWindowController.h */,
+				938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */,
+			);
+			name = Superclasses;
 			sourceTree = "<group>";
 		};
 		9391830E176A827300367399 /* Images */ = {
@@ -865,11 +883,13 @@
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
 				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
+				938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */,
 				939A7B6D17837097009121D6 /* YRKSpinningProgressIndicator.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
 				938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */,
+				938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */,
 				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
 				936327E11765268200146C8A /* TwitchAPIClient.m in Sources */,
 				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
