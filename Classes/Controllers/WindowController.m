@@ -77,25 +77,38 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSWindowDidResignKeyNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
+    [self initializeSignals];
+
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
     [self initializeControllers];
     [self initializeInterface];
-    [self initializeReachability];
+}
 
+- (void)initializeSignals
+{
     @weakify(self);
 
-    RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[[[AccountManager sharedManager] readySignal], [[AccountManager sharedManager] reachableSignal]]] and] distinctUntilChanged];
-    RAC(self, isUIActive, @NO) = [readyAndReachable filter:^(NSNumber *value) { DDLogInfo(@"%@.", value); return [value boolValue]; }];
+    RACSignal *ready = [[AccountManager sharedManager] readySignal];
+    RACSignal *reachable = [[AccountManager sharedManager] reachableSignal];
+    RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[ready, reachable]] and] distinctUntilChanged];
+
+    RAC(self, loggedIn, @NO) = [readyAndReachable filter:^(NSNumber *value) {
+		DDLogInfo(@"Application (%@): Logged-in flag tripped.", [self class]);
+        return [value boolValue];
+    }];
+    RAC(self, isUIActive, @NO) = [readyAndReachable filter:^(NSNumber *value) {
+        DDLogInfo(@"Application (%@): %@", [self class], [value boolValue] ? @"UI marked as active." : @"UI marked as inactive.");
+        return [value boolValue];
+    }];
 
     [[readyAndReachable filter:^BOOL(NSNumber *value) {
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
         self.loggedIn = YES;
-        self.client = [TwitchAPIClient sharedClient];
         if (self.user == nil) {
-            [[[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
+            [[[[TwitchAPIClient sharedClient] fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
                 DDLogInfo(@"Application (%@): We have a user. (%@)", [self class], user.name);
                 self.user = user;
             } error:^(NSError *error) {
@@ -110,7 +123,6 @@
         @strongify(self);
         DDLogInfo(@"Application (%@): We do not have a credential.", [self class]);
         self.loggedIn = NO;
-        self.client = nil;
     }];
 
     // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
@@ -123,7 +135,7 @@
         return ([value boolValue] == YES);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        DDLogInfo(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
+        DDLogInfo(@"Application (%@): We have a user.", [self class]);
         DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
         [self setCurrentViewController:listController];
@@ -132,7 +144,7 @@
         return ([loggedIn boolValue] == NO);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-		DDLogInfo(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
+		DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
         DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
         [self setCurrentViewController:listController];
@@ -146,7 +158,7 @@
     // [self->_refreshButton bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
     // [self->_userImage bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
     // [self->_userMenuItem bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-    
+
     RACSignal *hasUserSignal = RACObserve(self, user);
     [hasUserSignal subscribeNext:^(User *user) {
         @strongify(self);
@@ -177,18 +189,6 @@
         self.loggedIn = NO;
         self.user = nil;
     }];
-}
-
-- (void)initializeControllers
-{
-    self.aboutWindowController = [[AboutWindowController alloc] init];
-    self.generalPreferences = [[GeneralViewController alloc] init];
-    self.loginPreferences = [[LoginViewController alloc] init];
-}
-
-- (void)initializeReachability
-{
-    @weakify(self);
 
     [[[[[[AccountManager sharedManager] reachableSignal] distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == NO);
@@ -212,6 +212,13 @@
         self.errorView = nil;
         self.isUIActive = YES;
     }];
+}
+
+- (void)initializeControllers
+{
+    self.aboutWindowController = [[AboutWindowController alloc] init];
+    self.generalPreferences = [[GeneralViewController alloc] init];
+    self.loginPreferences = [[LoginViewController alloc] init];
 }
 
 - (NSWindowController *)preferencesWindowController
