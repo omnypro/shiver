@@ -91,6 +91,9 @@
 
     RACSignal *ready = [[AccountManager sharedManager] readySignal];
     RACSignal *reachable = [[AccountManager sharedManager] reachableSignal];
+
+    // A combined signal for whether or not the account manager is both
+    // ready and reachable.
     RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[ready, reachable]] and] distinctUntilChanged];
 
     RAC(self, loggedIn, @NO) = [readyAndReachable filter:^(NSNumber *value) {
