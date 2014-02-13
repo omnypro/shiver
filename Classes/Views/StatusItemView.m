@@ -124,6 +124,13 @@
     [NSApp activateIgnoringOtherApps:YES];
 }
 
+#pragma mark - Getters
+
+- (NSString *)title
+{
+    return [_textField stringValue];
+}
+
 #pragma mark - Setters
 
 - (void)setTitle:(NSString *)title

@@ -39,7 +39,6 @@
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) WindowController *windowController;
 
-@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) NSArray *streamList;
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
@@ -91,6 +90,20 @@
 {
     @weakify(self);
 
+    // Bind the status item's title to the number of active streams, as long
+    // as we're logged in, the network connection is good, and the user
+    // wants the current count.
+    RAC(self, statusItem.title) = [RACSignal combineLatest:@[RACObserve(self, preferences.streamCountEnabled), RACObserve(self, streamList), RACObserve(self, loggedIn)]
+        reduce:^id(NSNumber *countEnabled, NSArray *streamList, NSNumber *loggedIn){
+        if ([countEnabled boolValue] && [streamList count] > 0 && [loggedIn boolValue]) {
+            DDLogInfo(@"Application (%@): Status item title updated. (%lu)", [self class], (unsigned long)[streamList count]);
+            return [NSString stringWithFormat:@"%lu", [streamList count]];
+        } else {
+            DDLogInfo(@"Application (%@): Status item title removed.", [self class]);
+            return @"";
+        }
+    }];
+
     self.windowController.refreshButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
         DDLogInfo(@"Application (%@): Request to manually refresh the stream list.", [self class]);
@@ -98,34 +111,11 @@
         self.showingLoading = YES;
     }];
 
-    // Watch to see if the user has asked to see the stream count in the status
-    // bar (via its preference) and set the status item's title to the number
-    // of live streams.
-    [[[RACObserve(self, preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
-        return ([value boolValue] == YES);
-    }] subscribeNext:^(id x) {
-        @strongify(self);
-        if ([self.streamList count] > 0 && self.user != nil) { [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]]; }
-        else { [self.statusItem setTitle:@""]; }
-    }];
-    [[[RACObserve(self, preferences.streamCountEnabled) deliverOn:[RACScheduler scheduler]] filter:^BOOL(id value) {
-        return ([value boolValue] != YES);
-    }] subscribeNext:^(id x) {
-        @strongify(self);
-        [self.statusItem setTitle:@""];
-    }];
-
     // Watch the stream list for changes and enable or disable UI elements
     // based on those values.
     [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
         @strongify(self);
         if ([array count] > 0 && self.user != nil) {
-            // Set the status item's title to the number of live streams if the
-            // user has asked for it in the preferences.
-            if (self.preferences.streamCountEnabled) {
-                [self.statusItem setTitle:[NSString stringWithFormat:@"%lu", [self.streamList count]]];
-            }
-
             [self.windowController.refreshButton setEnabled:YES];
 
             // Update the string based on the number of streams that are live.
@@ -136,7 +126,6 @@
             else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
         }
         else {
-            [self.statusItem setTitle:@""];
             [self.windowController.statusLabel setStringValue:@"No live streams"];
         }
     }];
@@ -225,9 +214,6 @@
             self.errorView = NO;
             self.loadingView = NO;
             [self.view addSubview:self.loginView animated:YES];
-
-            // A little extra work, make sure the status item's title is nil.
-            [self.statusItem setTitle:@""];
         }
         else {
             DDLogInfo(@"Application (%@): Removing the login view.", [self class]);

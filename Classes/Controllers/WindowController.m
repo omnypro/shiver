@@ -11,6 +11,7 @@
 #import <EXTScope.h>
 
 #import "AboutWindowController.h"
+#import "AccountManager.h"
 #import "EmptyErrorView.h"
 #import "HexColor.h"
 #import "LoginRequiredView.h"
@@ -41,10 +42,8 @@
 @property (nonatomic, strong) StreamListViewController *streamListViewController;
 @property (nonatomic, strong, readwrite) RHPreferencesWindowController *preferencesWindowController;
 
-@property (nonatomic, assign) BOOL isOnline;
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, assign) BOOL isUIActive;
-@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) User *user;
 
@@ -78,30 +77,41 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSWindowDidResignKeyNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
+    [self initializeSignals];
+
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
     [self initializeControllers];
     [self initializeInterface];
-    [self initializeReachability];
+}
 
+- (void)initializeSignals
+{
     @weakify(self);
 
-    self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
+    RACSignal *ready = [[AccountManager sharedManager] readySignal];
+    RACSignal *reachable = [[AccountManager sharedManager] reachableSignal];
 
-    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), RACObserve(self, isOnline) ]
-      reduce:^(AFOAuthCredential *credential, NSNumber *online) {
-        BOOL isOnline = [online boolValue];
-        return @((credential != nil) && (isOnline == YES));
-    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
+    // A combined signal for whether or not the account manager is both
+    // ready and reachable.
+    RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[ready, reachable]] and] distinctUntilChanged];
+
+    RAC(self, loggedIn, @NO) = [readyAndReachable filter:^(NSNumber *value) {
+		DDLogInfo(@"Application (%@): Logged-in flag tripped.", [self class]);
+        return [value boolValue];
+    }];
+    RAC(self, isUIActive, @NO) = [readyAndReachable filter:^(NSNumber *value) {
+        DDLogInfo(@"Application (%@): %@", [self class], [value boolValue] ? @"UI marked as active." : @"UI marked as inactive.");
+        return [value boolValue];
+    }];
+
+    [[readyAndReachable filter:^BOOL(NSNumber *value) {
         return ([value boolValue] == YES);
     }] subscribeNext:^(id x) {
         @strongify(self);
-        DDLogInfo(@"Application (%@): We have a credential.", [self class]);
-        self.isUIActive = YES;
         self.loggedIn = YES;
-        self.client = [TwitchAPIClient sharedClient];
         if (self.user == nil) {
-            [[[self.client fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
+            [[[[TwitchAPIClient sharedClient] fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
                 DDLogInfo(@"Application (%@): We have a user. (%@)", [self class], user.name);
                 self.user = user;
             } error:^(NSError *error) {
@@ -109,17 +119,13 @@
             }];
         }
     }];
-    [[[[RACSignal combineLatest:@[ RACObserve(self, credential), RACObserve(self, isOnline) ]
-      reduce:^(AFOAuthCredential *credential, NSNumber *online) {
-        BOOL isOnline = [online boolValue];
-        return @((credential == nil) && (isOnline == YES));
-    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
-        return ([value boolValue] == YES);
+
+    [[readyAndReachable filter:^BOOL(NSNumber *value) {
+        return ([value boolValue] == NO);
     }] subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We do not have a credential.", [self class]);
         self.loggedIn = NO;
-        self.client = nil;
     }];
 
     // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
@@ -132,7 +138,7 @@
         return ([value boolValue] == YES);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        DDLogInfo(@"Application (%@): Logged-in flag tripped. We have a user.", [self class]);
+        DDLogInfo(@"Application (%@): We have a user.", [self class]);
         DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
         [self setCurrentViewController:listController];
@@ -141,7 +147,7 @@
         return ([loggedIn boolValue] == NO);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-		DDLogInfo(@"Application (%@): Logged-in flag tripped. We don't have a user.", [self class]);
+		DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
         DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
         StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
         [self setCurrentViewController:listController];
@@ -155,7 +161,7 @@
     // [self->_refreshButton bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
     // [self->_userImage bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
     // [self->_userMenuItem bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-    
+
     RACSignal *hasUserSignal = RACObserve(self, user);
     [hasUserSignal subscribeNext:^(User *user) {
         @strongify(self);
@@ -178,36 +184,16 @@
         RACTupleUnpack(AFOAuthCredential *credential, User *user) = tuple;
         DDLogInfo(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
         self.loggedIn = YES;
-        self.credential = credential;
         self.user = user;
     }];
     [self.loginPreferences.didLogoutSubject subscribeNext:^(id x) {
         @strongify(self);
         DDLogInfo(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
         self.loggedIn = NO;
-        self.credential = nil;
         self.user = nil;
     }];
-}
 
-- (void)initializeControllers
-{
-    self.aboutWindowController = [[AboutWindowController alloc] init];
-    self.generalPreferences = [[GeneralViewController alloc] init];
-    self.loginPreferences = [[LoginViewController alloc] init];
-}
-
-- (void)initializeReachability
-{
-    @weakify(self);
-
-    self.reachSignal = [RACSubject subject];
-    [self.reachSignal subscribeNext:^(Reachability *reach) {
-        @strongify(self);
-        self.isOnline = reach.isReachable;
-    }];
-
-    [[[[RACObserve(self, isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[[[AccountManager sharedManager] reachableSignal] distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == NO);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
@@ -220,7 +206,7 @@
         // Reset dat UI.
         self.isUIActive = NO;
     }];
-    [[[[RACObserve(self, isOnline) distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
+    [[[[[[AccountManager sharedManager] reachableSignal] distinctUntilChanged] filter:^BOOL(NSNumber *reachable) {
         return ([reachable boolValue] == YES);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
@@ -229,6 +215,13 @@
         self.errorView = nil;
         self.isUIActive = YES;
     }];
+}
+
+- (void)initializeControllers
+{
+    self.aboutWindowController = [[AboutWindowController alloc] init];
+    self.generalPreferences = [[GeneralViewController alloc] init];
+    self.loginPreferences = [[LoginViewController alloc] init];
 }
 
 - (NSWindowController *)preferencesWindowController

@@ -63,7 +63,6 @@
     (void)self.windowController.window;
 
     [self initializeLogging];
-    [self initializeReachability];
 }
 
 - (void)initializeLogging
@@ -78,35 +77,6 @@
     NSString *productName =  [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     NSString *shortVersionString = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     DDLogInfo(@"Application: Loaded %@ v%@", productName, shortVersionString);
-}
-
-- (void)initializeReachability
-{
-    @weakify(self);
-
-    self.reachSignal = [RACReplaySubject subject];
-
-    self.reach = [Reachability reachabilityForInternetConnection];
-    [self.reach setUnreachableBlock:^(Reachability* reach) {
-        @strongify(self);
-        [self.reachSignal sendNext:reach];
-    }];
-    [self.reach setReachableBlock:^(Reachability *reach){
-        @strongify(self);
-        [self.reachSignal sendNext:reach];
-    }];
-
-    [self.reachSignal subscribeNext:^(Reachability *reach) {
-        @strongify(self);
-
-        // Send a signal off to our WindowController's -reachSignal
-        // to update the UI, etc.
-        DDLogInfo(@"Application (%@): %@", [self class], reach.isReachable ? @"We have internets." : @"We don't have internets.");
-        [self.windowController.reachSignal sendNext:reach];
-    }];
-
-    [self.reachSignal sendNext:self.reach];
-    [self.reach startNotifier];
 }
 
 @end

@@ -51,6 +51,7 @@
 		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
+		938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22118AB3A370062C4D0 /* AccountManager.m */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
@@ -189,6 +190,8 @@
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
+		938CD22018AB3A370062C4D0 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Classes/Application/AccountManager.h; sourceTree = SOURCE_ROOT; };
+		938CD22118AB3A370062C4D0 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Classes/Application/AccountManager.m; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		939411331787ECE2003D1346 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemView.h; path = Classes/Views/StatusItemView.h; sourceTree = SOURCE_ROOT; };
@@ -605,6 +608,8 @@
 		93AB1AAA177F97D80038DB27 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				938CD22018AB3A370062C4D0 /* AccountManager.h */,
+				938CD22118AB3A370062C4D0 /* AccountManager.m */,
 				93AB1AAB177F97F10038DB27 /* Preferences.h */,
 				93AB1AAC177F97F10038DB27 /* Preferences.m */,
 			);
@@ -864,6 +869,7 @@
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
+				938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */,
 				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
 				936327E11765268200146C8A /* TwitchAPIClient.m in Sources */,
 				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
