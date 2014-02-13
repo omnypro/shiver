@@ -10,6 +10,7 @@
 
 @property (nonatomic, assign, getter=isActive) BOOL active;
 @property (nonatomic, assign) BOOL animated;
+@property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSImage *image;
 @property (nonatomic, strong) NSImage *alternateImage;
 
