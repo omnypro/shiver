@@ -1,0 +1,13 @@
+//
+//  StreamViewController.h
+//  Shiver
+//
+//  Created by Bryan Veloso on 2/14/14.
+//  Copyright (c) 2014 Revyver, Inc. All rights reserved.
+//
+
+#import "SHViewController.h"
+
+@interface StreamViewController : SHViewController
+
+@end
