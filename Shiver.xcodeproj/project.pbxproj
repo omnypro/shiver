@@ -51,6 +51,8 @@
 		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
+		938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21518A5C4F00062C4D0 /* MainWindowController.m */; };
+		938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21E18AABA270062C4D0 /* WindowViewModel.m */; };
 		938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22118AB3A370062C4D0 /* AccountManager.m */; };
 		938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */; };
 		938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23218AD7E720062C4D0 /* SHViewController.m */; };
@@ -192,6 +194,10 @@
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
+		938CD21418A5C4F00062C4D0 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = Classes/Controllers/MainWindowController.h; sourceTree = SOURCE_ROOT; };
+		938CD21518A5C4F00062C4D0 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = Classes/Controllers/MainWindowController.m; sourceTree = SOURCE_ROOT; };
+		938CD21D18AABA270062C4D0 /* WindowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowViewModel.h; path = "Classes/View Models/WindowViewModel.h"; sourceTree = SOURCE_ROOT; };
+		938CD21E18AABA270062C4D0 /* WindowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowViewModel.m; path = "Classes/View Models/WindowViewModel.m"; sourceTree = SOURCE_ROOT; };
 		938CD22018AB3A370062C4D0 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Classes/Application/AccountManager.h; sourceTree = SOURCE_ROOT; };
 		938CD22118AB3A370062C4D0 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Classes/Application/AccountManager.m; sourceTree = SOURCE_ROOT; };
 		938CD22E18AD7E5D0062C4D0 /* SHWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHWindowController.h; path = Classes/Superclasses/SHWindowController.h; sourceTree = SOURCE_ROOT; };
@@ -372,6 +378,7 @@
 				936327DE1765262E00146C8A /* Networking */,
 				938CD22D18AD7E170062C4D0 /* Superclasses */,
 				936327D61764468B00146C8A /* Views */,
+				938CD21C18AAB2680062C4D0 /* View Models */,
 				93A3A1311768571A00913C9A /* Constants.h */,
 				93A3A1321768571B00913C9A /* Constants.m */,
 				932C29C71761AF800049EC1B /* ShiverApplication.h */,
@@ -425,6 +432,8 @@
 				936327CE1764287100146C8A /* StreamListViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
+				938CD21418A5C4F00062C4D0 /* MainWindowController.h */,
+				938CD21518A5C4F00062C4D0 /* MainWindowController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -500,6 +509,15 @@
 				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
 			name = "Stream List";
+			sourceTree = "<group>";
+		};
+		938CD21C18AAB2680062C4D0 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				938CD21D18AABA270062C4D0 /* WindowViewModel.h */,
+				938CD21E18AABA270062C4D0 /* WindowViewModel.m */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		938CD22D18AD7E170062C4D0 /* Superclasses */ = {
@@ -887,6 +905,7 @@
 				939A7B6D17837097009121D6 /* YRKSpinningProgressIndicator.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
+				938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
 				938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */,
 				938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */,
@@ -902,6 +921,7 @@
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
 				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
+				938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
 				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
 				936314181785346300AED886 /* NSView+Animations.m in Sources */,

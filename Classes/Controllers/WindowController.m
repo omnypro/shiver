@@ -238,7 +238,7 @@
 
 - (void)setCurrentViewController:(NSViewController *)viewController {
     if (_currentViewController == viewController) { return; }
-    
+
     _currentViewController = viewController;
     [_currentViewController.view setFrame:_masterView.bounds];
     [_masterView addSubview:self.currentViewController.view];
