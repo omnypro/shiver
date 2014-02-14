@@ -8,18 +8,20 @@
 
 #import "SHViewController.h"
 
-@interface SHViewController ()
-
-@end
-
 @implementation SHViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithViewModel:(RVMViewModel *)viewModel
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
+	return [self initWithViewModel:viewModel nibName:nil bundle:nil];
+}
+
+- (id)initWithViewModel:(RVMViewModel *)viewModel nibName:(NSString *)nibName bundle:(NSBundle *)bundle
+{
+    self = [super initWithNibName:nibName bundle:bundle];
+    if (self == nil) return nil;
+
+    _viewModel = viewModel;
+
     return self;
 }
 

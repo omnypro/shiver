@@ -8,26 +8,22 @@
 
 #import "SHWindowController.h"
 
-@interface SHWindowController ()
-
-@end
-
 @implementation SHWindowController
 
-- (id)initWithWindow:(NSWindow *)window
+- (id)initWithViewModel:(RVMViewModel *)viewModel
 {
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+	return [self initWithViewModel:viewModel nibName:nil];
 }
 
-- (void)windowDidLoad
+- (id)initWithViewModel:(RVMViewModel *)viewModel nibName:(NSString *)nibName
 {
-    [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    self = [super initWithWindowNibName:nibName];
+    if (self == nil) return nil;
+
+    _viewModel = viewModel;
+    DDLogInfo(@"hi!");
+
+    return self;
 }
 
 @end
