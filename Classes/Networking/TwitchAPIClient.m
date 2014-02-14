@@ -10,6 +10,7 @@
 #import "Mantle.h"
 #import "LoginViewController.h"
 #import "Stream.h"
+#import "StreamViewModel.h"
 #import "User.h"
 
 #import "TwitchAPIClient.h"
@@ -124,7 +125,8 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
             return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictionary) {
                 NSError *error = nil;
                 Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
-                return stream;
+                StreamViewModel *viewModel = [[StreamViewModel alloc] initWithStream:stream];
+                return viewModel;
             }] array];
         }];
 }
@@ -143,7 +145,8 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
                 dictionary = [dictionary valueForKeyPath:@"stream"];
 
                 Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
-                return stream;
+                StreamViewModel *viewModel = [[StreamViewModel alloc] initWithStream:stream];
+                return viewModel;
             }] array];
         }];
 }

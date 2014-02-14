@@ -58,6 +58,7 @@
 		938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */; };
 		938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23218AD7E720062C4D0 /* SHViewController.m */; };
 		938CD23618AE116E0062C4D0 /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23518AE116E0062C4D0 /* StreamViewController.m */; };
+		938CD23918AE188A0062C4D0 /* StreamViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23818AE188A0062C4D0 /* StreamViewModel.m */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
@@ -209,6 +210,8 @@
 		938CD23218AD7E720062C4D0 /* SHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHViewController.m; path = Classes/Superclasses/SHViewController.m; sourceTree = SOURCE_ROOT; };
 		938CD23418AE116E0062C4D0 /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewController.h; path = Classes/Controllers/StreamViewController.h; sourceTree = SOURCE_ROOT; };
 		938CD23518AE116E0062C4D0 /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewController.m; path = Classes/Controllers/StreamViewController.m; sourceTree = SOURCE_ROOT; };
+		938CD23718AE188A0062C4D0 /* StreamViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewModel.h; path = "Classes/View Models/StreamViewModel.h"; sourceTree = SOURCE_ROOT; };
+		938CD23818AE188A0062C4D0 /* StreamViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewModel.m; path = "Classes/View Models/StreamViewModel.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		939411331787ECE2003D1346 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemView.h; path = Classes/Views/StatusItemView.h; sourceTree = SOURCE_ROOT; };
@@ -522,6 +525,8 @@
 		938CD21C18AAB2680062C4D0 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				938CD23718AE188A0062C4D0 /* StreamViewModel.h */,
+				938CD23818AE188A0062C4D0 /* StreamViewModel.m */,
 				938CD21D18AABA270062C4D0 /* WindowViewModel.h */,
 				938CD21E18AABA270062C4D0 /* WindowViewModel.m */,
 			);
@@ -925,6 +930,7 @@
 				93A3A12B17679C8100913C9A /* LoginView.m in Sources */,
 				939A7B701783723D009121D6 /* LoadingView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
+				938CD23918AE188A0062C4D0 /* StreamViewModel.m in Sources */,
 				938CD23618AE116E0062C4D0 /* StreamViewController.m in Sources */,
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
