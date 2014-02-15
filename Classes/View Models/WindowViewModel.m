@@ -41,12 +41,9 @@
 
 - (void)initializeSignals
 {
-    RACSignal *ready = [[AccountManager sharedManager] readySignal];
-    RACSignal *reachable = [[AccountManager sharedManager] reachableSignal];
-
     // A combined singal for whether or not the account manager is
     // both ready and reachable.
-    RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[ready, reachable]] and] distinctUntilChanged];
+    RACSignal *readyAndReachable = [[AccountManager sharedManager] readyAndReachableSignal];
 
     // Signals related to credential checking.
     RACSignal *credentialSignal = RACObserve(AccountManager.sharedManager, credential);
