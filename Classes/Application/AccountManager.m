@@ -67,4 +67,9 @@
     return _isReachable.signal;
 }
 
+- (RACSignal *)readyAndReachableSignal
+{
+    return [[[RACSignal combineLatest:@[self.readySignal, self.reachableSignal]] and] distinctUntilChanged];
+}
+
 @end
