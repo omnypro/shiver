@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
+#import "Channel.h"
 #import "Stream.h"
 
 #import "StreamViewModel.h"
@@ -19,9 +20,12 @@
     if (self == nil) return nil;
 
     _stream = stream;
-    _name = stream.name;
+    _channel = stream.channel;
+
+    _name = _channel.name;
     _game = stream.game;
     _broadcaster = stream.broadcaster;
+    _hlsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/hls", _name]];
     _previewImageURL = stream.previewImageURL;
     _viewers = stream.viewers;
 

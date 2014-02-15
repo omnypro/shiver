@@ -6,14 +6,18 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
+@class Channel;
 @class Stream;
 
 @interface StreamViewModel : RVMViewModel
 
+@property (nonatomic, strong, readonly) Channel *channel;
 @property (nonatomic, strong, readonly) Stream *stream;
+
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *game;
 @property (nonatomic, strong, readonly) NSString *broadcaster;
+@property (nonatomic, strong, readonly) NSURL *hlsURL;
 @property (nonatomic, strong, readonly) NSURL *previewImageURL;
 @property (nonatomic, strong, readonly) NSNumber *viewers;
 
