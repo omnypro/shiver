@@ -4,6 +4,9 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <EXTScope.h>
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import <ReactiveViewModel/ReactiveViewModel.h>
     #import <SystemConfiguration/SystemConfiguration.h>
 
     #import "Constants.h"
