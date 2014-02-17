@@ -51,14 +51,17 @@
 		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
-		938CD21318A5AFB90062C4D0 /* StreamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21218A5AFB90062C4D0 /* StreamView.xib */; };
+		938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21218A5AFB90062C4D0 /* StreamViewer.xib */; };
 		938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21518A5C4F00062C4D0 /* MainWindowController.m */; };
+		938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21718A6BCD40062C4D0 /* Icon.icns */; };
+		938CD21918A6BCDD0062C4D0 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21718A6BCD40062C4D0 /* Icon.icns */; };
 		938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21E18AABA270062C4D0 /* WindowViewModel.m */; };
 		938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22118AB3A370062C4D0 /* AccountManager.m */; };
 		938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */; };
 		938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23218AD7E720062C4D0 /* SHViewController.m */; };
-		938CD23618AE116E0062C4D0 /* StreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23518AE116E0062C4D0 /* StreamViewController.m */; };
+		938CD23618AE116E0062C4D0 /* StreamViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23518AE116E0062C4D0 /* StreamViewerViewController.m */; };
 		938CD23918AE188A0062C4D0 /* StreamViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23818AE188A0062C4D0 /* StreamViewModel.m */; };
+		938CD23C18AE22160062C4D0 /* StreamListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23B18AE22160062C4D0 /* StreamListViewModel.m */; };
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
@@ -94,9 +97,7 @@
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
 		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
 		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
-		93B3DD9E17A7108D0007942A /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93B3DD9D17A7108D0007942A /* Icon.icns */; };
 		93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB41793D9EA001A0C6F /* Icon.iconset */; };
-		93BD3CB71793E15F001A0C6F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB61793E15F001A0C6F /* Icon.icns */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
 		93BE57C41773D941008CB04E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57C81773D941008CB04E /* InfoPlist.strings */; };
@@ -197,9 +198,10 @@
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
-		938CD21218A5AFB90062C4D0 /* StreamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamView.xib; path = Assets/NIBs/StreamView.xib; sourceTree = SOURCE_ROOT; };
+		938CD21218A5AFB90062C4D0 /* StreamViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamViewer.xib; path = Assets/NIBs/StreamViewer.xib; sourceTree = SOURCE_ROOT; };
 		938CD21418A5C4F00062C4D0 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = Classes/Controllers/MainWindowController.h; sourceTree = SOURCE_ROOT; };
 		938CD21518A5C4F00062C4D0 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = Classes/Controllers/MainWindowController.m; sourceTree = SOURCE_ROOT; };
+		938CD21718A6BCD40062C4D0 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Assets/Images/Icon.icns; sourceTree = SOURCE_ROOT; };
 		938CD21D18AABA270062C4D0 /* WindowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowViewModel.h; path = "Classes/View Models/WindowViewModel.h"; sourceTree = SOURCE_ROOT; };
 		938CD21E18AABA270062C4D0 /* WindowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowViewModel.m; path = "Classes/View Models/WindowViewModel.m"; sourceTree = SOURCE_ROOT; };
 		938CD22018AB3A370062C4D0 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Classes/Application/AccountManager.h; sourceTree = SOURCE_ROOT; };
@@ -208,10 +210,12 @@
 		938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHWindowController.m; path = Classes/Superclasses/SHWindowController.m; sourceTree = SOURCE_ROOT; };
 		938CD23118AD7E720062C4D0 /* SHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHViewController.h; path = Classes/Superclasses/SHViewController.h; sourceTree = SOURCE_ROOT; };
 		938CD23218AD7E720062C4D0 /* SHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHViewController.m; path = Classes/Superclasses/SHViewController.m; sourceTree = SOURCE_ROOT; };
-		938CD23418AE116E0062C4D0 /* StreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewController.h; path = Classes/Controllers/StreamViewController.h; sourceTree = SOURCE_ROOT; };
-		938CD23518AE116E0062C4D0 /* StreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewController.m; path = Classes/Controllers/StreamViewController.m; sourceTree = SOURCE_ROOT; };
+		938CD23418AE116E0062C4D0 /* StreamViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewerViewController.h; path = Classes/Controllers/StreamViewerViewController.h; sourceTree = SOURCE_ROOT; };
+		938CD23518AE116E0062C4D0 /* StreamViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewerViewController.m; path = Classes/Controllers/StreamViewerViewController.m; sourceTree = SOURCE_ROOT; };
 		938CD23718AE188A0062C4D0 /* StreamViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewModel.h; path = "Classes/View Models/StreamViewModel.h"; sourceTree = SOURCE_ROOT; };
 		938CD23818AE188A0062C4D0 /* StreamViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewModel.m; path = "Classes/View Models/StreamViewModel.m"; sourceTree = SOURCE_ROOT; };
+		938CD23A18AE22160062C4D0 /* StreamListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewModel.h; path = "Classes/View Models/StreamListViewModel.h"; sourceTree = SOURCE_ROOT; };
+		938CD23B18AE22160062C4D0 /* StreamListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewModel.m; path = "Classes/View Models/StreamListViewModel.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		939411331787ECE2003D1346 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemView.h; path = Classes/Views/StatusItemView.h; sourceTree = SOURCE_ROOT; };
@@ -261,9 +265,7 @@
 		93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkShadowTextField.m; path = Classes/Views/DarkShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
 		93AB1AAC177F97F10038DB27 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Classes/Application/Preferences.m; sourceTree = SOURCE_ROOT; };
-		93B3DD9D17A7108D0007942A /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		93BD3CB41793D9EA001A0C6F /* Icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Icon.iconset; path = Assets/Images/Icon.iconset; sourceTree = SOURCE_ROOT; };
-		93BD3CB61793E15F001A0C6F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Assets/Images/Icon.icns; sourceTree = SOURCE_ROOT; };
 		93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		93BE57C31773D941008CB04E /* ShiverHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiverHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BE57C71773D941008CB04E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -440,8 +442,8 @@
 				938CD21518A5C4F00062C4D0 /* MainWindowController.m */,
 				936327CD1764287100146C8A /* StreamListViewController.h */,
 				936327CE1764287100146C8A /* StreamListViewController.m */,
-				938CD23418AE116E0062C4D0 /* StreamViewController.h */,
-				938CD23518AE116E0062C4D0 /* StreamViewController.m */,
+				938CD23418AE116E0062C4D0 /* StreamViewerViewController.h */,
+				938CD23518AE116E0062C4D0 /* StreamViewerViewController.m */,
 				936327B81763BB1000146C8A /* WindowController.h */,
 				936327B91763BB1000146C8A /* WindowController.m */,
 			);
@@ -474,7 +476,7 @@
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327D71764670300146C8A /* StreamListViewItem.xib */,
-				938CD21218A5AFB90062C4D0 /* StreamView.xib */,
+				938CD21218A5AFB90062C4D0 /* StreamViewer.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
 			name = NIBs;
@@ -525,6 +527,8 @@
 		938CD21C18AAB2680062C4D0 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				938CD23A18AE22160062C4D0 /* StreamListViewModel.h */,
+				938CD23B18AE22160062C4D0 /* StreamListViewModel.m */,
 				938CD23718AE188A0062C4D0 /* StreamViewModel.h */,
 				938CD23818AE188A0062C4D0 /* StreamViewModel.m */,
 				938CD21D18AABA270062C4D0 /* WindowViewModel.h */,
@@ -555,7 +559,7 @@
 				9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */,
 				93462A05177CB14D00C928CA /* Error.png */,
 				93462A06177CB14D00C928CA /* Error@2x.png */,
-				93BD3CB61793E15F001A0C6F /* Icon.icns */,
+				938CD21718A6BCD40062C4D0 /* Icon.icns */,
 				93BD3CB41793D9EA001A0C6F /* Icon.iconset */,
 				9324239F1772945800374EB9 /* LoginKeys.png */,
 				932423A01772945800374EB9 /* LoginKeys@2x.png */,
@@ -670,7 +674,6 @@
 			children = (
 				93BE57D11773D941008CB04E /* ApplicationDelegate.h */,
 				93BE57D21773D941008CB04E /* ApplicationDelegate.m */,
-				93B3DD9D17A7108D0007942A /* Icon.icns */,
 				93BE57D41773D941008CB04E /* Menu.xib */,
 				93BE57C61773D941008CB04E /* Supporting Files */,
 			);
@@ -779,12 +782,13 @@
 				939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */,
 				936327BC1763BB1000146C8A /* Window.xib in Resources */,
 				939A7B6A17836D28009121D6 /* LoadingView.xib in Resources */,
+				938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
 				939A7B681783462B009121D6 /* PreferencesGeneral@2x.png in Resources */,
 				934626591762798100F947FE /* Podfile in Resources */,
-				938CD21318A5AFB90062C4D0 /* StreamView.xib in Resources */,
+				938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */,
 				936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */,
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
@@ -815,7 +819,6 @@
 				938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */,
 				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
 				93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */,
-				93BD3CB71793E15F001A0C6F /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,10 +826,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938CD21918A6BCDD0062C4D0 /* Icon.icns in Resources */,
 				93BE57CA1773D941008CB04E /* InfoPlist.strings in Resources */,
 				93BE57D01773D941008CB04E /* Credits.rtf in Resources */,
 				93BE57D61773D941008CB04E /* Menu.xib in Resources */,
-				93B3DD9E17A7108D0007942A /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,11 +934,12 @@
 				939A7B701783723D009121D6 /* LoadingView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
 				938CD23918AE188A0062C4D0 /* StreamViewModel.m in Sources */,
-				938CD23618AE116E0062C4D0 /* StreamViewController.m in Sources */,
+				938CD23618AE116E0062C4D0 /* StreamViewerViewController.m in Sources */,
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
 				936959D01769606D00F2F788 /* FooterView.m in Sources */,
 				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
+				938CD23C18AE22160062C4D0 /* StreamListViewModel.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
