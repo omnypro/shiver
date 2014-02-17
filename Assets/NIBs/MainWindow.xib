@@ -7,9 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
-                <outlet property="_listView" destination="yR9-vn-kvl" id="wkv-ke-ybM"/>
                 <outlet property="_masterView" destination="2" id="1BV-Ma-cTY"/>
-                <outlet property="_viewerView" destination="bEX-Qf-PcT" id="XKi-sY-zQz"/>
+                <outlet property="_sidebarView" destination="yR9-vn-kvl" id="vHb-s8-hQm"/>
+                <outlet property="viewer" destination="bEX-Qf-PcT" id="hwx-NQ-s7U"/>
                 <outlet property="window" destination="1" id="7JK-yF-Jz6"/>
             </connections>
         </customObject>
@@ -24,16 +24,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="880" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Qf-PcT">
-                        <rect key="frame" x="240" y="0.0" width="640" height="360"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="yR9-vn-kvl" customClass="InnerShadowView">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="yR9-vn-kvl">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="360"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="240" id="58u-Qc-UlS"/>
                         </constraints>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Qf-PcT">
+                        <rect key="frame" x="240" y="0.0" width="640" height="360"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                 </subviews>
                 <constraints>

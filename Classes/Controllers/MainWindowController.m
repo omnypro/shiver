@@ -8,20 +8,23 @@
 
 #import "INAppStoreWindow.h"
 #import "StreamListViewController.h"
-#import "MainWindowController.h"
+#import "StreamListViewModel.h"
+#import "StreamViewModel.h"
+#import "StreamViewerViewController.h"
 #import "WindowViewModel.h"
+
+#import "MainWindowController.h"
 
 @interface MainWindowController () {
     IBOutlet NSView *_masterView;
-    IBOutlet NSView *_listView;
-    IBOutlet NSView *_streamView;
+    IBOutlet NSView *_sidebarView;
 }
 
-@property (nonatomic, strong) NSString *username;
-
 @property (nonatomic, strong) NSView *errorView;
-@property (nonatomic, strong) NSViewController *listViewController;
-@property (nonatomic, strong) NSViewController *streamViewController;
+@property (nonatomic, strong) NSViewController *sidebarController;
+@property (nonatomic, strong) NSViewController *viewerController;
+
+@property (nonatomic, strong) NSString *username;
 
 @end
 
@@ -34,9 +37,7 @@
     [super windowDidLoad];
 
     [self initializeInterface];
-
-    StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
-    [self setListViewController:listController];
+    [self initializeViewControllers];
 }
 
 - (void)initializeInterface
@@ -58,22 +59,37 @@
     [titleBarView addSubview:label];
 }
 
-#pragma mark - Window Compositioning
+- (void)initializeViewControllers
+{
+    NSLog(@"Woah!");
 
-- (void)setListViewController:(NSViewController *)viewController {
-    if (_listViewController == viewController) { return; }
+    StreamListViewModel *listViewModel = [[StreamListViewModel alloc] init];
+    self.sidebarController = [[StreamListViewController alloc] initWithViewModel:listViewModel nibName:@"StreamListView" bundle:nil];
+    [self setSidebarController:self.sidebarController];
 
-    _listViewController = viewController;
-    [_listViewController.view setFrame:_listView.bounds];
-    [_listView addSubview:self.listViewController.view];
+    StreamViewModel *streamViewModel = [[StreamViewModel alloc] init];
+    self.viewerController = [[StreamViewerViewController alloc] initWithViewModel:streamViewModel nibName:@"StreamViewer" bundle:nil];
+    [self setViewerController:self.viewerController];
 }
 
-- (void)setStreamViewController:(NSViewController *)viewController {
-    if (_streamViewController == viewController) { return; }
+#pragma mark - Window Compositioning
 
-    _streamViewController = viewController;
-    [_streamViewController.view setFrame:_streamView.bounds];
-    [_streamView addSubview:self.streamViewController.view];
+- (void)setSidebarController:(NSViewController *)viewController
+{
+    if (_sidebarController == viewController) { return; }
+
+    _sidebarController = viewController;
+    [_sidebarController.view setFrame:_sidebarView.bounds];
+    [_sidebarView addSubview:_sidebarController.view];
+}
+
+- (void)setViewerController:(NSViewController *)viewController
+{
+    if (_viewerController == viewController) { return; }
+
+    _viewerController = viewController;
+    [_viewerController.view setFrame:_viewer.bounds];
+    [_viewer addSubview:_viewerController.view];
 }
 
 @end

@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StreamViewerViewController">
             <connections>
-                <outlet property="view" destination="1" id="Xsb-df-2L4"/>
+                <outlet property="view" destination="1" id="Zhv-k2-wuo"/>
                 <outlet property="webView" destination="13u-a7-fcZ" id="8Xy-z0-ml9"/>
             </connections>
         </customObject>
