@@ -63,7 +63,6 @@
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleAppleEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
 
     [self setUpViewSignals];
-
     [_modalWebView setFrameLoadDelegate:self];
 }
 
