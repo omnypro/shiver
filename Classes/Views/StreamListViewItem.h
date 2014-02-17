@@ -7,11 +7,11 @@
 //
 
 #import "JAListViewItem.h"
-#import "Stream.h"
+#import "StreamViewModel.h"
 
 @interface StreamListViewItem : JAListViewItem
 
-@property (nonatomic, strong) Stream *object;
+@property (nonatomic, strong) StreamViewModel *object;
 
 + (StreamListViewItem *)initItem;
 - (void)refreshLogo;

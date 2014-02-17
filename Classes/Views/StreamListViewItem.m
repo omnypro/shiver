@@ -17,6 +17,7 @@
 #import "Preferences.h"
 #import "StreamLogoImageView.h"
 #import "StreamPreviewImageView.h"
+#import "StreamViewModel.h"
 
 #import "StreamListViewItem.h"
 
@@ -52,7 +53,7 @@
 	return nil;
 }
 
-- (void)setObject:(Stream *)object
+- (void)setObject:(StreamViewModel *)object
 {
     if (_object == object)
         return;
