@@ -6,21 +6,30 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
-#import "StreamViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface StreamViewController ()
+#import "StreamViewModel.h"
 
-@end
+#import "StreamViewerViewController.h"
 
-@implementation StreamViewController
+@implementation StreamViewerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    [super awakeFromNib];
+
+    [_webView setFrameLoadDelegate:self];
+
+    [[RACObserve(self, viewModel) distinctUntilChanged] subscribeNext:^(StreamViewModel *stream) {
+        [_webView setMainFrameURL:[stream.hlsURL absoluteString]];
+    }];
+}
+
+#pragma mark - WebFrameLoadDelegate Methods
+
+- (BOOL)webView:(WebView *)webView shouldChangeSelectedDOMRange:(DOMRange *)currentRange toDOMRange:(DOMRange *)proposedRange affinity:(NSSelectionAffinity)selectionAffinity stillSelecting:(BOOL)flag
+{
+    return NO; // Prevent the selection of content.
 }
 
 @end
