@@ -12,6 +12,12 @@
 
 #import "StreamViewerViewController.h"
 
+@interface StreamViewerViewController () {
+    IBOutlet NSTextField *_streamNameLabel;
+}
+
+@end
+
 @implementation StreamViewerViewController
 
 - (void)awakeFromNib
@@ -19,10 +25,13 @@
     [super awakeFromNib];
 
     [_webView setFrameLoadDelegate:self];
+}
 
-    [[RACObserve(self, viewModel) distinctUntilChanged] subscribeNext:^(StreamViewModel *stream) {
-        [_webView setMainFrameURL:[stream.hlsURL absoluteString]];
-    }];
+- (void)setSelectedStream:(StreamViewModel *)stream {
+    NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
+    [[_webView mainFrame] loadRequest:request];
+
+    [_streamNameLabel setStringValue:stream.name];
 }
 
 #pragma mark - WebFrameLoadDelegate Methods

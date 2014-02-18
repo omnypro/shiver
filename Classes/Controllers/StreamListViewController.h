@@ -10,12 +10,10 @@
 #import "SHViewController.h"
 #import "StreamListViewModel.h"
 
-@class User;
+@class StreamViewerViewController;
 
 @interface StreamListViewController : SHViewController <NSUserNotificationCenterDelegate, JAListViewDataSource, JAListViewDelegate>
 
 @property (nonatomic, strong, readonly) StreamListViewModel *viewModel;
-
-- (id)initWithUser:(User *)user;
 
 @end

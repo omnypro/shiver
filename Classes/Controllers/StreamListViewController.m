@@ -445,8 +445,7 @@
 {
     if (listView == _listView) {
         StreamListViewItem *item = (StreamListViewItem *)view;
-        StreamViewerViewController *viewController = [[StreamViewerViewController alloc] initWithViewModel:item.object nibName:@"StreamViewer" bundle:nil];
-        [self.windowController setViewerController:viewController];
+        [self.windowController.viewerController setSelectedStream:item.object];
         DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
     }
 }

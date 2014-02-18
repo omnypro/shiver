@@ -8,11 +8,12 @@
 
 #import "SHViewController.h"
 
-@class StreamListViewModel;
 @class WebView;
 
 @interface StreamViewerViewController : SHViewController
 
-@property (weak) IBOutlet WebView *webView;
+@property (nonatomic, strong) StreamViewModel *selectedStream;
+
+@property (nonatomic, weak) IBOutlet WebView *webView;
 
 @end
