@@ -93,17 +93,18 @@
 - (void)initializeSignals
 {
     RACSignal *authenticatedStreams = RACObserve(self, viewModel.authenticatedStreams);
+    RACSignal *featuredStreams = RACObserve(self, viewModel.featuredStreams);
 
     // Bind the status item's title to the number of active -authenticated-
     // streams, as long as that array exists, and the user wants the count.
     RACSignal *streamCountEnabled = RACObserve(self, preferences.streamCountEnabled);
 
-    RAC(self, streamList) = authenticatedStreams;
+    RAC(self, streamList) = featuredStreams;
 
     @weakify(self);
 
     RAC(self, statusItem.title) = [RACSignal
-        combineLatest:@[streamCountEnabled, authenticatedStreams]
+        combineLatest:@[streamCountEnabled, featuredStreams]
         reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList) {
             @strongify(self);
             if ([streamCountEnabled boolValue] && [streamList count] > 0) {

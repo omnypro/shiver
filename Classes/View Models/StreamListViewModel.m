@@ -58,6 +58,22 @@
             }
         }
     ];
+
+    RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
+    [fetchFeaturedStreams subscribeError:^(NSError *error) { DDLogError(@"Application (%@): (Error) %@", [self class], error); }];
+    RAC(self, featuredStreams) = [RACSignal
+        combineLatest:@[readyAndReachable, hasCredential, fetchFeaturedStreams]
+        reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *streams){
+            DDLogInfo(@"Application (%@): Fetching featured stream list.", [self class]);
+            if ([readyAndReachable boolValue] && [hasCredential boolValue] && streams != nil) {
+                DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [streams count]);
+                DDLogInfo(@"%@", streams);
+                return streams;
+            } else {
+                return nil;
+            }
+        }
+    ];
 }
 
 - (RACSignal *)cellPressed {
