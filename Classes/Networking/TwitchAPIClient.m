@@ -142,7 +142,6 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
             streamsFromResponse = [streamsFromResponse valueForKeyPath:@"stream"];
             return [[streamsFromResponse.rac_sequence map:^id(NSMutableDictionary *dictionary) {
                 NSError *error = nil;
-
                 Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
                 StreamViewModel *viewModel = [[StreamViewModel alloc] initWithStream:stream];
                 return viewModel;
