@@ -11,14 +11,16 @@
 #import "SHWindowController.h"
 #import "WindowViewModel.h"
 
+@class StreamListViewController;
+@class StreamViewerViewController;
+
 @interface MainWindowController : SHWindowController <NSWindowDelegate>
 
+@property (nonatomic, strong) StreamListViewController *sidebarController;
+@property (nonatomic, strong) StreamViewerViewController *viewerController;
 @property (nonatomic, strong, readonly) WindowViewModel *viewModel;
 @property (nonatomic, strong, readonly) RHPreferencesWindowController *preferencesWindowController;
 
 @property (weak) IBOutlet NSView *viewer;
-
-- (void)setSidebarController:(NSViewController *)viewController;
-- (void)setViewerController:(NSViewController *)viewController;
 
 @end

@@ -21,9 +21,6 @@
 }
 
 @property (nonatomic, strong) NSView *errorView;
-@property (nonatomic, strong) NSViewController *sidebarController;
-@property (nonatomic, strong) NSViewController *viewerController;
-
 @property (nonatomic, strong) NSString *username;
 
 @end
@@ -61,35 +58,16 @@
 
 - (void)initializeViewControllers
 {
-    NSLog(@"Woah!");
-
     StreamListViewModel *listViewModel = [[StreamListViewModel alloc] init];
     self.sidebarController = [[StreamListViewController alloc] initWithViewModel:listViewModel nibName:@"StreamListView" bundle:nil];
-    [self setSidebarController:self.sidebarController];
+    [self.sidebarController.view setFrame:_sidebarView.bounds];
+    [_sidebarView addSubview:self.sidebarController.view];
 
     StreamViewModel *streamViewModel = [[StreamViewModel alloc] init];
     self.viewerController = [[StreamViewerViewController alloc] initWithViewModel:streamViewModel nibName:@"StreamViewer" bundle:nil];
     [self setViewerController:self.viewerController];
-}
-
-#pragma mark - Window Compositioning
-
-- (void)setSidebarController:(NSViewController *)viewController
-{
-    if (_sidebarController == viewController) { return; }
-
-    _sidebarController = viewController;
-    [_sidebarController.view setFrame:_sidebarView.bounds];
-    [_sidebarView addSubview:_sidebarController.view];
-}
-
-- (void)setViewerController:(NSViewController *)viewController
-{
-    if (_viewerController == viewController) { return; }
-
-    _viewerController = viewController;
-    [_viewerController.view setFrame:_viewer.bounds];
-    [_viewer addSubview:_viewerController.view];
+    [self.viewerController.view setFrame:_viewer.bounds];
+    [_viewer addSubview:self.viewerController.view];
 }
 
 @end
