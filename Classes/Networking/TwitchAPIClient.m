@@ -135,14 +135,13 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 {
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured" parameters:nil]
         map:^id(id responseObject) { return [responseObject valueForKeyPath:@"featured"]; }]
-        map:^id(NSArray *streamsFromResponse) {
+        map:^id(NSDictionary *streamsFromResponse) {
+            // Twitch's featured streams nests a Stream object alongside
+            // metadata that is used for their front page. We don't need
+            // this data, so we'll just grab the nested object.
+            streamsFromResponse = [streamsFromResponse valueForKeyPath:@"stream"];
             return [[streamsFromResponse.rac_sequence map:^id(NSMutableDictionary *dictionary) {
                 NSError *error = nil;
-
-                // Twitch's featured streams nests a Stream object alongside
-                // metadata that is used for their front page. We don't need
-                // this data, so we'll just grab the nested object.
-                dictionary = [dictionary valueForKeyPath:@"stream"];
 
                 Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
                 StreamViewModel *viewModel = [[StreamViewModel alloc] initWithStream:stream];
