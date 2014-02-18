@@ -20,14 +20,21 @@
     if (self == nil) return nil;
 
     _stream = stream;
-    _channel = stream.channel;
-
-    _name = _channel.name;
     _game = stream.game;
     _broadcaster = stream.broadcaster;
-    _hlsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/hls", _name]];
     _previewImageURL = stream.previewImageURL;
     _viewers = stream.viewers;
+
+    _channel = stream.channel;
+    _name = _channel.name;
+    _displayName = _channel.displayName;
+    _url = _channel.url;
+    _createdAt = _channel.createdAt;
+    _updatedAt = _channel.updatedAt;
+    _logoImageURL = _channel.logoImageURL;
+    _status = _channel.status;
+
+    _hlsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/hls", _name]];
 
     return self;
 }
