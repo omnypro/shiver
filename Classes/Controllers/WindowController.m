@@ -131,27 +131,27 @@
     // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
     // fetch the user from the API and when the value changes, then show the
     // stream list.
-    [[[[[RACSignal combineLatest:@[ RACObserve(self, loggedIn), RACObserve(self, user) ] reduce:^(NSNumber *loggedIn, User *user) {
-        BOOL isLoggedIn = [loggedIn boolValue];
-        return @((isLoggedIn == YES) && (user != nil));
-    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
-        return ([value boolValue] == YES);
-    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-        @strongify(self);
-        DDLogInfo(@"Application (%@): We have a user.", [self class]);
-        DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
-        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
-        [self setCurrentViewController:listController];
-    }];
-    [[[[RACObserve(self, loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
-        return ([loggedIn boolValue] == NO);
-    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-        @strongify(self);
-		DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
-        DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
-        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
-        [self setCurrentViewController:listController];
-    }];
+//    [[[[[RACSignal combineLatest:@[ RACObserve(self, loggedIn), RACObserve(self, user) ] reduce:^(NSNumber *loggedIn, User *user) {
+//        BOOL isLoggedIn = [loggedIn boolValue];
+//        return @((isLoggedIn == YES) && (user != nil));
+//    }] distinctUntilChanged] filter:^BOOL(NSNumber *value) {
+//        return ([value boolValue] == YES);
+//    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+//        @strongify(self);
+//        DDLogInfo(@"Application (%@): We have a user.", [self class]);
+//        DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
+//        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
+//        [self setCurrentViewController:listController];
+//    }];
+//    [[[[RACObserve(self, loggedIn) distinctUntilChanged] filter:^BOOL(NSNumber *loggedIn) {
+//        return ([loggedIn boolValue] == NO);
+//    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+//        @strongify(self);
+//		DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
+//        DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
+//        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
+//        [self setCurrentViewController:listController];
+//    }];
 
     // Watch -isUIActive and update the main interface appropriately.
     // NSDictionary *options = @{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName };
