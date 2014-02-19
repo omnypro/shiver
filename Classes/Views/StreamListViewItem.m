@@ -168,46 +168,56 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Draw the initial rectangle.
-    NSRect initialRect = NSMakeRect(0, 20, NSWidth(dirtyRect), 90);
-    [[NSColor colorWithHexString:@"#222222" alpha:1] setFill];
+    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), NSHeight(dirtyRect));
+    [[NSColor colorWithHexString:@"#333538" alpha:1] setFill];
     NSRectFill(initialRect);
+
+    // Draw the top "highlight".
+    NSRect highlightRect = NSMakeRect(0, 59, NSWidth(dirtyRect), 1);
+    [[NSColor colorWithHexString:@"#FFF" alpha:1] setFill];
+    NSRectFill(highlightRect);
+
+    // Draw the "bottom" highlight.
+    NSRect shadowRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 1);
+    [[NSColor colorWithHexString:@"#000" alpha:1] setFill];
+    NSRectFill(shadowRect);
 
     // Draw the sidebar that'll "house" the watch button, viewer count, and
     // part of the avatar.
-    NSRect sidebarRect = NSMakeRect(0, -20, 60, 140);
-    [[NSColor colorWithHexString:@"#1D1D1D" alpha:1] setFill];
-    NSRectFill(sidebarRect);
+//    NSRect sidebarRect = NSMakeRect(0, -20, 60, 140);
+//    [[NSColor colorWithHexString:@"#1D1D1D" alpha:1] setFill];
+//    NSRectFill(sidebarRect);
 
     // Delcare an inner shadow for the sidebar.
-    NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.75]];
-    [shadow setShadowOffset:NSMakeSize(0, 0)];
-    [shadow setShadowBlurRadius:16];
+//    NSShadow *shadow = [[NSShadow alloc] init];
+//    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.75]];
+//    [shadow setShadowOffset:NSMakeSize(0, 0)];
+//    [shadow setShadowBlurRadius:16];
 
-    NSBezierPath *insetPath = [NSBezierPath bezierPathWithRect:sidebarRect];
-    NSRect insetRect = NSInsetRect([insetPath bounds], -shadow.shadowBlurRadius, -shadow.shadowBlurRadius);
-    insetRect = NSOffsetRect(insetRect, -shadow.shadowOffset.width, -shadow.shadowOffset.height);
-    insetRect = NSInsetRect(NSUnionRect(insetRect, [insetPath bounds]), -1, -1);
-
-    NSBezierPath *insetNegativePath = [NSBezierPath bezierPathWithRect:insetRect];
-    [insetNegativePath appendBezierPath:insetPath];
-    [insetNegativePath setWindingRule:NSEvenOddWindingRule];
-
-    [NSGraphicsContext saveGraphicsState];
-    {
-        NSShadow* shadowWithOffset = [shadow copy];
-        CGFloat xOffset = shadowWithOffset.shadowOffset.width + round(insetRect.size.width);
-        CGFloat yOffset = shadowWithOffset.shadowOffset.height;
-        shadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
-        [shadowWithOffset set];
-        [[NSColor grayColor] setFill];
-        [insetPath addClip];
-
-        NSAffineTransform *transform = [NSAffineTransform transform];
-        [transform translateXBy:-round(insetRect.size.width) yBy:0];
-        [[transform transformBezierPath:insetNegativePath] fill];
-    }
-    [NSGraphicsContext restoreGraphicsState];
+//    NSBezierPath *insetPath = [NSBezierPath bezierPathWithRect:sidebarRect];
+//    NSRect insetRect = NSInsetRect([insetPath bounds], -shadow.shadowBlurRadius, -shadow.shadowBlurRadius);
+//    insetRect = NSOffsetRect(insetRect, -shadow.shadowOffset.width, -shadow.shadowOffset.height);
+//    insetRect = NSInsetRect(NSUnionRect(insetRect, [insetPath bounds]), -1, -1);
+//
+//    NSBezierPath *insetNegativePath = [NSBezierPath bezierPathWithRect:insetRect];
+//    [insetNegativePath appendBezierPath:insetPath];
+//    [insetNegativePath setWindingRule:NSEvenOddWindingRule];
+//
+//    [NSGraphicsContext saveGraphicsState];
+//    {
+//        NSShadow* shadowWithOffset = [shadow copy];
+//        CGFloat xOffset = shadowWithOffset.shadowOffset.width + round(insetRect.size.width);
+//        CGFloat yOffset = shadowWithOffset.shadowOffset.height;
+//        shadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
+//        [shadowWithOffset set];
+//        [[NSColor grayColor] setFill];
+//        [insetPath addClip];
+//
+//        NSAffineTransform *transform = [NSAffineTransform transform];
+//        [transform translateXBy:-round(insetRect.size.width) yBy:0];
+//        [[transform transformBezierPath:insetNegativePath] fill];
+//    }
+//    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end
