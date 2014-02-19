@@ -23,6 +23,9 @@ PODS:
   - ReactiveCocoa/no-arc (2.2.3)
   - ReactiveViewModel (0.2):
     - ReactiveCocoa (~> 2.1)
+  - Rebel (0.3.2):
+    - Rebel/NSColorExtensions
+  - Rebel/NSColorExtensions (0.3.2)
   - RHPreferences (1.0.0)
   - SORelativeDateTransformer (1.1.10)
   - StartAtLoginController (0.0.1)
@@ -39,6 +42,7 @@ DEPENDENCIES:
   - Reachability (~> 3.1.0)
   - ReactiveCocoa (~> 2.2.3)
   - ReactiveViewModel (~> 0.2)
+  - Rebel (~> 0.3.2)
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.9)
   - StartAtLoginController (~> 0.0.1)
@@ -59,6 +63,7 @@ SPEC CHECKSUMS:
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
+  Rebel: 62fb32b3b4c06ce3d73e226f7d8fc51ad1b70d10
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: eba9b9bcc290eb7c9754b9955ace59b890fa59f8
   StartAtLoginController: 7ab3011175dbcce1f887cc004fb5faabf29aba8d

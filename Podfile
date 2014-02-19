@@ -11,6 +11,7 @@ pod 'NSDate+TimeAgo', :git => 'https://github.com/kevinlawler/NSDate-TimeAgo.git
 pod 'Reachability', '~> 3.1.0'
 pod 'ReactiveCocoa', '~> 2.2.3'
 pod 'ReactiveViewModel', '~> 0.2'
+pod 'Rebel', '~> 0.3.2'
 pod 'RHPreferences', '~> 1.0.0'
 pod 'SORelativeDateTransformer', '~> 1.1.9'
 pod 'StartAtLoginController', '~> 0.0.1'
