@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <webView translatesAutoresizingMaskIntoConstraints="NO" id="13u-a7-fcZ">
-                    <rect key="frame" x="10" y="50" width="620" height="360"/>
+                    <rect key="frame" x="0.0" y="50" width="640" height="370"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                         <nil key="identifier"/>
@@ -58,9 +58,9 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="50" id="Cnp-va-ZLh"/>
-                <constraint firstAttribute="trailing" secondItem="13u-a7-fcZ" secondAttribute="trailing" constant="10" id="J97-sh-psV"/>
-                <constraint firstItem="13u-a7-fcZ" firstAttribute="top" secondItem="1" secondAttribute="top" constant="10" id="Oiy-zj-zvS"/>
-                <constraint firstItem="13u-a7-fcZ" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="iN0-nu-7Ax"/>
+                <constraint firstAttribute="trailing" secondItem="13u-a7-fcZ" secondAttribute="trailing" id="J97-sh-psV"/>
+                <constraint firstItem="13u-a7-fcZ" firstAttribute="top" secondItem="1" secondAttribute="top" id="Oiy-zj-zvS"/>
+                <constraint firstItem="13u-a7-fcZ" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="iN0-nu-7Ax"/>
             </constraints>
         </customView>
     </objects>
