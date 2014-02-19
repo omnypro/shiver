@@ -13,6 +13,7 @@ PODS:
   - Mantle (1.3.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.3.1)
+  - NSDate+TimeAgo (1.0.3)
   - Reachability (3.1.1)
   - ReactiveCocoa (2.2.3):
     - ReactiveCocoa/Core
@@ -34,12 +35,17 @@ DEPENDENCIES:
   - INAppStoreWindow (~> 1.4)
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.1)
+  - NSDate+TimeAgo (from `https://github.com/kevinlawler/NSDate-TimeAgo.git`)
   - Reachability (~> 3.1.0)
   - ReactiveCocoa (~> 2.2.3)
   - ReactiveViewModel (~> 0.2)
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.9)
   - StartAtLoginController (~> 0.0.1)
+
+EXTERNAL SOURCES:
+  NSDate+TimeAgo:
+    :git: https://github.com/kevinlawler/NSDate-TimeAgo.git
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
@@ -49,6 +55,7 @@ SPEC CHECKSUMS:
   INAppStoreWindow: 5a9eedcedc3ec95e7d8a12292de584b760d96c76
   JAListView: 7fb73768382a93a0cf48e18828709ef3240911fc
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
+  NSDate+TimeAgo: 044f5e9b8d0c31bf5da39e4bda0c3f517441712e
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
