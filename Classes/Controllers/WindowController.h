@@ -19,6 +19,4 @@
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSPopUpButton *streamMenu;
 
-@property (nonatomic, strong) RACSubject *reachSignal;
-
 @end

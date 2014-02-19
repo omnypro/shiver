@@ -25,14 +25,14 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Drawing code here.
-    [[NSColor colorWithHexString:@"#222222" alpha:1] setFill];
+    [[NSColor colorWithHexString:@"#333538" alpha:1] setFill];
     NSRectFill(dirtyRect);
 
     // Delcare our inner shadow.
     NSShadow *shadow = [[NSShadow alloc] init];
     [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0 alpha:0.5]];
-    [shadow setShadowOffset:NSMakeSize(0, 0)];
-    [shadow setShadowBlurRadius:16];
+    [shadow setShadowOffset:NSMakeSize(-2, -2)];
+    [shadow setShadowBlurRadius:2];
 
     NSBezierPath *insetPath = [NSBezierPath bezierPathWithRect:dirtyRect];
     NSRect insetRect = NSInsetRect([insetPath bounds], -shadow.shadowBlurRadius, -shadow.shadowBlurRadius);

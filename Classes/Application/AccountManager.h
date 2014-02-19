@@ -16,5 +16,6 @@
 
 - (RACSignal *)readySignal;
 - (RACSignal *)reachableSignal;
+- (RACSignal *)readyAndReachableSignal;
 
 @end

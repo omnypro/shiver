@@ -7,11 +7,13 @@
 //
 
 #import "JAListView.h"
+#import "SHViewController.h"
+#import "StreamListViewModel.h"
 
-@class User;
+@class StreamViewerViewController;
 
-@interface StreamListViewController : NSViewController <NSUserNotificationCenterDelegate, JAListViewDataSource, JAListViewDelegate>
+@interface StreamListViewController : SHViewController <NSUserNotificationCenterDelegate, JAListViewDataSource, JAListViewDelegate>
 
-- (id)initWithUser:(User *)user;
+@property (nonatomic, strong, readonly) StreamListViewModel *viewModel;
 
 @end

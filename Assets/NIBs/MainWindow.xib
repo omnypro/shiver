@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1080" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
+            <connections>
+                <outlet property="_masterView" destination="2" id="1BV-Ma-cTY"/>
+                <outlet property="_sidebarView" destination="yR9-vn-kvl" id="vHb-s8-hQm"/>
+                <outlet property="viewer" destination="bEX-Qf-PcT" id="hwx-NQ-s7U"/>
+                <outlet property="window" destination="1" id="7JK-yF-Jz6"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Shiver" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1" customClass="INAppStoreWindow">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <rect key="contentRect" x="196" y="240" width="880" height="420"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <value key="minSize" type="size" width="880" height="420"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="880" height="420"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="yR9-vn-kvl">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="420"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="240" id="58u-Qc-UlS"/>
+                        </constraints>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Qf-PcT">
+                        <rect key="frame" x="240" y="0.0" width="640" height="420"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bEX-Qf-PcT" firstAttribute="top" secondItem="2" secondAttribute="top" id="90G-zL-q7y"/>
+                    <constraint firstItem="yR9-vn-kvl" firstAttribute="top" secondItem="2" secondAttribute="top" id="D0Z-dq-Fbj"/>
+                    <constraint firstItem="bEX-Qf-PcT" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="240" id="DII-eX-LZV"/>
+                    <constraint firstAttribute="trailing" secondItem="bEX-Qf-PcT" secondAttribute="trailing" id="GUA-sj-lXf"/>
+                    <constraint firstItem="yR9-vn-kvl" firstAttribute="height" secondItem="bEX-Qf-PcT" secondAttribute="height" id="NxL-Tv-TSR"/>
+                    <constraint firstItem="yR9-vn-kvl" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="V7A-vh-BcU"/>
+                    <constraint firstAttribute="bottom" secondItem="bEX-Qf-PcT" secondAttribute="bottom" id="fdq-se-PBI"/>
+                    <constraint firstAttribute="bottom" secondItem="yR9-vn-kvl" secondAttribute="bottom" id="is7-2X-MgL"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="jNy-pY-wFr"/>
+            </connections>
+        </window>
+    </objects>
+</document>

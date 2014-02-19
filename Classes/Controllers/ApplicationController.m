@@ -11,20 +11,24 @@
 
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
+#import "MainWindowController.h"
 #import "Preferences.h"
 #import "Reachability.h"
 #import "StartAtLoginController.h"
 #import "StatusItemView.h"
 #import "WindowController.h"
+#import "WindowViewModel.h"
 
 #import "ApplicationController.h"
 
 @interface ApplicationController ()
+
+@property (nonatomic, strong) WindowViewModel *viewModel;
+@property (nonatomic, strong) MainWindowController *windowController;
+
 @property (nonatomic, strong) StartAtLoginController *loginController;
-@property (nonatomic, readwrite, strong) WindowController *windowController;
 @property (nonatomic, strong) Preferences *preferences;
-@property (strong, nonatomic) RACReplaySubject *reachSignal;
-@property (nonatomic, strong) Reachability *reach;
+
 @end
 
 @implementation ApplicationController
@@ -39,9 +43,11 @@
 	self = [super init];
 	if (self == nil) { return nil; }
 
+    _viewModel = [[WindowViewModel alloc] init];
+    _windowController = [[MainWindowController alloc] initWithViewModel:_viewModel nibName:@"MainWindow"];
+
     _preferences = [Preferences sharedPreferences];
     _loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
-    _windowController = [[WindowController alloc] init];
     return self;
 }
 

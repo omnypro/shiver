@@ -17,7 +17,7 @@
 
 @property (strong) StatusItemView *statusItem;
 @property (nonatomic, strong) NSString *streamCountString;
-@property (nonatomic, readonly, strong) WindowController *windowController;
+@property (nonatomic, readonly, strong) MainWindowController *windowController;
 
 + (ApplicationController *)sharedInstance;
 

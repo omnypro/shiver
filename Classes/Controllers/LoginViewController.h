@@ -9,10 +9,6 @@
 #import <RHPreferences/RHPreferences.h>
 #import <WebKit/WebKit.h>
 
-@class LoginView;
-@class RACReplaySubject;
-@class RACSubject;
-
 @interface LoginViewController : NSViewController <RHPreferencesViewControllerProtocol>
 
 @property (nonatomic, strong) RACReplaySubject *didLoginSubject;

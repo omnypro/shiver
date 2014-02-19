@@ -6,10 +6,6 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <EXTKeypathCoding.h>
-#import <EXTScope.h>
-
 #import "Reachability.h"
 #import "TwitchAPIClient.h"
 
@@ -65,6 +61,11 @@
     }
 
     return _isReachable.signal;
+}
+
+- (RACSignal *)readyAndReachableSignal
+{
+    return [[[RACSignal combineLatest:@[self.readySignal, self.reachableSignal]] and] distinctUntilChanged];
 }
 
 @end
