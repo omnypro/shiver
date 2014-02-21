@@ -15,6 +15,5 @@
 
 + (StreamListViewItem *)initItem;
 - (void)refreshLogo;
-- (void)refreshPreview;
 
 @end

@@ -30,9 +30,6 @@
 @property (weak) IBOutlet StreamLogoImageView *logo;
 @property (nonatomic, strong) NSString *logoURLCache;
 
-@property (nonatomic, strong) NSImageView *preview;
-@property (nonatomic, strong) NSString *previewURLCache;
-
 @end
 
 @implementation StreamListViewItem

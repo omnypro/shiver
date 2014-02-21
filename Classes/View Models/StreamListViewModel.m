@@ -67,7 +67,6 @@
             DDLogInfo(@"Application (%@): Fetching featured stream list.", [self class]);
             if ([readyAndReachable boolValue] && [hasCredential boolValue] && streams != nil) {
                 DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [streams count]);
-                DDLogInfo(@"%@", streams);
                 return streams;
             } else {
                 return nil;
