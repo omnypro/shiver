@@ -107,6 +107,7 @@
 		93BE57D61773D941008CB04E /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* Menu.xib */; };
 		93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
 		93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A318B7FBDE005943E8 /* StreamListView.m */; };
+		93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
@@ -280,6 +281,8 @@
 		93BE57DD1773DDCC008CB04E /* ShiverHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShiverHelper.entitlements; sourceTree = SOURCE_ROOT; };
 		93C0A7A218B7FBDE005943E8 /* StreamListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListView.h; path = Classes/Views/StreamListView.h; sourceTree = SOURCE_ROOT; };
 		93C0A7A318B7FBDE005943E8 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
+		93C0A7A518B81E25005943E8 /* JLNFadingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLNFadingScrollView.h; path = Extensions/JLNFadingScrollView.h; sourceTree = SOURCE_ROOT; };
+		93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLNFadingScrollView.m; path = Extensions/JLNFadingScrollView.m; sourceTree = SOURCE_ROOT; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -417,6 +420,8 @@
 			isa = PBXGroup;
 			children = (
 				93A3A1251766DFDF00913C9A /* Categories */,
+				93C0A7A518B81E25005943E8 /* JLNFadingScrollView.h */,
+				93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */,
 				939A7B6B17837097009121D6 /* YRKSpinningProgressIndicator.h */,
 				939A7B6C17837097009121D6 /* YRKSpinningProgressIndicator.m */,
 			);
@@ -960,6 +965,7 @@
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
 				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
 				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
+				93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 				939411351787ECE2003D1346 /* StatusItemView.m in Sources */,

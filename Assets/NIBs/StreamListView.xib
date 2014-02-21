@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="StreamListViewController">
             <connections>
                 <outlet property="_listView" destination="79" id="toI-Ya-J71"/>
+                <outlet property="_scrollView" destination="78" id="64o-N7-1GO"/>
                 <outlet property="view" destination="1" id="dIt-02-nfu"/>
             </connections>
         </customObject>
@@ -17,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="light" findBarPosition="belowContent" id="78">
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="light" findBarPosition="belowContent" id="78" customClass="JLNFadingScrollView">
                     <rect key="frame" x="0.0" y="46" width="320" height="374"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CYa-zr-a45">

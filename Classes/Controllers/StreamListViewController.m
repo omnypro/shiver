@@ -14,6 +14,7 @@
 #import "JAListView.h"
 #import "LoadingView.h"
 #import "LoginRequiredView.h"
+#import "JLNFadingScrollView.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
 #import "StatusItemView.h"
@@ -28,6 +29,7 @@
 
 @interface StreamListViewController () {
     IBOutlet JAListView *_listView;
+    IBOutlet JLNFadingScrollView *_scrollView;
 }
 
 @property (nonatomic, strong) NSView *emptyView;
@@ -86,6 +88,8 @@
     [_listView setCanCallDataSourceInParallel:YES];
     [_listView setConditionallyUseLayerBacking:YES];
     [_listView setMargin:NSMakePoint(10, 10)];
+
+    [_scrollView setFadeColor:[NSColor colorWithHexString:@"#000000" alpha:1.0]];
 }
 
 - (void)initializeSignals
