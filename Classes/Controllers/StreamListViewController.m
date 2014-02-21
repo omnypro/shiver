@@ -433,17 +433,17 @@
 
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
-    if (listView == _listView) {
-        return;
-    }
+    if (listView != _listView) { return; }
+
+    StreamListViewItem *item = (StreamListViewItem *)view;
+    [self.windowController.viewerController setSelectedStream:item.object];
+    DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
 }
 
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
     if (listView == _listView) {
-        StreamListViewItem *item = (StreamListViewItem *)view;
-        [self.windowController.viewerController setSelectedStream:item.object];
-        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
+        return;
     }
 }
 
@@ -458,20 +458,15 @@
 
 - (JAListViewItem *)listView:(JAListView *)listView viewAtIndex:(NSUInteger)index
 {
-    StreamViewModel *viewModel = (self.streamList)[index];
     StreamListViewItem *item = [StreamListViewItem initItem];
-    
-    item.object = viewModel;
+    item.object = [self.streamList objectAtIndex:index];
     [item setNeedsDisplay:YES];
     return item;
 }
 
 - (NSUInteger)numberOfItemsInListView:(JAListView *)listView
 {
-    if (self.streamList != nil) {
-        return [self.streamList count];
-    }
-    return 0;
+    return [self.streamList count];
 }
 
 @end
