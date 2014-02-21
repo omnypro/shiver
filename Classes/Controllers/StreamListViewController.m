@@ -85,6 +85,7 @@
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
     [_listView setConditionallyUseLayerBacking:YES];
+    [_listView setMargin:NSMakePoint(10, 10)];
 }
 
 - (void)initializeSignals
