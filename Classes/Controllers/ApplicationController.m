@@ -11,6 +11,8 @@
 
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
+#import "GeneralViewController.h"
+#import "LoginViewController.h"
 #import "MainWindowController.h"
 #import "Preferences.h"
 #import "Reachability.h"
@@ -27,7 +29,14 @@
 @property (nonatomic, strong) MainWindowController *windowController;
 
 @property (nonatomic, strong) StartAtLoginController *loginController;
+
+// Preferences.
 @property (nonatomic, strong) Preferences *preferences;
+@property (nonatomic, strong) RHPreferencesWindowController *preferencesWindowController;
+@property (nonatomic, strong) GeneralViewController *generalPreferences;
+@property (nonatomic, strong) LoginViewController *loginPreferences;
+
+- (IBAction)showPreferences:(id)sender;
 
 @end
 
@@ -46,8 +55,12 @@
     _viewModel = [[WindowViewModel alloc] init];
     _windowController = [[MainWindowController alloc] initWithViewModel:_viewModel nibName:@"MainWindow"];
 
-    _preferences = [Preferences sharedPreferences];
     _loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
+
+    _preferences = [Preferences sharedPreferences];
+    _generalPreferences = [[GeneralViewController alloc] init];
+    _loginPreferences = [[LoginViewController alloc] init];
+
     return self;
 }
 
@@ -57,6 +70,18 @@
     NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
     NSWindow *window = self.windowController.window;
     self.statusItem = [[StatusItemView alloc] initWithWindow:window image:image alternateImage:alternateImage label:nil];
+}
+
+#pragma mark - Preferences
+
+- (NSWindowController *)preferencesWindowController
+{
+    // If we have not created the window controller yet, create it now.
+    if (_preferencesWindowController == nil) {
+        NSArray *controllers = @[ self.generalPreferences, self.loginPreferences ];
+        _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
+    }
+    return _preferencesWindowController;
 }
 
 #pragma mark - NSApplicationDelegate
@@ -83,6 +108,16 @@
     NSString *productName =  [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     NSString *shortVersionString = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     DDLogInfo(@"Application: Loaded %@ v%@", productName, shortVersionString);
+}
+
+#pragma mark - Interface Builder Actions
+
+- (IBAction)showPreferences:(id)sender
+{
+    [self.preferencesWindowController.window center];
+    [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
+    [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 @end
