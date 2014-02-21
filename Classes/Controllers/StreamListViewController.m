@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <EXTScope.h>
-
 #import "TwitchAPIClient.h"
 #import "Channel.h"
 #import "EmptyErrorView.h"

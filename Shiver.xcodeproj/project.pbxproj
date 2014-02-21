@@ -106,6 +106,7 @@
 		93BE57D31773D941008CB04E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57D21773D941008CB04E /* ApplicationDelegate.m */; };
 		93BE57D61773D941008CB04E /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* Menu.xib */; };
 		93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
+		93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A318B7FBDE005943E8 /* StreamListView.m */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
@@ -277,6 +278,8 @@
 		93BE57D21773D941008CB04E /* ApplicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
 		93BE57D51773D941008CB04E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
 		93BE57DD1773DDCC008CB04E /* ShiverHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShiverHelper.entitlements; sourceTree = SOURCE_ROOT; };
+		93C0A7A218B7FBDE005943E8 /* StreamListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListView.h; path = Classes/Views/StreamListView.h; sourceTree = SOURCE_ROOT; };
+		93C0A7A318B7FBDE005943E8 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -512,6 +515,8 @@
 				931E25291778B7B20081162C /* EmptyErrorView.m */,
 				939A7B6E1783723D009121D6 /* LoadingView.h */,
 				939A7B6F1783723D009121D6 /* LoadingView.m */,
+				93C0A7A218B7FBDE005943E8 /* StreamListView.h */,
+				93C0A7A318B7FBDE005943E8 /* StreamListView.m */,
 				936327D31764468400146C8A /* StreamListViewItem.h */,
 				936327D41764468500146C8A /* StreamListViewItem.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
@@ -744,7 +749,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SH;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Revyver, Inc.";
 				TargetAttributes = {
 					932C29951761AE0B0049EC1B = {
@@ -925,6 +930,7 @@
 				938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */,
 				936327D51764468500146C8A /* StreamListViewItem.m in Sources */,
 				938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */,
+				93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */,
 				938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */,
 				936327DB1764F9BB00146C8A /* Channel.m in Sources */,
 				936327E11765268200146C8A /* TwitchAPIClient.m in Sources */,
