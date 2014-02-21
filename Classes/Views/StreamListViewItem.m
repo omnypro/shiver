@@ -24,9 +24,7 @@
 @interface StreamListViewItem () {
     IBOutlet NSTextField *_gameLabel;
     IBOutlet NSTextField *_userLabel;
-    IBOutlet NSTextField *_titleLabel;
-    IBOutlet NSTextField *_viewerCountLabel;
-    IBOutlet NSButton *_redirectButton;
+    IBOutlet NSTextField *_liveSinceLabel;
 }
 
 @property (weak) IBOutlet StreamLogoImageView *logo;
@@ -35,7 +33,6 @@
 @property (nonatomic, strong) NSImageView *preview;
 @property (nonatomic, strong) NSString *previewURLCache;
 
-- (IBAction)redirectToStream:(id)sender;
 @end
 
 @implementation StreamListViewItem
@@ -60,27 +57,23 @@
 
     _object = object;
 
-    if (_object.channel.status) { [_titleLabel setAttributedStringValue:[self attributedTitleWithString:_object.channel.status]]; }
-    else { [_titleLabel setAttributedStringValue:[self attributedTitleWithString:@""]]; }
-
     if (_object.channel.displayName) {
         [_userLabel setStringValue:_object.channel.displayName];
-        [_userLabel setTextColor:[NSColor colorWithHexString:@"#BFBFBF" alpha:1]];
+        [_userLabel setTextColor:[NSColor colorWithHexString:@"#1A1A1A" alpha:1]];
     }
 
-    if (_object.game == nil || [_object.game isKindOfClass:[NSNull class]]) { [_gameLabel setStringValue:@""]; }
+    if (_object.game == nil || [_object.game isKindOfClass:[NSNull class]]) { [_gameLabel setStringValue:@"(Unspecified)"]; }
     else {
         [_gameLabel setStringValue:_object.game];
-        [_gameLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
+        [_gameLabel setTextColor:[NSColor colorWithHexString:@"#4A90E2" alpha:1]];
     }
 
-    if (_object.viewers) {
-        [_viewerCountLabel setStringValue:[NSString stringWithFormat:@"%@", _object.viewers]];
-        [_viewerCountLabel setTextColor:[NSColor colorWithHexString:@"#808080" alpha:1]];
+    if (_object.updatedAt) {
+        [_liveSinceLabel setStringValue:[NSString stringWithFormat:@"Live for %@", _object.liveSince]];
+        [_liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#D4D4D4" alpha:1]];
     }
 
     [self refreshLogo];
-    [self refreshPreview];
 }
 
 - (NSAttributedString *)attributedTitleWithString:(NSString *)string
@@ -131,93 +124,34 @@
     }
 }
 
-- (void)refreshPreview
-{
-    static NSImage *placeholderImage = nil;
-
-    @weakify(self);
-    if (![self.object.previewImageURL.absoluteString isEqualToString:self.previewURLCache]) {
-        // Prevent setting the logo unnecessarily.
-        NSURLRequest *request = [NSURLRequest requestWithURL:self.object.previewImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
-        [_preview setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
-            @strongify(self);
-            [self.preview setImage:image];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            @strongify(self);
-            DDLogError(@"Application (%@): (Error) %@", [self class], error);
-        }];
-
-        self.previewURLCache = self.object.previewImageURL.absoluteString;
-    }
-    else {
-        [_preview setImageWithURL:[NSURL URLWithString:self.previewURLCache]];
-    }
-}
-
-- (IBAction)redirectToStream:(id)sender
-{
-    NSURL *streamURL = self.object.channel.url;
-    if ([[Preferences sharedPreferences] streamPopupEnabled]) {
-        streamURL = [streamURL URLByAppendingPathComponent:@"popout"];
-    }
-    [[NSWorkspace sharedWorkspace] openURL:streamURL];
-}
-
 #pragma mark - Drawing Logic
 
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Draw the initial rectangle.
-    NSRect initialRect = NSMakeRect(0, 0, NSWidth(dirtyRect), NSHeight(dirtyRect));
-    [[NSColor colorWithHexString:@"#333538" alpha:1] setFill];
+    NSRect initialRect = NSInsetRect([self bounds], 10.0, 0.0);
+    [[NSColor colorWithHexString:@"#FFFFFF" alpha:1.0] setFill];
     NSRectFill(initialRect);
 
-    // Draw the top "highlight".
-    NSRect highlightRect = NSMakeRect(0, 59, NSWidth(dirtyRect), 1);
-    [[NSColor colorWithHexString:@"#FFF" alpha:1] setFill];
-    NSRectFill(highlightRect);
+    if (self.selected) {
+        NSRect selectedRect = NSMakeRect(225, 0, 5, 60);
+        [[NSColor colorWithHexString:@"#0094DA" alpha:1.0] setFill];
+        NSRectFill(selectedRect);
+    }
 
-    // Draw the "bottom" highlight.
-    NSRect shadowRect = NSMakeRect(0, 0, NSWidth(dirtyRect), 1);
-    [[NSColor colorWithHexString:@"#000" alpha:1] setFill];
-    NSRectFill(shadowRect);
+    // Declare an outer shadow.
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowBlurRadius:2];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.25]];
+    [shadow setShadowOffset:NSMakeSize(0, -2)];
 
-    // Draw the sidebar that'll "house" the watch button, viewer count, and
-    // part of the avatar.
-//    NSRect sidebarRect = NSMakeRect(0, -20, 60, 140);
-//    [[NSColor colorWithHexString:@"#1D1D1D" alpha:1] setFill];
-//    NSRectFill(sidebarRect);
+    [NSGraphicsContext saveGraphicsState];
+    {
+        [shadow set];
+    }
+    [NSGraphicsContext restoreGraphicsState];
 
-    // Delcare an inner shadow for the sidebar.
-//    NSShadow *shadow = [[NSShadow alloc] init];
-//    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.75]];
-//    [shadow setShadowOffset:NSMakeSize(0, 0)];
-//    [shadow setShadowBlurRadius:16];
-
-//    NSBezierPath *insetPath = [NSBezierPath bezierPathWithRect:sidebarRect];
-//    NSRect insetRect = NSInsetRect([insetPath bounds], -shadow.shadowBlurRadius, -shadow.shadowBlurRadius);
-//    insetRect = NSOffsetRect(insetRect, -shadow.shadowOffset.width, -shadow.shadowOffset.height);
-//    insetRect = NSInsetRect(NSUnionRect(insetRect, [insetPath bounds]), -1, -1);
-//
-//    NSBezierPath *insetNegativePath = [NSBezierPath bezierPathWithRect:insetRect];
-//    [insetNegativePath appendBezierPath:insetPath];
-//    [insetNegativePath setWindingRule:NSEvenOddWindingRule];
-//
-//    [NSGraphicsContext saveGraphicsState];
-//    {
-//        NSShadow* shadowWithOffset = [shadow copy];
-//        CGFloat xOffset = shadowWithOffset.shadowOffset.width + round(insetRect.size.width);
-//        CGFloat yOffset = shadowWithOffset.shadowOffset.height;
-//        shadowWithOffset.shadowOffset = NSMakeSize(xOffset + copysign(0.1, xOffset), yOffset + copysign(0.1, yOffset));
-//        [shadowWithOffset set];
-//        [[NSColor grayColor] setFill];
-//        [insetPath addClip];
-//
-//        NSAffineTransform *transform = [NSAffineTransform transform];
-//        [transform translateXBy:-round(insetRect.size.width) yBy:0];
-//        [[transform transformBezierPath:insetNegativePath] fill];
-//    }
-//    [NSGraphicsContext restoreGraphicsState];
+    [super drawRect:dirtyRect];
 }
 
 @end
