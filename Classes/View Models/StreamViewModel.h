@@ -26,6 +26,7 @@
 @property (nonatomic, strong, readonly) NSURL *url;
 @property (nonatomic, strong, readonly) NSDate *createdAt;
 @property (nonatomic, strong, readonly) NSDate *updatedAt;
+@property (nonatomic, strong, readonly) NSString *liveSince;
 @property (nonatomic, strong, readonly) NSURL *logoImageURL;
 @property (nonatomic, strong, readonly) NSString *status;
 
