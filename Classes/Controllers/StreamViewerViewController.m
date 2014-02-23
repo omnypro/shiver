@@ -52,7 +52,10 @@
             else { return @""; }
         }];
 
-    RAC(self, logo.image) = RACObserve(self, stream.logo);
+    RAC(self, logo.image) = [RACObserve(self, stream.logoImageURL)
+        map:^id(NSURL *url) {
+            return [[NSImage alloc] initWithContentsOfURL:url];
+        }];
 
     [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B" alpha:1]];
     RAC(self, liveSinceLabel.stringValue, @"") = [RACObserve(self, stream.liveSince)

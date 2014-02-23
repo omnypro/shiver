@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) NSString *username;
 
+@property (weak) IBOutlet NSImageView *avatar;
 @property (weak) IBOutlet NSTextField *usernameLabel;
 
 @end
@@ -55,6 +56,10 @@
 
     [[self.usernameLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     RAC(self, usernameLabel.stringValue, @"") = RACObserve(self, viewModel.name);
+    RAC(self, avatar.image, nil) = [RACObserve(self, viewModel.logoImageURL)
+        map:^id(NSURL *url) {
+            return [[NSImage alloc] initWithContentsOfURL:url];
+        }];
 }
 
 - (void)initializeViewControllers
