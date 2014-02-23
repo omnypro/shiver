@@ -111,6 +111,7 @@
 		93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A918B824BB005943E8 /* StreamViewerView.m */; };
 		93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7AD18B84AD8005943E8 /* TitleView.m */; };
 		93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */; };
+		93C0A7C718B99771005943E8 /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C0A7C618B99771005943E8 /* Butter.framework */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
@@ -292,6 +293,7 @@
 		93C0A7AD18B84AD8005943E8 /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleView.m; path = Classes/Views/TitleView.m; sourceTree = SOURCE_ROOT; };
 		93C0A7B218B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBezierPath-PXRoundedRectangleAdditions.h"; path = "Extensions/Categories/NSBezierPath-PXRoundedRectangleAdditions.h"; sourceTree = SOURCE_ROOT; };
 		93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBezierPath-PXRoundedRectangleAdditions.m"; path = "Extensions/Categories/NSBezierPath-PXRoundedRectangleAdditions.m"; sourceTree = SOURCE_ROOT; };
+		93C0A7C618B99771005943E8 /* Butter.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = Butter.framework; path = External/Butter/build/Debug/Butter.framework; sourceTree = "<group>"; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -305,11 +307,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C0A7C718B99771005943E8 /* Butter.framework in Frameworks */,
+				932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */,
+				93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */,
 				93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */,
 				93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */,
-				93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */,
 				93A3A1271766E25300913C9A /* WebKit.framework in Frameworks */,
-				932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */,
 				B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +351,7 @@
 		932C29981761AE0B0049EC1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93C0A7C618B99771005943E8 /* Butter.framework */,
 				A795A5CACCC44DC59B59DAEC /* libPods.a */,
 				932C29991761AE0B0049EC1B /* Cocoa.framework */,
 				93A3A12C1767A66F00913C9A /* CoreServices.framework */,
