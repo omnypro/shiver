@@ -56,6 +56,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showProfile:" target="-2" id="WkQ-op-ynB"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" placeholderIntrinsicWidth="130" placeholderIntrinsicHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vPs-mV-Z4n">
                     <rect key="frame" x="480" y="15" width="150" height="28"/>

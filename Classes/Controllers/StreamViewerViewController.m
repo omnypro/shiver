@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) MainWindowController *windowController;
 @property (nonatomic, strong) StreamViewModel *stream;
+@property (nonatomic, strong) NSURL *profileURL;
 
 @property (weak) IBOutlet NSButton *profileButton;
 @property (weak) IBOutlet NSButton *chatButton;
@@ -74,6 +75,11 @@
         map:^id(NSNumber *value) {
             if (value) { return [self attributedViewersWithNumber:value]; }
             else { return @""; }
+        }];
+
+    RAC(self, profileURL) = [RACObserve(self, stream.name)
+        map:^id(NSString *name) {
+            return [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/profile", name]];
         }];
 
     [_webView setFrameLoadDelegate:self];
@@ -162,6 +168,13 @@
 - (BOOL)webView:(WebView *)webView shouldChangeSelectedDOMRange:(DOMRange *)currentRange toDOMRange:(DOMRange *)proposedRange affinity:(NSSelectionAffinity)selectionAffinity stillSelecting:(BOOL)flag
 {
     return NO; // Prevent the selection of content.
+}
+
+#pragma mark - Interface Builder Actions
+
+- (IBAction)showProfile:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:self.profileURL];
 }
 
 @end
