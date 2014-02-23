@@ -35,7 +35,7 @@
                     </webPreferences>
                 </webView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7rq-lY-FrR">
-                    <rect key="frame" x="84" y="34" width="358" height="23"/>
+                    <rect key="frame" x="80" y="34" width="362" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="46" id="xwI-43-v9D"/>
@@ -61,15 +61,18 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" placeholderIntrinsicWidth="130" placeholderIntrinsicHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vPs-mV-Z4n">
-                    <rect key="frame" x="480" y="15" width="150" height="28"/>
+                    <rect key="frame" x="480" y="16" width="150" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Open Chat" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2J-Ss-PuN" customClass="ChatButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showChat:" target="-2" id="0Ff-LQ-qes"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VEt-g2-exX">
-                    <rect key="frame" x="84" y="60" width="55" height="15"/>
+                    <rect key="frame" x="80" y="60" width="55" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Live Since" id="mFu-gQ-joy">
                         <font key="font" size="11" name="HelveticaNeue"/>
@@ -78,7 +81,7 @@
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZsA-qk-GR6">
-                    <rect key="frame" x="10" y="16" width="60" height="60"/>
+                    <rect key="frame" x="10" y="15" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="Awz-2B-G8e"/>
@@ -91,18 +94,18 @@
                 <constraint firstItem="txV-Sc-UAq" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="22" id="3Gc-w1-FsX"/>
                 <constraint firstAttribute="trailing" secondItem="7rq-lY-FrR" secondAttribute="trailing" constant="200" id="4MY-9J-Mlc"/>
                 <constraint firstItem="vPs-mV-Z4n" firstAttribute="width" secondItem="txV-Sc-UAq" secondAttribute="width" id="6CT-1d-uGD"/>
-                <constraint firstItem="ZsA-qk-GR6" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="17" id="840-G9-dib"/>
+                <constraint firstItem="ZsA-qk-GR6" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="18" id="840-G9-dib"/>
                 <constraint firstAttribute="bottom" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="93" id="Cnp-va-ZLh"/>
                 <constraint firstAttribute="trailing" secondItem="13u-a7-fcZ" secondAttribute="trailing" constant="10" id="J97-sh-psV"/>
                 <constraint firstItem="ZsA-qk-GR6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="O7V-Ya-YwV"/>
                 <constraint firstItem="13u-a7-fcZ" firstAttribute="top" secondItem="1" secondAttribute="top" id="Oiy-zj-zvS"/>
                 <constraint firstItem="vPs-mV-Z4n" firstAttribute="trailing" secondItem="txV-Sc-UAq" secondAttribute="trailing" id="WNQ-Pz-B9s"/>
-                <constraint firstItem="7rq-lY-FrR" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="86" id="bOg-YU-oeJ"/>
+                <constraint firstItem="7rq-lY-FrR" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="82" id="bOg-YU-oeJ"/>
                 <constraint firstItem="VEt-g2-exX" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="18" id="clA-CS-Nsy"/>
                 <constraint firstItem="VEt-g2-exX" firstAttribute="leading" secondItem="7rq-lY-FrR" secondAttribute="leading" id="cxG-Kg-ypW"/>
                 <constraint firstItem="7rq-lY-FrR" firstAttribute="top" secondItem="VEt-g2-exX" secondAttribute="bottom" constant="3" id="hQT-Xl-bZK"/>
                 <constraint firstItem="13u-a7-fcZ" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="iN0-nu-7Ax"/>
-                <constraint firstItem="vPs-mV-Z4n" firstAttribute="top" secondItem="txV-Sc-UAq" secondAttribute="bottom" constant="14" id="oLx-GM-gDw"/>
+                <constraint firstItem="vPs-mV-Z4n" firstAttribute="top" secondItem="txV-Sc-UAq" secondAttribute="bottom" constant="13" id="oLx-GM-gDw"/>
                 <constraint firstAttribute="trailing" secondItem="txV-Sc-UAq" secondAttribute="trailing" constant="15" id="z7A-he-I3F"/>
             </constraints>
         </customView>

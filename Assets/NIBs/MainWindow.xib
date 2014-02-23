@@ -11,6 +11,7 @@
                 <outlet property="_sidebarView" destination="yR9-vn-kvl" id="vHb-s8-hQm"/>
                 <outlet property="_userView" destination="gkn-M6-wcm" id="nsd-W3-Dvl"/>
                 <outlet property="_usernameLabel" destination="ev4-DT-Etn" id="86h-0J-kPJ"/>
+                <outlet property="avatar" destination="u90-8j-Zx2" id="IT4-Ki-HSI"/>
                 <outlet property="gameLabel" destination="o7Y-Qa-dtr" id="151-at-181"/>
                 <outlet property="titleView" destination="Z0Z-Zh-U7C" id="Bn2-7E-Rh7"/>
                 <outlet property="usernameLabel" destination="ev4-DT-Etn" id="ShL-Bd-Cvx"/>
@@ -100,7 +101,7 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="OLn-zH-A7k"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-DT-Etn">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-DT-Etn">
                     <rect key="frame" x="167" y="11" width="38" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="czW-8o-cuu">
