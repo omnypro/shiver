@@ -27,7 +27,6 @@
     if (self == nil) return nil;
 
     _client = [TwitchAPIClient sharedClient];
-    _cellPressedSubject = [RACReplaySubject subject];
 
     [self initializeSignals];
 
@@ -73,13 +72,6 @@
             }
         }
     ];
-}
-
-- (RACSignal *)cellPressed {
-    return nil;
-//	if (!self.cellPressedSubject) { self.cellPressedSubject = [RACReplaySubject subject]; }
-//    NSLog(@"The cell's been pressed!");
-//	return self.cellPressedSubject;
 }
 
 @end
