@@ -18,10 +18,13 @@
 @interface MainWindowController () {
     IBOutlet NSView *_masterView;
     IBOutlet NSView *_sidebarView;
+    IBOutlet NSView *_userView;
 }
 
 @property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) NSString *username;
+
+@property (weak) IBOutlet NSTextField *usernameLabel;
 
 @end
 
@@ -42,18 +45,16 @@
 	INAppStoreWindow *window = (INAppStoreWindow *)[self window];
     [window setTitleBarHeight:38.0];
     [window setTrafficLightButtonsLeftMargin:12.0];
+    [window setShowsBaselineSeparator:NO];
 
 	NSView *titleBarView = window.titleBarView;
+    self.titleView.frame = titleBarView.bounds;
+    self.titleView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    [titleBarView addSubview:_userView];
+    [titleBarView addSubview:self.titleView];
 
-    NSSize labelSize = NSMakeSize(104, 20);
-	NSRect labelFrame = NSMakeRect(NSMidX(titleBarView.bounds) - (labelSize.width / 2.f), NSMidY(titleBarView.bounds) - (labelSize.height / 2.f), labelSize.width, labelSize.height);
-    NSTextField *label = [[NSTextField alloc] initWithFrame:labelFrame];
-    [label setBezeled:NO];
-    [label setDrawsBackground:NO];
-    [label setEditable:NO];
-    [label setSelectable:NO];
-    RAC(label, stringValue, @"") = RACObserve(self, viewModel.name);
-    [titleBarView addSubview:label];
+    [[self.usernameLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    RAC(self, usernameLabel.stringValue, @"") = RACObserve(self, viewModel.name);
 }
 
 - (void)initializeViewControllers

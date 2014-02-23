@@ -19,6 +19,9 @@
 @property (nonatomic, strong) StreamViewerViewController *viewerController;
 @property (nonatomic, strong, readonly) WindowViewModel *viewModel;
 
+@property (weak) IBOutlet NSTextField *gameLabel;
+@property (weak) IBOutlet NSTextField *viewersLabel;
+@property (weak) IBOutlet NSView *titleView;
 @property (weak) IBOutlet NSView *viewer;
 
 @end

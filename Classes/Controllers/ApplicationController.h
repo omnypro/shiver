@@ -11,8 +11,8 @@
 
 #import "ShiverApplication.h"
 
+@class MainWindowController;
 @class StatusItemView;
-@class WindowController;
 
 @interface ApplicationController : NSObject <ShiverApplicationDelegate> {}
 

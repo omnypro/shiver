@@ -9,7 +9,13 @@
             <connections>
                 <outlet property="_masterView" destination="2" id="1BV-Ma-cTY"/>
                 <outlet property="_sidebarView" destination="yR9-vn-kvl" id="vHb-s8-hQm"/>
+                <outlet property="_userView" destination="gkn-M6-wcm" id="nsd-W3-Dvl"/>
+                <outlet property="_usernameLabel" destination="ev4-DT-Etn" id="86h-0J-kPJ"/>
+                <outlet property="gameLabel" destination="o7Y-Qa-dtr" id="151-at-181"/>
+                <outlet property="titleView" destination="Z0Z-Zh-U7C" id="Bn2-7E-Rh7"/>
+                <outlet property="usernameLabel" destination="ev4-DT-Etn" id="ShL-Bd-Cvx"/>
                 <outlet property="viewer" destination="bEX-Qf-PcT" id="hwx-NQ-s7U"/>
+                <outlet property="viewersLabel" destination="LaI-0m-gaR" id="EjY-Hi-i8h"/>
                 <outlet property="window" destination="1" id="7JK-yF-Jz6"/>
             </connections>
         </customObject>
@@ -17,22 +23,22 @@
         <customObject id="-3" userLabel="Application"/>
         <window title="Shiver" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1" customClass="INAppStoreWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="880" height="442"/>
+            <rect key="contentRect" x="196" y="240" width="880" height="458"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
-            <value key="minSize" type="size" width="880" height="442"/>
+            <value key="minSize" type="size" width="880" height="458"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="880" height="442"/>
+                <rect key="frame" x="0.0" y="0.0" width="880" height="458"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="yR9-vn-kvl">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="442"/>
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="458"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="240" id="58u-Qc-UlS"/>
                         </constraints>
                     </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Qf-PcT">
-                        <rect key="frame" x="240" y="0.0" width="640" height="442"/>
+                        <rect key="frame" x="240" y="0.0" width="640" height="458"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
                 </subviews>
@@ -51,5 +57,65 @@
                 <outlet property="delegate" destination="-2" id="jNy-pY-wFr"/>
             </connections>
         </window>
+        <customView id="Z0Z-Zh-U7C" customClass="TitleView">
+            <rect key="frame" x="0.0" y="0.0" width="880" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o7Y-Qa-dtr">
+                    <rect key="frame" x="253" y="12" width="36" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="bO1-L1-VLX">
+                        <font key="font" size="13" name="HelveticaNeue"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LaI-0m-gaR">
+                    <rect key="frame" x="831" y="12" width="36" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Dr8-eY-HIs">
+                        <font key="font" size="13" name="HelveticaNeue"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="o7Y-Qa-dtr" secondAttribute="centerY" constant="2" id="KOF-MR-RRq"/>
+                <constraint firstAttribute="trailing" secondItem="LaI-0m-gaR" secondAttribute="trailing" constant="15" id="R2o-Mb-egK"/>
+                <constraint firstItem="o7Y-Qa-dtr" firstAttribute="leading" secondItem="Z0Z-Zh-U7C" secondAttribute="leading" constant="255" id="ijr-tR-IcY"/>
+                <constraint firstAttribute="centerY" secondItem="LaI-0m-gaR" secondAttribute="centerY" constant="2" id="s18-VW-fO8"/>
+            </constraints>
+        </customView>
+        <customView id="gkn-M6-wcm">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u90-8j-Zx2">
+                    <rect key="frame" x="208" y="8" width="22" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="22" id="EJp-Y9-wfi"/>
+                        <constraint firstAttribute="height" constant="22" id="EXf-DJ-YFV"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="OLn-zH-A7k"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-DT-Etn">
+                    <rect key="frame" x="167" y="11" width="38" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="czW-8o-cuu">
+                        <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="u90-8j-Zx2" firstAttribute="leading" secondItem="ev4-DT-Etn" secondAttribute="trailing" constant="5" id="3oh-ee-lZU"/>
+                <constraint firstAttribute="centerY" secondItem="u90-8j-Zx2" secondAttribute="centerY" id="837-Di-8Ak"/>
+                <constraint firstAttribute="trailing" secondItem="u90-8j-Zx2" secondAttribute="trailing" constant="10" id="i56-o1-K7I"/>
+                <constraint firstAttribute="centerY" secondItem="ev4-DT-Etn" secondAttribute="centerY" constant="2" id="ll2-Fe-Um6"/>
+            </constraints>
+        </customView>
     </objects>
 </document>
