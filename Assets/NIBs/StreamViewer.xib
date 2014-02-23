@@ -8,8 +8,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StreamViewerViewController">
             <connections>
+                <outlet property="chatButton" destination="vPs-mV-Z4n" id="7Nj-ch-DBJ"/>
                 <outlet property="liveSinceLabel" destination="VEt-g2-exX" id="JNL-df-PQ8"/>
                 <outlet property="logo" destination="ZsA-qk-GR6" id="gu4-aF-TyV"/>
+                <outlet property="profileButton" destination="txV-Sc-UAq" id="JJc-UB-O70"/>
                 <outlet property="statusLabel" destination="7rq-lY-FrR" id="98S-fr-ZlP"/>
                 <outlet property="view" destination="1" id="Zhv-k2-wuo"/>
                 <outlet property="webView" destination="13u-a7-fcZ" id="8Xy-z0-ml9"/>
@@ -44,20 +46,23 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="txV-Sc-UAq">
-                    <rect key="frame" x="511" y="48" width="125" height="32"/>
+                <button verticalHuggingPriority="750" placeholderIntrinsicWidth="130" placeholderIntrinsicHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="txV-Sc-UAq">
+                    <rect key="frame" x="480" y="47" width="150" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Twitch Profile" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OOK-mZ-ZZP">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="bTO-2G-KAA"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Twitch Profile" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OOK-mZ-ZZP" customClass="ProfileButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="13" name="HelveticaNeue-Bold"/>
+                        <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vPs-mV-Z4n">
-                    <rect key="frame" x="511" y="23" width="125" height="32"/>
+                <button verticalHuggingPriority="750" placeholderIntrinsicWidth="130" placeholderIntrinsicHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vPs-mV-Z4n">
+                    <rect key="frame" x="480" y="15" width="150" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Open Chat" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2J-Ss-PuN">
+                    <buttonCell key="cell" type="push" title="Open Chat" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R2J-Ss-PuN" customClass="ChatButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="13" name="HelveticaNeue-Bold"/>
+                        <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VEt-g2-exX">
@@ -69,7 +74,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZsA-qk-GR6" customClass="UserImageView">
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZsA-qk-GR6">
                     <rect key="frame" x="10" y="16" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -80,7 +85,7 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="txV-Sc-UAq" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="17" id="3Gc-w1-FsX"/>
+                <constraint firstItem="txV-Sc-UAq" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="22" id="3Gc-w1-FsX"/>
                 <constraint firstAttribute="trailing" secondItem="7rq-lY-FrR" secondAttribute="trailing" constant="200" id="4MY-9J-Mlc"/>
                 <constraint firstItem="vPs-mV-Z4n" firstAttribute="width" secondItem="txV-Sc-UAq" secondAttribute="width" id="6CT-1d-uGD"/>
                 <constraint firstItem="ZsA-qk-GR6" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="17" id="840-G9-dib"/>
@@ -94,8 +99,8 @@
                 <constraint firstItem="VEt-g2-exX" firstAttribute="leading" secondItem="7rq-lY-FrR" secondAttribute="leading" id="cxG-Kg-ypW"/>
                 <constraint firstItem="7rq-lY-FrR" firstAttribute="top" secondItem="VEt-g2-exX" secondAttribute="bottom" constant="3" id="hQT-Xl-bZK"/>
                 <constraint firstItem="13u-a7-fcZ" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="iN0-nu-7Ax"/>
-                <constraint firstItem="vPs-mV-Z4n" firstAttribute="top" secondItem="txV-Sc-UAq" secondAttribute="bottom" constant="4" id="oLx-GM-gDw"/>
-                <constraint firstAttribute="trailing" secondItem="txV-Sc-UAq" secondAttribute="trailing" constant="10" id="z7A-he-I3F"/>
+                <constraint firstItem="vPs-mV-Z4n" firstAttribute="top" secondItem="txV-Sc-UAq" secondAttribute="bottom" constant="14" id="oLx-GM-gDw"/>
+                <constraint firstAttribute="trailing" secondItem="txV-Sc-UAq" secondAttribute="trailing" constant="15" id="z7A-he-I3F"/>
             </constraints>
         </customView>
     </objects>

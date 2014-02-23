@@ -20,6 +20,9 @@
 
 @property (nonatomic, strong) MainWindowController *windowController;
 @property (nonatomic, strong) StreamViewModel *stream;
+
+@property (weak) IBOutlet NSButton *profileButton;
+@property (weak) IBOutlet NSButton *chatButton;
 @property (weak) IBOutlet NSTextField *liveSinceLabel;
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSImageView *logo;
