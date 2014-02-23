@@ -108,6 +108,9 @@
 		93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
 		93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A318B7FBDE005943E8 /* StreamListView.m */; };
 		93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */; };
+		93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A918B824BB005943E8 /* StreamViewerView.m */; };
+		93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7AD18B84AD8005943E8 /* TitleView.m */; };
+		93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
@@ -283,6 +286,12 @@
 		93C0A7A318B7FBDE005943E8 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
 		93C0A7A518B81E25005943E8 /* JLNFadingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLNFadingScrollView.h; path = Extensions/JLNFadingScrollView.h; sourceTree = SOURCE_ROOT; };
 		93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLNFadingScrollView.m; path = Extensions/JLNFadingScrollView.m; sourceTree = SOURCE_ROOT; };
+		93C0A7A818B824BB005943E8 /* StreamViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewerView.h; path = Classes/Views/StreamViewerView.h; sourceTree = SOURCE_ROOT; };
+		93C0A7A918B824BB005943E8 /* StreamViewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewerView.m; path = Classes/Views/StreamViewerView.m; sourceTree = SOURCE_ROOT; };
+		93C0A7AC18B84AD8005943E8 /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleView.h; path = Classes/Views/TitleView.h; sourceTree = SOURCE_ROOT; };
+		93C0A7AD18B84AD8005943E8 /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleView.m; path = Classes/Views/TitleView.m; sourceTree = SOURCE_ROOT; };
+		93C0A7B218B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBezierPath-PXRoundedRectangleAdditions.h"; path = "Extensions/Categories/NSBezierPath-PXRoundedRectangleAdditions.h"; sourceTree = SOURCE_ROOT; };
+		93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBezierPath-PXRoundedRectangleAdditions.m"; path = "Extensions/Categories/NSBezierPath-PXRoundedRectangleAdditions.m"; sourceTree = SOURCE_ROOT; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -498,6 +507,7 @@
 				939E8B921772830A006D6442 /* Main Window */,
 				93A3A12817679C6600913C9A /* Preferences */,
 				938A766617710AD30094A361 /* Stream List */,
+				93C0A7B818B98D9B005943E8 /* Stream Viewer */,
 				933EC0EA177C1F210041D020 /* AboutView.h */,
 				933EC0EB177C1F210041D020 /* AboutView.m */,
 			);
@@ -599,6 +609,8 @@
 				9310D0EF1780FBA80052C25C /* MainWindow.m */,
 				939411331787ECE2003D1346 /* StatusItemView.h */,
 				939411341787ECE2003D1346 /* StatusItemView.m */,
+				93C0A7AC18B84AD8005943E8 /* TitleView.h */,
+				93C0A7AD18B84AD8005943E8 /* TitleView.m */,
 				939E8B8C17727456006D6442 /* UserImageView.h */,
 				939E8B8D17727456006D6442 /* UserImageView.m */,
 			);
@@ -643,6 +655,8 @@
 			children = (
 				93462A02177CA6FA00C928CA /* NSAttributedString+Hyperlink.h */,
 				93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */,
+				93C0A7B218B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.h */,
+				93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */,
 				938A7667177122130094A361 /* NSImage+MGCropExtensions.h */,
 				938A7668177122130094A361 /* NSImage+MGCropExtensions.m */,
 				934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */,
@@ -702,6 +716,15 @@
 				93BE57DD1773DDCC008CB04E /* ShiverHelper.entitlements */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93C0A7B818B98D9B005943E8 /* Stream Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				93C0A7A818B824BB005943E8 /* StreamViewerView.h */,
+				93C0A7A918B824BB005943E8 /* StreamViewerView.m */,
+			);
+			name = "Stream Viewer";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -923,11 +946,13 @@
 			files = (
 				933EC0E6177C031A0041D020 /* AboutWindowController.m in Sources */,
 				932C29BD1761AF0B0049EC1B /* main.m in Sources */,
+				93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */,
 				932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */,
 				934626571762740E00F947FE /* Stream.m in Sources */,
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
 				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
+				93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */,
 				938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */,
 				939A7B6D17837097009121D6 /* YRKSpinningProgressIndicator.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
@@ -967,6 +992,7 @@
 				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
 				93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
+				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 				939411351787ECE2003D1346 /* StatusItemView.m in Sources */,
 				9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */,
