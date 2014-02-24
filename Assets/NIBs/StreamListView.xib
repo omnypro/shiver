@@ -7,10 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StreamListViewController">
             <connections>
-                <outlet property="_listView" destination="79" id="toI-Ya-J71"/>
+                <outlet property="_listView" destination="79" id="2fk-aE-5V8"/>
                 <outlet property="_refreshButton" destination="Ft2-v7-OdJ" id="9uv-AE-hHk"/>
                 <outlet property="_scrollView" destination="78" id="64o-N7-1GO"/>
-                <outlet property="_streamSelector" destination="t81-gm-uIC" id="8m6-UL-Ngx"/>
                 <outlet property="refreshButton" destination="Ft2-v7-OdJ" id="q5v-8Z-VLq"/>
                 <outlet property="view" destination="1" id="dIt-02-nfu"/>
             </connections>
@@ -28,12 +27,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="412"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view id="79" customClass="JAListView">
+                            <view id="79" customClass="JASectionedListView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="412"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="-2" id="oB8-aQ-5CO"/>
-                                    <outlet property="delegate" destination="-2" id="GdY-ky-9rJ"/>
+                                    <outlet property="delegate" destination="-2" id="BOj-FJ-KoP"/>
+                                    <outlet property="sectionDataSource" destination="-2" id="o31-Nq-oA7"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -47,19 +46,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <segmentedControl verticalHuggingPriority="750" id="t81-gm-uIC">
-                    <rect key="frame" x="52" y="9" width="178" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <segmentedCell key="cell" alignment="left" style="texturedSquare" trackingMode="selectOne" id="WdI-qC-61m">
-                        <font key="font" size="11" name="HelveticaNeue-Bold"/>
-                        <segments>
-                            <segment label="Featured" width="88"/>
-                            <segment label="Your Follows" width="87" selected="YES" tag="1"/>
-                        </segments>
-                    </segmentedCell>
-                </segmentedControl>
                 <button verticalHuggingPriority="750" id="Ft2-v7-OdJ">
-                    <rect key="frame" x="4" y="5" width="46" height="32"/>
+                    <rect key="frame" x="4" y="5" width="33" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZEC-nh-7WG">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

@@ -13,7 +13,6 @@
 @property (nonatomic, strong) NSArray *authenticatedStreams;
 @property (nonatomic, strong) NSArray *featuredStreams;
 
-@property (nonatomic, readonly) RACSignal *cellPressed;
-@property (nonatomic, strong) RACReplaySubject *cellPressedSubject;
+@property (nonatomic, strong) NSNumber *numberOfSections;
 
 @end

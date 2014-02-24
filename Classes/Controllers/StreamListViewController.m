@@ -11,7 +11,7 @@
 #import "EmptyErrorView.h"
 #import "HexColor.h"
 #import "NSView+Animations.h"
-#import "JAListView.h"
+#import "JASectionedListView.h"
 #import "LoadingView.h"
 #import "LoginRequiredView.h"
 #import "JLNFadingScrollView.h"
@@ -21,15 +21,22 @@
 #import "Stream.h"
 #import "StreamViewModel.h"
 #import "StreamViewerViewController.h"
+#import "StreamListSectionView.h"
 #import "StreamListViewModel.h"
 #import "StreamListViewItem.h"
 #import "MainWindowController.h"
 
 #import "StreamListViewController.h"
 
+enum {
+    FeaturedStreams = 0,
+    AuthenticatedStreams
+};
+
 @interface StreamListViewController () {
-    IBOutlet JAListView *_listView;
+    IBOutlet JASectionedListView *_listView;
     IBOutlet JLNFadingScrollView *_scrollView;
+    IBOutlet NSButton *_refreshButton;
 }
 
 @property (nonatomic, strong) NSView *emptyView;
@@ -40,8 +47,9 @@
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) MainWindowController *windowController;
 
-@property (nonatomic, strong) TwitchAPIClient *client;
-@property (nonatomic, strong) NSArray *streamList;
+@property (nonatomic, strong) NSArray *authenticatedStreamList;
+@property (nonatomic, strong) NSArray *featuredStreamList;
+
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) Preferences *preferences;
 @property (nonatomic, strong) User *user;
@@ -58,16 +66,6 @@
 @implementation StreamListViewController
 
 @dynamic viewModel;
-
-- (id)initWithUser:(User *)user
-{
-    self = [super initWithNibName:@"StreamListView" bundle:nil];
-    if (self == nil) { return nil; }
-
-    self.statusItem = [[NSApp delegate] statusItem];
-    self.preferences = [Preferences sharedPreferences];
-    return self;
-}
 
 - (void)awakeFromNib
 {
@@ -87,21 +85,31 @@
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
     [_listView setConditionallyUseLayerBacking:YES];
-    [_listView setMargin:NSMakePoint(10, 10)];
+    [_listView setMargin:NSMakePoint(1, 1)];
 
     [_scrollView setFadeColor:[NSColor colorWithHexString:@"#000000" alpha:1.0]];
 }
 
 - (void)initializeSignals
 {
+
     RACSignal *authenticatedStreams = RACObserve(self, viewModel.authenticatedStreams);
     RACSignal *featuredStreams = RACObserve(self, viewModel.featuredStreams);
+
+    // ...
+    _refreshButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        DDLogInfo(@"Application (%@): Request to manually refresh the stream list.", [self class]);
+        [_listView reloadDataAnimated:YES];
+        return [RACSignal combineLatest:@[authenticatedStreams, featuredStreams]];
+    }];
+
 
     // Bind the status item's title to the number of active -authenticated-
     // streams, as long as that array exists, and the user wants the count.
     RACSignal *streamCountEnabled = RACObserve(self, preferences.streamCountEnabled);
 
-    RAC(self, streamList) = featuredStreams;
+    RAC(self, authenticatedStreamList) = authenticatedStreams;
+    RAC(self, featuredStreamList) = featuredStreams;
 
     @weakify(self);
 
@@ -118,11 +126,11 @@
             }
         }];
 
-	[[RACObserve(self, streamList)
-		distinctUntilChanged]
-		subscribeNext:^(id _) {
+    [[RACSignal
+        combineLatest:@[RACObserve(self, viewModel.authenticatedStreams), RACObserve(self, viewModel.featuredStreams)]]
+        subscribeNext:^(id x) {
             [_listView reloadDataAnimated:YES];
-		}];
+        }];
 }
 
 //- (void)initializeViewSignals
@@ -394,14 +402,6 @@
     return string;
 }
 
-- (void)updateLastUpdatedLabel
-{
-//    SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
-//    NSString *relativeDate = [relativeDateTransformer transformedValue:self.lastUpdatedTimestamp];
-//    NSString *relativeStringValue = [NSString stringWithFormat:@"Updated %@", relativeDate];
-//    [self.windowController.lastUpdatedLabel setStringValue:relativeStringValue];
-}
-
 #pragma mark - NSUserNotificationCenter Methods
 
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet
@@ -434,7 +434,7 @@
     }
 }
 
-#pragma mark - JAListView Methods
+#pragma mark - JASectionedListView Methods
 
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
@@ -461,17 +461,62 @@
 
 #pragma mark - JAListViewDataSource Methods
 
-- (JAListViewItem *)listView:(JAListView *)listView viewAtIndex:(NSUInteger)index
+- (JAListViewItem *)listView:(JAListView *)listView viewForSection:(NSUInteger)section index:(NSUInteger)index
 {
     StreamListViewItem *item = [StreamListViewItem initItem];
-    item.object = [self.streamList objectAtIndex:index];
+
+    switch (section) {
+        case 0:
+            item.object = [self.viewModel.authenticatedStreams objectAtIndex:index];
+            break;
+        case 1:
+            item.object = [self.viewModel.featuredStreams objectAtIndex:index];
+            break;
+        default:
+            break;
+    }
+
     [item setNeedsDisplay:YES];
     return item;
 }
 
-- (NSUInteger)numberOfItemsInListView:(JAListView *)listView
+- (JAListViewItem *)listView:(JAListView *)listView sectionHeaderViewForSection:(NSUInteger)section
 {
-    return [self.streamList count];
+    StreamListSectionView *item = [StreamListSectionView initItem];
+
+    switch (section) {
+        case 0:
+            [item.title setStringValue:@"Your Follows"];
+            break;
+        case 1:
+            [item.title setStringValue:@"Featured Streams"];
+            break;
+    }
+
+    return item;
+}
+
+- (NSUInteger)numberOfSectionsInListView:(JASectionedListView *)listView
+{
+    return 2;
+}
+
+-(NSUInteger)listView:(JASectionedListView *)listView numberOfViewsInSection:(NSUInteger)section
+{
+    NSUInteger count = 0;
+
+    switch (section) {
+        case 0:
+            count = [self.viewModel.authenticatedStreams count];
+            break;
+        case 1:
+            count = [self.viewModel.featuredStreams count];
+            break;
+        default:
+            break;
+    }
+
+    return count;
 }
 
 @end

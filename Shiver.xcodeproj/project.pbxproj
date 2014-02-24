@@ -114,6 +114,8 @@
 		93C0A7C718B99771005943E8 /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C0A7C618B99771005943E8 /* Butter.framework */; };
 		93C0A7D418B9A9D2005943E8 /* ProfileButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */; };
 		93C0A7D718B9B02B005943E8 /* ChatButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D618B9B02B005943E8 /* ChatButtonCell.m */; };
+		93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D918BAC545005943E8 /* StreamListSectionView.m */; };
+		93C0A7DC18BAC56E005943E8 /* StreamListSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
@@ -300,6 +302,9 @@
 		93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileButtonCell.m; path = Classes/Views/ProfileButtonCell.m; sourceTree = SOURCE_ROOT; };
 		93C0A7D518B9B02B005943E8 /* ChatButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatButtonCell.h; path = Classes/Views/ChatButtonCell.h; sourceTree = SOURCE_ROOT; };
 		93C0A7D618B9B02B005943E8 /* ChatButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatButtonCell.m; path = Classes/Views/ChatButtonCell.m; sourceTree = SOURCE_ROOT; };
+		93C0A7D818BAC545005943E8 /* StreamListSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListSectionView.h; path = Classes/Views/StreamListSectionView.h; sourceTree = SOURCE_ROOT; };
+		93C0A7D918BAC545005943E8 /* StreamListSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListSectionView.m; path = Classes/Views/StreamListSectionView.m; sourceTree = SOURCE_ROOT; };
+		93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListSectionView.xib; path = Assets/NIBs/StreamListSectionView.xib; sourceTree = SOURCE_ROOT; };
 		93D15B561772C16300643D95 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shiver.entitlements; sourceTree = SOURCE_ROOT; };
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
@@ -503,6 +508,7 @@
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327D71764670300146C8A /* StreamListViewItem.xib */,
+				93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */,
 				938CD21218A5AFB90062C4D0 /* StreamViewer.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
@@ -540,6 +546,8 @@
 				931E25291778B7B20081162C /* EmptyErrorView.m */,
 				939A7B6E1783723D009121D6 /* LoadingView.h */,
 				939A7B6F1783723D009121D6 /* LoadingView.m */,
+				93C0A7D818BAC545005943E8 /* StreamListSectionView.h */,
+				93C0A7D918BAC545005943E8 /* StreamListSectionView.m */,
 				93C0A7A218B7FBDE005943E8 /* StreamListView.h */,
 				93C0A7A318B7FBDE005943E8 /* StreamListView.m */,
 				936327D31764468400146C8A /* StreamListViewItem.h */,
@@ -825,6 +833,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C0A7DC18BAC56E005943E8 /* StreamListSectionView.xib in Resources */,
 				933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */,
 				939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */,
 				936327BC1763BB1000146C8A /* Window.xib in Resources */,
@@ -1008,6 +1017,7 @@
 				93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
+				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 				93C0A7D718B9B02B005943E8 /* ChatButtonCell.m in Sources */,
 				939411351787ECE2003D1346 /* StatusItemView.m in Sources */,

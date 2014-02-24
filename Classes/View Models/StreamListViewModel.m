@@ -43,23 +43,28 @@
     RACSignal *credentialSignal = RACObserve(AccountManager.sharedManager, credential);
     RACSignal *hasCredential = [credentialSignal map:^(AFOAuthCredential *credential) { return @(credential != nil); }];
 
+    // ...
     RACSignal *fetchAuthenticatedStreams = [[self.client fetchStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
-    [fetchAuthenticatedStreams subscribeError:^(NSError *error) { DDLogError(@"Application (%@): (Error) %@", [self class], error); }];
     RAC(self, authenticatedStreams) = [RACSignal
         combineLatest:@[readyAndReachable, hasCredential, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *streams){
             DDLogInfo(@"Application (%@): Fetching authenticated stream list.", [self class]);
             if ([readyAndReachable boolValue] && [hasCredential boolValue] && streams != nil) {
-                DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [streams count]);
+                DDLogInfo(@"Application (%@): %lu authenticated streams fetched.", [self class], [streams count]);
                 return streams;
             } else {
+                DDLogInfo(@"Application (%@): No authenticated streams fetched.", [self class]);
                 return nil;
             }
         }
     ];
+    [fetchAuthenticatedStreams
+        subscribeError:^(NSError *error) {
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
+        }];
 
+    // ...
     RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
-    [fetchFeaturedStreams subscribeError:^(NSError *error) { DDLogError(@"Application (%@): (Error) %@", [self class], error); }];
     RAC(self, featuredStreams) = [RACSignal
         combineLatest:@[readyAndReachable, hasCredential, fetchFeaturedStreams]
         reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *streams){
@@ -68,10 +73,25 @@
                 DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [streams count]);
                 return streams;
             } else {
+                DDLogInfo(@"Application (%@): No featured streams fetched.", [self class]);
                 return nil;
             }
         }
     ];
+    [fetchFeaturedStreams
+        subscribeError:^(NSError *error) {
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
+        }];
+
+    // ...
+    RAC(self, numberOfSections) = [RACSignal
+        combineLatest:@[RACObserve(self, authenticatedStreams), RACObserve(self, featuredStreams)]
+        reduce:^id(NSArray *authenticatedStreams, NSArray *featuredStreams){
+            if (featuredStreams != nil) {
+                DDLogInfo(@"2");
+                return [NSNumber numberWithInt:2]; }
+            else { return [NSNumber numberWithInt:1]; }
+        }];
 }
 
 @end
