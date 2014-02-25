@@ -40,6 +40,7 @@
 
 - (IBAction)showAbout:(id)sender;
 - (IBAction)showPreferences:(id)sender;
+- (IBAction)showMainWindow:(id)sender;
 
 @end
 
@@ -135,6 +136,10 @@
     [self.preferencesWindowController.window center];
     [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
     [NSApp activateIgnoringOtherApps:YES];
+}
+
+- (IBAction)showMainWindow:(id)sender {
+    [self.windowController.window makeKeyAndOrderFront:sender];
 }
 
 @end

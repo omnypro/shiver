@@ -76,4 +76,27 @@
     [_viewer addSubview:self.viewerController.view];
 }
 
+#pragma - NSWindowDelegate Methods
+
+- (BOOL)windowShouldClose:(id)sender
+{
+    [self.window orderOut:self];
+    return NO;
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+    DDLogVerbose(@"Application (%@): Displaying main window.", [self class]);
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+    DDLogVerbose(@"Application (%@): Hiding main window.", [self class]);
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+    DDLogVerbose(@"Application (%@): Closing main window.", [self class]);
+}
+
 @end
