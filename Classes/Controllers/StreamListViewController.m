@@ -76,6 +76,7 @@ enum {
 
     self.loginView = [LoginRequiredView init];
     self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
+    self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
 
     DDLogInfo(@"Application (%@): Stream list loaded.", [self class]);
@@ -113,8 +114,8 @@ enum {
 
     @weakify(self);
 
-    RAC(self, statusItem.title) = [RACSignal
-        combineLatest:@[streamCountEnabled, featuredStreams]
+    RAC(self, statusItem.title) = [[RACSignal
+        combineLatest:@[streamCountEnabled, authenticatedStreams]
         reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList) {
             @strongify(self);
             if ([streamCountEnabled boolValue] && [streamList count] > 0) {
@@ -124,7 +125,7 @@ enum {
                 DDLogInfo(@"Application (%@): Status item title removed.", [self class]);
                 return @"";
             }
-        }];
+        }] distinctUntilChanged];
 
     [[RACSignal
         combineLatest:@[RACObserve(self, viewModel.authenticatedStreams), RACObserve(self, viewModel.featuredStreams)]]
