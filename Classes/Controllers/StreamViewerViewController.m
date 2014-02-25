@@ -168,6 +168,20 @@
 
 #pragma mark - WebFrameLoadDelegate Methods
 
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    // We manipulate the <video> element via Javascript to hide the native
+    // controls so we can implement our own.
+    WebScriptObject *win = [self.webView windowScriptObject];
+    [win evaluateWebScript:[NSString stringWithFormat:@"video = document.getElementById('content_player')"]];
+    [win evaluateWebScript:[NSString stringWithFormat:@"video.removeAttribute('controls');"]];
+}
+
+- (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems
+{
+    return nil; // Hide the contextual menu.
+}
+
 - (BOOL)webView:(WebView *)webView shouldChangeSelectedDOMRange:(DOMRange *)currentRange toDOMRange:(DOMRange *)proposedRange affinity:(NSSelectionAffinity)selectionAffinity stillSelecting:(BOOL)flag
 {
     return NO; // Prevent the selection of content.
