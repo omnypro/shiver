@@ -43,7 +43,7 @@ enum {
 @property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) NSView *loginView;
-@property (nonatomic, strong) StatusItemView *statusItem;
+@property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) MainWindowController *windowController;
 
@@ -76,6 +76,7 @@ enum {
 
     self.loginView = [LoginRequiredView init];
     self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
+    self.statusItem = [[NSApp delegate] statusItem];
     self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
 

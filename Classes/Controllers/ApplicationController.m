@@ -72,10 +72,7 @@
 
 - (void)awakeFromNib
 {
-//    NSImage *image = [NSImage imageNamed:@"StatusItem"];
-//    NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
-//    NSWindow *window = self.windowController.window;
-//    self.statusItem = [[StatusItemView alloc] initWithWindow:window image:image alternateImage:alternateImage label:nil];
+    [self initializeStatusItem];
 }
 
 #pragma mark - Preferences
@@ -121,6 +118,26 @@
     NSString *productName =  [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     NSString *shortVersionString = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     DDLogInfo(@"Application: Loaded %@ v%@", productName, shortVersionString);
+}
+
+- (void)initializeStatusItem
+{
+    NSImage *image = [NSImage imageNamed:@"StatusItem"];
+    NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
+    NSStatusBar *bar = [NSStatusBar systemStatusBar];
+
+    self.statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
+    [self.statusItem setImage:image];
+    [self.statusItem setAlternateImage:alternateImage];
+    [self.statusItem setHighlightMode:YES];
+    [self.statusItem setAction:@selector(toggleWindow)];
+}
+
+- (void)toggleWindow
+{
+    NSWindow *window = self.windowController.window;
+    if ([window isKeyWindow]) { [window orderOut:self]; }
+    else { [window makeKeyAndOrderFront:self]; }
 }
 
 #pragma mark - Interface Builder Actions

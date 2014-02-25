@@ -15,10 +15,10 @@
 
 @interface ApplicationController : NSObject <ShiverApplicationDelegate> {}
 
-@property (strong) NSStatusItem *statusItem;
-@property (nonatomic, strong) NSString *streamCountString;
 @property (nonatomic, readonly, strong) MainWindowController *windowController;
 @property (nonatomic, readonly, strong) RHPreferencesWindowController *preferencesWindowController;
+
+@property (nonatomic, strong) NSStatusItem *statusItem;
 
 + (ApplicationController *)sharedInstance;
 
