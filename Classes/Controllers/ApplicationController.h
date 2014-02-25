@@ -12,11 +12,10 @@
 #import "ShiverApplication.h"
 
 @class MainWindowController;
-@class StatusItemView;
 
 @interface ApplicationController : NSObject <ShiverApplicationDelegate> {}
 
-@property (strong) StatusItemView *statusItem;
+@property (strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) NSString *streamCountString;
 @property (nonatomic, readonly, strong) MainWindowController *windowController;
 @property (nonatomic, readonly, strong) RHPreferencesWindowController *preferencesWindowController;

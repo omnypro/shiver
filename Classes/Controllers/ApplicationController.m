@@ -70,10 +70,10 @@
 
 - (void)awakeFromNib
 {
-    NSImage *image = [NSImage imageNamed:@"StatusItem"];
-    NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
-    NSWindow *window = self.windowController.window;
-    self.statusItem = [[StatusItemView alloc] initWithWindow:window image:image alternateImage:alternateImage label:nil];
+//    NSImage *image = [NSImage imageNamed:@"StatusItem"];
+//    NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
+//    NSWindow *window = self.windowController.window;
+//    self.statusItem = [[StatusItemView alloc] initWithWindow:window image:image alternateImage:alternateImage label:nil];
 }
 
 #pragma mark - Preferences
@@ -96,6 +96,7 @@
 
     // Preload the window.
     (void)self.windowController.window;
+    [self.windowController showWindow:self];
 
     [self initializeLogging];
 }
