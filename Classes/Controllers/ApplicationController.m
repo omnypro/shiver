@@ -32,7 +32,6 @@
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
 @property (nonatomic, strong) StartAtLoginController *loginController;
 
-
 // Preferences.
 @property (nonatomic, strong) Preferences *preferences;
 @property (nonatomic, strong) RHPreferencesWindowController *preferencesWindowController;
@@ -60,6 +59,8 @@
     _windowController = [[MainWindowController alloc] initWithViewModel:_viewModel nibName:@"MainWindow"];
 
     _loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
+
+    _aboutWindowController = [[AboutWindowController alloc] init];
 
     _preferences = [Preferences sharedPreferences];
     _generalPreferences = [[GeneralViewController alloc] init];
@@ -132,7 +133,6 @@
 - (IBAction)showPreferences:(id)sender
 {
     [self.preferencesWindowController.window center];
-    [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
     [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
     [NSApp activateIgnoringOtherApps:YES];
 }
