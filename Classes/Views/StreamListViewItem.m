@@ -103,9 +103,9 @@
     static NSImage *placeholderImage = nil;
 
     @weakify(self);
-    if (![self.object.channel.logoImageURL.absoluteString isEqualToString:self.logoURLCache]) {
+    if (![self.object.logoImageURL.absoluteString isEqualToString:self.logoURLCache]) {
         // Prevent setting the logo unnecessarily.
-        NSURLRequest *request = [NSURLRequest requestWithURL:self.object.channel.logoImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.object.logoImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
         [_logo setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
             @strongify(self);
             [self.logo setImage:image];
@@ -114,7 +114,7 @@
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
 
-        self.logoURLCache = self.object.channel.logoImageURL.absoluteString;
+        self.logoURLCache = self.object.logoImageURL.absoluteString;
     }
     else {
         [_logo setImageWithURL:[NSURL URLWithString:self.logoURLCache]];
