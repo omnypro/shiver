@@ -23,7 +23,7 @@
 #import "StreamViewerViewController.h"
 #import "StreamListSectionView.h"
 #import "StreamListViewModel.h"
-#import "StreamListViewItem.h"
+#import "StreamListItemView.h"
 #import "MainWindowController.h"
 
 #import "StreamListViewController.h"
@@ -441,7 +441,7 @@ enum {
 {
     if (listView != _listView) { return; }
 
-    StreamListViewItem *item = (StreamListViewItem *)view;
+    StreamListItemView *item = (StreamListItemView *)view;
     [self.windowController.viewerController setSelectedStream:item.object];
     DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
 }
@@ -464,7 +464,7 @@ enum {
 
 - (JAListViewItem *)listView:(JAListView *)listView viewForSection:(NSUInteger)section index:(NSUInteger)index
 {
-    StreamListViewItem *item = [StreamListViewItem initItem];
+    StreamListItemView *item = [StreamListItemView initItem];
 
     switch (section) {
         case 0:

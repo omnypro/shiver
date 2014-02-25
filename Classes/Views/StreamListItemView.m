@@ -19,9 +19,9 @@
 #import "StreamPreviewImageView.h"
 #import "StreamViewModel.h"
 
-#import "StreamListViewItem.h"
+#import "StreamListItemView.h"
 
-@interface StreamListViewItem () {
+@interface StreamListItemView () {
     IBOutlet NSTextField *_gameLabel;
     IBOutlet NSTextField *_userLabel;
     IBOutlet NSTextField *_liveSinceLabel;
@@ -32,9 +32,9 @@
 
 @end
 
-@implementation StreamListViewItem
+@implementation StreamListItemView
 
-+ (StreamListViewItem *)initItem
++ (StreamListItemView *)initItem
 {
 	NSNib *nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
 	NSArray *objects = nil;

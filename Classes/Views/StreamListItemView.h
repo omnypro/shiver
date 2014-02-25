@@ -9,11 +9,11 @@
 #import "JAListViewItem.h"
 #import "StreamViewModel.h"
 
-@interface StreamListViewItem : JAListViewItem
+@interface StreamListItemView : JAListViewItem
 
 @property (nonatomic, strong) StreamViewModel *object;
 
-+ (StreamListViewItem *)initItem;
++ (StreamListItemView *)initItem;
 - (void)refreshLogo;
 
 @end
