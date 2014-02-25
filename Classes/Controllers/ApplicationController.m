@@ -9,6 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <EXTScope.h>
 
+#import "AboutWindowController.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
 #import "GeneralViewController.h"
@@ -28,7 +29,9 @@
 @property (nonatomic, strong) WindowViewModel *viewModel;
 @property (nonatomic, strong) MainWindowController *windowController;
 
+@property (nonatomic, strong) AboutWindowController *aboutWindowController;
 @property (nonatomic, strong) StartAtLoginController *loginController;
+
 
 // Preferences.
 @property (nonatomic, strong) Preferences *preferences;
@@ -36,6 +39,7 @@
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
 @property (nonatomic, strong) LoginViewController *loginPreferences;
 
+- (IBAction)showAbout:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 
 @end
@@ -111,6 +115,12 @@
 }
 
 #pragma mark - Interface Builder Actions
+
+- (IBAction)showAbout:(id)sender {
+    [self.aboutWindowController.window center];
+    [self.aboutWindowController.window makeKeyAndOrderFront:sender];
+    [NSApp activateIgnoringOtherApps:YES];
+}
 
 - (IBAction)showPreferences:(id)sender
 {
