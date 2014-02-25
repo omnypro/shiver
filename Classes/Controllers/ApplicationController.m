@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <EXTScope.h>
-
 #import "AboutWindowController.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
@@ -18,7 +15,6 @@
 #import "Preferences.h"
 #import "Reachability.h"
 #import "StartAtLoginController.h"
-#import "StatusItemView.h"
 #import "WindowController.h"
 #import "WindowViewModel.h"
 

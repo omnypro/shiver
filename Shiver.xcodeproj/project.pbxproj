@@ -65,7 +65,6 @@
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
-		939411351787ECE2003D1346 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939411341787ECE2003D1346 /* StatusItemView.m */; };
 		9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9394113A178896E4003D1346 /* NSWindow+SHExtensions.m */; };
 		939A7B591782A537009121D6 /* StatusItem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B581782A472009121D6 /* StatusItem.pdf */; };
 		939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */; };
@@ -228,8 +227,6 @@
 		938CD23B18AE22160062C4D0 /* StreamListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewModel.m; path = "Classes/View Models/StreamListViewModel.m"; sourceTree = SOURCE_ROOT; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
-		939411331787ECE2003D1346 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusItemView.h; path = Classes/Views/StatusItemView.h; sourceTree = SOURCE_ROOT; };
-		939411341787ECE2003D1346 /* StatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusItemView.m; path = Classes/Views/StatusItemView.m; sourceTree = SOURCE_ROOT; };
 		93941139178896E4003D1346 /* NSWindow+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+SHExtensions.h"; path = "Extensions/Categories/NSWindow+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
 		9394113A178896E4003D1346 /* NSWindow+SHExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+SHExtensions.m"; path = "Extensions/Categories/NSWindow+SHExtensions.m"; sourceTree = SOURCE_ROOT; };
 		939A7B581782A472009121D6 /* StatusItem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItem.pdf; path = Assets/Templates/StatusItem.pdf; sourceTree = SOURCE_ROOT; };
@@ -625,8 +622,6 @@
 				935378F8177B696F0069AEFC /* LoginRequiredView.m */,
 				9310D0EE1780FBA80052C25C /* MainWindow.h */,
 				9310D0EF1780FBA80052C25C /* MainWindow.m */,
-				939411331787ECE2003D1346 /* StatusItemView.h */,
-				939411341787ECE2003D1346 /* StatusItemView.m */,
 				93C0A7AC18B84AD8005943E8 /* TitleView.h */,
 				93C0A7AD18B84AD8005943E8 /* TitleView.m */,
 				939E8B8C17727456006D6442 /* UserImageView.h */,
@@ -1020,7 +1015,6 @@
 				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 				93C0A7D718B9B02B005943E8 /* ChatButtonCell.m in Sources */,
-				939411351787ECE2003D1346 /* StatusItemView.m in Sources */,
 				9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

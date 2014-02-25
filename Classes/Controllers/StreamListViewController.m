@@ -17,7 +17,6 @@
 #import "JLNFadingScrollView.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
-#import "StatusItemView.h"
 #import "Stream.h"
 #import "StreamViewModel.h"
 #import "StreamViewerViewController.h"
