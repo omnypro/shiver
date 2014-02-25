@@ -101,6 +101,12 @@
     [self initializeLogging];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
+{
+    if (flag == NO) { [self.windowController.window makeKeyAndOrderFront:self]; }
+    return YES;
+}
+
 - (void)initializeLogging
 {
     // We log too verbosely for the console in development. Let's only add it
