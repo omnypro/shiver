@@ -119,7 +119,7 @@ enum {
         reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList) {
             @strongify(self);
             if ([streamCountEnabled boolValue] && [streamList count] > 0) {
-                NSLog(@"Application (%@): Status item title updated: %lu.", [self class], [streamList count]);
+                DDLogInfo(@"Application (%@): Status item title updated: %lu.", [self class], [streamList count]);
                 return [NSString stringWithFormat:@"%lu", [streamList count]];
             } else {
                 DDLogInfo(@"Application (%@): Status item title removed.", [self class]);
