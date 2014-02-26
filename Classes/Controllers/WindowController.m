@@ -81,52 +81,12 @@
 
     // Set up our initial controllers and initialize and display the window
     // and status bar menu item.
-    [self initializeControllers];
     [self initializeInterface];
 }
 
 - (void)initializeSignals
 {
     @weakify(self);
-
-    RACSignal *ready = [[AccountManager sharedManager] readySignal];
-    RACSignal *reachable = [[AccountManager sharedManager] reachableSignal];
-
-    // A combined signal for whether or not the account manager is both
-    // ready and reachable.
-    RACSignal *readyAndReachable = [[[RACSignal combineLatest:@[ready, reachable]] and] distinctUntilChanged];
-
-    RAC(self, loggedIn, @NO) = [readyAndReachable filter:^(NSNumber *value) {
-		DDLogInfo(@"Application (%@): Logged-in flag tripped.", [self class]);
-        return [value boolValue];
-    }];
-    RAC(self, isUIActive, @NO) = [readyAndReachable filter:^(NSNumber *value) {
-        DDLogInfo(@"Application (%@): %@", [self class], [value boolValue] ? @"UI marked as active." : @"UI marked as inactive.");
-        return [value boolValue];
-    }];
-
-    [[readyAndReachable filter:^BOOL(NSNumber *value) {
-        return ([value boolValue] == YES);
-    }] subscribeNext:^(id x) {
-        @strongify(self);
-        self.loggedIn = YES;
-        if (self.user == nil) {
-            [[[[TwitchAPIClient sharedClient] fetchUser] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(User *user) {
-                DDLogInfo(@"Application (%@): We have a user. (%@)", [self class], user.name);
-                self.user = user;
-            } error:^(NSError *error) {
-                DDLogError(@"Application (%@): We couldn't fetch a user. (%@)", [self class], [error localizedDescription]);
-            }];
-        }
-    }];
-
-    [[readyAndReachable filter:^BOOL(NSNumber *value) {
-        return ([value boolValue] == NO);
-    }] subscribeNext:^(id x) {
-        @strongify(self);
-        DDLogInfo(@"Application (%@): We do not have a credential.", [self class]);
-        self.loggedIn = NO;
-    }];
 
     // Are we logged in? subscribe to changes to -loggedIn. If we are, try to
     // fetch the user from the API and when the value changes, then show the
@@ -215,33 +175,6 @@
         self.errorView = nil;
         self.isUIActive = YES;
     }];
-}
-
-- (void)initializeControllers
-{
-    self.aboutWindowController = [[AboutWindowController alloc] init];
-    self.generalPreferences = [[GeneralViewController alloc] init];
-    self.loginPreferences = [[LoginViewController alloc] init];
-}
-
-- (NSWindowController *)preferencesWindowController
-{
-    // If we have not created the window controller yet, create it now.
-    if (_preferencesWindowController == nil) {
-        NSArray *controllers = @[ self.generalPreferences, self.loginPreferences ];
-        _preferencesWindowController = [[RHPreferencesWindowController alloc] initWithViewControllers:controllers andTitle:NSLocalizedString(@"Shiver Preferences", @"Preferences Window Title")];
-    }
-    return _preferencesWindowController;
-}
-
-#pragma mark - Window Compositioning
-
-- (void)setCurrentViewController:(NSViewController *)viewController {
-    if (_currentViewController == viewController) { return; }
-
-    _currentViewController = viewController;
-    [_currentViewController.view setFrame:_masterView.bounds];
-    [_masterView addSubview:self.currentViewController.view];
 }
 
 - (void)initializeInterface

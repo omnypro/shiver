@@ -87,9 +87,7 @@
     RAC(self, numberOfSections) = [RACSignal
         combineLatest:@[RACObserve(self, authenticatedStreams), RACObserve(self, featuredStreams)]
         reduce:^id(NSArray *authenticatedStreams, NSArray *featuredStreams){
-            if (featuredStreams != nil) {
-                DDLogInfo(@"2");
-                return [NSNumber numberWithInt:2]; }
+            if (featuredStreams != nil) { return [NSNumber numberWithInt:2]; }
             else { return [NSNumber numberWithInt:1]; }
         }];
 }
