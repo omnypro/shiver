@@ -509,9 +509,9 @@
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				938CD21018A5AA160062C4D0 /* MainWindow.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
-				936327CF1764287100146C8A /* StreamListView.xib */,
 				936327D71764670300146C8A /* StreamListItemView.xib */,
 				93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */,
+				936327CF1764287100146C8A /* StreamListView.xib */,
 				938CD21218A5AFB90062C4D0 /* StreamViewer.xib */,
 				936327BA1763BB1000146C8A /* Window.xib */,
 			);
@@ -549,12 +549,12 @@
 				931E25291778B7B20081162C /* EmptyErrorView.m */,
 				939A7B6E1783723D009121D6 /* LoadingView.h */,
 				939A7B6F1783723D009121D6 /* LoadingView.m */,
+				936327D31764468400146C8A /* StreamListItemView.h */,
+				936327D41764468500146C8A /* StreamListItemView.m */,
 				93C0A7D818BAC545005943E8 /* StreamListSectionView.h */,
 				93C0A7D918BAC545005943E8 /* StreamListSectionView.m */,
 				93C0A7A218B7FBDE005943E8 /* StreamListView.h */,
 				93C0A7A318B7FBDE005943E8 /* StreamListView.m */,
-				936327D31764468400146C8A /* StreamListItemView.h */,
-				936327D41764468500146C8A /* StreamListItemView.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
 				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
 				938A7660177105FC0094A361 /* StreamPreviewImageView.h */,
@@ -740,14 +740,14 @@
 		93C0A7B818B98D9B005943E8 /* Stream Viewer */ = {
 			isa = PBXGroup;
 			children = (
-				93C0A7A818B824BB005943E8 /* StreamViewerView.h */,
-				93C0A7A918B824BB005943E8 /* StreamViewerView.m */,
-				93C0A7D218B9A9D2005943E8 /* ProfileButtonCell.h */,
-				93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */,
 				93C0A7D518B9B02B005943E8 /* ChatButtonCell.h */,
 				93C0A7D618B9B02B005943E8 /* ChatButtonCell.m */,
 				93F6770718BD50BC0064F005 /* EmptyViewerView.h */,
 				93F6770818BD50BC0064F005 /* EmptyViewerView.m */,
+				93C0A7D218B9A9D2005943E8 /* ProfileButtonCell.h */,
+				93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */,
+				93C0A7A818B824BB005943E8 /* StreamViewerView.h */,
+				93C0A7A918B824BB005943E8 /* StreamViewerView.m */,
 			);
 			name = "Stream Viewer";
 			sourceTree = "<group>";
