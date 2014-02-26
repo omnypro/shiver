@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -12,11 +12,9 @@
                 <outlet property="_userView" destination="gkn-M6-wcm" id="nsd-W3-Dvl"/>
                 <outlet property="_usernameLabel" destination="ev4-DT-Etn" id="86h-0J-kPJ"/>
                 <outlet property="avatar" destination="u90-8j-Zx2" id="IT4-Ki-HSI"/>
-                <outlet property="gameLabel" destination="o7Y-Qa-dtr" id="151-at-181"/>
                 <outlet property="titleView" destination="Z0Z-Zh-U7C" id="Bn2-7E-Rh7"/>
                 <outlet property="usernameLabel" destination="ev4-DT-Etn" id="ShL-Bd-Cvx"/>
                 <outlet property="viewer" destination="bEX-Qf-PcT" id="hwx-NQ-s7U"/>
-                <outlet property="viewersLabel" destination="LaI-0m-gaR" id="EjY-Hi-i8h"/>
                 <outlet property="window" destination="1" id="7JK-yF-Jz6"/>
             </connections>
         </customObject>
@@ -87,6 +85,10 @@
                 <constraint firstItem="o7Y-Qa-dtr" firstAttribute="leading" secondItem="Z0Z-Zh-U7C" secondAttribute="leading" constant="255" id="ijr-tR-IcY"/>
                 <constraint firstAttribute="centerY" secondItem="LaI-0m-gaR" secondAttribute="centerY" constant="2" id="s18-VW-fO8"/>
             </constraints>
+            <connections>
+                <outlet property="gameLabel" destination="o7Y-Qa-dtr" id="uMG-eQ-Y8P"/>
+                <outlet property="viewersLabel" destination="LaI-0m-gaR" id="5Uo-IO-b9Y"/>
+            </connections>
         </customView>
         <customView id="gkn-M6-wcm">
             <rect key="frame" x="0.0" y="0.0" width="240" height="38"/>

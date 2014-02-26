@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
-
 #import "SHWindowController.h"
 #import "WindowViewModel.h"
 
 @class StreamListViewController;
 @class StreamViewerViewController;
+@class TitleView;
 
 @interface MainWindowController : SHWindowController <NSWindowDelegate>
 
@@ -19,9 +19,7 @@
 @property (nonatomic, strong) StreamViewerViewController *viewerController;
 @property (nonatomic, strong, readonly) WindowViewModel *viewModel;
 
-@property (weak) IBOutlet NSTextField *gameLabel;
-@property (weak) IBOutlet NSTextField *viewersLabel;
-@property (weak) IBOutlet NSView *titleView;
+@property (weak) IBOutlet TitleView *titleView;
 @property (weak) IBOutlet NSView *viewer;
 
 @end

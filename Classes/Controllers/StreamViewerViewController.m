@@ -13,6 +13,7 @@
 #import "HexColor.h"
 #import "NSAttributedString+CCLFormat.h"
 #import "StreamViewModel.h"
+#import "TitleView.h"
 #import "UserImageView.h"
 
 #import "StreamViewerViewController.h"
@@ -23,7 +24,9 @@
 @property (nonatomic, strong) StreamViewModel *stream;
 @property (nonatomic, strong) NSURL *profileURL;
 
+@property (nonatomic, strong) TitleView *titleView;
 @property (nonatomic, strong) EmptyViewerView *emptyView;
+
 @property (weak) IBOutlet NSButton *profileButton;
 @property (weak) IBOutlet NSButton *chatButton;
 @property (weak) IBOutlet NSTextField *liveSinceLabel;
@@ -40,6 +43,7 @@
     if (self == nil) { return nil; }
 
     _windowController = [[NSApp delegate] windowController];
+    _titleView = [_windowController titleView];
 
     return self;
 }
@@ -72,14 +76,14 @@
     // Observers for IBOutlets that are part of the title bar's view.
     // This is part of my hack to ensure that I don't have to redraw the
     // entrire window, title bar, etc.
-    RAC(self, windowController.gameLabel.attributedStringValue, @"") = [RACSignal
+    RAC(self, titleView.gameLabel.attributedStringValue, @"") = [RACSignal
         combineLatest:@[RACObserve(self, stream.displayName), RACObserve(self, stream.game)]
         reduce:^id(NSString *displayName, NSString *game) {
             if (displayName && game) { return [self attributedStringWithName:displayName game:game]; }
             else if (displayName) { return [self attributedStringWithName:displayName]; }
             else { return @""; }
         }];
-    RAC(self, windowController.viewersLabel.attributedStringValue) = [RACObserve(self, stream.viewers)
+    RAC(self, titleView.viewersLabel.attributedStringValue) = [RACObserve(self, stream.viewers)
         map:^id(NSNumber *value) {
             if (value) { return [self attributedViewersWithNumber:value]; }
             else { return @""; }

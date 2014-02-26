@@ -10,4 +10,9 @@
 
 @interface TitleView : RBLView
 
+@property (nonatomic, assign) BOOL isActive;
+
+@property (nonatomic, weak) IBOutlet NSTextField *gameLabel;
+@property (nonatomic, weak) IBOutlet NSTextField *viewersLabel;
+
 @end
