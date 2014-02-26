@@ -134,6 +134,7 @@
     NSWindow *window = self.windowController.window;
     if ([window isKeyWindow]) { [window orderOut:self]; }
     else { [window makeKeyAndOrderFront:self]; }
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 #pragma mark - Interface Builder Actions
@@ -141,14 +142,12 @@
 - (IBAction)showAbout:(id)sender {
     [self.aboutWindowController.window center];
     [self.aboutWindowController.window makeKeyAndOrderFront:sender];
-    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (IBAction)showPreferences:(id)sender
 {
     [self.preferencesWindowController.window center];
     [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
-    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (IBAction)showMainWindow:(id)sender {
