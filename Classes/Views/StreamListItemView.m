@@ -24,7 +24,6 @@
 @interface StreamListItemView () {
     IBOutlet NSTextField *_gameLabel;
     IBOutlet NSTextField *_userLabel;
-    IBOutlet NSTextField *_liveSinceLabel;
 }
 
 @property (weak) IBOutlet StreamLogoImageView *logo;
@@ -63,11 +62,6 @@
     else {
         [_gameLabel setStringValue:_object.game];
         [_gameLabel setTextColor:[NSColor colorWithHexString:@"#4A90E2" alpha:1]];
-    }
-
-    if (_object.updatedAt) {
-        [_liveSinceLabel setStringValue:[NSString stringWithFormat:@"Live for %@", _object.liveSince]];
-        [_liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#D4D4D4" alpha:1]];
     }
 
     [self refreshLogo];
