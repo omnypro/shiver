@@ -440,24 +440,21 @@ enum {
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
     if (listView != _listView) { return; }
-
-    StreamListItemView *item = (StreamListItemView *)view;
-    [self.windowController.viewerController setSelectedStream:item.object];
-    DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
+    if ([view isKindOfClass:[StreamListItemView class]]) {
+        StreamListItemView *item = (StreamListItemView *)view;
+        [self.windowController.viewerController setSelectedStream:item.object];
+        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
+    }
 }
 
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
-    if (listView == _listView) {
-        return;
-    }
+    if (listView == _listView) { return; }
 }
 
 - (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
 {
-    if (listView == _listView) {
-        return;
-    }
+    if (listView == _listView) { return; }
 }
 
 #pragma mark - JAListViewDataSource Methods
