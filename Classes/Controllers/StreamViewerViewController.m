@@ -8,6 +8,7 @@
 
 #import <WebKit/WebKit.h>
 
+#import "EmptyViewerView.h"
 #import "MainWindowController.h"
 #import "HexColor.h"
 #import "NSAttributedString+CCLFormat.h"
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) StreamViewModel *stream;
 @property (nonatomic, strong) NSURL *profileURL;
 
+@property (nonatomic, strong) EmptyViewerView *emptyView;
 @property (weak) IBOutlet NSButton *profileButton;
 @property (weak) IBOutlet NSButton *chatButton;
 @property (weak) IBOutlet NSTextField *liveSinceLabel;
@@ -45,6 +47,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+
+    self.emptyView = [EmptyViewerView init];
+    [self.view addSubview:self.emptyView];
 
     RAC(self, statusLabel.attributedStringValue, @"") = [RACObserve(self, stream.status)
         map:^id(NSString *value) {
