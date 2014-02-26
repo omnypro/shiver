@@ -30,6 +30,7 @@ PODS:
   - SEHumanizedTimeDiff (0.0.1)
   - SORelativeDateTransformer (1.1.10)
   - StartAtLoginController (0.0.1)
+  - YOLOKit (7)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - SEHumanizedTimeDiff (from `https://github.com/sarperdag/SEHumanizedTimeDiff.git`)
   - SORelativeDateTransformer (~> 1.1.9)
   - StartAtLoginController (~> 0.0.1)
+  - YOLOKit (~> 7)
 
 EXTERNAL SOURCES:
   SEHumanizedTimeDiff:
@@ -70,5 +72,6 @@ SPEC CHECKSUMS:
   SEHumanizedTimeDiff: e3f008da091ec0d743dbacf0bc5ef2802d284248
   SORelativeDateTransformer: eba9b9bcc290eb7c9754b9955ace59b890fa59f8
   StartAtLoginController: 7ab3011175dbcce1f887cc004fb5faabf29aba8d
+  YOLOKit: b87148f86b4e254b1beae49478ba9375e4ae852a
 
 COCOAPODS: 0.29.0
