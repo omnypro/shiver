@@ -21,7 +21,6 @@
     if (self == nil) return nil;
 
     _viewModel = viewModel;
-    DDLogInfo(@"hi!");
 
     return self;
 }
