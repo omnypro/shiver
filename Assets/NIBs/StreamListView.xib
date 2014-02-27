@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StreamListViewController">
             <connections>
+                <outlet property="_activityIndicator" destination="PGN-j7-5ip" id="CbS-oD-hQE"/>
                 <outlet property="_listView" destination="79" id="2fk-aE-5V8"/>
                 <outlet property="_loadingView" destination="LBd-1G-WRQ" id="jW7-p2-KzF"/>
                 <outlet property="_refreshButton" destination="Ft2-v7-OdJ" id="9uv-AE-hHk"/>
@@ -58,8 +59,14 @@
             </subviews>
         </customView>
         <customView id="LBd-1G-WRQ" customClass="LoadingView">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="444"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="240" height="488"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <customView id="PGN-j7-5ip" customClass="BTRActivityIndicator">
+                    <rect key="frame" x="104" y="228" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                </customView>
+            </subviews>
         </customView>
     </objects>
     <resources>

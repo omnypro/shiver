@@ -10,38 +10,17 @@
 
 @implementation LoadingView
 
-+ (id)init
-{
-    NSNib *nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
-	NSArray *objects = nil;
-    [nib instantiateWithOwner:nil topLevelObjects:&objects];
-	for (id object in objects)
-		if ([object isKindOfClass:[NSView class]]) {
-            return object;
-        }
-	return nil;
-}
-
-- (LoadingView *)loadingViewWithProgressIndicator
-{
-    [_progressIndicator setColor:[NSColor whiteColor]];
-    [_progressIndicator setBackgroundColor:[NSColor clearColor]];
-    [_progressIndicator setUsesThreadedAnimation:NO];
-    return self;
-}
-
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
 
-    NSRect rect = dirtyRect;
-    [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.5];
-    [NSBezierPath fillRect:rect];
+    [[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.75] setFill];
+    [NSBezierPath fillRect:[self bounds]];
 }
 
 - (BOOL)isOpaque
 {
-    return YES;
+    return NO;
 }
 
 @end

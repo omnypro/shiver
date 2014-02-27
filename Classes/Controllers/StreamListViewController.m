@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import <Butter/BTRActivityIndicator.h>
+
 #import "TwitchAPIClient.h"
 #import "Channel.h"
 #import "EmptyErrorView.h"
@@ -33,8 +35,10 @@ enum {
 };
 
 @interface StreamListViewController () {
+    IBOutlet BTRActivityIndicator *_activityIndicator;
     IBOutlet JASectionedListView *_listView;
     IBOutlet JLNFadingScrollView *_scrollView;
+    IBOutlet LoadingView *_loadingView;
     IBOutlet NSButton *_refreshButton;
 }
 
@@ -54,9 +58,9 @@ enum {
 @property (nonatomic, strong) User *user;
 
 @property (nonatomic, assign) BOOL loggedIn;
+@property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, assign) BOOL showingError;
 @property (nonatomic, assign) BOOL showingEmpty;
-@property (nonatomic, assign) BOOL showingLoading;
 @property (nonatomic, strong) NSString *showingErrorMessage;
 
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
@@ -74,7 +78,6 @@ enum {
     [center setDelegate:self];
 
     self.loginView = [LoginRequiredView init];
-    self.loadingView = [[LoadingView init] loadingViewWithProgressIndicator];
     self.statusItem = [[NSApp delegate] statusItem];
     self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
@@ -82,6 +85,9 @@ enum {
     DDLogInfo(@"Application (%@): Stream list loaded.", [self class]);
 
     [self initializeSignals];
+    [self initializeLifecycleSignals];
+
+    [_activityIndicator setProgressShapeColor:[NSColor whiteColor]];
 
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
@@ -103,7 +109,6 @@ enum {
         [_listView reloadDataAnimated:YES];
         return [RACSignal combineLatest:@[authenticatedStreams, featuredStreams]];
     }];
-
 
     // Bind the status item's title to the number of active -authenticated-
     // streams, as long as that array exists, and the user wants the count.
@@ -131,7 +136,31 @@ enum {
         combineLatest:@[RACObserve(self, viewModel.authenticatedStreams), RACObserve(self, viewModel.featuredStreams)]]
         subscribeNext:^(id x) {
             [_listView reloadDataAnimated:YES];
+        } error:^(NSError *error) {
+            @strongify(self);
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
+
+- (void)initializeLifecycleSignals
+{
+    @weakify(self);
+
+    // Show or hide the loading view.
+    [RACObserve(self, viewModel.isLoading)
+        subscribeNext:^(NSNumber *loading) {
+            @strongify(self);
+            BOOL isLoading = [loading boolValue];
+            if (isLoading) {
+                DDLogInfo(@"Application (%@): Showing the loading view.", [self class]);
+                [self.view addSubview:_loadingView];
+                [_activityIndicator startAnimating];
+            } else {
+                DDLogInfo(@"Application (%@): Removing the loading view.", [self class]);
+                [_loadingView removeFromSuperview];
+                [_activityIndicator stopAnimating];
+            }
+        }];
+
 }
 
 //- (void)initializeViewSignals

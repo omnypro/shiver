@@ -44,8 +44,17 @@
     RACSignal *credentialSignal = RACObserve(AccountManager.sharedManager, credential);
     RACSignal *hasCredential = [credentialSignal map:^(AFOAuthCredential *credential) { return @(credential != nil); }];
 
-    // ...
     RACSignal *fetchAuthenticatedStreams = [[self.client fetchStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
+    RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
+
+    // ...
+    RAC(self, isLoading, @YES) = [RACSignal
+        combineLatest:@[RACObserve(self, authenticatedStreams), RACObserve(self, featuredStreams)]
+        reduce:^id(NSArray *authenticatedStreams, NSArray *featuredStreams){
+            return @(authenticatedStreams == nil || featuredStreams == nil);
+        }];
+
+    // ...
     RAC(self, authenticatedStreams) = [RACSignal
         combineLatest:@[readyAndReachable, hasCredential, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *streams){
@@ -65,7 +74,6 @@
         }];
 
     // ...
-    RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
     RAC(self, featuredStreams) = [RACSignal
         combineLatest:@[readyAndReachable, hasCredential, fetchFeaturedStreams, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *featuredStreams, NSArray *authenticatedStreams){

@@ -13,6 +13,6 @@
 @property (nonatomic, strong) NSArray *authenticatedStreams;
 @property (nonatomic, strong) NSArray *featuredStreams;
 
-@property (nonatomic, strong) NSNumber *numberOfSections;
+@property (nonatomic, assign) BOOL isLoading;
 
 @end

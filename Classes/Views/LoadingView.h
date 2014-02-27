@@ -6,13 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "YRKSpinningProgressIndicator.h"
+#import "RBLView.h"
 
-@interface LoadingView : NSView
-
-@property (weak) IBOutlet YRKSpinningProgressIndicator *progressIndicator;
-
-+ (id)init;
-- (LoadingView *)loadingViewWithProgressIndicator;
+@interface LoadingView : RBLView
 
 @end
