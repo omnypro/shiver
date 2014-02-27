@@ -27,7 +27,6 @@ PODS:
     - Rebel/NSColorExtensions
   - Rebel/NSColorExtensions (0.3.2)
   - RHPreferences (1.0.0)
-  - SEHumanizedTimeDiff (0.0.1)
   - SORelativeDateTransformer (1.1.10)
   - StartAtLoginController (0.0.1)
   - YOLOKit (7)
@@ -46,14 +45,9 @@ DEPENDENCIES:
   - ReactiveViewModel (~> 0.2)
   - Rebel (~> 0.3.2)
   - RHPreferences (~> 1.0.0)
-  - SEHumanizedTimeDiff (from `https://github.com/sarperdag/SEHumanizedTimeDiff.git`)
   - SORelativeDateTransformer (~> 1.1.9)
   - StartAtLoginController (~> 0.0.1)
   - YOLOKit (~> 7)
-
-EXTERNAL SOURCES:
-  SEHumanizedTimeDiff:
-    :git: https://github.com/sarperdag/SEHumanizedTimeDiff.git
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
@@ -69,7 +63,6 @@ SPEC CHECKSUMS:
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
   Rebel: 62fb32b3b4c06ce3d73e226f7d8fc51ad1b70d10
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
-  SEHumanizedTimeDiff: e3f008da091ec0d743dbacf0bc5ef2802d284248
   SORelativeDateTransformer: eba9b9bcc290eb7c9754b9955ace59b890fa59f8
   StartAtLoginController: 7ab3011175dbcce1f887cc004fb5faabf29aba8d
   YOLOKit: b87148f86b4e254b1beae49478ba9375e4ae852a

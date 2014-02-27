@@ -7,7 +7,6 @@
 //
 
 #import "Channel.h"
-#import "NSDate+HumanizedTime.h"
 #import "Stream.h"
 
 #import "StreamViewModel.h"
@@ -32,7 +31,7 @@
     _url = _channel.url;
     _createdAt = _channel.createdAt;
     _updatedAt = _channel.updatedAt;
-    _liveSince = [_channel.updatedAt stringWithHumanizedTimeDifference:NSDateHumanizedSuffixNone withFullString:YES];
+    _liveSince = [NSString stringWithFormat:@"%@", _channel.updatedAt];
     _logoImageURL = _channel.logoImageURL;
     _status = _channel.status;
 
