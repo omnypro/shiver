@@ -55,7 +55,6 @@
         return (value == nil);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"we don't have a stream...");
         [self.titleView setIsActive:NO];
     }];
 
@@ -63,10 +62,10 @@
         return (value != nil);
     }] take:1] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        NSLog(@"we have a stream...");
+        NSLog(@"Application (%@): We have a stream. Activate the viewer.", [self class]);
         [self.titleView setIsActive:YES];
+        [self.view addSubview:self.viewerView];
     }];
-
 
     RAC(self, viewerView.statusLabel.attributedStringValue, @"") = [RACObserve(self, stream.status)
         map:^id(NSString *value) {
