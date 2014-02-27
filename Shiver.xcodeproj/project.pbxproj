@@ -117,7 +117,6 @@
 		93C0A7DC18BAC56E005943E8 /* StreamListSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
 		93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D15BAB17736ED900643D95 /* GeneralViewController.m */; };
-		93F6770618BD4FF90064F005 /* EmptyViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93F6770518BD4FF90064F005 /* EmptyViewer.xib */; };
 		93F6770918BD50BD0064F005 /* EmptyViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F6770818BD50BC0064F005 /* EmptyViewerView.m */; };
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -308,7 +307,6 @@
 		93D15BA817736EB100643D95 /* GeneralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralView.xib; path = Assets/NIBs/GeneralView.xib; sourceTree = SOURCE_ROOT; };
 		93D15BAA17736ED900643D95 /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralViewController.h; path = Classes/Controllers/GeneralViewController.h; sourceTree = SOURCE_ROOT; };
 		93D15BAB17736ED900643D95 /* GeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralViewController.m; path = Classes/Controllers/GeneralViewController.m; sourceTree = SOURCE_ROOT; };
-		93F6770518BD4FF90064F005 /* EmptyViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EmptyViewer.xib; path = Assets/NIBs/EmptyViewer.xib; sourceTree = SOURCE_ROOT; };
 		93F6770718BD50BC0064F005 /* EmptyViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyViewerView.h; path = Classes/Views/EmptyViewerView.h; sourceTree = SOURCE_ROOT; };
 		93F6770818BD50BC0064F005 /* EmptyViewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyViewerView.m; path = Classes/Views/EmptyViewerView.m; sourceTree = SOURCE_ROOT; };
 		A795A5CACCC44DC59B59DAEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -504,7 +502,6 @@
 				93A3A12417658EF600913C9A /* Preferences */,
 				933EC0E4177BDE560041D020 /* AboutWindow.xib */,
 				9301E9E2176A478300C46750 /* EmptyErrorView.xib */,
-				93F6770518BD4FF90064F005 /* EmptyViewer.xib */,
 				939A7B6917836D28009121D6 /* LoadingView.xib */,
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				938CD21018A5AA160062C4D0 /* MainWindow.xib */,
@@ -842,7 +839,6 @@
 				936327BC1763BB1000146C8A /* Window.xib in Resources */,
 				939A7B6A17836D28009121D6 /* LoadingView.xib in Resources */,
 				938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */,
-				93F6770618BD4FF90064F005 /* EmptyViewer.xib in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
