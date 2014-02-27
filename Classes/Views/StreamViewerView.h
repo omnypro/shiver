@@ -12,9 +12,11 @@
 
 @property (weak) IBOutlet NSButton *chatButton;
 @property (weak) IBOutlet NSButton *profileButton;
+@property (weak) IBOutlet NSImageView *logo;
+@property (weak) IBOutlet NSTextField *broadcastLabel;
 @property (weak) IBOutlet NSTextField *liveSinceLabel;
 @property (weak) IBOutlet NSTextField *statusLabel;
-@property (weak) IBOutlet NSImageView *logo;
+@property (weak) IBOutlet NSSlider *volumeSlider;
 
 - (NSAttributedString *)attributedStatusWithString:(NSString *)string;
 

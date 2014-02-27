@@ -23,6 +23,7 @@
 @property (nonatomic, strong) MainWindowController *windowController;
 @property (nonatomic, strong) StreamViewModel *stream;
 @property (nonatomic, strong) NSURL *profileURL;
+@property (nonatomic, strong) WebScriptObject *wso;
 
 @property (nonatomic, strong) TitleView *titleView;
 
@@ -49,6 +50,8 @@
     [super awakeFromNib];
     [self.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 
+    self.wso = [self.webView windowScriptObject];
+
     @weakify(self);
 
     [[[RACObserve(self, stream) filter:^BOOL(id value) {
@@ -64,6 +67,7 @@
         @strongify(self);
         NSLog(@"Application (%@): We have a stream. Activate the viewer.", [self class]);
         [self.titleView setIsActive:YES];
+        [self.viewerView setFrame:self.view.bounds];
         [self.view addSubview:self.viewerView];
     }];
 
@@ -114,7 +118,14 @@
     self.stream = stream;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
-    [[_webView mainFrame] loadRequest:request];
+    [[self.webView mainFrame] loadRequest:request];
+}
+
+- (void)setVolume
+{
+    NSSlider *slider = self.viewerView.volumeSlider;
+    float value = (float)slider.integerValue * 0.01;
+    [self.wso evaluateWebScript:[NSString stringWithFormat:@"video.volume = %f;", value]];
 }
 
 #pragma mark - WebFrameLoadDelegate Methods
@@ -123,9 +134,9 @@
 {
     // We manipulate the <video> element via Javascript to hide the native
     // controls so we can implement our own.
-    WebScriptObject *win = [self.webView windowScriptObject];
-    [win evaluateWebScript:[NSString stringWithFormat:@"video = document.getElementById('content_player')"]];
-    [win evaluateWebScript:[NSString stringWithFormat:@"video.removeAttribute('controls');"]];
+    [self.wso evaluateWebScript:[NSString stringWithFormat:@"video = document.getElementById('content_player')"]];
+    [self.wso evaluateWebScript:[NSString stringWithFormat:@"video.removeAttribute('controls');"]];
+    [self setVolume];
 }
 
 - (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems
@@ -140,9 +151,19 @@
 
 #pragma mark - Interface Builder Actions
 
+- (IBAction)changeVolume:(id)sender
+{
+    [self setVolume];
+}
+
 - (IBAction)showProfile:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:self.profileURL];
+}
+
+- (IBAction)showChat:(id)sender
+{
+
 }
 
 @end

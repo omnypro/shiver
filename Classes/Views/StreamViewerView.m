@@ -8,6 +8,7 @@
 
 #import "HexColor.h"
 #import "NSAttributedString+CCLFormat.h"
+#import "NSBezierPath-PXRoundedRectangleAdditions.h"
 
 #import "StreamViewerView.h"
 
@@ -18,6 +19,7 @@
 	[super drawRect:dirtyRect];
 
     [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B" alpha:1]];
+    [self.broadcastLabel setTextColor:[NSColor colorWithHexString:@"#AFB7B8" alpha:1]];
 
     // Draw the view's header rectangle and fill it.
     NSColor *contentTopColor = [NSColor colorWithHexString:@"#171719" alpha:1.0];
@@ -49,6 +51,18 @@
     NSRect footerRect = NSMakeRect(0, 0, self.bounds.size.width, 110);
     [[NSColor colorWithHexString:@"#FFFFFF" alpha:1.0] setFill];
     NSRectFill(footerRect);
+
+    // Draw the player bar.
+    NSColor *playerTopColor = [NSColor colorWithHexString:@"#2E2F30" alpha:1.0];
+    NSColor *playerBottomColor = [NSColor colorWithHexString:@"#202527" alpha:1.0];
+    NSGradient *playerGradient = [[NSGradient alloc] initWithStartingColor:playerTopColor endingColor:playerBottomColor];
+    NSRect playerRect = NSMakeRect(10, 93, self.bounds.size.width - 20, 29);
+    NSBezierPath *playerPath = [NSBezierPath bezierPathWithRoundedRect:playerRect cornerRadius:2.0 inCorners:OSBottomLeftCorner | OSBottomRightCorner];
+    [playerGradient drawInBezierPath:playerPath angle:-90];
+
+    NSRect playerHighlightRect = NSMakeRect(10, 121, self.bounds.size.width - 20, 1);
+    [[NSColor colorWithHexString:@"#404043" alpha:1.0] setFill];
+    NSRectFill(playerHighlightRect);
 }
 
 - (NSAttributedString *)attributedStatusWithString:(NSString *)string
