@@ -24,9 +24,9 @@
 @property (nonatomic, strong) StreamViewModel *stream;
 @property (nonatomic, strong) NSURL *profileURL;
 
-@property (nonatomic, strong) EmptyViewerView *emptyView;
-@property (nonatomic, strong) StreamViewerView *viewerView;
 @property (nonatomic, strong) TitleView *titleView;
+
+@property (weak) IBOutlet StreamViewerView *viewerView;
 
 @end
 
@@ -40,7 +40,6 @@
     _windowController = [[NSApp delegate] windowController];
 
     _titleView = [_windowController titleView];
-    _viewerView = [StreamViewerView init];
 
     return self;
 }
@@ -48,6 +47,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
 
     @weakify(self);
 
@@ -56,8 +56,6 @@
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"we don't have a stream...");
-        self.emptyView = [EmptyViewerView init];
-        [self.view addSubview:self.emptyView];
         [self.titleView setIsActive:NO];
     }];
 
@@ -66,7 +64,6 @@
     }] take:1] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSLog(@"we have a stream...");
-        [self.emptyView removeFromSuperview];
         [self.titleView setIsActive:YES];
     }];
 

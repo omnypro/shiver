@@ -13,18 +13,6 @@
 
 @implementation StreamViewerView
 
-+ (id)init
-{
-    NSNib *nib = [[NSNib alloc] initWithNibNamed:@"StreamViewer" bundle:nil];
-	NSArray *objects = nil;
-    [nib instantiateWithOwner:nil topLevelObjects:&objects];
-	for (id object in objects)
-		if ([object isKindOfClass:[NSView class]]) {
-            return object;
-        }
-	return nil;
-}
-
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[super drawRect:dirtyRect];
