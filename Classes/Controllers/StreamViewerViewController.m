@@ -11,8 +11,8 @@
 #import "EmptyViewerView.h"
 #import "MainWindowController.h"
 #import "HexColor.h"
-#import "NSAttributedString+CCLFormat.h"
 #import "StreamViewModel.h"
+#import "StreamViewerView.h"
 #import "TitleView.h"
 #import "UserImageView.h"
 
@@ -24,14 +24,9 @@
 @property (nonatomic, strong) StreamViewModel *stream;
 @property (nonatomic, strong) NSURL *profileURL;
 
-@property (nonatomic, strong) TitleView *titleView;
 @property (nonatomic, strong) EmptyViewerView *emptyView;
-
-@property (weak) IBOutlet NSButton *profileButton;
-@property (weak) IBOutlet NSButton *chatButton;
-@property (weak) IBOutlet NSTextField *liveSinceLabel;
-@property (weak) IBOutlet NSTextField *statusLabel;
-@property (weak) IBOutlet NSImageView *logo;
+@property (nonatomic, strong) StreamViewerView *viewerView;
+@property (nonatomic, strong) TitleView *titleView;
 
 @end
 
@@ -43,7 +38,9 @@
     if (self == nil) { return nil; }
 
     _windowController = [[NSApp delegate] windowController];
+
     _titleView = [_windowController titleView];
+    _viewerView = [StreamViewerView init];
 
     return self;
 }
@@ -52,22 +49,41 @@
 {
     [super awakeFromNib];
 
-    self.emptyView = [EmptyViewerView init];
-    [self.view addSubview:self.emptyView];
+    @weakify(self);
 
-    RAC(self, statusLabel.attributedStringValue, @"") = [RACObserve(self, stream.status)
+    [[[RACObserve(self, stream) filter:^BOOL(id value) {
+        return (value == nil);
+    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"we don't have a stream...");
+        self.emptyView = [EmptyViewerView init];
+        [self.view addSubview:self.emptyView];
+        [self.titleView setIsActive:NO];
+    }];
+
+    [[[[RACObserve(self, stream) filter:^BOOL(id value) {
+        return (value != nil);
+    }] take:1] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        @strongify(self);
+        NSLog(@"we have a stream...");
+        [self.emptyView removeFromSuperview];
+        [self.titleView setIsActive:YES];
+    }];
+
+
+    RAC(self, viewerView.statusLabel.attributedStringValue, @"") = [RACObserve(self, stream.status)
         map:^id(NSString *value) {
-            if (value) { return [self attributedStatusWithString:value]; }
+            @strongify(self);
+            if (value) { return [self.viewerView attributedStatusWithString:value]; }
             else { return @""; }
         }];
 
-    RAC(self, logo.image) = [RACObserve(self, stream.logoImageURL)
+    RAC(self, viewerView.logo.image) = [RACObserve(self, stream.logoImageURL)
         map:^id(NSURL *url) {
             return [[NSImage alloc] initWithContentsOfURL:url];
         }];
 
-    [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B" alpha:1]];
-    RAC(self, liveSinceLabel.stringValue, @"") = [RACObserve(self, stream.liveSince)
+    RAC(self, viewerView.liveSinceLabel.stringValue, @"") = [RACObserve(self, stream.liveSince)
         map:^id(NSString *value) {
             if (value) { return [NSString stringWithFormat:@"Live for %@", value]; }
             else { return @""; }
@@ -79,13 +95,14 @@
     RAC(self, titleView.gameLabel.attributedStringValue, @"") = [RACSignal
         combineLatest:@[RACObserve(self, stream.displayName), RACObserve(self, stream.game)]
         reduce:^id(NSString *displayName, NSString *game) {
-            if (displayName && game) { return [self attributedStringWithName:displayName game:game]; }
-            else if (displayName) { return [self attributedStringWithName:displayName]; }
+            @strongify(self);
+            if (displayName && game) { return [self.titleView attributedStringWithName:displayName game:game]; }
+            else if (displayName) { return [self.titleView attributedStringWithName:displayName]; }
             else { return @""; }
         }];
     RAC(self, titleView.viewersLabel.attributedStringValue) = [RACObserve(self, stream.viewers)
         map:^id(NSNumber *value) {
-            if (value) { return [self attributedViewersWithNumber:value]; }
+            if (value) { return [self.titleView attributedViewersWithNumber:value]; }
             else { return @""; }
         }];
 
@@ -102,77 +119,6 @@
 
     NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
     [[_webView mainFrame] loadRequest:request];
-}
-
-#pragma mark - Appearance
-
-- (NSAttributedString *)attributedStringWithName:(NSString *)name
-{
-    NSAttributedString *attrName = [[NSAttributedString alloc] initWithString:name attributes:@{
-        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
-    }];
-
-    NSAttributedString *attrPlayingUnspecified = [[NSAttributedString alloc] initWithString:@"playing an unspecified game" attributes:@{
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
-    }];
-
-    NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@", attrName, attrPlayingUnspecified];
-    return attrString;
-}
-
-- (NSAttributedString *)attributedStringWithName:(NSString *)name game:(NSString *)game
-{
-    NSAttributedString *attrName = [[NSAttributedString alloc] initWithString:name attributes:@{
-        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
-    }];
-
-    NSAttributedString *attrPlaying = [[NSAttributedString alloc] initWithString:@"playing" attributes:@{
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
-    }];
-
-    NSAttributedString *attrGame = [[NSAttributedString alloc] initWithString:game attributes:@{
-        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
-    }];
-
-    NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@ %@", attrName, attrPlaying, attrGame];
-    return attrString;
-}
-
-- (NSAttributedString *)attributedViewersWithNumber:(NSNumber *)number
-{
-    NSAttributedString *attrCount = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", number] attributes:@{
-        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
-    }];
-
-    NSAttributedString *attrViewers = [[NSAttributedString alloc] initWithString:@"viewers" attributes:@{
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#7C7C7C" alpha:1.0],
-    }];
-
-    NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@", attrCount, attrViewers];
-    return attrString;
-}
-
-- (NSAttributedString *)attributedStatusWithString:(NSString *)string
-{
-    NSString *truncatedString = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
-    NSMutableAttributedString *attrStatus = [[NSMutableAttributedString alloc] initWithString:truncatedString];
-
-    // Tame the line height first.
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    [style setMaximumLineHeight:20];
-
-    // Send it off.
-    NSMutableDictionary *attributes = [@{
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#4A4A4A" alpha:1.0],
-        NSParagraphStyleAttributeName: style,
-    } mutableCopy];
-    [attrStatus addAttributes:attributes range:NSMakeRange(0, [attrStatus length])];
-    return attrStatus;
 }
 
 #pragma mark - WebFrameLoadDelegate Methods

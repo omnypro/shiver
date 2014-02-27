@@ -8,11 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StreamViewerViewController">
             <connections>
-                <outlet property="chatButton" destination="vPs-mV-Z4n" id="7Nj-ch-DBJ"/>
-                <outlet property="liveSinceLabel" destination="VEt-g2-exX" id="JNL-df-PQ8"/>
-                <outlet property="logo" destination="ZsA-qk-GR6" id="gu4-aF-TyV"/>
-                <outlet property="profileButton" destination="txV-Sc-UAq" id="JJc-UB-O70"/>
-                <outlet property="statusLabel" destination="7rq-lY-FrR" id="98S-fr-ZlP"/>
                 <outlet property="view" destination="1" id="Zhv-k2-wuo"/>
                 <outlet property="webView" destination="13u-a7-fcZ" id="8Xy-z0-ml9"/>
             </connections>
@@ -108,6 +103,13 @@
                 <constraint firstItem="vPs-mV-Z4n" firstAttribute="top" secondItem="txV-Sc-UAq" secondAttribute="bottom" constant="13" id="oLx-GM-gDw"/>
                 <constraint firstAttribute="trailing" secondItem="txV-Sc-UAq" secondAttribute="trailing" constant="20" id="z7A-he-I3F"/>
             </constraints>
+            <connections>
+                <outlet property="chatButton" destination="vPs-mV-Z4n" id="zTa-Hm-1wg"/>
+                <outlet property="liveSinceLabel" destination="VEt-g2-exX" id="cqe-p9-x4h"/>
+                <outlet property="logo" destination="ZsA-qk-GR6" id="fDZ-b5-WDO"/>
+                <outlet property="profileButton" destination="txV-Sc-UAq" id="NcE-ZC-ZyR"/>
+                <outlet property="statusLabel" destination="7rq-lY-FrR" id="Q5a-u3-EPQ"/>
+            </connections>
         </customView>
     </objects>
 </document>

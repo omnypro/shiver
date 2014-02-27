@@ -7,6 +7,7 @@
 //
 
 #import "HexColor.h"
+#import "NSAttributedString+CCLFormat.h"
 #import "NSBezierPath-PXRoundedRectangleAdditions.h"
 
 #import "TitleView.h"
@@ -67,6 +68,56 @@
     NSRect titleHighlightRect = NSMakeRect(240, 37, self.bounds.size.width - 242, 1);
     [[NSColor colorWithHexString:@"#4B4C51" alpha:1.0] setFill];
     NSRectFill(titleHighlightRect);
+}
+
+- (NSAttributedString *)attributedStringWithName:(NSString *)name
+{
+    NSAttributedString *attrName = [[NSAttributedString alloc] initWithString:name attributes:@{
+        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
+    }];
+
+    NSAttributedString *attrPlayingUnspecified = [[NSAttributedString alloc] initWithString:@"playing an unspecified game" attributes:@{
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
+    }];
+
+    NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@", attrName, attrPlayingUnspecified];
+    return attrString;
+}
+
+- (NSAttributedString *)attributedStringWithName:(NSString *)name game:(NSString *)game
+{
+    NSAttributedString *attrName = [[NSAttributedString alloc] initWithString:name attributes:@{
+        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
+    }];
+
+    NSAttributedString *attrPlaying = [[NSAttributedString alloc] initWithString:@"playing" attributes:@{
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
+    }];
+
+    NSAttributedString *attrGame = [[NSAttributedString alloc] initWithString:game attributes:@{
+        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
+    }];
+
+    NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@ %@", attrName, attrPlaying, attrGame];
+    return attrString;
+}
+
+- (NSAttributedString *)attributedViewersWithNumber:(NSNumber *)number
+{
+    NSAttributedString *attrCount = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", number] attributes:@{
+        NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
+    }];
+
+    NSAttributedString *attrViewers = [[NSAttributedString alloc] initWithString:@"viewers" attributes:@{
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#7C7C7C" alpha:1.0],
+    }];
+
+    NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@", attrCount, attrViewers];
+    return attrString;
 }
 
 @end

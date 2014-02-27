@@ -7,23 +7,29 @@
 //
 
 #import "HexColor.h"
+#import "NSAttributedString+CCLFormat.h"
 
 #import "StreamViewerView.h"
 
 @implementation StreamViewerView
 
-- (id)initWithFrame:(NSRect)frame
++ (id)init
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+    NSNib *nib = [[NSNib alloc] initWithNibNamed:@"StreamViewer" bundle:nil];
+	NSArray *objects = nil;
+    [nib instantiateWithOwner:nil topLevelObjects:&objects];
+	for (id object in objects)
+		if ([object isKindOfClass:[NSView class]]) {
+            return object;
+        }
+	return nil;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[super drawRect:dirtyRect];
+
+    [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B" alpha:1]];
 
     // Draw the view's header rectangle and fill it.
     NSColor *contentTopColor = [NSColor colorWithHexString:@"#171719" alpha:1.0];
@@ -55,6 +61,25 @@
     NSRect footerRect = NSMakeRect(0, 0, self.bounds.size.width, 110);
     [[NSColor colorWithHexString:@"#FFFFFF" alpha:1.0] setFill];
     NSRectFill(footerRect);
+}
+
+- (NSAttributedString *)attributedStatusWithString:(NSString *)string
+{
+    NSString *truncatedString = [[string componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
+    NSMutableAttributedString *attrStatus = [[NSMutableAttributedString alloc] initWithString:truncatedString];
+
+    // Tame the line height first.
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    [style setMaximumLineHeight:20];
+
+    // Send it off.
+    NSMutableDictionary *attributes = [@{
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#4A4A4A" alpha:1.0],
+        NSParagraphStyleAttributeName: style,
+    } mutableCopy];
+    [attrStatus addAttributes:attributes range:NSMakeRange(0, [attrStatus length])];
+    return attrStatus;
 }
 
 @end

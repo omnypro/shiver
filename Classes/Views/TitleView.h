@@ -15,4 +15,8 @@
 @property (nonatomic, weak) IBOutlet NSTextField *gameLabel;
 @property (nonatomic, weak) IBOutlet NSTextField *viewersLabel;
 
+- (NSAttributedString *)attributedStringWithName:(NSString *)name;
+- (NSAttributedString *)attributedStringWithName:(NSString *)name game:(NSString *)game;
+- (NSAttributedString *)attributedViewersWithNumber:(NSNumber *)number;
+
 @end
