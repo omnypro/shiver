@@ -79,10 +79,6 @@
 		939E8B7317717BAF006D6442 /* RefreshActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6F17717BAF006D6442 /* RefreshActive@2x.png */; };
 		939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7017717BAF006D6442 /* RefreshInactive.png */; };
 		939E8B7517717BAF006D6442 /* RefreshInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */; };
-		939E8B7A17717DE1006D6442 /* CogActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7617717DE1006D6442 /* CogActive.png */; };
-		939E8B7B17717DE1006D6442 /* CogActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7717717DE1006D6442 /* CogActive@2x.png */; };
-		939E8B7C17717DE1006D6442 /* CogInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7817717DE1006D6442 /* CogInactive.png */; };
-		939E8B7D17717DE1006D6442 /* CogInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7917717DE1006D6442 /* CogInactive@2x.png */; };
 		939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B7F17719251006D6442 /* WatchButtonCell.m */; };
 		939E8B831771A4CF006D6442 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B821771A4CF006D6442 /* HeaderView.m */; };
 		939E8B8E17727456006D6442 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B8D17727456006D6442 /* UserImageView.m */; };
@@ -246,10 +242,6 @@
 		939E8B6F17717BAF006D6442 /* RefreshActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshActive@2x.png"; path = "Assets/Images/RefreshActive@2x.png"; sourceTree = SOURCE_ROOT; };
 		939E8B7017717BAF006D6442 /* RefreshInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshInactive.png; path = Assets/Images/RefreshInactive.png; sourceTree = SOURCE_ROOT; };
 		939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshInactive@2x.png"; path = "Assets/Images/RefreshInactive@2x.png"; sourceTree = SOURCE_ROOT; };
-		939E8B7617717DE1006D6442 /* CogActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CogActive.png; path = Assets/Images/CogActive.png; sourceTree = SOURCE_ROOT; };
-		939E8B7717717DE1006D6442 /* CogActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CogActive@2x.png"; path = "Assets/Images/CogActive@2x.png"; sourceTree = SOURCE_ROOT; };
-		939E8B7817717DE1006D6442 /* CogInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CogInactive.png; path = Assets/Images/CogInactive.png; sourceTree = SOURCE_ROOT; };
-		939E8B7917717DE1006D6442 /* CogInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CogInactive@2x.png"; path = "Assets/Images/CogInactive@2x.png"; sourceTree = SOURCE_ROOT; };
 		939E8B7E17719251006D6442 /* WatchButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchButtonCell.h; path = Classes/Views/WatchButtonCell.h; sourceTree = SOURCE_ROOT; };
 		939E8B7F17719251006D6442 /* WatchButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchButtonCell.m; path = Classes/Views/WatchButtonCell.m; sourceTree = SOURCE_ROOT; };
 		939E8B811771A4CF006D6442 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = Classes/Views/HeaderView.h; sourceTree = SOURCE_ROOT; };
@@ -589,10 +581,6 @@
 		9391830E176A827300367399 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				939E8B7617717DE1006D6442 /* CogActive.png */,
-				939E8B7717717DE1006D6442 /* CogActive@2x.png */,
-				939E8B7817717DE1006D6442 /* CogInactive.png */,
-				939E8B7917717DE1006D6442 /* CogInactive@2x.png */,
 				9324239B17728FBF00374EB9 /* EmptyStreamList.png */,
 				9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */,
 				93462A05177CB14D00C928CA /* Error.png */,
@@ -860,10 +848,6 @@
 				939E8B7317717BAF006D6442 /* RefreshActive@2x.png in Resources */,
 				939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */,
 				939E8B7517717BAF006D6442 /* RefreshInactive@2x.png in Resources */,
-				939E8B7A17717DE1006D6442 /* CogActive.png in Resources */,
-				939E8B7B17717DE1006D6442 /* CogActive@2x.png in Resources */,
-				939E8B7C17717DE1006D6442 /* CogInactive.png in Resources */,
-				939E8B7D17717DE1006D6442 /* CogInactive@2x.png in Resources */,
 				9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */,
 				9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */,
 				932423A11772945800374EB9 /* LoginKeys.png in Resources */,
