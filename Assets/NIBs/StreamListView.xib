@@ -21,14 +21,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" scrollerKnobStyle="light" findBarPosition="belowContent" id="78" customClass="JLNFadingScrollView">
-                    <rect key="frame" x="0.0" y="46" width="240" height="412"/>
+                    <rect key="frame" x="0.0" y="44" width="240" height="414"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CYa-zr-a45">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="412"/>
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view id="79" customClass="JASectionedListView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="412"/>
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="414"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="-2" id="BOj-FJ-KoP"/>
