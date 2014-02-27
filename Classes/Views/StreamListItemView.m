@@ -55,13 +55,12 @@
 
     if (_object.channel.displayName) {
         [_userLabel setStringValue:_object.channel.displayName];
-        [_userLabel setTextColor:[NSColor colorWithHexString:@"#1A1A1A" alpha:1]];
+        [_userLabel setTextColor:[NSColor colorWithHexString:@"#FFFFFF" alpha:1]];
     }
 
     if (_object.game == nil || [_object.game isKindOfClass:[NSNull class]]) { [_gameLabel setStringValue:@"(Unspecified)"]; }
     else {
         [_gameLabel setStringValue:_object.game];
-        [_gameLabel setTextColor:[NSColor colorWithHexString:@"#4A90E2" alpha:1]];
     }
 
     [self refreshLogo];
@@ -119,30 +118,29 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Draw the initial rectangle.
-    NSRect initialRect = NSInsetRect([self bounds], 10.0, 0.0);
-    [[NSColor colorWithHexString:@"#FFFFFF" alpha:1.0] setFill];
-    NSRectFill(initialRect);
+    [super drawRect:dirtyRect];
+
+    [_gameLabel setTextColor:[NSColor colorWithHexString:@"#7C7C7C" alpha:1]];
+
+    NSBezierPath *imageShadowPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(10, 4, 50, 50) xRadius:3.0 yRadius:3.0];
+    [[NSColor colorWithHexString:@"#222122" alpha:1.0] set];
+    [imageShadowPath fill];
+
+    NSBezierPath *imagePath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(10, 5, 50, 50) xRadius:3.0 yRadius:3.0];
+    [[NSColor colorWithHexString:@"#0B0B0B" alpha:1.0] set];
+    [imagePath fill];
 
     if (self.selected) {
-        NSRect selectedRect = NSMakeRect(225, 0, 5, 60);
-        [[NSColor colorWithHexString:@"#0094DA" alpha:1.0] setFill];
-        NSRectFill(selectedRect);
+        [_gameLabel setTextColor:[NSColor colorWithHexString:@"#4A90E2" alpha:1]];
+
+        NSBezierPath *selectedPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(8, 3, 54, 54) xRadius:3.0 yRadius:3.0];
+        [[NSColor colorWithHexString:@"#0094DA" alpha:1.0] set];
+        [selectedPath fill];
+
+        NSBezierPath *imagePath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(10, 5, 50, 50) xRadius:3.0 yRadius:3.0];
+        [[NSColor colorWithHexString:@"#0B0B0B" alpha:1.0] set];
+        [imagePath fill];
     }
-
-    // Declare an outer shadow.
-    NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowBlurRadius:2];
-    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.25]];
-    [shadow setShadowOffset:NSMakeSize(0, -2)];
-
-    [NSGraphicsContext saveGraphicsState];
-    {
-        [shadow set];
-    }
-    [NSGraphicsContext restoreGraphicsState];
-
-    [super drawRect:dirtyRect];
 }
 
 @end

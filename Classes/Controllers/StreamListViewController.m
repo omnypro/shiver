@@ -86,9 +86,9 @@ enum {
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setCanCallDataSourceInParallel:YES];
     [_listView setConditionallyUseLayerBacking:YES];
-    [_listView setMargin:NSMakePoint(1, 1)];
+    [_listView setPadding:JAEdgeInsetsMake(-5, 0, 5, 0)];
 
-    [_scrollView setFadeColor:[NSColor colorWithHexString:@"#000000" alpha:1.0]];
+    [_scrollView setFadeColor:[NSColor colorWithHexString:@"#000000" alpha:0.5]];
 }
 
 - (void)initializeSignals
@@ -136,18 +136,6 @@ enum {
 
 //- (void)initializeViewSignals
 //{
-//    @weakify(self);
-//
-//    RAC(self, statusItem.title) = [RACSignal combineLatest:@[RACObserve(self, preferences.streamCountEnabled), RACObserve(self, streamList), RACObserve(self, loggedIn)]
-//        reduce:^id(NSNumber *countEnabled, NSArray *streamList, NSNumber *loggedIn){
-//        if ([countEnabled boolValue] && [streamList count] > 0 && [loggedIn boolValue]) {
-//            DDLogInfo(@"Application (%@): Status item title updated. (%lu)", [self class], (unsigned long)[streamList count]);
-//            return [NSString stringWithFormat:@"%lu", [streamList count]];
-//        } else {
-//            DDLogInfo(@"Application (%@): Status item title removed.", [self class]);
-//            return @"";
-//        }
-//    }];
 //
 //    self.windowController.refreshButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 //        @strongify(self);

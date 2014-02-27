@@ -37,7 +37,15 @@
 {
 	[super drawRect:dirtyRect];
 
-    [self.title setTextColor:[NSColor colorWithHexString:@"#FFFFFF"]];
+    NSRect backgroundRect = NSMakeRect(0, 5, self.bounds.size.width, 30);
+    [[NSColor colorWithHexString:@"#0C0C0C"] setFill];
+    NSRectFill(backgroundRect);
+
+    NSRect backgroundShadowRect = NSMakeRect(0, 5, self.bounds.size.width, 1);
+    [[NSColor colorWithHexString:@"#1D1C1D"] setFill];
+    NSRectFill(backgroundShadowRect);
+
+    [self.title setTextColor:[NSColor colorWithHexString:@"#AEAEAE"]];
 	
     // Drawing code here.
 }
