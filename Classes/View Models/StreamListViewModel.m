@@ -10,6 +10,7 @@
 #import "Stream.h"
 #import "StreamViewModel.h"
 #import "TwitchAPIClient.h"
+#import "YOLO.h"
 
 #import "StreamListViewModel.h"
 
@@ -66,12 +67,21 @@
     // ...
     RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
     RAC(self, featuredStreams) = [RACSignal
-        combineLatest:@[readyAndReachable, hasCredential, fetchFeaturedStreams]
-        reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *streams){
+        combineLatest:@[readyAndReachable, hasCredential, fetchFeaturedStreams, fetchAuthenticatedStreams]
+        reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, NSArray *featuredStreams, NSArray *authenticatedStreams){
             DDLogInfo(@"Application (%@): Fetching featured stream list.", [self class]);
-            if ([readyAndReachable boolValue] && [hasCredential boolValue] && streams != nil) {
-                DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [streams count]);
-                return streams;
+            if ([readyAndReachable boolValue] && [hasCredential boolValue] && featuredStreams != nil) {
+                NSArray *streams = featuredStreams;
+                if (authenticatedStreams != nil) {
+                    // If authenticated streams are a thing, its contents from
+                    // the featured stream list.
+                    streams = streams.without(authenticatedStreams);
+                } else {
+                    streams = featuredStreams;
+                }
+
+                DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [featuredStreams count]);
+                return streams.sortBy(@"name");
             } else {
                 DDLogInfo(@"Application (%@): No featured streams fetched.", [self class]);
                 return nil;

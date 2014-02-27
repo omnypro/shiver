@@ -40,4 +40,28 @@
     return self;
 }
 
+#pragma mark NSObject
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p> { name = %@ }", self.class, self, self.name];
+}
+
+- (NSUInteger)hash
+{
+    return [self.name hash];
+}
+
+- (BOOL)isEqual:(StreamViewModel *)viewModel
+{
+    return [self.name isEqual:[viewModel name]];
+
+}
+
+-(NSComparisonResult)compare:(StreamViewModel *)otherViewModel
+{
+    NSComparisonResult comp_result = [self compare:otherViewModel];
+    return comp_result;
+}
+
 @end
