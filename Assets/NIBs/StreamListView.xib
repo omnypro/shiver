@@ -49,10 +49,10 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" id="Ft2-v7-OdJ">
-                    <rect key="frame" x="10" y="12" width="21" height="21"/>
+                    <rect key="frame" x="10" y="11" width="24" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="ZEC-nh-7WG">
-                        <behavior key="behavior" lightByContents="YES"/>
+                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="RefreshInactive" imagePosition="only" alignment="center" alternateImage="RefreshActive" imageScaling="proportionallyDown" inset="2" id="ZEC-nh-7WG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
@@ -70,6 +70,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSRefreshTemplate" width="10" height="12"/>
+        <image name="RefreshActive" width="24" height="24"/>
+        <image name="RefreshInactive" width="24" height="24"/>
     </resources>
 </document>
