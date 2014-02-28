@@ -10,6 +10,8 @@
 
 @interface StreamListViewModel : RVMViewModel
 
+@property (nonatomic, strong) RACCommand *refreshCommand;
+
 @property (nonatomic, strong) NSArray *authenticatedStreams;
 @property (nonatomic, strong) NSArray *featuredStreams;
 
