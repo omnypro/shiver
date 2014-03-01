@@ -28,6 +28,7 @@
 
 @property (weak) IBOutlet NSImageView *avatar;
 @property (weak) IBOutlet NSTextField *usernameLabel;
+@property (weak) IBOutlet NSButton *loginButton;
 
 @end
 
@@ -51,10 +52,11 @@
     [window setShowsBaselineSeparator:NO];
 
 	NSView *titleBarView = window.titleBarView;
-    self.titleView.frame = titleBarView.bounds;
-    self.titleView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    [titleBarView addSubview:_loginView];
+    [self.titleView setFrame:titleBarView.bounds];
+    [self.titleView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [titleBarView addSubview:self.titleView];
+    [self.titleView addSubview:_loginView];
+    [self.titleView setWantsLayer:YES];
 
     [[RACObserve(self, viewModel.isLoggedIn)
         deliverOn:[RACScheduler mainThreadScheduler]]
@@ -62,10 +64,10 @@
             NSLog(@"value: %@", loggedIn);
             BOOL isLoggedIn = [loggedIn boolValue];
             if (isLoggedIn) {
-                [titleBarView replaceSubview:_loginView with:_userView];
+                [[self.titleView animator] replaceSubview:_loginView with:_userView];
             } else {
                 if ([_userView superview] != nil) {
-                    [titleBarView replaceSubview:_userView with:_loginView];
+                    [[self.titleView animator] replaceSubview:_userView with:_loginView];
                 }
             }
         }];

@@ -13,6 +13,7 @@
                 <outlet property="_userView" destination="gkn-M6-wcm" id="nsd-W3-Dvl"/>
                 <outlet property="_usernameLabel" destination="ev4-DT-Etn" id="86h-0J-kPJ"/>
                 <outlet property="avatar" destination="u90-8j-Zx2" id="IT4-Ki-HSI"/>
+                <outlet property="loginButton" destination="NC4-uQ-d6w" id="j3k-o2-GUc"/>
                 <outlet property="titleView" destination="Z0Z-Zh-U7C" id="Bn2-7E-Rh7"/>
                 <outlet property="usernameLabel" destination="ev4-DT-Etn" id="ShL-Bd-Cvx"/>
                 <outlet property="viewer" destination="bEX-Qf-PcT" id="hwx-NQ-s7U"/>
@@ -95,7 +96,7 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="38"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u90-8j-Zx2">
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u90-8j-Zx2" customClass="UserImageView">
                     <rect key="frame" x="208" y="8" width="22" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
