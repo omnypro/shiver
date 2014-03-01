@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <EXTScope.h>
-
 #import "AFImageRequestOperation.h"
 #import "Channel.h"
 #import "HexColor.h"
@@ -22,46 +19,43 @@
 #import "StreamListItemView.h"
 
 @interface StreamListItemView () {
-    IBOutlet NSTextField *_gameLabel;
-    IBOutlet NSTextField *_userLabel;
 }
 
-@property (weak) IBOutlet StreamLogoImageView *logo;
 @property (nonatomic, strong) NSString *logoURLCache;
+
+@property (weak) IBOutlet NSTextField *gameLabel;
+@property (weak) IBOutlet NSTextField *userLabel;
+@property (weak) IBOutlet StreamLogoImageView *logo;
 
 @end
 
 @implementation StreamListItemView
 
-+ (StreamListItemView *)initItem
++ (StreamListItemView *)initItemStream:(StreamViewModel *)viewModel
 {
 	NSNib *nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass(self) bundle:nil];
 	NSArray *objects = nil;
-    [nib instantiateWithOwner:nil topLevelObjects:&objects];
+    [nib instantiateWithOwner:viewModel topLevelObjects:&objects];
 	for (id object in objects) {
 		if ([object isKindOfClass:[JAListViewItem class]]) {
+            [object setSelected:NO];
+            [object setViewModel:viewModel];
+            [object setupInterface];
             return object;
         }
     }
 	return nil;
 }
 
-- (void)setObject:(StreamViewModel *)object
+- (void)setupInterface
 {
-    if (_object == object)
-        return;
+    RAC(self, userLabel.stringValue) = [RACObserve(self, viewModel.channel.displayName) deliverOn:[RACScheduler mainThreadScheduler]];
+    RAC(self, gameLabel.stringValue, @"(Unspecified)") = [RACObserve(self, viewModel.channel.game) deliverOn:[RACScheduler mainThreadScheduler]];
 
-    _object = object;
-
-    if (_object.channel.displayName) {
-        [_userLabel setStringValue:_object.channel.displayName];
-        [_userLabel setTextColor:[NSColor colorWithHexString:@"#FFFFFF" alpha:1]];
-    }
-
-    if (_object.game == nil || [_object.game isKindOfClass:[NSNull class]]) { [_gameLabel setStringValue:@"(Unspecified)"]; }
-    else {
-        [_gameLabel setStringValue:_object.game];
-    }
+    [self.userLabel setTextColor:[NSColor colorWithHexString:@"#FFFFFF" alpha:1]];
+    RAC(self, gameLabel.textColor) = [[RACObserve(self, selected) map:^id(id value) {
+        return [NSColor colorWithHexString:[value boolValue] ? @"#4A90E2" : @"#7C7C7C" alpha:1];
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 
     [self refreshLogo];
 }
@@ -96,9 +90,9 @@
     static NSImage *placeholderImage = nil;
 
     @weakify(self);
-    if (![self.object.logoImageURL.absoluteString isEqualToString:self.logoURLCache]) {
+    if (![self.viewModel.logoImageURL.absoluteString isEqualToString:self.logoURLCache]) {
         // Prevent setting the logo unnecessarily.
-        NSURLRequest *request = [NSURLRequest requestWithURL:self.object.logoImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.viewModel.logoImageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10];
         [_logo setImageWithURLRequest:request placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSImage *image) {
             @strongify(self);
             [self.logo setImage:image];
@@ -107,7 +101,7 @@
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
 
-        self.logoURLCache = self.object.logoImageURL.absoluteString;
+        self.logoURLCache = self.viewModel.logoImageURL.absoluteString;
     }
     else {
         [_logo setImageWithURL:[NSURL URLWithString:self.logoURLCache]];
@@ -120,8 +114,6 @@
 {
     [super drawRect:dirtyRect];
 
-    [_gameLabel setTextColor:[NSColor colorWithHexString:@"#7C7C7C" alpha:1]];
-
     NSBezierPath *imageShadowPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(10, 4, 50, 50) xRadius:3.0 yRadius:3.0];
     [[NSColor colorWithHexString:@"#222122" alpha:1.0] set];
     [imageShadowPath fill];
@@ -131,8 +123,6 @@
     [imagePath fill];
 
     if (self.selected) {
-        [_gameLabel setTextColor:[NSColor colorWithHexString:@"#4A90E2" alpha:1]];
-
         NSBezierPath *selectedPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(8, 3, 54, 54) xRadius:3.0 yRadius:3.0];
         [[NSColor colorWithHexString:@"#0094DA" alpha:1.0] set];
         [selectedPath fill];
@@ -142,5 +132,13 @@
         [imagePath fill];
     }
 }
+
+- (void) setSelected:(BOOL)isSelected
+{
+    selected = isSelected;
+    [self setNeedsDisplay:YES];
+}
+
+@synthesize selected;
 
 @end

@@ -7,13 +7,15 @@
 //
 
 #import "JAListViewItem.h"
-#import "StreamViewModel.h"
 
-@interface StreamListItemView : JAListViewItem
+@class StreamViewModel;
 
-@property (nonatomic, strong) StreamViewModel *object;
+@interface StreamListItemView : JAListViewItem {
+    BOOL selected;
+}
 
-+ (StreamListItemView *)initItem;
-- (void)refreshLogo;
+@property (nonatomic, strong) StreamViewModel *viewModel;
+
++ (StreamListItemView *)initItemStream:(StreamViewModel *)viewModel;
 
 @end

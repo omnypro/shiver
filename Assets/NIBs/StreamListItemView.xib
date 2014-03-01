@@ -37,9 +37,9 @@
                 </imageView>
             </subviews>
             <connections>
-                <outlet property="_gameLabel" destination="43" id="72"/>
-                <outlet property="_userLabel" destination="12" id="73"/>
+                <outlet property="gameLabel" destination="43" id="dU6-37-VXs"/>
                 <outlet property="logo" destination="30" id="77"/>
+                <outlet property="userLabel" destination="12" id="iJg-hl-OgD"/>
             </connections>
         </customView>
     </objects>
