@@ -13,7 +13,6 @@
 #import "NSImageView+AFNetworking.h"
 #import "Preferences.h"
 #import "StreamLogoImageView.h"
-#import "StreamPreviewImageView.h"
 #import "StreamViewModel.h"
 
 #import "StreamListItemView.h"

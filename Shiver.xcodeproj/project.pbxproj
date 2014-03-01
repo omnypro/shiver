@@ -46,7 +46,6 @@
 		936327DB1764F9BB00146C8A /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327DA1764F9BB00146C8A /* Channel.m */; };
 		936327E11765268200146C8A /* TwitchAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327E01765268200146C8A /* TwitchAPIClient.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
-		938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7661177105FC0094A361 /* StreamPreviewImageView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
 		938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21218A5AFB90062C4D0 /* StreamViewer.xib */; };
@@ -75,7 +74,6 @@
 		939E8B7317717BAF006D6442 /* RefreshActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6F17717BAF006D6442 /* RefreshActive@2x.png */; };
 		939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7017717BAF006D6442 /* RefreshInactive.png */; };
 		939E8B7517717BAF006D6442 /* RefreshInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */; };
-		939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B7F17719251006D6442 /* WatchButtonCell.m */; };
 		939E8B8E17727456006D6442 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B8D17727456006D6442 /* UserImageView.m */; };
 		93A3A12217658ED200913C9A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12017658ED200913C9A /* LoginViewController.m */; };
 		93A3A12317658ED200913C9A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A3A12117658ED200913C9A /* LoginView.xib */; };
@@ -192,8 +190,6 @@
 		936327DF1765268200146C8A /* TwitchAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitchAPIClient.h; path = Classes/Networking/TwitchAPIClient.h; sourceTree = SOURCE_ROOT; };
 		936327E01765268200146C8A /* TwitchAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitchAPIClient.m; path = Classes/Networking/TwitchAPIClient.m; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
-		938A7660177105FC0094A361 /* StreamPreviewImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamPreviewImageView.h; path = Classes/Views/StreamPreviewImageView.h; sourceTree = SOURCE_ROOT; };
-		938A7661177105FC0094A361 /* StreamPreviewImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamPreviewImageView.m; path = Classes/Views/StreamPreviewImageView.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
@@ -232,8 +228,6 @@
 		939E8B6F17717BAF006D6442 /* RefreshActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshActive@2x.png"; path = "Assets/Images/RefreshActive@2x.png"; sourceTree = SOURCE_ROOT; };
 		939E8B7017717BAF006D6442 /* RefreshInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshInactive.png; path = Assets/Images/RefreshInactive.png; sourceTree = SOURCE_ROOT; };
 		939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshInactive@2x.png"; path = "Assets/Images/RefreshInactive@2x.png"; sourceTree = SOURCE_ROOT; };
-		939E8B7E17719251006D6442 /* WatchButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchButtonCell.h; path = Classes/Views/WatchButtonCell.h; sourceTree = SOURCE_ROOT; };
-		939E8B7F17719251006D6442 /* WatchButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchButtonCell.m; path = Classes/Views/WatchButtonCell.m; sourceTree = SOURCE_ROOT; };
 		939E8B8C17727456006D6442 /* UserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserImageView.h; path = Classes/Views/UserImageView.h; sourceTree = SOURCE_ROOT; };
 		939E8B8D17727456006D6442 /* UserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserImageView.m; path = Classes/Views/UserImageView.m; sourceTree = SOURCE_ROOT; };
 		93A3A11F17658ED200913C9A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/Controllers/LoginViewController.h; sourceTree = SOURCE_ROOT; };
@@ -532,10 +526,6 @@
 				93C0A7A318B7FBDE005943E8 /* StreamListView.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
 				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
-				938A7660177105FC0094A361 /* StreamPreviewImageView.h */,
-				938A7661177105FC0094A361 /* StreamPreviewImageView.m */,
-				939E8B7E17719251006D6442 /* WatchButtonCell.h */,
-				939E8B7F17719251006D6442 /* WatchButtonCell.m */,
 			);
 			name = "Stream List";
 			sourceTree = "<group>";
@@ -964,14 +954,12 @@
 				93A3A1331768571C00913C9A /* Constants.m in Sources */,
 				93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */,
 				93F6770918BD50BD0064F005 /* EmptyViewerView.m in Sources */,
-				938A7662177105FC0094A361 /* StreamPreviewImageView.m in Sources */,
 				938CD23C18AE22160062C4D0 /* StreamListViewModel.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
 				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
 				936314181785346300AED886 /* NSView+Animations.m in Sources */,
-				939E8B8017719252006D6442 /* WatchButtonCell.m in Sources */,
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
 				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
 				934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */,
