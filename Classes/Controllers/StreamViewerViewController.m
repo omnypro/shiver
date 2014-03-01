@@ -21,6 +21,7 @@
 @interface StreamViewerViewController ()
 
 @property (nonatomic, strong) MainWindowController *windowController;
+@property (nonatomic, strong) NSURL *chatURL;
 @property (nonatomic, strong) NSURL *profileURL;
 @property (nonatomic, strong) WebScriptObject *wso;
 
@@ -109,6 +110,10 @@
         map:^id(NSString *name) {
             return [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/profile", name]];
         }];
+    RAC(self, chatURL) = [RACObserve(self, stream.name)
+        map:^id(NSString *name) {
+            return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.twitch.tv/chat/embed?channel=%@&popout_chat=true", name]];
+        }];
 
     [_webView setFrameLoadDelegate:self];
 }
@@ -162,7 +167,7 @@
 
 - (IBAction)showChat:(id)sender
 {
-
+    [[NSWorkspace sharedWorkspace] openURL:self.chatURL];
 }
 
 @end
