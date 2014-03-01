@@ -178,14 +178,6 @@ enum {
 
 //- (void)initializeViewSignals
 //{
-//
-//    self.windowController.refreshButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//        @strongify(self);
-//        DDLogInfo(@"Application (%@): Request to manually refresh the stream list.", [self class]);
-//        self.client = [TwitchAPIClient sharedClient];
-//        self.showingLoading = YES;
-//    }];
-//
 //    // Watch the stream list for changes and enable or disable UI elements
 //    // based on those values.
 //    [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
@@ -219,42 +211,6 @@ enum {
 //        }
 //    }];
 //
-//    // Show or hide the loading view.
-//    [[[RACObserve(self, showingLoading) distinctUntilChanged]
-//      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingLoading) {
-//         @strongify(self);
-//         BOOL isShowingLoading = [showingLoading boolValue];
-//         if (isShowingLoading) {
-//             DDLogInfo(@"Application (%@): Showing the loading view.", [self class]);
-//             [self.loadingView.progressIndicator startAnimation:self];
-//             [self.view addSubview:self.loadingView positioned:NSWindowAbove relativeTo:nil];
-//         }
-//         else {
-//             DDLogInfo(@"Application (%@): Removing the loading view.", [self class]);
-//             [self.loadingView removeFromSuperviewAnimated:YES];
-//             [self.loadingView.progressIndicator stopAnimation:self];
-//             self.loadingView = nil;
-//         }
-//     }];
-//
-//    // Show or hide the empty view.
-//    [[[RACObserve(self, showingEmpty) distinctUntilChanged]
-//      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingEmpty) {
-//        @strongify(self);
-//        BOOL isShowingEmpty = [showingEmpty boolValue];
-//        if (isShowingEmpty && !self.showingError){
-//            DDLogInfo(@"Application (%@): Showing the empty view.", [self class]);
-//            NSString *title = @"Looks like you've got nothing to watch.";
-//            NSString *subTitle = @"Why don't you follow some new streamers?";
-//            self.emptyView = [[EmptyErrorView init] emptyViewWithTitle:title subTitle:subTitle];
-//            [self.view addSubview:self.emptyView animated:YES];
-//        } else {
-//            DDLogInfo(@"Application (%@): Removing the empty view.", [self class]);
-//            [self.emptyView removeFromSuperviewAnimated:YES];
-//            self.emptyView = nil;
-//        }
-//    }];
-//
 //    // Show or hide the error view.
 //    [[[RACObserve(self, showingError) distinctUntilChanged]
 //      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingError) {
@@ -263,7 +219,7 @@ enum {
 //        if (isShowingError) {
 //            // Don't show the empty or loading views if there's an error.
 //            self.showingEmpty = NO;
-//            self.showingLoading = NO;
+//            self.isLoading = NO;
 //            NSString *title = @"Whoops! Something went wrong.";
 //            NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
 //            DDLogError(@"Application (%@): Showing the error view with message, \"%@\"", [self class], message);
@@ -313,37 +269,6 @@ enum {
 //        [self.windowController.statusLabel setStringValue:@"Loading..."];
 //    }];
 //
-//    // We pass a nil user to this controller in order to "reset" the interface.
-//    // We'll watch that value, filter then reset the interface.
-//    [[RACObserve(self, user) filter:^BOOL(id value) {
-//        return (value == nil);
-//    }] subscribeNext:^(User *user) {
-//        self.client = nil;
-//        self.loggedIn = NO;
-//        self.streamList = nil;
-//    }];
-//
-//    // Watch for `client` to change or be populated. If so, fetch the stream
-//    // list and assign it.
-//    [[[RACObserve(self, client) filter:^BOOL(id value) {
-//        return (value != nil);
-//    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
-//        @strongify(self);
-//        self.showingLoading = YES;
-//        [[[self.client fetchStreamList]
-//          deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *streamList) {
-//            DDLogInfo(@"Application (%@): Fetching the stream list.", [self class]);
-//            @strongify(self);
-//            self.streamList = streamList;
-//            self.showingError = NO;
-//        } error:^(NSError *error) {
-//            @strongify(self);
-//            DDLogError(@"Application (%@): (Error) %@", [self class], error);
-//            self.showingErrorMessage = [self formatError:[error localizedDescription]];
-//            self.showingError = YES;
-//        }];
-//    }];
-//
 //    // When the stream list gets changed, reload the table.
 //    [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]]
 //      subscribeNext:^(id x){
@@ -359,7 +284,7 @@ enum {
 //
 //        // Reload the table.
 //        [_listView reloadDataAnimated:YES];
-//        self.showingLoading = NO;
+//        self.isLoading = NO;
 //
 //        // If we don't have a user, don't run this!
 //        else { DDLogInfo(@"Application (%@): We don't have a user; not refreshing the list.", [self class]); }
@@ -398,27 +323,6 @@ enum {
 //            DDLogInfo(@"Notifications: %lu new streams.", (unsigned long)[uniqueSet count]);
 //            [self sendNewStreamNotificationToUser:uniqueSet];
 //        }
-//    }];
-//
-//    // Refresh the stream list at an interval provided by the user.
-//    [[RACObserve(self, preferences.streamListRefreshTime) distinctUntilChanged] subscribeNext:^(NSNumber *interval) {
-//        DDLogInfo(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
-//    }];
-//    
-//    // We store the stream list refresh time in minutes, so take
-//    // that value and multiply it by 60 for great justice.
-//    [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue] * 60 onScheduler:[RACScheduler scheduler]] subscribeNext:^(id x) {
-//        @strongify(self);
-//        DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
-//        self.client = [TwitchAPIClient sharedClient];
-//        self.showingLoading = YES;
-//    }];
-//
-//    // Monitor the data source array and show an empty view if it's... empty.
-//    [RACObserve(self, streamList) subscribeNext:^(NSArray *streamList) {
-//        @strongify(self);
-//        if ((streamList == nil) || ([streamList count] == 0)) { self.showingEmpty = YES; }
-//        else { self.showingEmpty = NO; }
 //    }];
 //}
 
