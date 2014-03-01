@@ -99,16 +99,12 @@ enum {
 
 - (void)initializeSignals
 {
-
     RACSignal *authenticatedStreams = RACObserve(self, viewModel.authenticatedStreams);
     RACSignal *featuredStreams = RACObserve(self, viewModel.featuredStreams);
 
     // ...
-    _refreshButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        DDLogInfo(@"Application (%@): Request to manually refresh the stream list.", [self class]);
-        [_listView reloadDataAnimated:YES];
-        return [RACSignal combineLatest:@[authenticatedStreams, featuredStreams]];
-    }];
+    _refreshButton.rac_command = self.viewModel.refreshCommand;
+    [self.viewModel.refreshCommand.executionSignals subscribeNext:^(id x) {}];
 
     // Bind the status item's title to the number of active -authenticated-
     // streams, as long as that array exists, and the user wants the count.
@@ -135,11 +131,13 @@ enum {
     [[RACSignal
         combineLatest:@[RACObserve(self, viewModel.authenticatedStreams), RACObserve(self, viewModel.featuredStreams)]]
         subscribeNext:^(id x) {
-            [_listView reloadDataAnimated:YES];
+            @strongify(self);        
+            [self reloadData];
         } error:^(NSError *error) {
             @strongify(self);
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
+}
 
 - (void)initializeLifecycleSignals
 {
@@ -161,6 +159,21 @@ enum {
             }
         }];
 
+    // Refresh the stream list at an interval provided by the user.
+    [[RACObserve(self, preferences.streamListRefreshTime) distinctUntilChanged]
+        subscribeNext:^(NSNumber *interval) {
+            DDLogInfo(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
+        }];
+
+    // We store the stream list refresh time in minutes, so take
+    // that value and multiply it by 60 for great justice.
+    [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue] * 60
+        onScheduler:[RACScheduler scheduler]]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
+            [self.viewModel.refreshCommand execute:nil];
+        }];
 }
 
 //- (void)initializeViewSignals
@@ -420,6 +433,14 @@ enum {
     return string;
 }
 
+- (void)reloadData {
+    NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
+    [_listView reloadData];
+    for (StreamListItemView *item in selectedViews) {
+        [_listView selectView:item];
+    }
+}
+
 #pragma mark - NSUserNotificationCenter Methods
 
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet
@@ -456,42 +477,65 @@ enum {
 
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
-    if (listView != _listView) { return; }
-    if ([view isKindOfClass:[StreamListItemView class]]) {
+    if (listView == _listView) {
+        if ([(JASectionedListView *)listView isViewSectionHeaderView:view]) {
+            return;
+        }
+
         StreamListItemView *item = (StreamListItemView *)view;
-        [self.windowController.viewerController setSelectedStream:item.object];
-        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.object.channel.displayName, item.object.hlsURL);
+        [item setSelected:YES];
+
+        DDLogInfo(@"Application (%@): JAListView will select -- %@", [self class], item);
     }
+
+    [_listView reloadLayoutAnimated:NO];
 }
 
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
-    if (listView == _listView) { return; }
+    if (listView == _listView) {
+        if ([(JASectionedListView *)listView isViewSectionHeaderView:view]) {
+            return;
+        }
+
+        StreamListItemView *item = (StreamListItemView *)view;
+        [item setSelected:YES];
+
+        if (self.windowController.viewerController.stream != item.viewModel) {
+            [self.windowController.viewerController setStream:item.viewModel];
+        }
+
+        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.viewModel.channel.displayName, item.viewModel.hlsURL);
+        DDLogInfo(@"Application (%@): JAListView did select -- %@", [self class], item.viewModel);
+    }
+
+    [_listView reloadLayoutAnimated:NO];
 }
 
 - (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
 {
-    if (listView == _listView) { return; }
+    StreamListItemView *item = (StreamListItemView *)view;
+    DDLogInfo(@"Application (%@): JAListView did deselect -- %@", [self class], item);
+    [listView reloadLayoutAnimated:NO];
 }
 
 #pragma mark - JAListViewDataSource Methods
 
 - (JAListViewItem *)listView:(JAListView *)listView viewForSection:(NSUInteger)section index:(NSUInteger)index
 {
-    StreamListItemView *item = [StreamListItemView initItem];
+    StreamListItemView *item = nil;
 
     switch (section) {
         case 0:
-            item.object = [self.viewModel.authenticatedStreams objectAtIndex:index];
+            item = [StreamListItemView initItemStream:[self.viewModel.authenticatedStreams objectAtIndex:index]];
             break;
         case 1:
-            item.object = [self.viewModel.featuredStreams objectAtIndex:index];
+            item = [StreamListItemView initItemStream:[self.viewModel.featuredStreams objectAtIndex:index]];
             break;
         default:
             break;
     }
 
-    [item setNeedsDisplay:YES];
     return item;
 }
 

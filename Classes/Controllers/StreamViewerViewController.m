@@ -21,7 +21,6 @@
 @interface StreamViewerViewController ()
 
 @property (nonatomic, strong) MainWindowController *windowController;
-@property (nonatomic, strong) StreamViewModel *stream;
 @property (nonatomic, strong) NSURL *profileURL;
 @property (nonatomic, strong) WebScriptObject *wso;
 
@@ -114,8 +113,8 @@
     [_webView setFrameLoadDelegate:self];
 }
 
-- (void)setSelectedStream:(StreamViewModel *)stream {
-    self.stream = stream;
+- (void)setStream:(StreamViewModel *)stream {
+    _stream = stream;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
     [[self.webView mainFrame] loadRequest:request];

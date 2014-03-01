@@ -952,7 +952,6 @@
 				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
 				93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */,
 				938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */,
-				939A7B6D17837097009121D6 /* YRKSpinningProgressIndicator.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */,

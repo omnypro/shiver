@@ -12,7 +12,7 @@
 
 @interface StreamViewerViewController : SHViewController
 
-@property (nonatomic, strong) StreamViewModel *selectedStream;
+@property (nonatomic, strong) StreamViewModel *stream;
 
 @property (nonatomic, weak) IBOutlet WebView *webView;
 
