@@ -166,39 +166,6 @@ enum {
 
 //- (void)initializeViewSignals
 //{
-//    // Watch the stream list for changes and enable or disable UI elements
-//    // based on those values.
-//    [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSArray *array) {
-//        @strongify(self);
-//        if ([array count] > 0) {
-//            [self.windowController.refreshButton setEnabled:YES];
-//
-//            // Update the string based on the number of streams that are live.
-//            NSString *singularCount = [NSString stringWithFormat:@"%lu live stream", [array count]];
-//            NSString *pluralCount = [NSString stringWithFormat:@"%lu live streams", [array count]];
-//            if ([array count] == 1) { [self.windowController.statusLabel setStringValue:singularCount]; }
-//            else if ([array count] > 1) { [self.windowController.statusLabel setStringValue:pluralCount]; }
-//            else { [self.windowController.statusLabel setStringValue:@"No live streams"]; }
-//        }
-//        else {
-//            [self.windowController.statusLabel setStringValue:@"No live streams"];
-//        }
-//    }];
-//
-//    // Updated the lastUpdated label every 30 seconds.
-//    NSTimeInterval lastUpdatedInterval = 30.0;
-//    [[[[RACObserve(self, streamList) filter:^BOOL(NSArray *array) {
-//        return (array != nil);
-//    }] map:^id(id value) {
-//        return [RACSignal interval:lastUpdatedInterval onScheduler:[RACScheduler scheduler]];
-//    }] switchToLatest] subscribeNext:^(NSArray *array) {
-//        @strongify(self);
-//        if (array != nil) {
-//            DDLogVerbose(@"Application (%@): Updating the last updated label (on interval).", [self class]);
-//            [self updateLastUpdatedLabel];
-//        }
-//    }];
-//
 //    // Show or hide the error view.
 //    [[[RACObserve(self, showingError) distinctUntilChanged]
 //      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingError) {
@@ -238,44 +205,6 @@ enum {
 //            DDLogInfo(@"Application (%@): Removing the login view.", [self class]);
 //            [self.loginView removeFromSuperviewAnimated:YES];
 //        }
-//    }];
-//}
-
-//- (void)initializeDataSignals
-//{
-//    @weakify(self);
-//
-//    // Watch for `user` to change or be populated. If it is, start the process
-//    // off by spawning the API client.
-//    [[RACObserve(self, user) filter:^BOOL(id value) {
-//        return (value != nil);
-//    }] subscribeNext:^(User *user) {
-//        DDLogInfo(@"Application (%@): Loading client for %@.", [self class], user.name);
-//        @strongify(self);
-//        self.client = [TwitchAPIClient sharedClient];
-//        self.loggedIn = YES;
-//        [self.windowController.statusLabel setStringValue:@"Loading..."];
-//    }];
-//
-//    // When the stream list gets changed, reload the table.
-//    [[RACObserve(self, streamList) deliverOn:[RACScheduler mainThreadScheduler]]
-//      subscribeNext:^(id x){
-//        @strongify(self);
-//        DDLogInfo(@"Application (%@): Asked to refresh the stream list.", [self class]);
-//        
-//        DDLogInfo(@"Application (%@): Refreshing the stream list.", [self class]);
-//        DDLogInfo(@"Application (%@): %lu live streams.", [self class], [x count]);
-//
-//        // Update (or reset) the last updated label.
-//        self.lastUpdatedTimestamp = [NSDate date];
-//        [self updateLastUpdatedLabel];
-//
-//        // Reload the table.
-//        [_listView reloadDataAnimated:YES];
-//        self.isLoading = NO;
-//
-//        // If we don't have a user, don't run this!
-//        else { DDLogInfo(@"Application (%@): We don't have a user; not refreshing the list.", [self class]); }
 //    }];
 //
 //    // If we've fetched streams before, compared the existing list to the newly
