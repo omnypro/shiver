@@ -36,7 +36,6 @@
 		935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F8177B696F0069AEFC /* LoginRequiredView.m */; };
 		936314181785346300AED886 /* NSView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 936314171785346300AED886 /* NSView+Animations.m */; };
 		936327BB1763BB1000146C8A /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327B91763BB1000146C8A /* WindowController.m */; };
-		936327BC1763BB1000146C8A /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936327BA1763BB1000146C8A /* Window.xib */; };
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
 		936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */; };
 		936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C21763C91300146C8A /* TwitchGlitchWhite.pdf */; };
@@ -178,7 +177,6 @@
 		936314171785346300AED886 /* NSView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+Animations.m"; path = "Extensions/Categories/NSView+Animations.m"; sourceTree = SOURCE_ROOT; };
 		936327B81763BB1000146C8A /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowController.h; path = Classes/Controllers/WindowController.h; sourceTree = SOURCE_ROOT; };
 		936327B91763BB1000146C8A /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = WindowController.m; path = Classes/Controllers/WindowController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		936327BA1763BB1000146C8A /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Window.xib; path = Assets/NIBs/Window.xib; sourceTree = SOURCE_ROOT; };
 		936327BD1763C25B00146C8A /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = Classes/Controllers/ApplicationController.h; sourceTree = SOURCE_ROOT; };
 		936327BE1763C25B00146C8A /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = Classes/Controllers/ApplicationController.m; sourceTree = SOURCE_ROOT; };
 		936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = TwitchGlitchPurple.pdf; path = Assets/Templates/TwitchGlitchPurple.pdf; sourceTree = SOURCE_ROOT; };
@@ -494,7 +492,6 @@
 				93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
 				938CD21218A5AFB90062C4D0 /* StreamViewer.xib */,
-				936327BA1763BB1000146C8A /* Window.xib */,
 			);
 			name = NIBs;
 			path = Assets/NIBs;
@@ -816,7 +813,6 @@
 				93C0A7DC18BAC56E005943E8 /* StreamListSectionView.xib in Resources */,
 				933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */,
 				939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */,
-				936327BC1763BB1000146C8A /* Window.xib in Resources */,
 				938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
