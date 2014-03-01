@@ -85,6 +85,7 @@
 		93A3A1301768071C00913C9A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A12F1768071C00913C9A /* User.m */; };
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
+		93A9B67B18C2640A000BF53E /* LoginButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A9B67A18C2640A000BF53E /* LoginButtonCell.m */; };
 		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
 		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
 		93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB41793D9EA001A0C6F /* Icon.iconset */; };
@@ -248,6 +249,8 @@
 		93A3A1321768571B00913C9A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Classes/Constants.m; sourceTree = SOURCE_ROOT; };
 		93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamLogoImageView.h; path = Classes/Views/StreamLogoImageView.h; sourceTree = SOURCE_ROOT; };
 		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
+		93A9B67918C2640A000BF53E /* LoginButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginButtonCell.h; path = Classes/Views/LoginButtonCell.h; sourceTree = SOURCE_ROOT; };
+		93A9B67A18C2640A000BF53E /* LoginButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginButtonCell.m; path = Classes/Views/LoginButtonCell.m; sourceTree = SOURCE_ROOT; };
 		93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkShadowTextField.h; path = Classes/Views/DarkShadowTextField.h; sourceTree = SOURCE_ROOT; };
 		93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkShadowTextField.m; path = Classes/Views/DarkShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
@@ -588,6 +591,8 @@
 		939E8B921772830A006D6442 /* Main Window */ = {
 			isa = PBXGroup;
 			children = (
+				93A9B67918C2640A000BF53E /* LoginButtonCell.h */,
+				93A9B67A18C2640A000BF53E /* LoginButtonCell.m */,
 				935378F7177B696F0069AEFC /* LoginRequiredView.h */,
 				935378F8177B696F0069AEFC /* LoginRequiredView.m */,
 				9310D0EE1780FBA80052C25C /* MainWindow.h */,
@@ -936,6 +941,7 @@
 				936327BB1763BB1000146C8A /* WindowController.m in Sources */,
 				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
 				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
+				93A9B67B18C2640A000BF53E /* LoginButtonCell.m in Sources */,
 				93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */,
 				938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */,
 				936327BF1763C25B00146C8A /* ApplicationController.m in Sources */,

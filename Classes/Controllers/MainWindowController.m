@@ -50,18 +50,25 @@
     [window setTrafficLightButtonsLeftMargin:12.0];
     [window setShowsBaselineSeparator:NO];
 
-    [[RACObserve(self, viewModel.isLoggedIn) map:^id(id value) {
-        NSLog(@"value: %@", value);
-        return [RACSignal return:value];
-    }] subscribeNext:^(id x) {
-        NSLog(@"x: %@", x);
-    }];
-
 	NSView *titleBarView = window.titleBarView;
     self.titleView.frame = titleBarView.bounds;
     self.titleView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     [titleBarView addSubview:_loginView];
     [titleBarView addSubview:self.titleView];
+
+    [[RACObserve(self, viewModel.isLoggedIn)
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(NSNumber *loggedIn) {
+            NSLog(@"value: %@", loggedIn);
+            BOOL isLoggedIn = [loggedIn boolValue];
+            if (isLoggedIn) {
+                [titleBarView replaceSubview:_loginView with:_userView];
+            } else {
+                if ([_userView superview] != nil) {
+                    [titleBarView replaceSubview:_userView with:_loginView];
+                }
+            }
+        }];
 
     [[self.usernameLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     RAC(self, usernameLabel.stringValue, @"") = RACObserve(self, viewModel.name);
