@@ -31,7 +31,6 @@
     _url = _channel.url;
     _createdAt = _channel.createdAt;
     _updatedAt = _channel.updatedAt;
-    _liveSince = [NSString stringWithFormat:@"%@", _channel.updatedAt];
     _logoImageURL = _channel.logoImageURL;
     _status = _channel.status;
 
