@@ -17,6 +17,7 @@
 #import "MainWindowController.h"
 
 @interface MainWindowController () {
+    IBOutlet NSView *_loginView;
     IBOutlet NSView *_masterView;
     IBOutlet NSView *_sidebarView;
     IBOutlet NSView *_userView;
@@ -49,10 +50,17 @@
     [window setTrafficLightButtonsLeftMargin:12.0];
     [window setShowsBaselineSeparator:NO];
 
+    [[RACObserve(self, viewModel.isLoggedIn) map:^id(id value) {
+        NSLog(@"value: %@", value);
+        return [RACSignal return:value];
+    }] subscribeNext:^(id x) {
+        NSLog(@"x: %@", x);
+    }];
+
 	NSView *titleBarView = window.titleBarView;
     self.titleView.frame = titleBarView.bounds;
     self.titleView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    [titleBarView addSubview:_userView];
+    [titleBarView addSubview:_loginView];
     [titleBarView addSubview:self.titleView];
 
     [[self.usernameLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
@@ -75,6 +83,13 @@
     [self setViewerController:self.viewerController];
     [self.viewerController.view setFrame:_viewer.bounds];
     [_viewer addSubview:self.viewerController.view];
+}
+
+#pragma mark - Interface Builder Actions
+
+- (IBAction)login:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenPreferencesNotification object:self userInfo:nil];
 }
 
 #pragma - NSWindowDelegate Methods

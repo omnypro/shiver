@@ -88,6 +88,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [[Preferences sharedPreferences] setupDefaults];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
 
     // Preload the window.
     (void)self.windowController.window;
@@ -135,6 +136,13 @@
     if ([window isKeyWindow]) { [window orderOut:self]; }
     else { [window makeKeyAndOrderFront:self]; }
     [NSApp activateIgnoringOtherApps:YES];
+}
+
+#pragma mark - Notification Observers
+
+- (void)requestToOpenPreferences:(NSNotification *)notification
+{
+    [self showPreferences:notification.object];
 }
 
 #pragma mark - Interface Builder Actions

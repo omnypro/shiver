@@ -15,4 +15,6 @@
 @property (nonatomic, readonly) NSString *email;
 @property (nonatomic, readonly) NSURL *logoImageURL;
 
+@property (nonatomic, assign) BOOL isLoggedIn;
+
 @end

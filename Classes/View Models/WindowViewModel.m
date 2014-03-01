@@ -63,6 +63,11 @@
         }
     ];
 
+    RAC(self, isLoggedIn, @NO) = [RACObserve(self, user)
+        map:^id(id value) {
+            return @(value != nil);
+        }];
+
     RAC(self, displayName) = RACObserve(self, user.displayName);
     RAC(self, name) = RACObserve(self, user.name);
     RAC(self, email) = RACObserve(self, user.email);

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
+                <outlet property="_loginView" destination="tSt-9O-B0B" id="ljo-TS-ifC"/>
                 <outlet property="_masterView" destination="2" id="1BV-Ma-cTY"/>
                 <outlet property="_sidebarView" destination="yR9-vn-kvl" id="vHb-s8-hQm"/>
                 <outlet property="_userView" destination="gkn-M6-wcm" id="nsd-W3-Dvl"/>
@@ -119,6 +120,23 @@
                 <constraint firstAttribute="trailing" secondItem="u90-8j-Zx2" secondAttribute="trailing" constant="10" id="i56-o1-K7I"/>
                 <constraint firstAttribute="centerY" secondItem="ev4-DT-Etn" secondAttribute="centerY" constant="2" id="ll2-Fe-Um6"/>
             </constraints>
+        </customView>
+        <customView id="tSt-9O-B0B">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="38"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NC4-uQ-d6w">
+                    <rect key="frame" x="69" y="4" width="166" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Connect with Twitch" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f2h-F1-dXP">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="login:" target="-2" id="pt6-Oy-sdJ"/>
+                    </connections>
+                </button>
+            </subviews>
         </customView>
     </objects>
 </document>
