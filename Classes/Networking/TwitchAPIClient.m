@@ -149,6 +149,24 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
         }];
 }
 
+- (RACSignal *)isUser:(NSString *)user followingChannel:(NSString *)channel
+{
+    NSString *path = [NSString stringWithFormat:@"users/%@/follows/channels/%@", user, channel];
+    return [self enqueueRequestWithMethod:@"GET" path:path parameters:nil];
+}
+
+- (RACSignal *)haveUser:(NSString *)user followChannel:(NSString *)channel
+{
+    NSString *path = [NSString stringWithFormat:@"users/%@/follows/channels/%@", user, channel];
+    return [self enqueueRequestWithMethod:@"PUT" path:path parameters:nil];
+}
+
+- (RACSignal *)haveUser:(NSString *)user unfollowChannel:(NSString *)channel
+{
+    NSString *path = [NSString stringWithFormat:@"users/%@/follows/channels/%@", user, channel];
+    return [self enqueueRequestWithMethod:@"DELETE" path:path parameters:nil];
+}
+
 - (RACSignal *)enqueueRequestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters
 {
     RACReplaySubject *subject = [RACReplaySubject subject];
