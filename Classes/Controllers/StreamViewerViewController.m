@@ -86,8 +86,6 @@
 
     RAC(self, viewerView.liveSinceLabel.stringValue, @"") = [RACObserve(self, stream.updatedAt)
         map:^id(NSDate *value) {
-            NSLog(@"%@", value);
-            NSLog(@"%@", [NSDate dateWithTimeIntervalSinceNow:0]);
             if (value) { return [NSString stringWithFormat:@"Went live %@", [self relativeDateWithTimestamp:value]]; }
             else { return @""; }
         }];

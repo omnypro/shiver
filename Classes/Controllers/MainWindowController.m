@@ -61,7 +61,6 @@
     [[RACObserve(self, viewModel.isLoggedIn)
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *loggedIn) {
-            NSLog(@"value: %@", loggedIn);
             BOOL isLoggedIn = [loggedIn boolValue];
             if (isLoggedIn) {
                 [[self.titleView animator] replaceSubview:_loginView with:_userView];
