@@ -66,7 +66,7 @@
             DDLogInfo(@"Application (%@): Fetching authenticated stream list.", [self class]);
             if ([executable boolValue] && streams != nil) {
                 DDLogInfo(@"Application (%@): %lu authenticated streams fetched.", [self class], [streams count]);
-                return streams;
+                return streams.sortBy(@"name");
             } else {
                 DDLogInfo(@"Application (%@): No authenticated streams fetched.", [self class]);
                 return nil;
