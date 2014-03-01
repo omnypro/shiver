@@ -117,7 +117,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
         }];
 }
 
-- (RACSignal *)fetchStreamList
+- (RACSignal *)fetchAuthenticatedStreamList
 {
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil]
         map:^id(id responseObject) { return [responseObject valueForKeyPath:@"streams"]; }]

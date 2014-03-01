@@ -48,7 +48,7 @@
     RACSignal *readyAndReachable = [[AccountManager sharedManager] readyAndReachableSignal];
     RACSignal *hasCredential = [RACObserve(AccountManager.sharedManager, credential) map:^(AFOAuthCredential *credential) { return @(credential != nil); }];
 
-    RACSignal *fetchAuthenticatedStreams = [[self.client fetchStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
+    RACSignal *fetchAuthenticatedStreams = [[self.client fetchAuthenticatedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
     RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
 
     self.refreshCommand = [[RACCommand alloc]

@@ -28,7 +28,7 @@ extern NSString *const kClientID;
 
 - (RACSignal *)authorizeUsingResponseURL:(NSURL *)url;
 - (RACSignal *)fetchUser;
-- (RACSignal *)fetchStreamList;
+- (RACSignal *)fetchAuthenticatedStreamList;
 - (RACSignal *)fetchFeaturedStreamList;
 
 @end
