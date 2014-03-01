@@ -8,24 +8,21 @@
 
 #import <Butter/BTRActivityIndicator.h>
 
-#import "TwitchAPIClient.h"
-#import "Channel.h"
 #import "EmptyErrorView.h"
 #import "HexColor.h"
-#import "NSView+Animations.h"
 #import "JASectionedListView.h"
+#import "JLNFadingScrollView.h"
 #import "LoadingView.h"
 #import "LoginRequiredView.h"
-#import "JLNFadingScrollView.h"
+#import "MainWindowController.h"
+#import "NSView+Animations.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
-#import "Stream.h"
-#import "StreamViewModel.h"
-#import "StreamViewerViewController.h"
+#import "StreamListItemView.h"
 #import "StreamListSectionView.h"
 #import "StreamListViewModel.h"
-#import "StreamListItemView.h"
-#import "MainWindowController.h"
+#import "StreamViewerViewController.h"
+#import "StreamViewModel.h"
 
 #import "StreamListViewController.h"
 
@@ -47,15 +44,10 @@ enum {
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) NSView *loginView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
-@property (nonatomic, strong) RACCommand *refreshCommand;
 @property (nonatomic, strong) MainWindowController *windowController;
-
-@property (nonatomic, strong) NSArray *authenticatedStreamList;
-@property (nonatomic, strong) NSArray *featuredStreamList;
 
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) Preferences *preferences;
-@property (nonatomic, strong) User *user;
 
 @property (nonatomic, assign) BOOL loggedIn;
 @property (nonatomic, assign) BOOL isLoading;
@@ -64,6 +56,7 @@ enum {
 @property (nonatomic, strong) NSString *showingErrorMessage;
 
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
+
 @end
 
 @implementation StreamListViewController
@@ -99,19 +92,14 @@ enum {
 
 - (void)initializeSignals
 {
-    RACSignal *authenticatedStreams = RACObserve(self, viewModel.authenticatedStreams);
-    RACSignal *featuredStreams = RACObserve(self, viewModel.featuredStreams);
-
     // ...
     _refreshButton.rac_command = self.viewModel.refreshCommand;
     [self.viewModel.refreshCommand.executionSignals subscribeNext:^(id x) {}];
 
     // Bind the status item's title to the number of active -authenticated-
     // streams, as long as that array exists, and the user wants the count.
+    RACSignal *authenticatedStreams = RACObserve(self, viewModel.authenticatedStreams);
     RACSignal *streamCountEnabled = RACObserve(self, preferences.streamCountEnabled);
-
-    RAC(self, authenticatedStreamList) = authenticatedStreams;
-    RAC(self, featuredStreamList) = featuredStreams;
 
     @weakify(self);
 
@@ -131,7 +119,7 @@ enum {
     [[RACSignal
         combineLatest:@[RACObserve(self, viewModel.authenticatedStreams), RACObserve(self, viewModel.featuredStreams)]]
         subscribeNext:^(id x) {
-            @strongify(self);        
+            @strongify(self);
             [self reloadData];
         } error:^(NSError *error) {
             @strongify(self);
@@ -350,14 +338,14 @@ enum {
 - (void)sendNewStreamNotificationToUser:(NSSet *)newSet
 {
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-    for (Stream *stream in newSet) {
+    for (StreamViewModel *stream in newSet) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        [notification setTitle:[NSString stringWithFormat:@"%@ is now live!", stream.channel.displayName]];
+        [notification setTitle:[NSString stringWithFormat:@"%@ is now live!", stream.displayName]];
         [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
-        [notification setInformativeText:stream.channel.status];
+        [notification setInformativeText:stream.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
 
-        NSURL *streamURL = stream.channel.url;
+        NSURL *streamURL = stream.url;
         if (self.preferences.streamPopupEnabled) { streamURL = [streamURL URLByAppendingPathComponent:@"popout"]; }
         [notification setUserInfo:@{ @"URL": [streamURL absoluteString] }];
 
@@ -409,7 +397,7 @@ enum {
             [self.windowController.viewerController setStream:item.viewModel];
         }
 
-        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.viewModel.channel.displayName, item.viewModel.hlsURL);
+        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.viewModel.displayName, item.viewModel.hlsURL);
         DDLogInfo(@"Application (%@): JAListView did select -- %@", [self class], item.viewModel);
     }
 
