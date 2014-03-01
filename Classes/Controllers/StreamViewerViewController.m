@@ -11,6 +11,7 @@
 #import "EmptyViewerView.h"
 #import "MainWindowController.h"
 #import "HexColor.h"
+#import "SORelativeDateTransformer.h"
 #import "StreamViewModel.h"
 #import "StreamViewerView.h"
 #import "TitleView.h"
@@ -83,9 +84,11 @@
             return [[NSImage alloc] initWithContentsOfURL:url];
         }];
 
-    RAC(self, viewerView.liveSinceLabel.stringValue, @"") = [RACObserve(self, stream.liveSince)
-        map:^id(NSString *value) {
-            if (value) { return [NSString stringWithFormat:@"Live for %@", value]; }
+    RAC(self, viewerView.liveSinceLabel.stringValue, @"") = [RACObserve(self, stream.updatedAt)
+        map:^id(NSDate *value) {
+            NSLog(@"%@", value);
+            NSLog(@"%@", [NSDate dateWithTimeIntervalSinceNow:0]);
+            if (value) { return [NSString stringWithFormat:@"Went live %@", [self relativeDateWithTimestamp:value]]; }
             else { return @""; }
         }];
 
@@ -118,7 +121,14 @@
     [_webView setFrameLoadDelegate:self];
 }
 
-- (void)setStream:(StreamViewModel *)stream {
+- (NSString *)relativeDateWithTimestamp:(NSDate *)timestamp
+{
+    SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
+    return [relativeDateTransformer transformedValue:timestamp];
+}
+
+- (void)setStream:(StreamViewModel *)stream
+{
     _stream = stream;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
