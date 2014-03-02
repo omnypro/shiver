@@ -102,7 +102,7 @@
 		93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */; };
 		93C0A7C718B99771005943E8 /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C0A7C618B99771005943E8 /* Butter.framework */; };
 		93C0A7D418B9A9D2005943E8 /* ProfileButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */; };
-		93C0A7D718B9B02B005943E8 /* ChatButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D618B9B02B005943E8 /* ChatButtonCell.m */; };
+		93C0A7D718B9B02B005943E8 /* FollowButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D618B9B02B005943E8 /* FollowButtonCell.m */; };
 		93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D918BAC545005943E8 /* StreamListSectionView.m */; };
 		93C0A7DC18BAC56E005943E8 /* StreamListSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */; };
 		93D15BA917736EB100643D95 /* GeneralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D15BA817736EB100643D95 /* GeneralView.xib */; };
@@ -274,8 +274,8 @@
 		93C0A7C618B99771005943E8 /* Butter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Butter.framework; path = External/Butter/build/Debug/Butter.framework; sourceTree = "<group>"; };
 		93C0A7D218B9A9D2005943E8 /* ProfileButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileButtonCell.h; path = Classes/Views/ProfileButtonCell.h; sourceTree = SOURCE_ROOT; };
 		93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileButtonCell.m; path = Classes/Views/ProfileButtonCell.m; sourceTree = SOURCE_ROOT; };
-		93C0A7D518B9B02B005943E8 /* ChatButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatButtonCell.h; path = Classes/Views/ChatButtonCell.h; sourceTree = SOURCE_ROOT; };
-		93C0A7D618B9B02B005943E8 /* ChatButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatButtonCell.m; path = Classes/Views/ChatButtonCell.m; sourceTree = SOURCE_ROOT; };
+		93C0A7D518B9B02B005943E8 /* FollowButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FollowButtonCell.h; path = Classes/Views/FollowButtonCell.h; sourceTree = SOURCE_ROOT; };
+		93C0A7D618B9B02B005943E8 /* FollowButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FollowButtonCell.m; path = Classes/Views/FollowButtonCell.m; sourceTree = SOURCE_ROOT; };
 		93C0A7D818BAC545005943E8 /* StreamListSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListSectionView.h; path = Classes/Views/StreamListSectionView.h; sourceTree = SOURCE_ROOT; };
 		93C0A7D918BAC545005943E8 /* StreamListSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListSectionView.m; path = Classes/Views/StreamListSectionView.m; sourceTree = SOURCE_ROOT; };
 		93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListSectionView.xib; path = Assets/NIBs/StreamListSectionView.xib; sourceTree = SOURCE_ROOT; };
@@ -699,8 +699,8 @@
 		93C0A7B818B98D9B005943E8 /* Stream Viewer */ = {
 			isa = PBXGroup;
 			children = (
-				93C0A7D518B9B02B005943E8 /* ChatButtonCell.h */,
-				93C0A7D618B9B02B005943E8 /* ChatButtonCell.m */,
+				93C0A7D518B9B02B005943E8 /* FollowButtonCell.h */,
+				93C0A7D618B9B02B005943E8 /* FollowButtonCell.m */,
 				93F6770718BD50BC0064F005 /* EmptyViewerView.h */,
 				93F6770818BD50BC0064F005 /* EmptyViewerView.m */,
 				93C0A7D218B9A9D2005943E8 /* ProfileButtonCell.h */,
@@ -972,7 +972,7 @@
 				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
 				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
-				93C0A7D718B9B02B005943E8 /* ChatButtonCell.m in Sources */,
+				93C0A7D718B9B02B005943E8 /* FollowButtonCell.m in Sources */,
 				9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

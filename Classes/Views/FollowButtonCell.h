@@ -6,6 +6,6 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
-@interface ChatButtonCell : NSButtonCell
+@interface FollowButtonCell : NSButtonCell
 
 @end

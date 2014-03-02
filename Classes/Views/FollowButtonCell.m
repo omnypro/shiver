@@ -8,9 +8,9 @@
 
 #import "HexColor.h"
 
-#import "ChatButtonCell.h"
+#import "FollowButtonCell.h"
 
-@implementation ChatButtonCell
+@implementation FollowButtonCell
 
 - (id)init
 {

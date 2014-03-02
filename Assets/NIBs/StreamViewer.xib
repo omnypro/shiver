@@ -78,7 +78,7 @@
                 <button focusRingType="none" verticalHuggingPriority="750" placeholderIntrinsicWidth="130" placeholderIntrinsicHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vPs-mV-Z4n">
                     <rect key="frame" x="475" y="16" width="150" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Open Chat" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="R2J-Ss-PuN" customClass="ChatButtonCell">
+                    <buttonCell key="cell" type="push" title="Connect to Follow" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="R2J-Ss-PuN" customClass="FollowButtonCell">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
