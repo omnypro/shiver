@@ -24,21 +24,26 @@
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
+    NSString *strokeColorString = nil;
+    if ([self isEnabled]) { strokeColorString = @"#CCC0E1"; }
+    else if ([self isHighlighted]) { strokeColorString = @"#ABDBF3"; }
+    else { strokeColorString = @"#D4D4D4"; }
+
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:3.0 yRadius:3.0];
     [path setLineWidth:1.0];
-    [[NSColor colorWithHexString:@"#CCC0E1" alpha:1.0] set];
+    [[NSColor colorWithHexString:strokeColorString alpha:1.0] set];
     [path stroke];
 
-    if ([self isHighlighted]) {
-        [[NSColor colorWithHexString:@"#ABDBF3" alpha:1.0] set];
-        [path stroke];
-    }
+    NSString *textColorString = nil;
+    if ([self isEnabled]) { textColorString = @"#9983C4"; }
+    else if ([self isHighlighted]) { textColorString = @"#58B8E6"; }
+    else { textColorString = @"#D4D4D4"; }
 
     NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
     [style setAlignment:NSCenterTextAlignment];
     NSDictionary *attributes = @{
         NSParagraphStyleAttributeName: style,
-        NSForegroundColorAttributeName: self.isHighlighted ? [NSColor colorWithHexString:@"#58B8E6" alpha:1.0] : [NSColor colorWithHexString:@"#9983C4" alpha:1.0],
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:textColorString alpha:1.0],
         NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13],
     };
     NSAttributedString *buttonTitle = [[NSAttributedString alloc] initWithString:self.title attributes:attributes];

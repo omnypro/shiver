@@ -10,7 +10,7 @@
 
 @interface StreamViewerView : RBLView
 
-@property (weak) IBOutlet NSButton *chatButton;
+@property (weak) IBOutlet NSButton *followButton;
 @property (weak) IBOutlet NSButton *profileButton;
 @property (weak) IBOutlet NSImageView *logo;
 @property (weak) IBOutlet NSTextField *broadcastLabel;

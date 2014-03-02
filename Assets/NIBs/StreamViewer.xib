@@ -153,6 +153,7 @@
             <connections>
                 <outlet property="broadcastLabel" destination="yj9-ig-5LS" id="Hce-p5-XpB"/>
                 <outlet property="chatButton" destination="vPs-mV-Z4n" id="zTa-Hm-1wg"/>
+                <outlet property="followButton" destination="vPs-mV-Z4n" id="Xcl-9a-neW"/>
                 <outlet property="liveSinceLabel" destination="VEt-g2-exX" id="cqe-p9-x4h"/>
                 <outlet property="logo" destination="ZsA-qk-GR6" id="fDZ-b5-WDO"/>
                 <outlet property="profileButton" destination="txV-Sc-UAq" id="NcE-ZC-ZyR"/>

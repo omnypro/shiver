@@ -18,8 +18,6 @@
 {
 	[super drawRect:dirtyRect];
 
-    [self.chatButton setToolTip:@"Requires Flash. :("];
-
     [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B" alpha:1]];
     [self.broadcastLabel setTextColor:[NSColor colorWithHexString:@"#AFB7B8" alpha:1]];
 
