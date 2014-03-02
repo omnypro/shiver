@@ -8,7 +8,7 @@
 
 #import "RVMViewModel.h"
 
-@interface WindowViewModel : RVMViewModel
+@interface UserViewModel : RVMViewModel
 
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *displayName;

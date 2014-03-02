@@ -10,9 +10,9 @@
 #import "TwitchAPIClient.h"
 #import "User.h"
 
-#import "WindowViewModel.h"
+#import "UserViewModel.h"
 
-@interface WindowViewModel ()
+@interface UserViewModel ()
 
 @property (nonatomic, strong) TwitchAPIClient *client;
 @property (nonatomic, strong) User *user;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation WindowViewModel
+@implementation UserViewModel
 
 - (instancetype)init
 {

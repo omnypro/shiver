@@ -7,7 +7,7 @@
 //
 
 #import "SHWindowController.h"
-#import "WindowViewModel.h"
+#import "UserViewModel.h"
 
 @class StreamListViewController;
 @class StreamViewerViewController;
@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) StreamListViewController *sidebarController;
 @property (nonatomic, strong) StreamViewerViewController *viewerController;
-@property (nonatomic, strong, readonly) WindowViewModel *viewModel;
+@property (nonatomic, strong, readonly) UserViewModel *viewModel;
 
 @property (weak) IBOutlet TitleView *titleView;
 @property (weak) IBOutlet NSView *viewer;

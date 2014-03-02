@@ -12,7 +12,7 @@
 #import "StreamViewModel.h"
 #import "StreamViewerViewController.h"
 #import "TitleView.h"
-#import "WindowViewModel.h"
+#import "UserViewModel.h"
 
 #import "MainWindowController.h"
 

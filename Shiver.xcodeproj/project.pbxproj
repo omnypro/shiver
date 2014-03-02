@@ -52,7 +52,7 @@
 		938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21518A5C4F00062C4D0 /* MainWindowController.m */; };
 		938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21718A6BCD40062C4D0 /* Icon.icns */; };
 		938CD21918A6BCDD0062C4D0 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21718A6BCD40062C4D0 /* Icon.icns */; };
-		938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21E18AABA270062C4D0 /* WindowViewModel.m */; };
+		938CD21F18AABA270062C4D0 /* UserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD21E18AABA270062C4D0 /* UserViewModel.m */; };
 		938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22118AB3A370062C4D0 /* AccountManager.m */; };
 		938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */; };
 		938CD23318AD7E720062C4D0 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938CD23218AD7E720062C4D0 /* SHViewController.m */; };
@@ -197,8 +197,8 @@
 		938CD21418A5C4F00062C4D0 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = Classes/Controllers/MainWindowController.h; sourceTree = SOURCE_ROOT; };
 		938CD21518A5C4F00062C4D0 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = Classes/Controllers/MainWindowController.m; sourceTree = SOURCE_ROOT; };
 		938CD21718A6BCD40062C4D0 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Assets/Images/Icon.icns; sourceTree = SOURCE_ROOT; };
-		938CD21D18AABA270062C4D0 /* WindowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowViewModel.h; path = "Classes/View Models/WindowViewModel.h"; sourceTree = SOURCE_ROOT; };
-		938CD21E18AABA270062C4D0 /* WindowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WindowViewModel.m; path = "Classes/View Models/WindowViewModel.m"; sourceTree = SOURCE_ROOT; };
+		938CD21D18AABA270062C4D0 /* UserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewModel.h; path = "Classes/View Models/UserViewModel.h"; sourceTree = SOURCE_ROOT; };
+		938CD21E18AABA270062C4D0 /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewModel.m; path = "Classes/View Models/UserViewModel.m"; sourceTree = SOURCE_ROOT; };
 		938CD22018AB3A370062C4D0 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Classes/Application/AccountManager.h; sourceTree = SOURCE_ROOT; };
 		938CD22118AB3A370062C4D0 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Classes/Application/AccountManager.m; sourceTree = SOURCE_ROOT; };
 		938CD22E18AD7E5D0062C4D0 /* SHWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHWindowController.h; path = Classes/Superclasses/SHWindowController.h; sourceTree = SOURCE_ROOT; };
@@ -537,8 +537,8 @@
 				938CD23B18AE22160062C4D0 /* StreamListViewModel.m */,
 				938CD23718AE188A0062C4D0 /* StreamViewModel.h */,
 				938CD23818AE188A0062C4D0 /* StreamViewModel.m */,
-				938CD21D18AABA270062C4D0 /* WindowViewModel.h */,
-				938CD21E18AABA270062C4D0 /* WindowViewModel.m */,
+				938CD21D18AABA270062C4D0 /* UserViewModel.h */,
+				938CD21E18AABA270062C4D0 /* UserViewModel.m */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -956,7 +956,7 @@
 				93F6770918BD50BD0064F005 /* EmptyViewerView.m in Sources */,
 				938CD23C18AE22160062C4D0 /* StreamListViewModel.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
-				938CD21F18AABA270062C4D0 /* WindowViewModel.m in Sources */,
+				938CD21F18AABA270062C4D0 /* UserViewModel.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
 				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
 				936314181785346300AED886 /* NSView+Animations.m in Sources */,

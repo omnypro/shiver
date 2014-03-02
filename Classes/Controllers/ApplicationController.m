@@ -16,13 +16,13 @@
 #import "Reachability.h"
 #import "StartAtLoginController.h"
 #import "WindowController.h"
-#import "WindowViewModel.h"
+#import "UserViewModel.h"
 
 #import "ApplicationController.h"
 
 @interface ApplicationController ()
 
-@property (nonatomic, strong) WindowViewModel *viewModel;
+@property (nonatomic, strong) UserViewModel *viewModel;
 @property (nonatomic, strong) MainWindowController *windowController;
 
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
@@ -52,7 +52,7 @@
 	self = [super init];
 	if (self == nil) { return nil; }
 
-    _viewModel = [[WindowViewModel alloc] init];
+    _viewModel = [[UserViewModel alloc] init];
     _windowController = [[MainWindowController alloc] initWithViewModel:_viewModel nibName:@"MainWindow"];
 
     _loginController = [[StartAtLoginController alloc] initWithIdentifier:ShiverHelperIdentifier];
