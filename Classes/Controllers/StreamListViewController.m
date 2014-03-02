@@ -256,7 +256,7 @@ enum {
 
 - (void)reloadData {
     NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
-    [_listView reloadData];
+    [_listView reloadDataAnimated:YES];
     for (StreamListItemView *item in selectedViews) {
         [_listView selectView:item];
     }
