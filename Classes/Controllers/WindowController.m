@@ -50,39 +50,9 @@
 @property (nonatomic, strong) AboutWindowController *aboutWindowController;
 @property (nonatomic, strong) GeneralViewController *generalPreferences;
 @property (nonatomic, strong) LoginViewController *loginPreferences;
-
-- (IBAction)showContextMenu:(NSButton *)sender;
-- (IBAction)showProfile:(id)sender;
-- (IBAction)showAbout:(id)sender;
-- (IBAction)showPreferences:(id)sender;
 @end
 
 @implementation WindowController
-
-- (id)init
-{
-    self = [super init];
-    if (self) { return [super initWithWindowNibName:@"Window"]; }
-    return self;
-}
-
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    [self.window setAllowsConcurrentViewDrawing:YES];
-    [self.window setBackgroundColor:[NSColor colorWithHexString:@"#222222" alpha:1]];
-    [self.window setLevel:NSFloatingWindowLevel];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSApplicationDidResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NSWindowDidResignKeyNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenPreferences:) name:RequestToOpenPreferencesNotification object:nil];
-
-    [self initializeSignals];
-
-    // Set up our initial controllers and initialize and display the window
-    // and status bar menu item.
-    [self initializeInterface];
-}
 
 - (void)initializeSignals
 {
@@ -112,30 +82,6 @@
 //        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
 //        [self setCurrentViewController:listController];
 //    }];
-
-    // Watch -isUIActive and update the main interface appropriately.
-    // NSDictionary *options = @{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName };
-    // [self->_lastUpdatedLabel bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:options];
-    // [self->_sectionLabel bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-    // [self->_statusLabel bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-    // [self->_refreshButton bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-    // [self->_userImage bind:NSHiddenBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-    // [self->_userMenuItem bind:NSEnabledBinding toObject:self withKeyPath:@"isUIActive" options:@{ NSContinuouslyUpdatesValueBindingOption: @YES, NSValueTransformerBindingOption: NSNegateBooleanTransformerName }];
-
-    RACSignal *hasUserSignal = RACObserve(self, user);
-    [hasUserSignal subscribeNext:^(User *user) {
-        @strongify(self);
-        if (user) {
-            [_statusLabel setStringValue:@"Welcome"];
-            [_userImage setImage:[[NSImage alloc] initWithContentsOfURL:user.logoImageURL]];
-            [_userMenuItem setTitle:[NSString stringWithFormat:@"Logged in as %@", self.user.name]];
-        }
-        else {
-            [_statusLabel setStringValue:@"Not logged in"];
-            [_userImage setImage:nil];
-            [_userMenuItem setTitle:@"Not logged in"];
-        }
-    }];
 
     // Subscribe to -didLoginSubject and -didLogoutSubject so that we may react
     // to changes in the login system (logging in, logging out, etc.).
@@ -175,59 +121,6 @@
         self.errorView = nil;
         self.isUIActive = YES;
     }];
-}
-
-- (void)initializeInterface
-{
-    // Make things pretty.
-    [_sectionLabel setTextColor:[NSColor colorWithHexString:@"#666666" alpha:1]];
-    [_statusLabel setTextColor:[NSColor colorWithHexString:@"#7F7F7F" alpha:1]];
-
-    // Set the lastUpdatedLabel to a blank string when we initially compose
-    // the interface. Reason being, I want a field with text in it to position
-    // in Interface Builder.
-    [_lastUpdatedLabel setHidden:YES];
-    [_lastUpdatedLabel setTextColor:[NSColor colorWithHexString:@"#4F4F4F" alpha:1]];
-
-    [_refreshButton setImage:[NSImage imageNamed:@"RefreshInactive"]];
-    [_refreshButton setAlternateImage:[NSImage imageNamed:@"RefreshActive"]];
-    [_preferencesButton setImage:[NSImage imageNamed:@"CogInactive"]];
-    [_preferencesButton setAlternateImage:[NSImage imageNamed:@"CogActive"]];
-}
-
-#pragma mark - Notification Observers
-
-- (void)requestToOpenPreferences:(NSNotification *)notification
-{
-    [self showPreferences:notification.object];
-}
-
-#pragma mark - Interface Builder Actions
-
-- (IBAction)showContextMenu:(NSButton *)sender
-{
-    [_contextMenu popUpMenuPositioningItem:nil atLocation:NSMakePoint(14,26) inView:sender];
-}
-
-- (IBAction)showProfile:(id)sender {
-    if (self.user && [_userMenuItem isEnabled]) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@", self.user.name]];
-        [[NSWorkspace sharedWorkspace] openURL:url];
-    }
-}
-
-- (IBAction)showAbout:(id)sender {
-    [self.aboutWindowController.window center];
-    [self.aboutWindowController.window makeKeyAndOrderFront:sender];
-    [NSApp activateIgnoringOtherApps:YES];
-}
-
-- (IBAction)showPreferences:(id)sender
-{
-    [self.preferencesWindowController.window center];
-    [self.preferencesWindowController.window setLevel:NSFloatingWindowLevel];
-    [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
-    [NSApp activateIgnoringOtherApps:YES];
 }
 
 @end
