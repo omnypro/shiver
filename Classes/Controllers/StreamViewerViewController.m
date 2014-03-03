@@ -57,22 +57,25 @@
 
     @weakify(self);
 
-    [[[RACObserve(self, stream) filter:^BOOL(id value) {
-        return (value == nil);
-    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-        @strongify(self);
-        [self.titleView setIsActive:NO];
-    }];
+    [[[RACObserve(self, stream)
+        filter:^BOOL(id value) {
+            return (value == nil); }] deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            [self.titleView setIsActive:NO];
+            if ([self.viewerView superview] != nil) {
+                [self.viewerView removeFromSuperview];
+            }
+        }];
 
-    [[[[RACObserve(self, stream) filter:^BOOL(id value) {
-        return (value != nil);
-    }] take:1] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-        @strongify(self);
-        NSLog(@"Application (%@): We have a stream. Activate the viewer.", [self class]);
-        [self.titleView setIsActive:YES];
-        [self.viewerView setFrame:self.view.bounds];
-        [self.view addSubview:self.viewerView];
-    }];
+    [[[[RACObserve(self, stream) ignore:nil] take:1] deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            NSLog(@"Application (%@): We have a stream. Activate the viewer.", [self class]);
+            [self.titleView setIsActive:YES];
+            [self.viewerView setFrame:self.view.bounds];
+            [self.view addSubview:self.viewerView];
+        }];
 
     RAC(self, viewerView.statusLabel.attributedStringValue, @"") = [RACObserve(self, stream.status)
         map:^id(NSString *value) {
@@ -113,27 +116,25 @@
         map:^id(NSString *name) {
             return [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/profile", name]];
         }];
-    RAC(self, chatURL) = [RACObserve(self, stream.name)
-        map:^id(NSString *name) {
-            return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.twitch.tv/chat/embed?channel=%@&popout_chat=true", name]];
-        }];
 
-    [_webView setFrameLoadDelegate:self];
-
-    // ...
+    // Here's a hacky check to see if we should enable the follow button.
+    // If we have a user's name, enable the button.
     RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
         map:^id(id value) {
             return @(value != nil);
         }] deliverOn:[RACScheduler mainThreadScheduler]];
     [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
 
-    // ...
-    RAC(self, viewerView.followButton.title, @"Connect to Follow") = [[[[RACObserve(self, stream)
-        filter:^BOOL(id value) { return (value != nil); }]
-        flattenMap:^RACStream *(StreamViewModel *stream) { return [self.userViewModel isUserFollowingChannel:stream.name]; }]
+    // Set the text for the follow button. Run -isUserFollowingChannel: and
+    // process the results.
+    RAC(self, viewerView.followButton.title, @"Connect to Follow") = [[[[RACObserve(self, stream) ignore:nil]
+        flattenMap:^RACStream *(StreamViewModel *stream) {
+            return [self.userViewModel isUserFollowingChannel:stream.name]; }]
         map:^id(id responseObject) {
             return [responseObject boolValue] ? @"Following" : @"Follow";
         }] deliverOn:[RACScheduler mainThreadScheduler]];
+
+    [_webView setFrameLoadDelegate:self];
 }
 
 - (NSString *)relativeDateWithTimestamp:(NSDate *)timestamp
