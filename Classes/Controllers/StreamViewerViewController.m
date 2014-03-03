@@ -150,6 +150,11 @@
     [[self.webView mainFrame] loadRequest:request];
 }
 
+- (void)unsetStream
+{
+    _stream = nil;
+}
+
 - (void)setVolume
 {
     NSSlider *slider = self.viewerView.volumeSlider;

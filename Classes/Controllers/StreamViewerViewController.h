@@ -16,4 +16,6 @@
 
 @property (nonatomic, weak) IBOutlet WebView *webView;
 
+-(void)unsetStream;
+
 @end
