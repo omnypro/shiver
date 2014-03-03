@@ -260,6 +260,8 @@ enum {
     for (StreamListItemView *item in selectedViews) {
         [_listView selectView:item];
     }
+
+    [_listView setNeedsDisplay:YES];
 }
 
 #pragma mark - NSUserNotificationCenter Methods
