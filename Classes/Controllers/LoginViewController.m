@@ -6,13 +6,12 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <EXTScope.h>
-
-#import "TwitchAPIClient.h"
-#import "NSView+SHExtensions.h"
+#import "AccountManager.h"
 #import "LoginView.h"
+#import "NSView+SHExtensions.h"
+#import "TwitchAPIClient.h"
 #import "User.h"
+#import "UserViewModel.h"
 
 #import "LoginViewController.h"
 
@@ -20,7 +19,6 @@
     IBOutlet NSButton *_disconnectButton;
     IBOutlet NSButton *_loginButton;
     IBOutlet NSButton *_learnMoreButton;
-    IBOutlet NSTextField *_connectionStatusLabel;
 
     IBOutlet NSWindow *_modalWindow;
     IBOutlet WebView *_modalWebView;
@@ -28,12 +26,13 @@
 }
 
 @property (nonatomic, strong) TwitchAPIClient *client;
-@property (nonatomic, strong) AFOAuthCredential *credential;
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) UserViewModel *userViewModel;
 
 @property (nonatomic, assign) BOOL loggingIn;
 @property (nonatomic, strong) RACCommand *disconnectCommand;
 @property (nonatomic, strong) RACCommand *loginCommand;
+
+@property (weak) IBOutlet NSTextField *connectionStatusLabel;
 
 @end
 
@@ -44,11 +43,12 @@
     self = [super initWithNibName:@"LoginView" bundle:nil];
     if (self == nil) { return nil; }
 
-    self.credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
-    self.didLogoutSubject = [RACReplaySubject subject];
-    self.didLoginSubject = [RACReplaySubject subject];
+    _client = [TwitchAPIClient sharedClient];
+    _didLogoutSubject = [RACReplaySubject subject];
+    _didLoginSubject = [RACReplaySubject subject];
+    _userViewModel = [[UserViewModel alloc] init];
 
-    [self setUpAuthenticationSignals];
+    [self initializeAuthenticationSignals];
     return self;
 }
 
@@ -56,76 +56,51 @@
 {
     [super awakeFromNib];
 
-    self.loggingIn = NO;
-
     // Call the -sharedAppleEventManager and set an event handler to grab the
     // callbacks from Twitch's authentication system.
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleAppleEvent:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
 
-    [self setUpViewSignals];
+    [self initializeViewSignals];
     [_modalWebView setFrameLoadDelegate:self];
 }
 
-- (void)setUpViewSignals
+- (void)initializeViewSignals
 {
     @weakify(self);
 
-    _loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self);
-        DDLogInfo(@"Authentication: Kicking off the login process.");
-        self.client = [TwitchAPIClient sharedClient];
-        self.loggingIn = YES;
-    }];
-
-    _disconnectButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self);
-        DDLogInfo(@"Authentication: Logging out and removing credentials.");
-        self.client = [TwitchAPIClient sharedClient];
-        self.credential = nil;
-        self.user = nil;
-
-        [self.client logout];
-        [self.didLogoutSubject sendNext:RACTuplePack(self.credential, self.user)];
-    }];
-
-    // Watch to see if the value of user is set. If so, change the respective
-    // UI elements to reflect the fact that we have a user present.
-    [[RACObserve(self, credential) filter:^BOOL(id value) {
-        return (value != nil);
-    }] subscribeNext:^(id x) {
-        @strongify(self);
-        [_connectionStatusLabel setStringValue:@"You're logged in."];
-        [_disconnectButton setHidden:NO];
-        [_loginButton setHidden:YES];
-
-        if (self.user) { [_connectionStatusLabel setStringValue:[NSString stringWithFormat:@"You're logged in as %@.", self.user.name]]; }
-    }];
-
-    // This time, we're watching to see if the value of user is `nil`. If so,
-    // we'll revert all of the UI elements back to their original forms.
-    [[RACObserve(self, credential) filter:^BOOL(id value) {
-        return (value == nil);
-    }] subscribeNext:^(id x) {
-        [_connectionStatusLabel setStringValue:@"Not currently connected."];
-        [_disconnectButton setHidden:YES];
-        [_loginButton setHidden:NO];
-    }];
-}
-
-- (void)setUpAuthenticationSignals
-{
-    @weakify(self);
-
-    // Spectate loggingIn. If true, open the modal and start the journey.
-    [[RACObserve(self, loggingIn) distinctUntilChanged] subscribeNext:^(NSNumber *loggingIn) {
-        @strongify(self);
-        BOOL isLoggingIn = [loggingIn boolValue];
-        if (isLoggingIn) {
-            NSString *authorizationURL = [NSString stringWithFormat:@"%@oauth2/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=user_read", kTwitchBaseURL, kClientID, kRedirectURI];
+    _loginButton.rac_command = [[RACCommand alloc]
+        initWithSignalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            DDLogInfo(@"Authentication: Kicking off the login process.");
+            NSString *authorizationURL = [NSString stringWithFormat:@"%@oauth2/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=user_read+user_follows_edit", kTwitchBaseURL, kClientID, kRedirectURI];
             [self->_modalWebView setMainFrameURL:authorizationURL];
             [[NSApplication sharedApplication] beginSheet:_modalWindow modalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
-        }
-    }];
+            return [RACSignal empty];
+        }];
+
+    _disconnectButton.rac_command = [[RACCommand alloc]
+        initWithSignalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            DDLogInfo(@"Authentication: Logging out and removing credentials.");
+            [self.client logout];
+            return [RACSignal empty];
+        }];
+
+    RACSignal *isLoggedIn = RACObserve(self, userViewModel.isLoggedIn);
+
+    // Watch to see if the value of user is set. If so, change the respective
+    // UI elements to reflect the fact that we have a user present (or not).
+    [_disconnectButton rac_liftSelector:@selector(setHidden:) withSignals:[isLoggedIn not], nil];
+    [_loginButton rac_liftSelector:@selector(setHidden:) withSignals:isLoggedIn, nil];
+    RAC(self, connectionStatusLabel.stringValue, @"Not currently connected.") = [RACObserve(self, userViewModel.name)
+        map:^id(id value) {
+            return value ? [NSString stringWithFormat: @"You're logged in as %@.", value] : @"Not currently connected.";
+        }];
+}
+
+- (void)initializeAuthenticationSignals
+{
+    @weakify(self);
 
     // Reusable throwaway function for closing sheets.
     void (^closeSheet)(void) = ^{
@@ -142,11 +117,8 @@
     [[self.URLProtocolValueSubject filter:^BOOL(NSURL *url) {
         return ([url query] != nil && [[url query] rangeOfString:@"access_denied"].location != NSNotFound);
     }] subscribeNext:^(id x) {
-        @strongify(self);
         DDLogInfo(@"Authentication: We've been denied.");
-
         closeSheet();
-        self.loggingIn = NO;
     }];
 
     // Filter the subject for a callback containing "access_token".
@@ -158,18 +130,12 @@
         DDLogInfo(@"Authentication: We've been granted access.");
 
         closeSheet();
-        [[[RACSignal combineLatest:@[ [self.client authorizeUsingResponseURL:x], [self.client fetchUser] ] reduce:^id(AFOAuthCredential *credential, User *user) {
-            @strongify(self);
-            DDLogVerbose(@"Authentication: (Credential) %@", credential.accessToken);
-            DDLogVerbose(@"Authentication: (User) %@", user.name);
-            self.credential = credential;
-            self.user = user;
-        }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeCompleted:^{
-            @strongify(self);
-            DDLogInfo(@"Authentication: Complete for %@.", self.user.name);
-            [self.didLoginSubject sendNext:RACTuplePack(self.credential, self.user)];
-            self.loggingIn = NO;
-        }];
+        [[[self.client authorizeUsingResponseURL:x] deliverOn:[RACScheduler mainThreadScheduler]]
+            subscribeNext:^(AFOAuthCredential *credential) {
+                DDLogVerbose(@"Authentication: (Credential) %@", credential.accessToken);
+            } error:^(NSError *error) {
+                DDLogError(@"Authentication: %@", error);
+            }];
     }];
 }
 
