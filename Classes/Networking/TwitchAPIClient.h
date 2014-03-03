@@ -27,5 +27,8 @@ extern NSString *const kClientID;
 - (RACSignal *)fetchUser;
 - (RACSignal *)fetchAuthenticatedStreamList;
 - (RACSignal *)fetchFeaturedStreamList;
+- (RACSignal *)isUser:(NSString *)user followingChannel:(NSString *)channel;
+- (RACSignal *)haveUser:(NSString *)user followChannel:(NSString *)channel;
+- (RACSignal *)haveUser:(NSString *)user unfollowChannel:(NSString *)channel;
 
 @end
