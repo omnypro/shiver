@@ -8,7 +8,6 @@
 
 #import <Butter/BTRActivityIndicator.h>
 
-#import "EmptyErrorView.h"
 #import "HexColor.h"
 #import "JASectionedListView.h"
 #import "JLNFadingScrollView.h"
@@ -118,11 +117,13 @@ enum {
         }] distinctUntilChanged];
 
     [[RACSignal
-        combineLatest:@[RACObserve(self, viewModel.authenticatedStreams), RACObserve(self, viewModel.featuredStreams)]]
+        combineLatest:@[
+            RACObserve(self, viewModel.authenticatedStreams),
+            RACObserve(self, viewModel.featuredStreams)]]
         subscribeNext:^(id x) {
             @strongify(self);
-            [self reloadData];
-        } error:^(NSError *error) {
+            [self reloadData]; }
+        error:^(NSError *error) {
             @strongify(self);
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
         }];
@@ -221,24 +222,6 @@ enum {
 //            [self.errorView removeFromSuperviewAnimated:YES];
 //            self.errorView = nil;
 //            self.showingErrorMessage = nil;
-//        }
-//    }];
-//
-//    // Show or hide the login view.
-//    [[[RACObserve(self, loggedIn) distinctUntilChanged]
-//      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingLogin) {
-//        @strongify(self);
-//        BOOL isShowingLogin = [showingLogin boolValue];
-//        if (!isShowingLogin) {
-//            DDLogInfo(@"Application (%@): Showing the login view.", [self class]);
-//            // Don't show any of the other views if we're going to show login.
-//            self.errorView = NO;
-//            self.loadingView = NO;
-//            [self.view addSubview:self.loginView animated:YES];
-//        }
-//        else {
-//            DDLogInfo(@"Application (%@): Removing the login view.", [self class]);
-//            [self.loginView removeFromSuperviewAnimated:YES];
 //        }
 //    }];
 //}
