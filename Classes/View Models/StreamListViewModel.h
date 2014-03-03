@@ -14,7 +14,9 @@
 
 @property (nonatomic, strong) NSArray *authenticatedStreams;
 @property (nonatomic, strong) NSArray *featuredStreams;
+@property (nonatomic, strong) NSString *errorMessage;
 
+@property (nonatomic, assign) BOOL hasError;
 @property (nonatomic, assign) BOOL isLoading;
 
 @end
