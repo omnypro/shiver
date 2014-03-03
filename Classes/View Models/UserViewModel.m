@@ -31,8 +31,8 @@
     self = [super init];
     if (self == nil) return nil;
 
-    self.client = [TwitchAPIClient sharedClient];
-    self.user = nil;
+    _client = [TwitchAPIClient sharedClient];
+    _user = nil;
 
     [self initializeSignals];
 
@@ -65,6 +65,7 @@
 
     RAC(self, isLoggedIn, @NO) = [RACObserve(self, user)
         map:^id(id value) {
+            NSLog(@"Are we logged in? ---- %@", @(value != nil));
             return @(value != nil);
         }];
 
@@ -74,9 +75,17 @@
     RAC(self, logoImageURL) = RACObserve(self, user.logoImageURL);
 }
 
-
-
-
+- (RACSignal *)isUserFollowingChannel:(NSString *)channel
+{
+    DDLogInfo(@"Application (%@): Checking if '%@' follows '%@'.", [self class], self.name, channel);
+    return [[[self.client isUser:self.name followingChannel:channel] map:^id(id responseObject) {
+        return @(YES);
+    }] catch:^RACSignal *(NSError *error) {
+        long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+        DDLogError(@"Application (%@): (Error) Recieved a %ld from %@.", [self class], statusCode, NSStringFromSelector(_cmd));
+        return [RACSignal return:@(NO)];
+    }];
+}
 
 //- (instancetype)init {
 //	self = [super init];
