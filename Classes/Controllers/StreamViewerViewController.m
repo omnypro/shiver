@@ -16,17 +16,19 @@
 #import "StreamViewerView.h"
 #import "TitleView.h"
 #import "UserImageView.h"
+#import "UserViewModel.h"
 
 #import "StreamViewerViewController.h"
 
 @interface StreamViewerViewController ()
 
 @property (nonatomic, strong) MainWindowController *windowController;
+@property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSURL *chatURL;
 @property (nonatomic, strong) NSURL *profileURL;
-@property (nonatomic, strong) WebScriptObject *wso;
-
 @property (nonatomic, strong) TitleView *titleView;
+@property (nonatomic, strong) UserViewModel *userViewModel;
+@property (nonatomic, strong) WebScriptObject *wso;
 
 @property (weak) IBOutlet StreamViewerView *viewerView;
 
@@ -40,8 +42,8 @@
     if (self == nil) { return nil; }
 
     _windowController = [[NSApp delegate] windowController];
-
     _titleView = [_windowController titleView];
+    _userViewModel = [[UserViewModel alloc] init];
 
     return self;
 }
@@ -117,6 +119,21 @@
         }];
 
     [_webView setFrameLoadDelegate:self];
+
+    // ...
+    RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
+        map:^id(id value) {
+            return @(value != nil);
+        }] deliverOn:[RACScheduler mainThreadScheduler]];
+    [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
+
+    // ...
+    RAC(self, viewerView.followButton.title, @"Connect to Follow") = [[[[RACObserve(self, stream)
+        filter:^BOOL(id value) { return (value != nil); }]
+        flattenMap:^RACStream *(StreamViewModel *stream) { return [self.userViewModel isUserFollowingChannel:stream.name]; }]
+        map:^id(id responseObject) {
+            return [responseObject boolValue] ? @"Following" : @"Follow";
+        }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (NSString *)relativeDateWithTimestamp:(NSDate *)timestamp
