@@ -11,6 +11,12 @@
 
 #import "AccountManager.h"
 
+@interface AccountManager ()
+
+@property (nonatomic, strong) TwitchAPIClient *apiClient;
+
+@end
+
 @implementation AccountManager
 
 + (AccountManager *)sharedManager
@@ -19,14 +25,24 @@
     if (_sharedManager == nil) {
         _sharedManager = [[super alloc] init];
 
+        // Start the reachability notifier to make sure we have internets.
         [[Reachability reachabilityWithHostname:@"twitch.tv"] startNotifier];
-
-        // Let'se see if a credential is already stored in the user's keychain.
-        AFOAuthCredential *credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
-        if (credential != nil) { _sharedManager.credential = credential; }
     }
 
     return _sharedManager;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil) { return nil; }
+
+    // Observe the API client's credential value and change ours if
+    // that value changes.
+    _apiClient = [TwitchAPIClient sharedClient];
+    RAC(self, credential) = RACObserve(self, apiClient.credential);
+
+    return self;
 }
 
 #pragma mark - Status Signals
