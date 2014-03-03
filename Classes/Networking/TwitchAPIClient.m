@@ -21,7 +21,6 @@ NSString * const kClientID = @"rh02ow0o6qsss1psrb3q2cceg34tg9s";
 NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 @interface TwitchAPIClient ()
-@property (strong, nonatomic) AFOAuthCredential *credential;
 @property (nonatomic, strong) User *user;
 
 - (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url;
@@ -47,19 +46,12 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 - (id)initWithBaseURL:(NSURL *)url clientID:(NSString *)clientID secret:(NSString *)secret
 {
     self = [super initWithBaseURL:url clientID:clientID secret:secret];
-    if (!self) {
-        return nil;
-    }
+    if (self == nil) { return nil; }
 
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"application/json"];
     [self setDefaultHeader:@"Client-ID" value:kClientID];
     return self;
-}
-
-- (BOOL)isAuthenticated
-{
-    return (self.credential != nil) ? YES : NO;
 }
 
 - (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url

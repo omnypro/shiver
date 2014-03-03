@@ -10,20 +10,17 @@
 
 #import "AFOAuth2Client.h"
 
-@class User;
-@class Stream;
-
 extern NSString *const kTwitchBaseURL;
 extern NSString *const kRedirectURI;
 extern NSString *const kClientID;
 
 @interface TwitchAPIClient : AFOAuth2Client
 
+@property (nonatomic, strong) AFOAuthCredential *credential;
 @property (nonatomic, strong) NSString *userHandle;
 
 + (TwitchAPIClient *)sharedClient;
 
-- (BOOL)isAuthenticated;
 - (void)logout;
 
 - (RACSignal *)authorizeUsingResponseURL:(NSURL *)url;
