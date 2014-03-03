@@ -14,7 +14,6 @@ static NSString *const AutoStartSetting = @"autoStart";
 static NSString *const NotificationSetting = @"displayNotifications";
 static NSString *const DisplayStreamCountSetting = @"displayStreamCount";
 static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
-static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
 
 @implementation Preferences
 
@@ -37,7 +36,6 @@ static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
         NotificationSetting: @(YES),
         DisplayStreamCountSetting: @(YES),
         StreamListRefreshTimeSetting: @5,
-        OpenStreamsInPopupSetting: @(NO),
     }];
     DDLogInfo(@"Application: The defaults have been set!");
 }
@@ -93,19 +91,6 @@ static NSString *const OpenStreamsInPopupSetting = @"openStreamsInPopup";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:streamListRefreshTime forKey:StreamListRefreshTimeSetting];
-    [userDefaults synchronize];
-}
-
-- (BOOL)streamPopupEnabled
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults boolForKey:OpenStreamsInPopupSetting];
-}
-
-- (void)setStreamPopupEnabled:(BOOL)streamPopupEnabled
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:streamPopupEnabled forKey:OpenStreamsInPopupSetting];
     [userDefaults synchronize];
 }
 

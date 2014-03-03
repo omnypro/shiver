@@ -14,7 +14,6 @@
 @property (nonatomic, assign) BOOL notificationsEnabled;
 @property (nonatomic, assign) BOOL streamCountEnabled;
 @property (nonatomic, assign) NSNumber *streamListRefreshTime;
-@property (nonatomic, assign) BOOL streamPopupEnabled;
 
 + (Preferences *)sharedPreferences;
 - (void)setupDefaults;
