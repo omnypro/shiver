@@ -13,8 +13,8 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Abstracted attributes.
-    CGFloat cornerRadius = 1.0;
-    CGFloat imageInset = 2.0;
+    CGFloat cornerRadius = 2.0;
+    CGFloat imageInset = 1.0;
     CGFloat highlightCurveStartXOffset = 5.0;
     CGFloat highlightCurveEndYOffset = 5.0;
 
