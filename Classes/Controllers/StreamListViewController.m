@@ -23,6 +23,7 @@
 #import "StreamListViewModel.h"
 #import "StreamViewerViewController.h"
 #import "StreamViewModel.h"
+#import "YOLO.h"
 
 #import "StreamListViewController.h"
 
@@ -55,7 +56,7 @@ enum {
 @property (nonatomic, assign) BOOL showingEmpty;
 @property (nonatomic, strong) NSString *showingErrorMessage;
 
-- (void)sendNewStreamNotificationToUser:(NSSet *)newSet;
+- (void)sendNewStreamNotificationToUser:(NSArray *)streams;
 
 @end
 
@@ -124,6 +125,40 @@ enum {
         } error:^(NSError *error) {
             @strongify(self);
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
+        }];
+
+    // Observe our authenticated stream list (ignoring nil values). Once that
+    // value changes, return the stream list so we may further process it.
+    RACSignal *notificationsEnabled = [[RACSignal
+        combineLatest:@[[authenticatedStreams ignore:nil], RACObserve(self, preferences.notificationsEnabled)]
+        reduce:^id(NSArray *streams, NSNumber *notificationsEnabled) {
+            DDLogInfo(@"Application (%@): We will now be sending notifications.", [self class]);
+            return streams;
+        }] distinctUntilChanged];
+
+    // Process the changes after -notificationsEnabled has been tripped (except
+    // the first time). Compare the previous array of streams to the new array
+    // and return the changes.
+    RACSignal *notificationChanges = [[[[notificationsEnabled
+        map:^id(NSArray *newStreams) {
+            return newStreams; }]
+        combinePreviousWithStart:[NSArray array] reduce:^id(id previous, id current) {
+            DDLogVerbose(@"Application (%@): Previous stream list = [%@], Current stream list = [%@]", [self class], previous, current);
+            return [RACTuple tupleWithObjects:previous, current, nil]; }]
+        map:^id(RACTuple *tuple) {
+            RACTupleUnpack(NSArray *previous, NSArray *current) = tuple;
+            return current.without(previous);
+        }] skip:1];
+
+    // Subscribe to -notificationChanges and send a notification for every
+    // new stream that we have.
+    [[[notificationChanges deliverOn:[RACScheduler mainThreadScheduler]]
+        filter:^BOOL(NSArray *array) {
+            DDLogInfo(@"Notifications: %lu new streams.", [array count]);
+            return ([array count] > 0); }]
+        subscribeNext:^(NSArray *array) {
+            NSLog(@"Notifications: Array of streams to be pushed = [%@]", array);
+            [self sendNewStreamNotificationToUser:array];
         }];
 }
 
@@ -206,41 +241,6 @@ enum {
 //            [self.loginView removeFromSuperviewAnimated:YES];
 //        }
 //    }];
-//
-//    // If we've fetched streams before, compared the existing list to the newly
-//    // fetched one to check for any new broadcasts. If so, send those streams
-//    // to the notification center.
-//    [[[[[[[[RACObserve(self, streamList) deliverOn:[RACScheduler scheduler]] distinctUntilChanged] filter:^BOOL(id value) {
-//        return (self.preferences.notificationsEnabled == YES && value != nil);
-//    }] map:^(NSArray *changes) {
-//        return [NSSet setWithArray:changes];
-//    }] combinePreviousWithStart:[NSSet set] reduce:^id(NSSet *previous, NSSet *current) {
-//        return [RACTuple tupleWithObjects:previous, current, nil];
-//    }] map:^(RACTuple *changes) {
-//        RACTupleUnpack(NSSet *previous, NSSet *current) = changes;
-//        NSMutableSet *oldStreams = [previous mutableCopy];
-//        [oldStreams minusSet:current];
-//        NSMutableSet *newStreams = [current mutableCopy];
-//        [newStreams minusSet:previous];
-//        return [RACTuple tupleWithObjects:oldStreams, newStreams, nil];
-//    }] deliverOn:[RACScheduler scheduler]] subscribeNext:^(RACTuple *x) {
-//        RACTupleUnpack(NSSet *oldStreams, NSSet *newStreams) = x;
-//
-//        if ([oldStreams count] != 0) {
-//            // Take the `_id` value of each stream in the existing array
-//            // subtract those that exist in the recently fetched array.
-//            // Notifications will be sent for the results.
-//            NSSet *oldStreamIDs = [oldStreams valueForKey:@"_id"];
-//            NSSet *xorSet = [newStreams filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"NOT _id IN %@", oldStreamIDs]];
-//            // With the way we instantiate our xorSet, there's a
-//            // possibility that duplicates can pass through.
-//            // Throwing the set into another set could be a way
-//            // to fix the problem of duplicates.
-//            NSSet *uniqueSet = [NSSet setWithSet:xorSet];
-//            DDLogInfo(@"Notifications: %lu new streams.", (unsigned long)[uniqueSet count]);
-//            [self sendNewStreamNotificationToUser:uniqueSet];
-//        }
-//    }];
 //}
 
 - (NSString *)formatError:(NSString *)errorString
@@ -266,19 +266,16 @@ enum {
 
 #pragma mark - NSUserNotificationCenter Methods
 
-- (void)sendNewStreamNotificationToUser:(NSSet *)newSet
+- (void)sendNewStreamNotificationToUser:(NSArray *)streams
 {
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-    for (StreamViewModel *stream in newSet) {
+    for (StreamViewModel *stream in streams.uniq) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         [notification setTitle:[NSString stringWithFormat:@"%@ is now live!", stream.displayName]];
         [notification setSubtitle:[NSString stringWithFormat:@"%@", stream.game]];
         [notification setInformativeText:stream.status];
         [notification setSoundName:NSUserNotificationDefaultSoundName];
-
-        NSURL *streamURL = stream.url;
-        if (self.preferences.streamPopupEnabled) { streamURL = [streamURL URLByAppendingPathComponent:@"popout"]; }
-        [notification setUserInfo:@{ @"URL": [streamURL absoluteString] }];
+        [notification setUserInfo:@{ @"URL": [stream.url absoluteString] }];
 
         // Beam it up, Scotty!
         [center deliverNotification:notification];
