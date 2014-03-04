@@ -54,7 +54,6 @@
 - (BOOL)isEqual:(StreamViewModel *)viewModel
 {
     return [self.name isEqual:[viewModel name]];
-
 }
 
 -(NSComparisonResult)compare:(StreamViewModel *)otherViewModel

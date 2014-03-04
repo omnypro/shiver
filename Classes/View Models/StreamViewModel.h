@@ -11,6 +11,8 @@
 
 @interface StreamViewModel : RVMViewModel
 
+@property (nonatomic, assign) BOOL isFollowed;
+
 @property (nonatomic, strong, readonly) Channel *channel;
 @property (nonatomic, strong, readonly) Stream *stream;
 

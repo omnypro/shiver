@@ -303,15 +303,19 @@ enum {
 - (void)modifyListViewWithObjects:(RACTuple *)tuple inSection:(NSUInteger)section
 {
     RACTupleUnpack(NSArray *toAdd, NSArray *toRemove) = tuple;
-    [[[[toRemove.rac_sequence map:^id(StreamViewModel *value) {
-        [_listView removeListViewItemForObject:value];
-        return [RACSignal return:value];
-    }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
-    [[[[toAdd.rac_sequence map:^id(id value) {
-        StreamListItemView *item = [StreamListItemView initItemStream:value];
-        [_listView addListViewItem:item inSection:section];
-        return [RACSignal return:value];
-    }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
+    [[[[toRemove.rac_sequence
+        map:^id(StreamViewModel *value) {
+            [_listView removeListViewItemForObject:value];
+            return [RACSignal return:value];
+        }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
+    [[[[[toAdd.rac_sequence
+        filter:^BOOL(StreamViewModel *value) {
+             return (value.isFollowed == NO); }]
+        map:^id(StreamViewModel *value) {
+            StreamListItemView *item = [StreamListItemView initItemStream:value];
+            [_listView addListViewItem:item inSection:section];
+            return [RACSignal return:value];
+        }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (void)reloadData {
