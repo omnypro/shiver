@@ -966,7 +966,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\nrm ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Library/LoginItems/${PRODUCT_NAME}Helper.app/Contents/embedded.provisionprofile";
+			shellScript = "#!/bin/sh\nFILE = ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Library/LoginItems/${PRODUCT_NAME}Helper.app/Contents/embedded.provisionprofile\n\nif [ $FILE ]; then\n    rm $FILE\nfi";
 		};
 		93BE57DC1773DAFC008CB04E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
