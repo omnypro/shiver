@@ -128,11 +128,12 @@
 
     // Here's a hacky check to see if we should enable the follow button.
     // If we have a user's name, enable the button.
-    RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
-        map:^id(id value) {
-            return @(value != nil);
-        }] deliverOn:[RACScheduler mainThreadScheduler]];
-    [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
+//    RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
+//        map:^id(id value) {
+//            return @(value != nil);
+//        }] deliverOn:[RACScheduler mainThreadScheduler]];
+//    [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
+    [self.viewerView.followButton setEnabled:NO];
 
     // Set the text for the follow button. Run -isUserFollowingChannel: and
     // process the results.
