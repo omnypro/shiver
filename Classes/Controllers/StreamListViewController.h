@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "JASectionedListView.h"
+#import "JAObjectListView.h"
 #import "SHViewController.h"
 #import "StreamListViewModel.h"
 
 @class StreamViewerViewController;
 
-@interface StreamListViewController : SHViewController <NSUserNotificationCenterDelegate, JASectionedListViewDataSource, JAListViewDelegate>
+@interface StreamListViewController : SHViewController <NSUserNotificationCenterDelegate, JAListViewDelegate>
 
 @property (nonatomic, strong, readonly) StreamListViewModel *viewModel;
 

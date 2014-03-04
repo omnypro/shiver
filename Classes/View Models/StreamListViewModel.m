@@ -70,19 +70,21 @@
             if (featuredStreams != nil) {
                 // If authenticated streams are a thing, its contents from
                 // the featured stream list.
-                NSArray *streams = featuredStreams;
-                streams = (authenticatedStreams != nil) ? streams.without(authenticatedStreams) : streams;
                 DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [featuredStreams count]);
-                return streams.sortBy(@"name");
+                return [[featuredStreams.sortBy(@"name").rac_sequence
+                    map:^id(StreamViewModel *stream) {
+                        if ([authenticatedStreams containsObject:stream]) { [stream setIsFollowed:YES]; }
+                        return stream;
+                    }] array];
             } else {
                 DDLogInfo(@"Application (%@): No featured streams fetched.", [self class]);
-                return nil;
-            }
-        }] catch:^RACSignal *(NSError *error) {
+                return @[];
+            } }]
+        catch:^RACSignal *(NSError *error) {
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
-            return nil;
+            return [RACSignal return:@[]];
         }];
 
     // ...
@@ -95,13 +97,13 @@
                 return streams.sortBy(@"name");
             } else {
                 DDLogInfo(@"Application (%@): No authenticated streams fetched.", [self class]);
-                return nil;
-            }
-        }] catch:^RACSignal *(NSError *error) {
+                return @[];
+            } }]
+        catch:^RACSignal *(NSError *error) {
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
-            return nil;
+            return [RACSignal return:@[]];
         }];
 }
 

@@ -9,7 +9,7 @@
 #import <Butter/BTRActivityIndicator.h>
 
 #import "HexColor.h"
-#import "JASectionedListView.h"
+#import "JAObjectListView.h"
 #import "JLNFadingScrollView.h"
 #import "LoadingView.h"
 #import "LoginRequiredView.h"
@@ -33,7 +33,7 @@ enum {
 
 @interface StreamListViewController () {
     IBOutlet BTRActivityIndicator *_activityIndicator;
-    IBOutlet JASectionedListView *_listView;
+    IBOutlet JAObjectListView *_listView;
     IBOutlet JLNFadingScrollView *_scrollView;
     IBOutlet LoadingView *_loadingView;
     IBOutlet NSButton *_refreshButton;
@@ -77,17 +77,28 @@ enum {
 
     DDLogInfo(@"Application (%@): Stream list loaded.", [self class]);
 
+    [self initializeListViewHeaders];
     [self initializeSignals];
     [self initializeLifecycleSignals];
 
     [_activityIndicator setProgressShapeColor:[NSColor whiteColor]];
 
     [_listView setBackgroundColor:[NSColor clearColor]];
-    [_listView setCanCallDataSourceInParallel:YES];
     [_listView setConditionallyUseLayerBacking:YES];
     [_listView setPadding:JAEdgeInsetsMake(-5, 0, 5, 0)];
 
     [_scrollView setFadeColor:[NSColor colorWithHexString:@"#000000" alpha:0.5]];
+}
+
+- (void)initializeListViewHeaders
+{
+    StreamListSectionView *authenticatedHeaderItem = [StreamListSectionView initItem];
+    [authenticatedHeaderItem.title setStringValue:@"Your Follows"];
+    [_listView addListViewItem:authenticatedHeaderItem forHeaderForSection:0];
+
+    StreamListSectionView *featuredHeaderItem = [StreamListSectionView initItem];
+    [featuredHeaderItem.title setStringValue:@"Featured Streams"];
+    [_listView addListViewItem:featuredHeaderItem forHeaderForSection:1];
 }
 
 - (void)initializeSignals
@@ -126,6 +137,41 @@ enum {
         error:^(NSError *error) {
             @strongify(self);
             DDLogError(@"Application (%@): (Error) %@", [self class], error);
+        }];
+
+    // ...
+    [[RACObserve(self, viewModel.featuredStreams)
+        combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
+            DDLogVerbose(@"Application (%@): Previous featured stream list = [%@], Current featured stream list = [%@]", [self class], previous, current);
+            return [RACTuple tupleWithObjects:current, previous, nil]; }]
+        subscribeNext:^(RACTuple *tuple) {
+            if (![tuple[0] isEqualToArray:tuple[1]]) {
+                [self modifyListViewWithObjects:tuple inSection:1];
+                DDLogInfo(@"Application (%@): Adding %lu streams to the featured list.", [self class], [tuple[0] count]);
+                DDLogInfo(@"Application (%@): Removing %lu streams from the featured list.", [self class], [tuple[1] count]);
+            } else {
+                DDLogInfo(@"Application (%@): Taking no action on the featured list.", [self class]);
+            }
+        }];
+
+    // ...
+    [[RACObserve(self, viewModel.authenticatedStreams)
+        combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
+            if (![current count]) { current = @[]; }
+            NSArray *toAdd = current.without(![previous count] ? @[] : previous);
+            if (![previous count]) { previous = @[]; }
+            NSArray *toRemove = previous.without(![current count] ? @[] : current);
+
+            DDLogVerbose(@"Application (%@): Previous authenticated stream list = [%@], Current authenticated stream list = [%@]", [self class], previous, current);
+            return [RACTuple tupleWithObjects:toAdd, toRemove, nil]; }]
+        subscribeNext:^(RACTuple *tuple) {
+            if (![tuple[0] isEqualToArray:tuple[1]]) {
+                [self modifyListViewWithObjects:tuple inSection:0];
+                DDLogInfo(@"Application (%@): Adding %lu streams to the authenticated list.", [self class], [tuple[0] count]);
+                DDLogInfo(@"Application (%@): Removing %lu streams from the authenticated list.", [self class], [tuple[1] count]);
+            } else {
+                DDLogInfo(@"Application (%@): Taking no action on the authenticated list.", [self class]);
+            }
         }];
 
     // Observe our authenticated stream list (ignoring nil values). Once that
@@ -237,11 +283,28 @@ enum {
     return string;
 }
 
+- (void)modifyListViewWithObjects:(RACTuple *)tuple inSection:(NSUInteger)section
+{
+    RACTupleUnpack(NSArray *toAdd, NSArray *toRemove) = tuple;
+    [[[[toRemove.rac_sequence map:^id(StreamViewModel *value) {
+        [_listView removeListViewItemForObject:value];
+        return [RACSignal return:value];
+    }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
+    [[[[toAdd.rac_sequence map:^id(id value) {
+        StreamListItemView *item = [StreamListItemView initItemStream:value];
+        [_listView addListViewItem:item inSection:section];
+        return [RACSignal return:value];
+    }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
+}
+
 - (void)reloadData {
     NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
     [_listView reloadDataAnimated:YES];
     for (StreamListItemView *item in selectedViews) {
         [_listView selectView:item];
+
+        JAObjectListViewItem *selectedItem = [_listView viewItemForObject:item.object];
+        [selectedItem setSelected:YES];
     }
 
     [_listView setNeedsDisplay:YES];
@@ -320,65 +383,6 @@ enum {
     StreamListItemView *item = (StreamListItemView *)view;
     DDLogInfo(@"Application (%@): JAListView did deselect -- %@", [self class], item);
     [listView reloadLayoutAnimated:NO];
-}
-
-#pragma mark - JAListViewDataSource Methods
-
-- (JAListViewItem *)listView:(JAListView *)listView viewForSection:(NSUInteger)section index:(NSUInteger)index
-{
-    StreamListItemView *item = nil;
-
-    switch (section) {
-        case 0:
-            item = [StreamListItemView initItemStream:[self.viewModel.authenticatedStreams objectAtIndex:index]];
-            break;
-        case 1:
-            item = [StreamListItemView initItemStream:[self.viewModel.featuredStreams objectAtIndex:index]];
-            break;
-        default:
-            break;
-    }
-
-    return item;
-}
-
-- (JAListViewItem *)listView:(JAListView *)listView sectionHeaderViewForSection:(NSUInteger)section
-{
-    StreamListSectionView *item = [StreamListSectionView initItem];
-
-    switch (section) {
-        case 0:
-            [item.title setStringValue:@"Your Follows"];
-            break;
-        case 1:
-            [item.title setStringValue:@"Featured Streams"];
-            break;
-    }
-
-    return item;
-}
-
-- (NSUInteger)numberOfSectionsInListView:(JASectionedListView *)listView
-{
-    return 2;
-}
-
--(NSUInteger)listView:(JASectionedListView *)listView numberOfViewsInSection:(NSUInteger)section
-{
-    NSUInteger count = 0;
-
-    switch (section) {
-        case 0:
-            count = [self.viewModel.authenticatedStreams count];
-            break;
-        case 1:
-            count = [self.viewModel.featuredStreams count];
-            break;
-        default:
-            break;
-    }
-
-    return count;
 }
 
 @end

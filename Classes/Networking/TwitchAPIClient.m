@@ -21,9 +21,11 @@ NSString * const kClientID = @"rh02ow0o6qsss1psrb3q2cceg34tg9s";
 NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 @interface TwitchAPIClient ()
+
 @property (nonatomic, strong) User *user;
 
 - (NSMutableDictionary *)parseQueryStringsFromURL:(NSURL *)url;
+
 @end
 
 @implementation TwitchAPIClient

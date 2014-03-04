@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Revyver, Inc. All rights reserved.
 //
 
-#import "JAListViewItem.h"
+#import "JAObjectListViewItem.h"
 
-@interface StreamListSectionView : JAListViewItem
+@interface StreamListSectionView : JAObjectListViewItem
 
 @property (weak) IBOutlet NSTextField *title;
 

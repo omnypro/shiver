@@ -39,6 +39,7 @@
 		if ([object isKindOfClass:[JAListViewItem class]]) {
             [object setSelected:NO];
             [object setViewModel:viewModel];
+            [object setObject:viewModel];
             [object setupInterface];
             return object;
         }

@@ -29,12 +29,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="444"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view id="79" customClass="JASectionedListView">
+                            <view id="79" customClass="JAObjectListView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="444"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="-2" id="BOj-FJ-KoP"/>
-                                    <outlet property="sectionDataSource" destination="-2" id="o31-Nq-oA7"/>
                                 </connections>
                             </view>
                         </subviews>

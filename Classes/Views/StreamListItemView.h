@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
-#import "JAListViewItem.h"
+#import "JAObjectListViewItem.h"
 
 @class StreamViewModel;
 
-@interface StreamListItemView : JAListViewItem {
+@interface StreamListItemView : JAObjectListViewItem {
     BOOL selected;
 }
 
