@@ -50,7 +50,7 @@
     RACSignal *hasCredential = [credentialSignal map:^(AFOAuthCredential *credential) { return @(credential != nil); }];
 
     // Observers.
-    RAC(self, user) = [RACSignal
+    RAC(self, user) = [[RACSignal
         combineLatest:@[readyAndReachable, hasCredential, [self.client fetchUser]]
         reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, User *user){
             if ([readyAndReachable boolValue] && [hasCredential boolValue] && user != nil) {
@@ -59,9 +59,13 @@
             } else {
                 DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
                 return nil;
-            }
-        }
-    ];
+            } }]
+        catch:^RACSignal *(NSError *error) {
+            DDLogError(@"Application (%@): (Error) %@", [self class], error);
+            self.hasError = YES;
+            self.errorMessage = [error localizedDescription];
+            return [RACSignal empty];
+        }];
 
     RAC(self, isLoggedIn, @NO) = [RACObserve(self, user)
         map:^id(id value) {

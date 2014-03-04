@@ -14,7 +14,9 @@
 @property (nonatomic, readonly) NSString *displayName;
 @property (nonatomic, readonly) NSString *email;
 @property (nonatomic, readonly) NSURL *logoImageURL;
+@property (nonatomic, strong) NSString *errorMessage;
 
+@property (nonatomic, assign) BOOL hasError;
 @property (nonatomic, assign) BOOL isLoggedIn;
 
 - (RACSignal *)isUserFollowingChannel:(NSString *)channel;
