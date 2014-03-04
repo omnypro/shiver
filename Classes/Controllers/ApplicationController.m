@@ -111,6 +111,7 @@
     [DDLog addLogger:[DDASLLogger sharedInstance]];
 #endif
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
 
     NSString *productName =  [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     NSString *shortVersionString = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
