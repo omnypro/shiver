@@ -32,6 +32,8 @@
 		93462A07177CB15400C928CA /* Error.png in Resources */ = {isa = PBXBuildFile; fileRef = 93462A05177CB14D00C928CA /* Error.png */; };
 		93462A08177CB15400C928CA /* Error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93462A06177CB14D00C928CA /* Error@2x.png */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
+		934D109718C67648007D3E6F /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D109218C67593007D3E6F /* Butter.framework */; };
+		934D109818C67656007D3E6F /* Butter.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 934D109218C67593007D3E6F /* Butter.framework */; };
 		935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F1177A010B0069AEFC /* NSView+SHExtensions.m */; };
 		935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F8177B696F0069AEFC /* LoginRequiredView.m */; };
 		936314181785346300AED886 /* NSView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 936314171785346300AED886 /* NSView+Animations.m */; };
@@ -92,13 +94,12 @@
 		93BE57D01773D941008CB04E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57CE1773D941008CB04E /* Credits.rtf */; };
 		93BE57D31773D941008CB04E /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BE57D21773D941008CB04E /* ApplicationDelegate.m */; };
 		93BE57D61773D941008CB04E /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* Menu.xib */; };
-		93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
+		93BE57DB1773DA98008CB04E /* ShiverHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
 		93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A318B7FBDE005943E8 /* StreamListView.m */; };
 		93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */; };
 		93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A918B824BB005943E8 /* StreamViewerView.m */; };
 		93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7AD18B84AD8005943E8 /* TitleView.m */; };
 		93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */; };
-		93C0A7C718B99771005943E8 /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C0A7C618B99771005943E8 /* Butter.framework */; };
 		93C0A7D418B9A9D2005943E8 /* ProfileButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */; };
 		93C0A7D718B9B02B005943E8 /* FollowButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D618B9B02B005943E8 /* FollowButtonCell.m */; };
 		93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7D918BAC545005943E8 /* StreamListSectionView.m */; };
@@ -115,15 +116,44 @@
 		B6DF44B2DA7C4BEBB50E791C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A795A5CACCC44DC59B59DAEC /* libPods.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		934D109118C67593007D3E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 934D108D18C67593007D3E6F /* Butter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03239EB21672E6D6004263D7;
+			remoteInfo = Butter;
+		};
+		934D109318C675CB007D3E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 934D108D18C67593007D3E6F /* Butter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 03239EB11672E6D6004263D7;
+			remoteInfo = Butter;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		93BE57DA1773DA73008CB04E /* CopyFiles */ = {
+		934D109518C67602007D3E6F /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				934D109818C67656007D3E6F /* Butter.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93BE57DA1773DA73008CB04E /* Copy Helper Application */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				93BE57DB1773DA98008CB04E /* ShiverHelper.app in CopyFiles */,
+				93BE57DB1773DA98008CB04E /* ShiverHelper.app in Copy Helper Application */,
 			);
+			name = "Copy Helper Application";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -170,6 +200,7 @@
 		93462A06177CB14D00C928CA /* Error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Error@2x.png"; path = "Assets/Images/Error@2x.png"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
+		934D108D18C67593007D3E6F /* Butter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Butter.xcodeproj; path = External/Butter/Butter.xcodeproj; sourceTree = "<group>"; };
 		935378F0177A010B0069AEFC /* NSView+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+SHExtensions.h"; path = "Extensions/Categories/NSView+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
 		935378F1177A010B0069AEFC /* NSView+SHExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+SHExtensions.m"; path = "Extensions/Categories/NSView+SHExtensions.m"; sourceTree = SOURCE_ROOT; };
 		935378F7177B696F0069AEFC /* LoginRequiredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequiredView.h; path = Classes/Views/LoginRequiredView.h; sourceTree = SOURCE_ROOT; };
@@ -302,7 +333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93C0A7C718B99771005943E8 /* Butter.framework in Frameworks */,
+				934D109718C67648007D3E6F /* Butter.framework in Frameworks */,
 				932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */,
 				93A3A12D1767A66F00913C9A /* CoreServices.framework in Frameworks */,
 				93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */,
@@ -326,6 +357,7 @@
 		932C298D1761AE0B0049EC1B = {
 			isa = PBXGroup;
 			children = (
+				934D108D18C67593007D3E6F /* Butter.xcodeproj */,
 				932C299F1761AE0B0049EC1B /* Shiver */,
 				93BE57C51773D941008CB04E /* ShiverHelper */,
 				932C29981761AE0B0049EC1B /* Frameworks */,
@@ -432,6 +464,14 @@
 				93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		934D108E18C67593007D3E6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				934D109218C67593007D3E6F /* Butter.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		936327B41763B73700146C8A /* Assets */ = {
@@ -736,12 +776,14 @@
 				932C29931761AE0B0049EC1B /* Frameworks */,
 				932C29941761AE0B0049EC1B /* Resources */,
 				ADBB9DB2641844318B22B995 /* Copy Pods Resources */,
-				93BE57DA1773DA73008CB04E /* CopyFiles */,
+				934D109518C67602007D3E6F /* Copy Frameworks */,
+				93BE57DA1773DA73008CB04E /* Copy Helper Application */,
 				93B7B54C18208A9B00B7EF45 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				934D109418C675CB007D3E6F /* PBXTargetDependency */,
 			);
 			name = Shiver;
 			productName = Shiver;
@@ -778,6 +820,11 @@
 				TargetAttributes = {
 					932C29951761AE0B0049EC1B = {
 						DevelopmentTeam = 4T2N7EHXK3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					93BE57C21773D941008CB04E = {
 						DevelopmentTeam = 4T2N7EHXK3;
@@ -794,6 +841,12 @@
 			mainGroup = 932C298D1761AE0B0049EC1B;
 			productRefGroup = 932C29971761AE0B0049EC1B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 934D108E18C67593007D3E6F /* Products */;
+					ProjectRef = 934D108D18C67593007D3E6F /* Butter.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				932C29951761AE0B0049EC1B /* Shiver */,
@@ -801,6 +854,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		934D109218C67593007D3E6F /* Butter.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Butter.framework;
+			remoteRef = 934D109118C67593007D3E6F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		932C29941761AE0B0049EC1B /* Resources */ = {
@@ -1004,6 +1067,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		934D109418C675CB007D3E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Butter;
+			targetProxy = 934D109318C675CB007D3E6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		932C29BE1761AF460049EC1B /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
@@ -1126,13 +1197,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Shiver.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks ";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "80F46D9E-0188-4E64-9DC3-C016A9D68852";
 				SDKROOT = macosx;
@@ -1144,14 +1216,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Shiver.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks ";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "80F46D9E-0188-4E64-9DC3-C016A9D68852";
 				SDKROOT = macosx;
