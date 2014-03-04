@@ -197,6 +197,11 @@
     [self setVolume];
 }
 
+- (IBAction)reloadStream:(id)sender
+{
+    [self.webView reload:sender];
+}
+
 - (IBAction)showProfile:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:self.profileURL];
@@ -205,6 +210,15 @@
 - (IBAction)showChat:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:self.chatURL];
+}
+
+- (IBAction)togglePlayPause:(id)sender
+{
+    NSUInteger state = [sender state];
+    NSLog(@"%ld", state);
+
+    if (state) { [self.wso evaluateWebScript:@"video.pause()"]; }
+    else { [self.wso evaluateWebScript:@"video.play()"]; }
 }
 
 @end

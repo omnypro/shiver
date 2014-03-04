@@ -127,6 +127,34 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="SCp-Yp-omU">
+                    <rect key="frame" x="42" y="95" width="24" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="Sf4-UK-a7J"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Reload" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="Jqt-vC-6Kc">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="reloadStream:" target="-2" id="YJ0-lR-Q9Y"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="maT-Tp-qqd">
+                    <rect key="frame" x="17" y="95" width="24" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="4SV-VZ-ndK"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Pause" imagePosition="overlaps" alignment="center" alternateImage="Play" imageScaling="proportionallyDown" inset="2" id="H0R-TG-G8O">
+                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="togglePlayPause:" target="-2" id="kEI-LA-NHl"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="txV-Sc-UAq" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="52" id="3Gc-w1-FsX"/>
@@ -140,8 +168,12 @@
                 <constraint firstItem="ZsA-qk-GR6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="O7V-Ya-YwV"/>
                 <constraint firstItem="13u-a7-fcZ" firstAttribute="top" secondItem="1" secondAttribute="top" id="Oiy-zj-zvS"/>
                 <constraint firstAttribute="centerX" secondItem="yj9-ig-5LS" secondAttribute="centerX" id="Sec-Qf-I7p"/>
+                <constraint firstItem="SCp-Yp-omU" firstAttribute="leading" secondItem="maT-Tp-qqd" secondAttribute="trailing" constant="1" id="U6w-D8-s3s"/>
                 <constraint firstItem="vPs-mV-Z4n" firstAttribute="trailing" secondItem="txV-Sc-UAq" secondAttribute="trailing" id="WNQ-Pz-B9s"/>
+                <constraint firstItem="SCp-Yp-omU" firstAttribute="top" secondItem="maT-Tp-qqd" secondAttribute="top" id="Xvr-Bg-jcY"/>
+                <constraint firstItem="SCp-Yp-omU" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="4" id="YMW-2L-0ku"/>
                 <constraint firstItem="7rq-lY-FrR" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="87" id="bOg-YU-oeJ"/>
+                <constraint firstItem="maT-Tp-qqd" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="17" id="bRv-4n-TGm"/>
                 <constraint firstItem="VEt-g2-exX" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="48" id="clA-CS-Nsy"/>
                 <constraint firstItem="VEt-g2-exX" firstAttribute="leading" secondItem="7rq-lY-FrR" secondAttribute="leading" id="cxG-Kg-ypW"/>
                 <constraint firstItem="7rq-lY-FrR" firstAttribute="top" secondItem="VEt-g2-exX" secondAttribute="bottom" constant="3" id="hQT-Xl-bZK"/>
@@ -155,7 +187,9 @@
                 <outlet property="followButton" destination="vPs-mV-Z4n" id="Xcl-9a-neW"/>
                 <outlet property="liveSinceLabel" destination="VEt-g2-exX" id="cqe-p9-x4h"/>
                 <outlet property="logo" destination="ZsA-qk-GR6" id="fDZ-b5-WDO"/>
+                <outlet property="playPauseButton" destination="maT-Tp-qqd" id="Hwb-Mc-jit"/>
                 <outlet property="profileButton" destination="txV-Sc-UAq" id="NcE-ZC-ZyR"/>
+                <outlet property="reloadButton" destination="SCp-Yp-omU" id="1G7-HH-J3L"/>
                 <outlet property="statusLabel" destination="7rq-lY-FrR" id="Q5a-u3-EPQ"/>
                 <outlet property="volumeSlider" destination="2Qu-uI-JvL" id="Du0-4o-Qsn"/>
             </connections>
@@ -163,5 +197,8 @@
     </objects>
     <resources>
         <image name="Icon" width="512" height="512"/>
+        <image name="Pause" width="24" height="24"/>
+        <image name="Play" width="24" height="24"/>
+        <image name="Reload" width="24" height="24"/>
     </resources>
 </document>

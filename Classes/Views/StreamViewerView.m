@@ -54,7 +54,7 @@
 
     // Draw the player bar.
     NSColor *playerTopColor = [NSColor colorWithHexString:@"#2E2F30" alpha:1.0];
-    NSColor *playerBottomColor = [NSColor colorWithHexString:@"#202527" alpha:1.0];
+    NSColor *playerBottomColor = [NSColor colorWithHexString:@"#17191B" alpha:1.0];
     NSGradient *playerGradient = [[NSGradient alloc] initWithStartingColor:playerTopColor endingColor:playerBottomColor];
     NSRect playerRect = NSMakeRect(10, 93, self.bounds.size.width - 20, 29);
     NSBezierPath *playerPath = [NSBezierPath bezierPathWithRoundedRect:playerRect cornerRadius:2.0 inCorners:OSBottomLeftCorner | OSBottomRightCorner];
