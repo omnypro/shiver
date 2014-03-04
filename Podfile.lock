@@ -2,10 +2,10 @@ PODS:
   - AFNetworking (1.3.3)
   - AFOAuth2Client (0.1.2):
     - AFNetworking (~> 1.3)
-  - CocoaLumberjack (1.8.0):
+  - CocoaLumberjack (1.8.1):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.8.0)
-  - CocoaLumberjack/Extensions (1.8.0):
+  - CocoaLumberjack/Core (1.8.1)
+  - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
   - HexColors (2.2.1)
   - INAppStoreWindow (1.4)
@@ -15,12 +15,12 @@ PODS:
   - Mantle/extobjc (1.3.1)
   - NSAttributedString+CCLFormat (1.0.0)
   - Reachability (3.1.1)
-  - ReactiveCocoa (2.2.3):
+  - ReactiveCocoa (2.2.4):
     - ReactiveCocoa/Core
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/Core (2.2.3):
+  - ReactiveCocoa/Core (2.2.4):
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.2.3)
+  - ReactiveCocoa/no-arc (2.2.4)
   - ReactiveViewModel (0.2):
     - ReactiveCocoa (~> 2.1)
   - Rebel (0.3.2):
@@ -34,14 +34,14 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
   - AFOAuth2Client (~> 0.1.2)
-  - CocoaLumberjack (~> 1.8.0)
+  - CocoaLumberjack (~> 1.8.1)
   - HexColors (~> 2.2.1)
   - INAppStoreWindow (~> 1.4)
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.1)
   - NSAttributedString+CCLFormat (~> 1.0.0)
   - Reachability (~> 3.1.0)
-  - ReactiveCocoa (~> 2.2.3)
+  - ReactiveCocoa (~> 2.2.4)
   - ReactiveViewModel (~> 0.2)
   - Rebel (~> 0.3.2)
   - RHPreferences (~> 1.0.0)
@@ -52,14 +52,14 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   AFOAuth2Client: 579d6f298b0047dfd5a6eec6ab5b28c01f6b4547
-  CocoaLumberjack: 6ed94046d2ca7fde03a73b3d01b8cfc56574b314
+  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
   INAppStoreWindow: 5a9eedcedc3ec95e7d8a12292de584b760d96c76
   JAListView: 7fb73768382a93a0cf48e18828709ef3240911fc
   Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
   NSAttributedString+CCLFormat: 365cb9f560c6594855851925ec0e2b5ff2654bff
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
-  ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
+  ReactiveCocoa: 953a45dda30674fe704d1d9c77cc874141742f47
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
   Rebel: 62fb32b3b4c06ce3d73e226f7d8fc51ad1b70d10
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
