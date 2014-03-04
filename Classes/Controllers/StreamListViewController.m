@@ -42,7 +42,6 @@ enum {
 @property (nonatomic, strong) NSView *emptyView;
 @property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) LoadingView *loadingView;
-@property (nonatomic, strong) NSView *loginView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) MainWindowController *windowController;
 
@@ -70,7 +69,6 @@ enum {
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    self.loginView = [LoginRequiredView init];
     self.statusItem = [[NSApp delegate] statusItem];
     self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
