@@ -8,6 +8,7 @@
 
 #import <Butter/BTRActivityIndicator.h>
 
+#import "AccountManager.h"
 #import "HexColor.h"
 #import "JAObjectListView.h"
 #import "JLNFadingScrollView.h"
@@ -241,6 +242,24 @@ enum {
             @strongify(self);
             DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
             [self.viewModel.refreshCommand execute:nil];
+        }];
+
+    // Watch AccountManager's credential property to see if it becomes nil.
+    // If so, unset the viewerController's stream so the interface can be
+    // reverted appropriately.
+    [[[RACObserve(AccountManager.sharedManager, credential)
+        map:^(AFOAuthCredential *credential) {
+            return @(credential == nil); }] deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(id x) {
+            DDLogInfo(@"Application (%@): Cannot detect a credential.", [self class]);
+            [self.windowController.viewerController setStream:nil];
+
+            NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
+            for (StreamListItemView *item in selectedViews) {
+                [item setSelected:NO];
+            }
+
+            [_listView setNeedsDisplay:YES];
         }];
 }
 

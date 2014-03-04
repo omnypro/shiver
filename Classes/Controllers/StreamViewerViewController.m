@@ -57,24 +57,33 @@
 
     @weakify(self);
 
+    // Observe the stream. If its value is set to nil, deactivate the viewer
+    // interface (setting the titleView to inactive, etc).
     [[[RACObserve(self, stream)
         filter:^BOOL(id value) {
-            return (value == nil); }] deliverOn:[RACScheduler mainThreadScheduler]]
+            return (value == nil); }]
+        deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
+            NSLog(@"Application (%@): Stream has been cleared. Deactivate the viewer.", [self class]);
             [self.titleView setIsActive:NO];
             if ([self.viewerView superview] != nil) {
                 [self.viewerView removeFromSuperview];
             }
         }];
 
-    [[[[RACObserve(self, stream) ignore:nil] take:1] deliverOn:[RACScheduler mainThreadScheduler]]
+    // Observe the stream, ignoring nil values. If its value is set, activate
+    // the viewer interface (setting the title view to active, etc).
+    [[[RACObserve(self, stream) ignore:nil]
+        deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
             NSLog(@"Application (%@): We have a stream. Activate the viewer.", [self class]);
             [self.titleView setIsActive:YES];
-            [self.viewerView setFrame:self.view.bounds];
-            [self.view addSubview:self.viewerView];
+            if ([self.viewerView superview] == nil) {
+                [self.viewerView setFrame:self.view.bounds];
+                [self.view addSubview:self.viewerView];
+            }
         }];
 
     RAC(self, viewerView.statusLabel.attributedStringValue, @"") = [RACObserve(self, stream.status)
@@ -147,13 +156,10 @@
 {
     _stream = stream;
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
-    [[self.webView mainFrame] loadRequest:request];
-}
-
-- (void)unsetStream
-{
-    _stream = nil;
+    if (stream != nil) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
+        [[self.webView mainFrame] loadRequest:request];
+    }
 }
 
 - (void)setVolume
