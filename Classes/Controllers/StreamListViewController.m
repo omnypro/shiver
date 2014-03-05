@@ -8,6 +8,7 @@
 
 #import <Butter/BTRActivityIndicator.h>
 
+#import "ApplicationController.h"
 #import "AccountManager.h"
 #import "HexColor.h"
 #import "JAObjectListView.h"
@@ -70,7 +71,6 @@ enum {
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
-    self.statusItem = [[NSApp delegate] statusItem];
     self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
 
@@ -106,6 +106,13 @@ enum {
     _refreshButton.rac_command = self.viewModel.refreshCommand;
     [self.viewModel.refreshCommand.executionSignals subscribeNext:^(id x) {}];
 
+    // Bind our status item to the application delegate's status item. If
+    // the user chooses to toggle icon visibility, there's a chance that
+    // statusItem is deallocated, meaning that we can no longer override
+    // the title.
+    ApplicationController *delegate = [ApplicationController sharedInstance];
+    RAC(self, statusItem) = RACObserve(delegate, statusItem);
+
     // Bind the status item's title to the number of active -authenticated-
     // streams, as long as that array exists, and the user wants the count.
     RACSignal *authenticatedStreams = RACObserve(self, viewModel.authenticatedStreams);
@@ -114,8 +121,8 @@ enum {
     @weakify(self);
 
     RAC(self, statusItem.title) = [[RACSignal
-        combineLatest:@[streamCountEnabled, authenticatedStreams]
-        reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList) {
+        combineLatest:@[streamCountEnabled, authenticatedStreams, RACObserve(self, preferences.iconVisibility)]
+        reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList, NSNumber *iconVisibility) {
             @strongify(self);
             if ([streamCountEnabled boolValue] && [streamList count] > 0) {
                 DDLogInfo(@"Application (%@): Status item title updated: %lu.", [self class], [streamList count]);
@@ -124,7 +131,7 @@ enum {
                 DDLogInfo(@"Application (%@): Status item title removed.", [self class]);
                 return @"";
             }
-        }] distinctUntilChanged];
+        }] deliverOn:[RACScheduler mainThreadScheduler]];
 
     [[RACSignal
         combineLatest:@[

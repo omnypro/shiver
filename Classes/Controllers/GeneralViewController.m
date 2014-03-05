@@ -43,6 +43,7 @@
 
 - (void)awakeFromNib
 {
+    [_iconVisibilityPopUp selectItemAtIndex:[self.preferences.iconVisibility integerValue]];
     [_systemStartupCheckbox setState:self.preferences.autoStartEnabled];
     [_notificationCheckbox setState:self.preferences.notificationsEnabled];
     [_streamCountCheckbox setState:self.preferences.streamCountEnabled];
@@ -69,8 +70,6 @@
 - (IBAction)toggleIconVisibility:(id)sender
 {
     NSUInteger item = [[sender objectValue] integerValue];
-    NSLog(@"%lu", item);
-
     switch (item) {
         case 0:  // Dock and Menu Bar.
             [[self preferences] setIconVisibility:@0];

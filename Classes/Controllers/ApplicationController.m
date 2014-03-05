@@ -68,6 +68,7 @@
 
 - (void)awakeFromNib
 {
+    [self initializeDockIcon];
     [self initializeStatusItem];
 }
 
@@ -118,7 +119,55 @@
     DDLogInfo(@"Application: Loaded %@ v%@", productName, shortVersionString);
 }
 
+- (void)initializeDockIcon
+{
+    // Observe the icon visibility preference, if it is set to "Dock and Menu
+    // Bar" (index 0) or "Only in Dock" (index 1), set the application
+    // activation policy to "regular."
+    [[RACObserve(self, preferences.iconVisibility)
+        filter:^BOOL(id value) {
+            return ([value isEqualToNumber:@0] || [value isEqualToNumber:@1]); }]
+        subscribeNext:^(id x) {
+            [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+        }];
+
+    // If the icon visibility preference is set to "Only in Menu Bar" (index 2),
+    // set the application activation policy to "accessory," which removes the
+    // dock icon. Forcefully order front the main window so it doesn't feel like
+    // the app closes.
+    [[RACObserve(self, preferences.iconVisibility)
+        filter:^BOOL(id value) {
+            return ([value isEqualToNumber:@2]); }]
+        subscribeNext:^(id x) {
+            [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+            [self.windowController.window makeKeyAndOrderFront:self];
+            [self.preferencesWindowController.window makeKeyAndOrderFront:self];
+            [NSApp activateIgnoringOtherApps:YES];
+        }];
+}
+
 - (void)initializeStatusItem
+{
+    // Observe the icon visibility preference, if it is set to "Dock and Menu
+    // Bar" (index 0) or "Only in Menu Bar" (index 2), create the status item.
+    [[RACObserve(self, preferences.iconVisibility)
+        filter:^BOOL(id value) {
+            return ([value isEqualToNumber:@0] || [value isEqualToNumber:@2]); }]
+        subscribeNext:^(id x) {
+            [self createStatusItem];
+        }];
+
+    // If the icon visibility preference is set to "Only in Dock" (index 1),
+    // remove the status bar icon.
+    [[RACObserve(self, preferences.iconVisibility)
+        filter:^BOOL(id value) {
+            return ([value isEqualToNumber:@1]); }]
+        subscribeNext:^(id x) {
+            [self removeStatusItem];
+        }];
+}
+
+- (void)createStatusItem
 {
     NSImage *image = [NSImage imageNamed:@"StatusItem"];
     NSImage *alternateImage = [NSImage imageNamed:@"StatusItemAlternate"];
@@ -129,6 +178,12 @@
     [self.statusItem setAlternateImage:alternateImage];
     [self.statusItem setHighlightMode:YES];
     [self.statusItem setAction:@selector(toggleWindow)];
+}
+
+- (void)removeStatusItem
+{
+    NSStatusBar *bar = [NSStatusBar systemStatusBar];
+    [bar removeStatusItem:self.statusItem];
 }
 
 - (void)toggleWindow
