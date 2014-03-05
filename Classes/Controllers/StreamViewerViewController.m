@@ -78,7 +78,7 @@
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
-            NSLog(@"We have a stream. Activate the viewer.");
+            DDLogInfo(@"We have a stream. Activate the viewer.");
             [self.titleView setIsActive:YES];
             if ([self.viewerView superview] == nil) {
                 [self.viewerView setFrame:self.view.bounds];
