@@ -11,17 +11,19 @@
 #import "GeneralViewController.h"
 
 @interface GeneralViewController () {
+    IBOutlet NSPopUpButton *_iconVisibilityPopUp;
     IBOutlet NSButton *_systemStartupCheckbox;
     IBOutlet NSButton *_notificationCheckbox;
     IBOutlet NSButton *_streamCountCheckbox;
-    IBOutlet NSBox *_separatorBox;
     IBOutlet NSTextField *_refreshTimeField;
 }
 
+- (IBAction)toggleIconVisibility:(id)sender;
 - (IBAction)toggleStartOnSystemStartup:(id)sender;
 - (IBAction)toggleShowDesktopNotifications:(id)sender;
 - (IBAction)toggleDisplayStreamCount:(id)sender;
 - (IBAction)setStreamListRefreshTime:(id)sender;
+
 @end
 
 @implementation GeneralViewController
@@ -62,6 +64,29 @@
 -(NSString*)toolbarItemLabel
 {
     return NSLocalizedString(@"General", @"GeneralToolbarItemLabel");
+}
+
+- (IBAction)toggleIconVisibility:(id)sender
+{
+    NSUInteger item = [[sender objectValue] integerValue];
+    NSLog(@"%lu", item);
+
+    switch (item) {
+        case 0:  // Dock and Menu Bar.
+            [[self preferences] setIconVisibility:@0];
+            DDLogInfo(@"Preferences: Shiver will appear in the dock and menu bar.");
+            break;
+        case 1:  // Only Dock.
+            [[self preferences] setIconVisibility:@1];
+            DDLogInfo(@"Preferences: Shiver will only appear in the dock.");
+            break;
+        case 2:  // Only Menu Bar.
+            [[self preferences] setIconVisibility:@2];
+            DDLogInfo(@"Preferences: Shiver will only appear in the menu bar.");
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)toggleStartOnSystemStartup:(id)sender

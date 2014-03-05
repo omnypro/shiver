@@ -10,6 +10,7 @@
 
 #import "Preferences.h"
 
+static NSString *const IconVisibilitySetting = @"iconvVisibility";
 static NSString *const AutoStartSetting = @"autoStart";
 static NSString *const NotificationSetting = @"displayNotifications";
 static NSString *const DisplayStreamCountSetting = @"displayStreamCount";
@@ -32,12 +33,26 @@ static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:@{
+        IconVisibilitySetting: @0,
         AutoStartSetting: @(NO),
         NotificationSetting: @(YES),
         DisplayStreamCountSetting: @(YES),
         StreamListRefreshTimeSetting: @5,
     }];
     DDLogInfo(@"Application: The defaults have been set!");
+}
+
+- (NSNumber *)iconVisibility
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:IconVisibilitySetting];
+}
+
+- (void)setIconVisibility:(NSNumber *)iconVisibility
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:iconVisibility forKey:IconVisibilitySetting];
+    [userDefaults synchronize];
 }
 
 - (BOOL)autoStartEnabled
