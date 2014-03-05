@@ -68,8 +68,8 @@
 //        return ([value boolValue] == YES);
 //    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
 //        @strongify(self);
-//        DDLogInfo(@"Application (%@): We have a user.", [self class]);
-//        DDLogInfo(@"Application (%@): Pushing a user to the stream list controller.", [self class]);
+//        DDLogInfo(@"We have a user.");
+//        DDLogInfo(@"Pushing a user to the stream list controller.");
 //        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:self.user];
 //        [self setCurrentViewController:listController];
 //    }];
@@ -77,8 +77,8 @@
 //        return ([loggedIn boolValue] == NO);
 //    }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
 //        @strongify(self);
-//		DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
-//        DDLogInfo(@"Application (%@): Pushing a -nil- user to the stream list controller.", [self class]);
+//		DDLogInfo(@"We don't have a user.");
+//        DDLogInfo(@"Pushing a -nil- user to the stream list controller.");
 //        StreamListViewController *listController = [[StreamListViewController alloc] initWithUser:nil];
 //        [self setCurrentViewController:listController];
 //    }];
@@ -88,13 +88,13 @@
     [self.loginPreferences.didLoginSubject subscribeNext:^(RACTuple *tuple) {
         @strongify(self);
         RACTupleUnpack(AFOAuthCredential *credential, User *user) = tuple;
-        DDLogInfo(@"Application (%@): We've been explicitly logged in. Welcome %@ (%@).", [self class], user.name, credential.accessToken);
+        DDLogInfo(@"We've been explicitly logged in. Welcome %@ (%@).", user.name, credential.accessToken);
         self.loggedIn = YES;
         self.user = user;
     }];
     [self.loginPreferences.didLogoutSubject subscribeNext:^(id x) {
         @strongify(self);
-        DDLogInfo(@"Application (%@): We've been explicitly logged out. Update things.", [self class]);
+        DDLogInfo(@"We've been explicitly logged out. Update things.");
         self.loggedIn = NO;
         self.user = nil;
     }];
@@ -105,7 +105,7 @@
         @strongify(self);
         NSString *title = @"Whoops! Something went wrong.";
         NSString *message = @"Looks like your internet is down.";
-        DDLogError(@"Application (%@): Showing the error view with message, \"%@\"", [self class], message);
+        DDLogError(@"Showing the error view with message, \"%@\"", message);
         self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
         [self->_masterView addSubview:self.errorView animated:YES];
 
@@ -116,7 +116,7 @@
         return ([reachable boolValue] == YES);
     }] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
-        DDLogInfo(@"Application (%@): Removing the error view.", [self class]);
+        DDLogInfo(@"Removing the error view.");
         [self.errorView removeFromSuperviewAnimated:YES];
         self.errorView = nil;
         self.isUIActive = YES;

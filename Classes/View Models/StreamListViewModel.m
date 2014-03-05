@@ -66,24 +66,24 @@
     RAC(self, featuredStreams) = [[RACSignal
         combineLatest:@[executionSignal, fetchFeaturedStreams, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *executable, NSArray *featuredStreams, NSArray *authenticatedStreams){
-            DDLogInfo(@"Application (%@): Fetching featured stream list.", [self class]);
+            DDLogInfo(@"Fetching featured stream list.");
             if (featuredStreams != nil) {
                 // If authenticated streams are a thing, its contents from
                 // the featured stream list.
-                DDLogInfo(@"Application (%@): %lu streams fetched.", [self class], [featuredStreams count]);
+                DDLogInfo(@"%lu streams fetched.", [featuredStreams count]);
                 return [[featuredStreams.sortBy(@"name").rac_sequence
                     map:^id(StreamViewModel *stream) {
                         if ([authenticatedStreams containsObject:stream]) { [stream setIsFollowed:YES]; }
                         return stream;
                     }] array];
             } else {
-                DDLogInfo(@"Application (%@): No featured streams fetched.", [self class]);
+                DDLogInfo(@"No featured streams fetched.");
                 return @[];
             } }]
         catch:^RACSignal *(NSError *error) {
-            DDLogError(@"Application (%@): (Error) %@", [self class], error);
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
+            DDLogError(@"%@", self.errorMessage);
             return [RACSignal return:@[]];
         }];
 
@@ -91,18 +91,18 @@
     RAC(self, authenticatedStreams) = [[RACSignal
         combineLatest:@[executionSignal, hasCredential, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *executable, NSNumber *hasCredential, NSArray *streams) {
-            DDLogInfo(@"Application (%@): Fetching authenticated stream list.", [self class]);
+            DDLogInfo(@"Fetching authenticated stream list.");
             if ([hasCredential boolValue] == YES && streams != nil) {
-                DDLogInfo(@"Application (%@): %lu authenticated streams fetched.", [self class], [streams count]);
+                DDLogInfo(@"%lu authenticated streams fetched.", [streams count]);
                 return streams.sortBy(@"name");
             } else {
-                DDLogInfo(@"Application (%@): No authenticated streams fetched.", [self class]);
+                DDLogInfo(@"No authenticated streams fetched.");
                 return @[];
             } }]
         catch:^RACSignal *(NSError *error) {
-            DDLogError(@"Application (%@): (Error) %@", [self class], error);
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
+            DDLogError(@"%@", self.errorMessage);
             return [RACSignal return:@[]];
         }];
 }

@@ -48,6 +48,7 @@
 		936327DB1764F9BB00146C8A /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327DA1764F9BB00146C8A /* Channel.m */; };
 		936327E11765268200146C8A /* TwitchAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327E01765268200146C8A /* TwitchAPIClient.m */; };
 		93636A801761B05C00980570 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93636A7D1761B03D00980570 /* Menu.xib */; };
+		9371537718C78D610079D159 /* LogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9371537618C78D610079D159 /* LogFormatter.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
 		938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21218A5AFB90062C4D0 /* StreamViewer.xib */; };
@@ -217,7 +218,7 @@
 		936327CE1764287100146C8A /* StreamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = StreamListViewController.m; path = Classes/Controllers/StreamListViewController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		936327CF1764287100146C8A /* StreamListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListView.xib; path = Assets/NIBs/StreamListView.xib; sourceTree = SOURCE_ROOT; };
 		936327D31764468400146C8A /* StreamListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListItemView.h; path = Classes/Views/StreamListItemView.h; sourceTree = SOURCE_ROOT; };
-		936327D41764468500146C8A /* StreamListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListItemView.m; path = Classes/Views/StreamListItemView.m; sourceTree = SOURCE_ROOT; };
+		936327D41764468500146C8A /* StreamListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = StreamListItemView.m; path = Classes/Views/StreamListItemView.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		936327D71764670300146C8A /* StreamListItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListItemView.xib; path = Assets/NIBs/StreamListItemView.xib; sourceTree = SOURCE_ROOT; };
 		936327D91764F9BB00146C8A /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Channel.h; path = Classes/Models/Channel.h; sourceTree = SOURCE_ROOT; };
 		936327DA1764F9BB00146C8A /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Channel.m; path = Classes/Models/Channel.m; sourceTree = SOURCE_ROOT; };
@@ -225,27 +226,29 @@
 		936327DF1765268200146C8A /* TwitchAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitchAPIClient.h; path = Classes/Networking/TwitchAPIClient.h; sourceTree = SOURCE_ROOT; };
 		936327E01765268200146C8A /* TwitchAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitchAPIClient.m; path = Classes/Networking/TwitchAPIClient.m; sourceTree = SOURCE_ROOT; };
 		93636A7E1761B03D00980570 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Menu.xib; sourceTree = "<group>"; };
+		9371537518C78D610079D159 /* LogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFormatter.h; path = Classes/LogFormatter.h; sourceTree = SOURCE_ROOT; };
+		9371537618C78D610079D159 /* LogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFormatter.m; path = Classes/LogFormatter.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		938CD21218A5AFB90062C4D0 /* StreamViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamViewer.xib; path = Assets/NIBs/StreamViewer.xib; sourceTree = SOURCE_ROOT; };
 		938CD21418A5C4F00062C4D0 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = Classes/Controllers/MainWindowController.h; sourceTree = SOURCE_ROOT; };
-		938CD21518A5C4F00062C4D0 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainWindowController.m; path = Classes/Controllers/MainWindowController.m; sourceTree = SOURCE_ROOT; };
+		938CD21518A5C4F00062C4D0 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MainWindowController.m; path = Classes/Controllers/MainWindowController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		938CD21718A6BCD40062C4D0 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Assets/Images/Icon.icns; sourceTree = SOURCE_ROOT; };
 		938CD21D18AABA270062C4D0 /* UserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewModel.h; path = "Classes/View Models/UserViewModel.h"; sourceTree = SOURCE_ROOT; };
-		938CD21E18AABA270062C4D0 /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewModel.m; path = "Classes/View Models/UserViewModel.m"; sourceTree = SOURCE_ROOT; };
+		938CD21E18AABA270062C4D0 /* UserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = UserViewModel.m; path = "Classes/View Models/UserViewModel.m"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		938CD22018AB3A370062C4D0 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Classes/Application/AccountManager.h; sourceTree = SOURCE_ROOT; };
-		938CD22118AB3A370062C4D0 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Classes/Application/AccountManager.m; sourceTree = SOURCE_ROOT; };
+		938CD22118AB3A370062C4D0 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AccountManager.m; path = Classes/Application/AccountManager.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		938CD22E18AD7E5D0062C4D0 /* SHWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHWindowController.h; path = Classes/Superclasses/SHWindowController.h; sourceTree = SOURCE_ROOT; };
 		938CD22F18AD7E5D0062C4D0 /* SHWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHWindowController.m; path = Classes/Superclasses/SHWindowController.m; sourceTree = SOURCE_ROOT; };
 		938CD23118AD7E720062C4D0 /* SHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHViewController.h; path = Classes/Superclasses/SHViewController.h; sourceTree = SOURCE_ROOT; };
 		938CD23218AD7E720062C4D0 /* SHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHViewController.m; path = Classes/Superclasses/SHViewController.m; sourceTree = SOURCE_ROOT; };
 		938CD23418AE116E0062C4D0 /* StreamViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewerViewController.h; path = Classes/Controllers/StreamViewerViewController.h; sourceTree = SOURCE_ROOT; };
-		938CD23518AE116E0062C4D0 /* StreamViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewerViewController.m; path = Classes/Controllers/StreamViewerViewController.m; sourceTree = SOURCE_ROOT; };
+		938CD23518AE116E0062C4D0 /* StreamViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = StreamViewerViewController.m; path = Classes/Controllers/StreamViewerViewController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		938CD23718AE188A0062C4D0 /* StreamViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewModel.h; path = "Classes/View Models/StreamViewModel.h"; sourceTree = SOURCE_ROOT; };
 		938CD23818AE188A0062C4D0 /* StreamViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewModel.m; path = "Classes/View Models/StreamViewModel.m"; sourceTree = SOURCE_ROOT; };
 		938CD23A18AE22160062C4D0 /* StreamListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListViewModel.h; path = "Classes/View Models/StreamListViewModel.h"; sourceTree = SOURCE_ROOT; };
-		938CD23B18AE22160062C4D0 /* StreamListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListViewModel.m; path = "Classes/View Models/StreamListViewModel.m"; sourceTree = SOURCE_ROOT; };
+		938CD23B18AE22160062C4D0 /* StreamListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = StreamListViewModel.m; path = "Classes/View Models/StreamListViewModel.m"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
 		93941139178896E4003D1346 /* NSWindow+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+SHExtensions.h"; path = "Extensions/Categories/NSWindow+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
@@ -437,6 +440,8 @@
 				938CD21C18AAB2680062C4D0 /* View Models */,
 				93A3A1311768571A00913C9A /* Constants.h */,
 				93A3A1321768571B00913C9A /* Constants.m */,
+				9371537518C78D610079D159 /* LogFormatter.h */,
+				9371537618C78D610079D159 /* LogFormatter.m */,
 				932C29C71761AF800049EC1B /* ShiverApplication.h */,
 				932C29C81761AF800049EC1B /* ShiverApplication.m */,
 			);
@@ -1017,6 +1022,7 @@
 				936327D01764287100146C8A /* StreamListViewController.m in Sources */,
 				938CD21618A5C4F00062C4D0 /* MainWindowController.m in Sources */,
 				936327D51764468500146C8A /* StreamListItemView.m in Sources */,
+				9371537718C78D610079D159 /* LogFormatter.m in Sources */,
 				938CD22218AB3A370062C4D0 /* AccountManager.m in Sources */,
 				93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */,
 				938CD23018AD7E5D0062C4D0 /* SHWindowController.m in Sources */,

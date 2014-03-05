@@ -110,17 +110,17 @@
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-    DDLogVerbose(@"Application (%@): Displaying main window.", [self class]);
+    DDLogVerbose(@"Displaying main window.");
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification
 {
-    DDLogVerbose(@"Application (%@): Hiding main window.", [self class]);
+    DDLogVerbose(@"Hiding main window.");
 }
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-    DDLogVerbose(@"Application (%@): Closing main window.", [self class]);
+    DDLogVerbose(@"Closing main window.");
 }
 
 @end

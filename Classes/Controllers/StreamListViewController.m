@@ -74,7 +74,7 @@ enum {
     self.preferences = [Preferences sharedPreferences];
     self.windowController = [[NSApp delegate] windowController];
 
-    DDLogInfo(@"Application (%@): Stream list loaded.", [self class]);
+    DDLogInfo(@"Stream list loaded.");
 
     [self initializeListViewHeaders];
     [self initializeSignals];
@@ -125,10 +125,10 @@ enum {
         reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList, NSNumber *iconVisibility) {
             @strongify(self);
             if ([streamCountEnabled boolValue] && [streamList count] > 0) {
-                DDLogInfo(@"Application (%@): Status item title updated: %lu.", [self class], [streamList count]);
+                DDLogInfo(@"Status item title updated: %lu.", [streamList count]);
                 return [NSString stringWithFormat:@"%lu", [streamList count]];
             } else {
-                DDLogInfo(@"Application (%@): Status item title removed.", [self class]);
+                DDLogInfo(@"Status item title removed.");
                 return @"";
             }
         }] deliverOn:[RACScheduler mainThreadScheduler]];
@@ -142,21 +142,21 @@ enum {
             [self reloadData]; }
         error:^(NSError *error) {
             @strongify(self);
-            DDLogError(@"Application (%@): (Error) %@", [self class], error);
+            DDLogError(@"%@", error);
         }];
 
     // ...
     [[RACObserve(self, viewModel.featuredStreams)
         combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
-            DDLogVerbose(@"Application (%@): Previous featured stream list = [%@], Current featured stream list = [%@]", [self class], previous, current);
+            DDLogVerbose(@"Previous featured stream list = [%@], Current featured stream list = [%@]", previous, current);
             return [RACTuple tupleWithObjects:current, previous, nil]; }]
         subscribeNext:^(RACTuple *tuple) {
             if (![tuple[0] isEqualToArray:tuple[1]]) {
                 [self modifyListViewWithObjects:tuple inSection:1];
-                DDLogInfo(@"Application (%@): Adding %lu streams to the featured list.", [self class], [tuple[0] count]);
-                DDLogInfo(@"Application (%@): Removing %lu streams from the featured list.", [self class], [tuple[1] count]);
+                DDLogInfo(@"Adding %lu streams to the featured list.", [tuple[0] count]);
+                DDLogInfo(@"Removing %lu streams from the featured list.", [tuple[1] count]);
             } else {
-                DDLogInfo(@"Application (%@): Taking no action on the featured list.", [self class]);
+                DDLogInfo(@"Taking no action on the featured list.");
             }
         }];
 
@@ -168,15 +168,15 @@ enum {
             if (![previous count]) { previous = @[]; }
             NSArray *toRemove = previous.without(![current count] ? @[] : current);
 
-            DDLogVerbose(@"Application (%@): Previous authenticated stream list = [%@], Current authenticated stream list = [%@]", [self class], previous, current);
+            DDLogVerbose(@"Previous authenticated stream list = [%@], Current authenticated stream list = [%@]", previous, current);
             return [RACTuple tupleWithObjects:toAdd, toRemove, nil]; }]
         subscribeNext:^(RACTuple *tuple) {
             if (![tuple[0] isEqualToArray:tuple[1]]) {
                 [self modifyListViewWithObjects:tuple inSection:0];
-                DDLogInfo(@"Application (%@): Adding %lu streams to the authenticated list.", [self class], [tuple[0] count]);
-                DDLogInfo(@"Application (%@): Removing %lu streams from the authenticated list.", [self class], [tuple[1] count]);
+                DDLogInfo(@"Adding %lu streams to the authenticated list.", [tuple[0] count]);
+                DDLogInfo(@"Removing %lu streams from the authenticated list.", [tuple[1] count]);
             } else {
-                DDLogInfo(@"Application (%@): Taking no action on the authenticated list.", [self class]);
+                DDLogInfo(@"Taking no action on the authenticated list.");
             }
         }];
 
@@ -185,7 +185,7 @@ enum {
     RACSignal *notificationsEnabled = [[RACSignal
         combineLatest:@[[authenticatedStreams ignore:nil], RACObserve(self, preferences.notificationsEnabled)]
         reduce:^id(NSArray *streams, NSNumber *notificationsEnabled) {
-            DDLogInfo(@"Application (%@): We will now be sending notifications.", [self class]);
+            DDLogInfo(@"We will now be sending notifications.");
             return streams;
         }] distinctUntilChanged];
 
@@ -196,7 +196,7 @@ enum {
         map:^id(NSArray *newStreams) {
             return newStreams; }]
         combinePreviousWithStart:[NSArray array] reduce:^id(id previous, id current) {
-            DDLogVerbose(@"Application (%@): Previous stream list = [%@], Current stream list = [%@]", [self class], previous, current);
+            DDLogVerbose(@"Previous stream list = [%@], Current stream list = [%@]", previous, current);
             return [RACTuple tupleWithObjects:previous, current, nil]; }]
         map:^id(RACTuple *tuple) {
             RACTupleUnpack(NSArray *previous, NSArray *current) = tuple;
@@ -225,11 +225,11 @@ enum {
             @strongify(self);
             BOOL isLoading = [loading boolValue];
             if (isLoading) {
-                DDLogInfo(@"Application (%@): Showing the loading view.", [self class]);
+                DDLogInfo(@"Showing the loading view.");
                 [self.view addSubview:_loadingView];
                 [_activityIndicator startAnimating];
             } else {
-                DDLogInfo(@"Application (%@): Removing the loading view.", [self class]);
+                DDLogInfo(@"Removing the loading view.");
                 [_loadingView removeFromSuperview];
                 [_activityIndicator stopAnimating];
             }
@@ -238,7 +238,7 @@ enum {
     // Refresh the stream list at an interval provided by the user.
     [[RACObserve(self, preferences.streamListRefreshTime) distinctUntilChanged]
         subscribeNext:^(NSNumber *interval) {
-            DDLogInfo(@"Application (%@): Refresh set to %ld seconds.", [self class], [interval integerValue]);
+            DDLogInfo(@"Refresh set to %ld seconds.", [interval integerValue]);
         }];
 
     // We store the stream list refresh time in minutes, so take
@@ -247,7 +247,7 @@ enum {
         onScheduler:[RACScheduler scheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
-            DDLogVerbose(@"Application (%@): Triggering timed refresh.", [self class]);
+            DDLogVerbose(@"Triggering timed refresh.");
             [self.viewModel.refreshCommand execute:nil];
         }];
 
@@ -258,7 +258,7 @@ enum {
         map:^(AFOAuthCredential *credential) {
             return @(credential == nil); }] deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
-            DDLogInfo(@"Application (%@): Cannot detect a credential.", [self class]);
+            DDLogInfo(@"Cannot detect a credential.");
             [self.windowController.viewerController setStream:nil];
 
             NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
@@ -283,12 +283,12 @@ enum {
 //            self.isLoading = NO;
 //            NSString *title = @"Whoops! Something went wrong.";
 //            NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-//            DDLogError(@"Application (%@): Showing the error view with message, \"%@\"", [self class], message);
+//            DDLogError(@"Showing the error view with message, \"%@\"", message);
 //            self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
 //            [self.view addSubview:self.errorView animated:YES];
 //        }
 //        else {
-//            DDLogInfo(@"Application (%@): Removing the error view.", [self class]);
+//            DDLogInfo(@"Removing the error view.");
 //            [self.errorView removeFromSuperviewAnimated:YES];
 //            self.errorView = nil;
 //            self.showingErrorMessage = nil;
@@ -379,7 +379,7 @@ enum {
         StreamListItemView *item = (StreamListItemView *)view;
         [item setSelected:YES];
 
-        DDLogInfo(@"Application (%@): JAListView will select -- %@", [self class], item);
+        DDLogInfo(@"JAListView will select -- %@", item);
     }
 
     [_listView reloadLayoutAnimated:NO];
@@ -399,8 +399,8 @@ enum {
             [self.windowController.viewerController setStream:item.viewModel];
         }
 
-        DDLogInfo(@"Application (%@): Requested %@'s stream - %@", [self class], item.viewModel.displayName, item.viewModel.hlsURL);
-        DDLogInfo(@"Application (%@): JAListView did select -- %@", [self class], item.viewModel);
+        DDLogInfo(@"Requested %@'s stream - %@", item.viewModel.displayName, item.viewModel.hlsURL);
+        DDLogInfo(@"JAListView did select -- %@", item.viewModel);
     }
 
     [_listView reloadLayoutAnimated:NO];
@@ -409,7 +409,7 @@ enum {
 - (void)listView:(JAListView *)listView didDeselectView:(JAListViewItem *)view
 {
     StreamListItemView *item = (StreamListItemView *)view;
-    DDLogInfo(@"Application (%@): JAListView did deselect -- %@", [self class], item);
+    DDLogInfo(@"JAListView did deselect -- %@", item);
     [listView reloadLayoutAnimated:NO];
 }
 

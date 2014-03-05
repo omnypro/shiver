@@ -10,7 +10,9 @@
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
 #import "GeneralViewController.h"
+#import "LogFormatter.h"
 #import "LoginViewController.h"
+#import "HexColor.h"
 #import "MainWindowController.h"
 #import "Preferences.h"
 #import "Reachability.h"
@@ -108,11 +110,20 @@
 {
     // We log too verbosely for the console in development. Let's only add it
     // when running a release build.
+    LogFormatter *formatter = [[LogFormatter alloc] init];
+
 #ifndef DEBUG
+    [[DDASLLogger sharedInstance] setLogFormatter:formatter];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
 #endif
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    // Specify some custom colors and a custom formatter.
+    [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithHexString:@"#FF4136"] backgroundColor:nil forFlag:LOG_FLAG_ERROR];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithHexString:@"#FF851B"] backgroundColor:nil forFlag:LOG_FLAG_WARN];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithHexString:@"#333333"] backgroundColor:nil forFlag:LOG_FLAG_INFO];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[NSColor colorWithHexString:@"#AAAAAA"] backgroundColor:nil forFlag:LOG_FLAG_VERBOSE];
+    [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     NSString *productName =  [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     NSString *shortVersionString = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];

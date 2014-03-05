@@ -98,7 +98,7 @@
             [self.logo setImage:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
             @strongify(self);
-            DDLogError(@"Application (%@): (Error) %@", [self class], error);
+            DDLogError(@"%@", error);
         }];
 
         self.logoURLCache = self.viewModel.logoImageURL.absoluteString;

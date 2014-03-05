@@ -98,7 +98,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
     RACReplaySubject *subject = [RACReplaySubject subject];
     [subject sendNext:self.credential];
     [subject sendCompleted];
-    return [subject deliverOn:[RACScheduler scheduler]];
+    return [subject deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (RACSignal *)fetchUser

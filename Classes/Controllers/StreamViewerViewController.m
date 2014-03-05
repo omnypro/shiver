@@ -65,7 +65,7 @@
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
-            NSLog(@"Application (%@): Stream has been cleared. Deactivate the viewer.", [self class]);
+            DDLogInfo(@"Stream has been cleared. Deactivate the viewer.");
             [self.titleView setIsActive:NO];
             if ([self.viewerView superview] != nil) {
                 [self.viewerView removeFromSuperview];
@@ -78,7 +78,7 @@
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
-            NSLog(@"Application (%@): We have a stream. Activate the viewer.", [self class]);
+            NSLog(@"We have a stream. Activate the viewer.");
             [self.titleView setIsActive:YES];
             if ([self.viewerView superview] == nil) {
                 [self.viewerView setFrame:self.view.bounds];

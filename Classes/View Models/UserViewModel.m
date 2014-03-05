@@ -54,16 +54,16 @@
         combineLatest:@[readyAndReachable, hasCredential, [self.client fetchUser]]
         reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, User *user){
             if ([readyAndReachable boolValue] && [hasCredential boolValue] && user != nil) {
-                DDLogInfo(@"Application (%@): We have a user. (%@)", [self class], user.name);
+                DDLogInfo(@"We have a user. (%@)", user.name);
                 return user;
             } else {
-                DDLogInfo(@"Application (%@): We don't have a user.", [self class]);
+                DDLogInfo(@"We don't have a user.");
                 return nil;
             } }]
         catch:^RACSignal *(NSError *error) {
-            DDLogError(@"Application (%@): (Error) %@", [self class], error);
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
+            DDLogError(@"%@", self.errorMessage);
             return [RACSignal empty];
         }];
 
@@ -80,12 +80,12 @@
 
 - (RACSignal *)isUserFollowingChannel:(NSString *)channel
 {
-    DDLogInfo(@"Application (%@): Checking if '%@' follows '%@'.", [self class], self.name, channel);
+    DDLogInfo(@"Checking if '%@' follows '%@'.", self.name, channel);
     return [[[self.client isUser:self.name followingChannel:channel] map:^id(id responseObject) {
         return @(YES);
     }] catch:^RACSignal *(NSError *error) {
         long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
-        DDLogError(@"Application (%@): (Error) Recieved a %ld from %@.", [self class], statusCode, NSStringFromSelector(_cmd));
+        DDLogError(@"Recieved a %ld from %@.", statusCode, NSStringFromSelector(_cmd));
         return [RACSignal return:@(NO)];
     }];
 }
