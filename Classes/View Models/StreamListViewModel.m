@@ -61,16 +61,13 @@
     // A signal whose result either contains an array of authenticated stream
     // items, or an empty array. We squelch errors delivered by this method, so
     // we can still use it against RAC(self, featuredStreams).
-    RACSignal *fetchAuthenticatedStreams = [[[self.client fetchAuthenticatedStreamList]
-        deliverOn:[RACScheduler mainThreadScheduler]]
-        catch:^RACSignal *(NSError *error) {
-            return [RACSignal return:@[]];
-        }];
+    RACSignal *fetchAuthenticatedStreams = [[[self.client fetchAuthenticatedStreamList] deliverOn:[RACScheduler mainThreadScheduler]] catchTo:[RACSignal return:@[]]];
 
     // Observes -readyAndReachable and our refresh action and returns whenever
     // either of those signals returns a value.
     RACSignal *executionSignal = [RACSignal merge:@[readyAndReachable, [self.refreshCommand.executionSignals flatten]]];
 
+    // ...
     RAC(self, featuredStreams) = [[RACSignal
         combineLatest:@[executionSignal, fetchFeaturedStreams, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *executable, NSArray *featuredStreams, NSArray *authenticatedStreams){
