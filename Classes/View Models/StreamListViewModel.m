@@ -45,24 +45,32 @@
             return @(featuredStreams == nil);
         }];
 
-    // A combined singal for whether or not the account manager is
+    self.refreshCommand = [[RACCommand alloc]
+        initWithSignalBlock:^RACSignal *(id input) {
+            return [RACSignal return:@1];
+        }];
+
+    // A combined signal for whether or not the account manager is
     // both ready and reachable. Also: signal related to credential checking.
     RACSignal *readyAndReachable = [[AccountManager sharedManager] readyAndReachableSignal];
     RACSignal *hasCredential = [RACObserve(AccountManager.sharedManager, credential) map:^(AFOAuthCredential *credential) { return @(credential != nil); }];
 
-    RACSignal *fetchAuthenticatedStreams = [[self.client fetchAuthenticatedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
+    // A signal whose result contains an array of featured stream items.
     RACSignal *fetchFeaturedStreams = [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
 
-    self.refreshCommand = [[RACCommand alloc]
-        initWithSignalBlock:^RACSignal *(id input) {
-            return [RACSignal return:@1];
+    // A signal whose result either contains an array of authenticated stream
+    // items, or an empty array. We squelch errors delivered by this method, so
+    // we can still use it against RAC(self, featuredStreams).
+    RACSignal *fetchAuthenticatedStreams = [[[self.client fetchAuthenticatedStreamList]
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        catch:^RACSignal *(NSError *error) {
+            return [RACSignal return:@[]];
         }];
 
     // Observes -readyAndReachable and our refresh action and returns whenever
     // either of those signals returns a value.
     RACSignal *executionSignal = [RACSignal merge:@[readyAndReachable, [self.refreshCommand.executionSignals flatten]]];
 
-    // ...
     RAC(self, featuredStreams) = [[RACSignal
         combineLatest:@[executionSignal, fetchFeaturedStreams, fetchAuthenticatedStreams]
         reduce:^id(NSNumber *executable, NSArray *featuredStreams, NSArray *authenticatedStreams){
