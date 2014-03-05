@@ -103,16 +103,18 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchUser
 {
+    DDLogInfo(@"Fetching user from the Twitch API.");
     return [[self enqueueRequestWithMethod:@"GET" path:@"user" parameters:nil]
         map:^id(id responseObject) {
-            NSError *error = nil;
+            NSError *error;
             User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:responseObject error:&error];
-            return user;
+            return (user != nil) ? [RACSignal return:user] : [RACSignal error:error];
         }];
 }
 
 - (RACSignal *)fetchAuthenticatedStreamList
 {
+    DDLogInfo(@"Fetching authenticated stream list from the Twitch API.");
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil]
         map:^id(id responseObject) { return [responseObject valueForKeyPath:@"streams"]; }]
         map:^id(NSArray *streamsFromResponse) {
@@ -127,6 +129,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchFeaturedStreamList
 {
+    DDLogInfo(@"Fetching featured stream list from the Twitch API.");
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured" parameters:nil]
         map:^id(id responseObject) { return [responseObject valueForKeyPath:@"featured"]; }]
         map:^id(NSDictionary *streamsFromResponse) {
@@ -163,17 +166,19 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)enqueueRequestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters
 {
-    RACReplaySubject *subject = [RACReplaySubject subject];
-    NSURLRequest *request = [self requestWithMethod:method path:path parameters:parameters];
-    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [subject sendNext:responseObject];
-        [subject sendCompleted];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [subject sendError:error];
-    }];
-    [self enqueueHTTPRequestOperation:operation];
+    return [[RACSignal
+        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            NSURLRequest *request = [self requestWithMethod:method path:path parameters:parameters];
+            AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [subscriber sendNext:responseObject];
+            [subscriber sendCompleted];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [subscriber sendError:error];
+        }];
 
-    return [subject deliverOn:[RACScheduler scheduler]];
+        [self enqueueHTTPRequestOperation:operation];
+        return [RACDisposable disposableWithBlock:^{ [operation cancel]; }];
+    }] replayLazily];
 }
 
 @end
