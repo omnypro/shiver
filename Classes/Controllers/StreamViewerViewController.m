@@ -42,6 +42,7 @@
     if (self == nil) { return nil; }
 
     _windowController = [[NSApp delegate] windowController];
+
     _titleView = [_windowController titleView];
     _userViewModel = [[UserViewModel alloc] init];
 
@@ -57,9 +58,14 @@
 
     @weakify(self);
 
+    RACSignal *hasStream = [RACObserve(self, stream)
+        map:^id(id value) {
+            return @(value != nil);
+        }];
+
     // Observe the stream. If its value is set to nil, deactivate the viewer
     // interface (setting the titleView to inactive, etc).
-    [[[RACObserve(self, stream)
+    [[[[RACObserve(self, stream) distinctUntilChanged]
         filter:^BOOL(id value) {
             return (value == nil); }]
         deliverOn:[RACScheduler mainThreadScheduler]]
@@ -120,6 +126,9 @@
             if (value) { return [self.titleView attributedViewersWithNumber:value]; }
             else { return @""; }
         }];
+    [self.titleView.closeButton rac_liftSelector:@selector(setHidden:) withSignals:[hasStream not], nil];
+    [self.titleView.closeButton setAction:@selector(closeStream:)];
+    [self.titleView.closeButton setTarget:self];
 
     RAC(self, profileURL) = [RACObserve(self, stream.name)
         map:^id(NSString *name) {
@@ -161,6 +170,8 @@
     if (stream != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
         [[self.webView mainFrame] loadRequest:request];
+    } else {
+        [[self.webView mainFrame] loadHTMLString:nil baseURL:nil];
     }
 }
 
@@ -188,6 +199,12 @@
 }
 
 #pragma mark - Interface Builder Actions
+
+- (IBAction)closeStream:(id)sender
+{
+    DDLogInfo(@"User has asked to close the active stream.");
+    [self setStream:nil];
+}
 
 - (IBAction)changeVolume:(id)sender
 {

@@ -72,7 +72,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LaI-0m-gaR">
-                    <rect key="frame" x="831" y="12" width="36" height="19"/>
+                    <rect key="frame" x="796" y="12" width="36" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Dr8-eY-HIs">
                         <font key="font" size="13" name="HelveticaNeue"/>
@@ -80,14 +80,29 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="2h1-ew-9Qn">
+                    <rect key="frame" x="845" y="2" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="WK4-qK-uhW"/>
+                        <constraint firstAttribute="height" constant="30" id="Z00-5F-mby"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Close" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="07K-LD-Hrx">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstAttribute="centerY" secondItem="2h1-ew-9Qn" secondAttribute="centerY" constant="-2" id="6M3-qc-hyy"/>
                 <constraint firstAttribute="centerY" secondItem="o7Y-Qa-dtr" secondAttribute="centerY" constant="2" id="KOF-MR-RRq"/>
-                <constraint firstAttribute="trailing" secondItem="LaI-0m-gaR" secondAttribute="trailing" constant="15" id="R2o-Mb-egK"/>
+                <constraint firstAttribute="trailing" secondItem="2h1-ew-9Qn" secondAttribute="trailing" constant="5" id="MGr-Q8-LGy"/>
+                <constraint firstItem="2h1-ew-9Qn" firstAttribute="leading" secondItem="LaI-0m-gaR" secondAttribute="trailing" constant="15" id="SHX-OC-P19"/>
                 <constraint firstItem="o7Y-Qa-dtr" firstAttribute="leading" secondItem="Z0Z-Zh-U7C" secondAttribute="leading" constant="255" id="ijr-tR-IcY"/>
                 <constraint firstAttribute="centerY" secondItem="LaI-0m-gaR" secondAttribute="centerY" constant="2" id="s18-VW-fO8"/>
             </constraints>
             <connections>
+                <outlet property="closeButton" destination="2h1-ew-9Qn" id="eWs-q6-HNs"/>
                 <outlet property="gameLabel" destination="o7Y-Qa-dtr" id="uMG-eQ-Y8P"/>
                 <outlet property="viewersLabel" destination="LaI-0m-gaR" id="5Uo-IO-b9Y"/>
             </connections>
@@ -140,4 +155,7 @@
             </subviews>
         </customView>
     </objects>
+    <resources>
+        <image name="Close" width="24" height="24"/>
+    </resources>
 </document>

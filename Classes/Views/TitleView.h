@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) BOOL isActive;
 
+@property (nonatomic, weak) IBOutlet NSButton *closeButton;
 @property (nonatomic, weak) IBOutlet NSTextField *gameLabel;
 @property (nonatomic, weak) IBOutlet NSTextField *viewersLabel;
 

@@ -46,6 +46,7 @@ enum {
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) MainWindowController *windowController;
+@property (nonatomic, strong) StreamViewerViewController *viewerViewController;
 
 @property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) Preferences *preferences;
@@ -258,14 +259,15 @@ enum {
         subscribeNext:^(id x) {
             DDLogInfo(@"Cannot detect a credential.");
             [self.windowController.viewerController setStream:nil];
-
-            NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
-            for (StreamListItemView *item in selectedViews) {
-                [item setSelected:NO];
-            }
-
-            [_listView setNeedsDisplay:YES];
+            [self clearListViewSelection];
         }];
+
+    // Observe the stream to see if it becomes nil, if so, clear any selection
+    // in the list view so we don't inadvertently reload the stream on refresh.
+    [[[[RACObserve(self, windowController.viewerController.stream) distinctUntilChanged]
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        filter:^BOOL(id value) { return (value == nil); }]
+        subscribeNext:^(id x) { [self clearListViewSelection]; }];
 }
 
 //- (void)initializeViewSignals
@@ -323,7 +325,21 @@ enum {
         }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-- (void)reloadData {
+- (void)clearListViewSelection
+{
+    NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
+    for (StreamListItemView *item in selectedViews) {
+        [_listView deselectView:item];
+
+        JAObjectListViewItem *selectedItem = [_listView viewItemForObject:item.object];
+        [selectedItem setSelected:NO];
+    }
+
+    [_listView setNeedsDisplay:YES];
+}
+
+- (void)reloadData
+{
     NSSet *selectedViews = [NSSet setWithArray:_listView.selectedViews];
     [_listView reloadDataAnimated:YES];
     for (StreamListItemView *item in selectedViews) {

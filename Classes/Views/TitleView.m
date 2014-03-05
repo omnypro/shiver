@@ -62,12 +62,31 @@
     NSColor *titleTopColor = [NSColor colorWithHexString:@"#2A2B2E" alpha:1.0];
     NSColor *titleBottomColor = [NSColor colorWithHexString:@"#161719" alpha:1.0];
     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:titleTopColor endingColor:titleBottomColor];
-    NSBezierPath *titlePath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(240, 0, self.bounds.size.width - 240, self.bounds.size.height) cornerRadius:3 inCorners:OSTopRightCorner];
+    NSBezierPath *titlePath = [NSBezierPath bezierPathWithRect:NSMakeRect(240, 0, self.bounds.size.width - 240 - 40, self.bounds.size.height)];
     [gradient drawInBezierPath:titlePath angle:-90];
+
+    NSColor *titleSideHighlightTopColor = [NSColor colorWithHexString:@"#36373C" alpha:1.0];
+    NSColor *titleSideHighlightBottomColor = [NSColor colorWithHexString:@"#232427" alpha:1.0];
+    NSGradient *titleSizeHighlightGradient = [[NSGradient alloc] initWithStartingColor:titleSideHighlightTopColor endingColor:titleSideHighlightBottomColor];
+    NSBezierPath *titleSideHighlightRect = [NSBezierPath bezierPathWithRect:NSMakeRect(self.bounds.size.width - 41, 0, 1, 37)];
+    [titleSizeHighlightGradient drawInBezierPath:titleSideHighlightRect angle:-90];
 
     NSRect titleHighlightRect = NSMakeRect(240, 37, self.bounds.size.width - 242, 1);
     [[NSColor colorWithHexString:@"#4B4C51" alpha:1.0] setFill];
     NSRectFill(titleHighlightRect);
+
+    // Draw the box that will contain the close button.
+    NSBezierPath *closeBoxPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(self.bounds.size.width - 40, 0, 40, self.bounds.size.height) cornerRadius:3 inCorners:OSTopRightCorner];
+    [[NSColor colorWithHexString:@"#141417" alpha:1.0] set];
+    [closeBoxPath fill];
+
+    NSRect closeBoxHighlightRect = NSMakeRect(self.bounds.size.width - 40, 37, 38, 1);
+    [[NSColor colorWithHexString:@"#25272A" alpha:1.0] setFill];
+    NSRectFill(closeBoxHighlightRect);
+
+    NSRect closeBoxShadowRect = NSMakeRect(self.bounds.size.width - 40, 0, 1, self.bounds.size.height - 1);
+    [[NSColor colorWithHexString:@"#101012" alpha:1.0] set];
+    NSRectFill(closeBoxShadowRect);
 }
 
 - (NSAttributedString *)attributedStringWithName:(NSString *)name
