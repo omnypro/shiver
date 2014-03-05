@@ -145,6 +145,7 @@
         }] deliverOn:[RACScheduler mainThreadScheduler]];
 
     [_webView setFrameLoadDelegate:self];
+    [_webView setMaintainsBackForwardList:NO];
 }
 
 - (NSString *)relativeDateWithTimestamp:(NSDate *)timestamp
@@ -181,11 +182,6 @@
     [self setVolume];
 }
 
-- (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems
-{
-    return nil; // Hide the contextual menu.
-}
-
 - (BOOL)webView:(WebView *)webView shouldChangeSelectedDOMRange:(DOMRange *)currentRange toDOMRange:(DOMRange *)proposedRange affinity:(NSSelectionAffinity)selectionAffinity stillSelecting:(BOOL)flag
 {
     return NO; // Prevent the selection of content.
@@ -216,8 +212,6 @@
 - (IBAction)togglePlayPause:(id)sender
 {
     NSUInteger state = [sender state];
-    NSLog(@"%ld", state);
-
     if (state) { [self.wso evaluateWebScript:@"video.pause()"]; }
     else { [self.wso evaluateWebScript:@"video.play()"]; }
 }
