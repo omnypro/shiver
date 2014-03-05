@@ -123,7 +123,6 @@ enum {
     RAC(self, statusItem.title) = [[RACSignal
         combineLatest:@[streamCountEnabled, authenticatedStreams, RACObserve(self, preferences.iconVisibility)]
         reduce:^id(NSNumber *streamCountEnabled, NSArray *streamList, NSNumber *iconVisibility) {
-            @strongify(self);
             if ([streamCountEnabled boolValue] && [streamList count] > 0) {
                 DDLogInfo(@"Status item title updated: %lu.", [streamList count]);
                 return [NSString stringWithFormat:@"%lu", [streamList count]];
@@ -141,7 +140,6 @@ enum {
             @strongify(self);
             [self reloadData]; }
         error:^(NSError *error) {
-            @strongify(self);
             DDLogError(@"%@", error);
         }];
 

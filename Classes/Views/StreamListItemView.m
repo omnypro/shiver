@@ -97,7 +97,6 @@
             @strongify(self);
             [self.logo setImage:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            @strongify(self);
             DDLogError(@"%@", error);
         }];
 
