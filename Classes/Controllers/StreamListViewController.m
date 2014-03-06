@@ -37,7 +37,6 @@ enum {
 
 @interface StreamListViewController () {
     IBOutlet BTRActivityIndicator *_activityIndicator;
-    IBOutlet ErrorView *_errorView;
     IBOutlet JAObjectListView *_listView;
     IBOutlet JLNFadingScrollView *_scrollView;
     IBOutlet LoadingView *_loadingView;
@@ -45,7 +44,6 @@ enum {
 }
 
 @property (nonatomic, strong) NSView *emptyView;
-@property (nonatomic, strong) NSView *errorView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) MainWindowController *windowController;
@@ -61,6 +59,8 @@ enum {
 
 @property (nonatomic, strong) NSString *emptyMessage;
 @property (nonatomic, strong) NSString *showingErrorMessage;
+
+@property (nonatomic, weak) IBOutlet ErrorView *errorView;
 
 - (void)sendNewStreamNotificationToUser:(NSArray *)streams;
 
@@ -281,44 +281,20 @@ enum {
         subscribeNext:^(id x) { [self clearListViewSelection]; }];
 
     // ...
-    [[[[RACObserve(self, viewModel.hasError) skip:1] distinctUntilChanged]
+    RAC(self, errorView.titleLabel.stringValue, @"") = RACObserve(self, viewModel.errorMessage);
+    [[[RACObserve(self, viewModel.hasError) skip:1]
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *hasError) {
+            NSLog(@"haserror: %@", hasError);
             if ([hasError boolValue]) {
                 DDLogWarn(@"Showing the error view.");
-                [self.view addSubview:_errorView];
+                [self.view addSubview:self.errorView];
             } else {
                 DDLogWarn(@"Removing the error view.");
-                [_errorView removeFromSuperview];
+                [self.errorView removeFromSuperview];
             }
         }];
 }
-
-//- (void)initializeViewSignals
-//{
-//    // Show or hide the error view.
-//    [[[RACObserve(self, showingError) distinctUntilChanged]
-//      deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSNumber *showingError) {
-//        @strongify(self);
-//        BOOL isShowingError = [showingError boolValue];
-//        if (isShowingError) {
-//            // Don't show the empty or loading views if there's an error.
-//            self.showingEmpty = NO;
-//            self.isLoading = NO;
-//            NSString *title = @"Whoops! Something went wrong.";
-//            NSString *message = self.showingErrorMessage ? self.showingErrorMessage : @"Undefined error.";
-//            DDLogError(@"Showing the error view with message, \"%@\"", message);
-//            self.errorView = [[EmptyErrorView init] errorViewWithTitle:title subTitle:message];
-//            [self.view addSubview:self.errorView animated:YES];
-//        }
-//        else {
-//            DDLogInfo(@"Removing the error view.");
-//            [self.errorView removeFromSuperviewAnimated:YES];
-//            self.errorView = nil;
-//            self.showingErrorMessage = nil;
-//        }
-//    }];
-//}
 
 - (NSString *)formatError:(NSString *)errorString
 {

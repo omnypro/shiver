@@ -8,11 +8,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="StreamListViewController">
             <connections>
                 <outlet property="_activityIndicator" destination="PGN-j7-5ip" id="CbS-oD-hQE"/>
-                <outlet property="_errorView" destination="mTr-vo-vrt" id="Kn5-ii-cun"/>
                 <outlet property="_listView" destination="79" id="2fk-aE-5V8"/>
                 <outlet property="_loadingView" destination="LBd-1G-WRQ" id="jW7-p2-KzF"/>
                 <outlet property="_refreshButton" destination="Ft2-v7-OdJ" id="9uv-AE-hHk"/>
                 <outlet property="_scrollView" destination="78" id="64o-N7-1GO"/>
+                <outlet property="errorView" destination="mTr-vo-vrt" id="Q7j-ps-ccB"/>
                 <outlet property="refreshButton" destination="Ft2-v7-OdJ" id="q5v-8Z-VLq"/>
                 <outlet property="view" destination="1" id="dIt-02-nfu"/>
             </connections>
@@ -73,18 +73,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="GOv-Yy-2Ci">
-                    <rect key="frame" x="79" y="236" width="82" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="I AM ERROR." id="mjq-Va-RDL">
-                        <font key="font" metaFont="system"/>
+                    <rect key="frame" x="18" y="203" width="204" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="I AM ERROR." id="mjq-Va-RDL">
+                        <font key="font" size="12" name="HelveticaNeue-Bold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="d2G-Jd-LeE">
+                    <rect key="frame" x="91" y="228" width="58" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EmptyStreamList" id="NCw-QX-Y4C"/>
+                </imageView>
             </subviews>
+            <connections>
+                <outlet property="titleLabel" destination="GOv-Yy-2Ci" id="tCq-g9-b4z"/>
+            </connections>
         </customView>
     </objects>
     <resources>
+        <image name="EmptyStreamList" width="64" height="64"/>
         <image name="RefreshInactive" width="24" height="24"/>
     </resources>
 </document>
