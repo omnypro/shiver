@@ -17,7 +17,7 @@ extern NSString *const kClientID;
 @interface TwitchAPIClient : AFOAuth2Client
 
 @property (nonatomic, strong) AFOAuthCredential *credential;
-@property (nonatomic, strong) NSString *userHandle;
+@property (nonatomic, strong) NSURL *authorizationURL;
 
 + (TwitchAPIClient *)sharedClient;
 

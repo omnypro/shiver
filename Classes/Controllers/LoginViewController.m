@@ -72,10 +72,10 @@
         initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
             DDLogInfo(@"Authentication: Kicking off the login process.");
-            NSString *authorizationURL = [NSString stringWithFormat:@"%@oauth2/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=user_read+user_follows_edit", kTwitchBaseURL, kClientID, kRedirectURI];
-            [self->_modalWebView setMainFrameURL:authorizationURL];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[self.client authorizationURL]];
+            [[_modalWebView mainFrame] loadRequest:request];
             [[NSApplication sharedApplication] beginSheet:_modalWindow modalForWindow:self.view.window modalDelegate:self didEndSelector:nil contextInfo:nil];
-            return [RACSignal empty];
+            return [RACSignal return:request];
         }];
 
     _disconnectButton.rac_command = [[RACCommand alloc]
