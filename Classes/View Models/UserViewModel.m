@@ -43,35 +43,26 @@
 {
     // A combined singal for whether or not the account manager is
     // both ready and reachable.
+    RACSignal *readySignal = [[AccountManager sharedManager] readySignal];
     RACSignal *readyAndReachable = [[AccountManager sharedManager] readyAndReachableSignal];
 
-    // Signals related to credential checking.
-    RACSignal *credentialSignal = RACObserve(AccountManager.sharedManager, credential);
-    RACSignal *hasCredential = [credentialSignal map:^(AFOAuthCredential *credential) { return @(credential != nil); }];
-
     // Observers.
-    RAC(self, user) = [[RACSignal
-        combineLatest:@[readyAndReachable, hasCredential, [self.client fetchUser]]
-        reduce:^id(NSNumber *readyAndReachable, NSNumber *hasCredential, User *user){
-            if ([readyAndReachable boolValue] && [hasCredential boolValue] && user != nil) {
-                DDLogInfo(@"We have a user. (%@)", user.name);
-                return user;
-            } else {
-                DDLogInfo(@"We don't have a user.");
-                return nil;
-            } }]
+    RAC(self, user) = [[[[readyAndReachable
+        filter:^BOOL(id value) {
+            return ([value boolValue] == YES); }]
+        flattenMap:^RACStream *(id value) {
+            return [self.client fetchUser]; }]
+        map:^id(User *user) {
+            DDLogInfo(@"%@", user ? [NSString stringWithFormat:@"We have a user. (%@)", user.name] : @"We don't have a user.");
+            return user; }]
         catch:^RACSignal *(NSError *error) {
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
-            DDLogError(@"%@", self.errorMessage);
-            return [RACSignal empty];
+            DDLogError(@"%@", error);
+            return [RACSignal return:nil];
         }];
 
-    RAC(self, isLoggedIn, @NO) = [RACObserve(self, user)
-        map:^id(id value) {
-            return @(value != nil);
-        }];
-
+    RAC(self, isLoggedIn) = readySignal;
     RAC(self, displayName) = RACObserve(self, user.displayName);
     RAC(self, name) = RACObserve(self, user.name);
     RAC(self, email) = RACObserve(self, user.email);
