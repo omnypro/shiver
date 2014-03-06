@@ -51,6 +51,8 @@
 		9371537718C78D610079D159 /* LogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9371537618C78D610079D159 /* LogFormatter.m */; };
 		9381AF4018C7C74400AB275F /* Close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF3E18C7C74400AB275F /* Close.png */; };
 		9381AF4118C7C74400AB275F /* Close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF3F18C7C74400AB275F /* Close@2x.png */; };
+		9381AF4318C7CE5200AB275F /* StreamListEmptyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */; };
+		9381AF4618C7CEBB00AB275F /* StreamListEmptyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
 		938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21218A5AFB90062C4D0 /* StreamViewer.xib */; };
@@ -232,6 +234,9 @@
 		9371537618C78D610079D159 /* LogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFormatter.m; path = Classes/LogFormatter.m; sourceTree = SOURCE_ROOT; };
 		9381AF3E18C7C74400AB275F /* Close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Close.png; path = Assets/Images/Close.png; sourceTree = SOURCE_ROOT; };
 		9381AF3F18C7C74400AB275F /* Close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Close@2x.png"; path = "Assets/Images/Close@2x.png"; sourceTree = SOURCE_ROOT; };
+		9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListEmptyItemView.xib; path = Assets/NIBs/StreamListEmptyItemView.xib; sourceTree = SOURCE_ROOT; };
+		9381AF4418C7CEBB00AB275F /* StreamListEmptyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListEmptyItemView.h; path = Classes/Views/StreamListEmptyItemView.h; sourceTree = SOURCE_ROOT; };
+		9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListEmptyItemView.m; path = Classes/Views/StreamListEmptyItemView.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
@@ -536,6 +541,7 @@
 				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				938CD21018A5AA160062C4D0 /* MainWindow.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
+				9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */,
 				936327D71764670300146C8A /* StreamListItemView.xib */,
 				93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
@@ -575,6 +581,8 @@
 				931E25291778B7B20081162C /* EmptyErrorView.m */,
 				939A7B6E1783723D009121D6 /* LoadingView.h */,
 				939A7B6F1783723D009121D6 /* LoadingView.m */,
+				9381AF4418C7CEBB00AB275F /* StreamListEmptyItemView.h */,
+				9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */,
 				936327D31764468400146C8A /* StreamListItemView.h */,
 				936327D41764468500146C8A /* StreamListItemView.m */,
 				93C0A7D818BAC545005943E8 /* StreamListSectionView.h */,
@@ -888,6 +896,7 @@
 				938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */,
 				93E65B9018C65F1800196B6A /* Reload.png in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
+				9381AF4318C7CE5200AB275F /* StreamListEmptyItemView.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
 				9381AF4118C7C74400AB275F /* Close@2x.png in Resources */,
@@ -1050,6 +1059,7 @@
 				938CD23C18AE22160062C4D0 /* StreamListViewModel.m in Sources */,
 				938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */,
 				938CD21F18AABA270062C4D0 /* UserViewModel.m in Sources */,
+				9381AF4618C7CEBB00AB275F /* StreamListEmptyItemView.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
 				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
 				936314181785346300AED886 /* NSView+Animations.m in Sources */,

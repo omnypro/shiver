@@ -19,6 +19,7 @@
 #import "NSView+Animations.h"
 #import "Preferences.h"
 #import "SORelativeDateTransformer.h"
+#import "StreamListEmptyItemView.h"
 #import "StreamListItemView.h"
 #import "StreamListSectionView.h"
 #import "StreamListViewModel.h"
@@ -55,6 +56,8 @@ enum {
 @property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, assign) BOOL showingError;
 @property (nonatomic, assign) BOOL showingEmpty;
+
+@property (nonatomic, strong) NSString *emptyMessage;
 @property (nonatomic, strong) NSString *showingErrorMessage;
 
 - (void)sendNewStreamNotificationToUser:(NSArray *)streams;
@@ -145,7 +148,7 @@ enum {
         }];
 
     // ...
-    [[RACObserve(self, viewModel.featuredStreams)
+    [[[RACObserve(self, viewModel.featuredStreams) skip:1]
         combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
             DDLogVerbose(@"Previous featured stream list = [%@], Current featured stream list = [%@]", previous, current);
             return [RACTuple tupleWithObjects:current, previous, nil]; }]
@@ -160,7 +163,7 @@ enum {
         }];
 
     // ...
-    [[RACObserve(self, viewModel.authenticatedStreams)
+    [[[RACObserve(self, viewModel.authenticatedStreams) skip:1]
         combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
             if (![current count]) { current = @[]; }
             NSArray *toAdd = current.without(![previous count] ? @[] : previous);
@@ -174,6 +177,9 @@ enum {
                 [self modifyListViewWithObjects:tuple inSection:0];
                 DDLogInfo(@"Adding %lu streams to the authenticated list.", [tuple[0] count]);
                 DDLogInfo(@"Removing %lu streams from the authenticated list.", [tuple[1] count]);
+            } else if (![self.viewModel.authenticatedStreams count]) {
+                DDLogInfo(@"There are no streams, adding empty view.");
+                [self displayEmptyListItem];
             } else {
                 DDLogInfo(@"Taking no action on the authenticated list.");
             }
@@ -209,7 +215,7 @@ enum {
             DDLogInfo(@"Notifications: %lu new streams.", [array count]);
             return ([array count] > 0); }]
         subscribeNext:^(NSArray *array) {
-            NSLog(@"Notifications: Array of streams to be pushed = [%@]", array);
+            DDLogInfo(@"Notifications: Array of streams to be pushed = [%@]", array);
             [self sendNewStreamNotificationToUser:array];
         }];
 }
@@ -250,12 +256,15 @@ enum {
             [self.viewModel.refreshCommand execute:nil];
         }];
 
-    // Watch AccountManager's credential property to see if it becomes nil.
-    // If so, unset the viewerController's stream so the interface can be
-    // reverted appropriately.
-    [[[RACObserve(AccountManager.sharedManager, credential)
-        map:^(AFOAuthCredential *credential) {
-            return @(credential == nil); }] deliverOn:[RACScheduler mainThreadScheduler]]
+    RACSignal *readySignal = [[AccountManager sharedManager] readySignal];
+    RAC(self, emptyMessage, @"") = [[readySignal
+        map:^id(NSNumber *isReady) {
+            return isReady ? @"Nobody's streaming. :(" : @"Connect to see your follows.";
+        }] deliverOn:[RACScheduler mainThreadScheduler]];
+
+    // Watch -readySignal: to see if it becomes nil. If so, unset the
+    // viewerController's stream so the interface can be reverted appropriately.
+    [[readySignal ignore:@YES]
         subscribeNext:^(id x) {
             DDLogInfo(@"Cannot detect a credential.");
             [self.windowController.viewerController setStream:nil];
@@ -310,6 +319,11 @@ enum {
 - (void)modifyListViewWithObjects:(RACTuple *)tuple inSection:(NSUInteger)section
 {
     RACTupleUnpack(NSArray *toAdd, NSArray *toRemove) = tuple;
+
+    if (section == 0 && [[_listView viewInSection:0 atIndex:0] isKindOfClass:[StreamListEmptyItemView class]]) {
+        [_listView removeListViewItemInSection:0 atIndex:0];
+    }
+
     [[[[toRemove.rac_sequence
         map:^id(StreamViewModel *value) {
             [_listView removeListViewItemForObject:value];
@@ -323,6 +337,15 @@ enum {
             [_listView addListViewItem:item inSection:section];
             return [RACSignal return:value];
         }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
+}
+
+- (void)displayEmptyListItem
+{
+    if (![[_listView viewInSection:0 atIndex:0] isKindOfClass:[StreamListEmptyItemView class]]) {
+        StreamListEmptyItemView *item = [StreamListEmptyItemView initItem];
+        item.emptyLabel.stringValue = self.emptyMessage;
+        [_listView addListViewItem:item inSection:0 atIndex:0];
+    }
 }
 
 - (void)clearListViewSelection
@@ -375,7 +398,8 @@ enum {
     return YES;
 }
 
-- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
+{
     if ([notification activationType] == NSUserNotificationActivationTypeContentsClicked) {
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[notification userInfo][@"URL"]]];
     }
@@ -386,9 +410,8 @@ enum {
 - (void)listView:(JAListView *)listView willSelectView:(JAListViewItem *)view
 {
     if (listView == _listView) {
-        if ([(JASectionedListView *)listView isViewSectionHeaderView:view]) {
-            return;
-        }
+        if ([(JASectionedListView *)listView isViewSectionHeaderView:view]) { return; }
+        if ([view isKindOfClass:[StreamListEmptyItemView class]]) { return; }
 
         StreamListItemView *item = (StreamListItemView *)view;
         [item setSelected:YES];
@@ -402,9 +425,8 @@ enum {
 - (void)listView:(JAListView *)listView didSelectView:(JAListViewItem *)view
 {
     if (listView == _listView) {
-        if ([(JASectionedListView *)listView isViewSectionHeaderView:view]) {
-            return;
-        }
+        if ([(JASectionedListView *)listView isViewSectionHeaderView:view]) { return; }
+        if ([view isKindOfClass:[StreamListEmptyItemView class]]) { return; }
 
         StreamListItemView *item = (StreamListItemView *)view;
         [item setSelected:YES];
