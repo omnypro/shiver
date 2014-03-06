@@ -8,8 +8,8 @@
 
 #import <Butter/BTRActivityIndicator.h>
 
-#import "ApplicationController.h"
 #import "AccountManager.h"
+#import "ApplicationController.h"
 #import "ErrorView.h"
 #import "HexColor.h"
 #import "JAObjectListView.h"
@@ -43,19 +43,10 @@ enum {
     IBOutlet NSButton *_refreshButton;
 }
 
-@property (nonatomic, strong) NSView *emptyView;
-@property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) MainWindowController *windowController;
 @property (nonatomic, strong) StreamViewerViewController *viewerViewController;
-
-@property (nonatomic, strong) NSDate *lastUpdatedTimestamp;
 @property (nonatomic, strong) Preferences *preferences;
-
-@property (nonatomic, assign) BOOL loggedIn;
-@property (nonatomic, assign) BOOL isLoading;
-@property (nonatomic, assign) BOOL showingError;
-@property (nonatomic, assign) BOOL showingEmpty;
 
 @property (nonatomic, strong) NSString *emptyMessage;
 @property (nonatomic, strong) NSString *showingErrorMessage;
