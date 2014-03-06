@@ -51,10 +51,11 @@
 {
     RACMulticastConnection *_isReady;
     if (_isReady == nil) {
-        _isReady = [[RACObserve(self, credential) map:^id(AFOAuthCredential *credential) {
-            DDLogInfo(@"%@", credential != nil ? @"We have a credential." : @"We don't have a credential.");
-            return @(credential != nil);
-        }] multicast:[RACReplaySubject replaySubjectWithCapacity:1]];
+        _isReady = [[RACObserve(self, credential)
+            map:^id(AFOAuthCredential *credential) {
+                DDLogInfo(@"%@", credential != nil ? @"We have a credential." : @"We don't have a credential.");
+                return @(credential != nil); }]
+            multicast:[RACReplaySubject replaySubjectWithCapacity:1]];
         [_isReady connect];
     }
     return _isReady.signal;
@@ -64,15 +65,14 @@
 {
     RACMulticastConnection *_isReachable;
     if (_isReachable == nil) {
-        _isReachable = [[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:kReachabilityChangedNotification object:nil] takeUntil:[self rac_willDeallocSignal]] map:^id(NSNotification *notification) {
-            if ([[notification object] isReachable]) {
-                DDLogInfo(@"%@", @"We have internets.");
-                return @(YES);
-            } else {
-                DDLogInfo(@"%@", @"We don't have internets.");
-                return @(NO);
-            }
-        }] multicast:[RACReplaySubject replaySubjectWithCapacity:1]];
+        _isReachable = [[[[[NSNotificationCenter defaultCenter]
+            rac_addObserverForName:kReachabilityChangedNotification object:nil]
+            takeUntil:[self rac_willDeallocSignal]]
+            map:^id(NSNotification *notification) {
+                BOOL reachable = [[notification object] isReachable];
+                DDLogInfo(@"%@", reachable ? @"We have internets." : @"We don't have internets.");
+                return @(reachable); }]
+            multicast:[RACReplaySubject replaySubjectWithCapacity:1]];
         [_isReachable connect];
     }
 
@@ -81,7 +81,7 @@
 
 - (RACSignal *)readyAndReachableSignal
 {
-    return [[[RACSignal combineLatest:@[self.readySignal, self.reachableSignal]] and] distinctUntilChanged];
+    return [[RACSignal combineLatest:@[self.readySignal, self.reachableSignal]] and];
 }
 
 @end
