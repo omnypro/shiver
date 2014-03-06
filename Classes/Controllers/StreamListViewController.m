@@ -10,6 +10,7 @@
 
 #import "ApplicationController.h"
 #import "AccountManager.h"
+#import "ErrorView.h"
 #import "HexColor.h"
 #import "JAObjectListView.h"
 #import "JLNFadingScrollView.h"
@@ -36,6 +37,7 @@ enum {
 
 @interface StreamListViewController () {
     IBOutlet BTRActivityIndicator *_activityIndicator;
+    IBOutlet ErrorView *_errorView;
     IBOutlet JAObjectListView *_listView;
     IBOutlet JLNFadingScrollView *_scrollView;
     IBOutlet LoadingView *_loadingView;
@@ -225,16 +227,16 @@ enum {
     @weakify(self);
 
     // Show or hide the loading view.
-    [RACObserve(self, viewModel.isLoading)
+    [[RACObserve(self, viewModel.isLoading) distinctUntilChanged]
         subscribeNext:^(NSNumber *loading) {
             @strongify(self);
             BOOL isLoading = [loading boolValue];
             if (isLoading) {
-                DDLogInfo(@"Showing the loading view.");
+                DDLogWarn(@"Showing the loading view.");
                 [self.view addSubview:_loadingView];
                 [_activityIndicator startAnimating];
             } else {
-                DDLogInfo(@"Removing the loading view.");
+                DDLogWarn(@"Removing the loading view.");
                 [_loadingView removeFromSuperview];
                 [_activityIndicator stopAnimating];
             }
@@ -277,6 +279,19 @@ enum {
         deliverOn:[RACScheduler mainThreadScheduler]]
         filter:^BOOL(id value) { return (value == nil); }]
         subscribeNext:^(id x) { [self clearListViewSelection]; }];
+
+    // ...
+    [[[[RACObserve(self, viewModel.hasError) skip:1] distinctUntilChanged]
+        deliverOn:[RACScheduler mainThreadScheduler]]
+        subscribeNext:^(NSNumber *hasError) {
+            if ([hasError boolValue]) {
+                DDLogWarn(@"Showing the error view.");
+                [self.view addSubview:_errorView];
+            } else {
+                DDLogWarn(@"Removing the error view.");
+                [_errorView removeFromSuperview];
+            }
+        }];
 }
 
 //- (void)initializeViewSignals

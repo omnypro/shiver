@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="StreamListViewController">
             <connections>
                 <outlet property="_activityIndicator" destination="PGN-j7-5ip" id="CbS-oD-hQE"/>
+                <outlet property="_errorView" destination="mTr-vo-vrt" id="Kn5-ii-cun"/>
                 <outlet property="_listView" destination="79" id="2fk-aE-5V8"/>
                 <outlet property="_loadingView" destination="LBd-1G-WRQ" id="jW7-p2-KzF"/>
                 <outlet property="_refreshButton" destination="Ft2-v7-OdJ" id="9uv-AE-hHk"/>
@@ -65,6 +66,21 @@
                     <rect key="frame" x="104" y="228" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </customView>
+            </subviews>
+        </customView>
+        <customView id="mTr-vo-vrt" customClass="ErrorView">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="488"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="GOv-Yy-2Ci">
+                    <rect key="frame" x="79" y="236" width="82" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="I AM ERROR." id="mjq-Va-RDL">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
         </customView>
     </objects>
