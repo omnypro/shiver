@@ -18,26 +18,31 @@
 {
 	[super drawRect:dirtyRect];
 
-    [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B" alpha:1]];
-    [self.broadcastLabel setTextColor:[NSColor colorWithHexString:@"#AFB7B8" alpha:1]];
+    [self.liveSinceLabel setTextColor:[NSColor colorWithHexString:@"#9B9B9B"]];
+    [self.broadcastLabel setTextColor:[NSColor colorWithHexString:@"#AFB7B8"]];
 
-    // Draw the view's background.
-    // Draw the view's header rectangle and fill it.
-    NSColor *backgroundTop = [NSColor colorWithHexString:@"#242428"];
-    NSColor *backgroundBottom = [NSColor colorWithHexString:@"#151619"];
-    NSGradient *backgroundGradient = [[NSGradient alloc] initWithStartingColor:backgroundTop endingColor:backgroundBottom];
+    [self drawBackground];
+    [self drawHeader];
+    [self drawFooter];
+    [self drawPlayerBar];
+}
+
+- (void)drawBackground
+{
+    // Draw the view's background and header rectangle. Fill it.
+    NSGradient *backgroundGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#242428"] endingColor:[NSColor colorWithHexString:@"#151619"]];
     NSBezierPath *backgroundPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect([self bounds], 0.0, 0.0) cornerRadius:2.0 inCorners:OSBottomRightCorner];
     [backgroundGradient drawInBezierPath:backgroundPath angle:-90];
 
-    NSColor *overlay = [NSColor colorWithHexString:@"#101113"];
     NSBezierPath *overlayPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(5, 6, self.bounds.size.width - 10, self.bounds.size.height) cornerRadius:2.0 inCorners:OSBottomRightCorner];
-    [overlay set];
+    [[NSColor colorWithHexString:@"#101113"] set];
     [overlayPath fill];
+}
 
+- (void)drawHeader
+{
     // Draw the view's header top border rectangle.
-    NSColor *headerTopColor = [NSColor colorWithHexString:@"#161719" alpha:1.0];
-    NSColor *headerBottomColor = [NSColor colorWithHexString:@"171719" alpha:1.0];
-    NSGradient *headerGradient = [[NSGradient alloc] initWithStartingColor:headerTopColor endingColor:headerBottomColor];
+    NSGradient *headerGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#161719"] endingColor:[NSColor colorWithHexString:@"171719"]];
     NSBezierPath *headerPath = [NSBezierPath bezierPathWithRect:NSMakeRect(0, self.bounds.size.height - 10, self.bounds.size.width, 10)];
     [headerGradient drawInBezierPath:headerPath angle:-90];
 
@@ -56,23 +61,44 @@
     NSRect borderShadowRect = NSMakeRect(0, self.bounds.size.height - 11, self.bounds.size.width, 1);
     [[NSColor colorWithHexString:@"#151518" alpha:1.0] setFill];
     NSRectFill(borderShadowRect);
+}
 
+- (void)drawFooter
+{
     // Draw the view's footer rectangle and fill it with white.
-    NSRect footerRect = NSMakeRect(0, 0, self.bounds.size.width, 110);
-    [[NSColor colorWithHexString:@"#FFFFFF" alpha:1.0] setFill];
-    NSRectFill(footerRect);
+    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#FFFFFF"] endingColor:[NSColor colorWithHexString:@"#F7F7F7"]];
+    NSBezierPath *path = [NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, self.bounds.size.width, 110)];
+    [gradient drawInBezierPath:path angle:-90];
+}
 
-    // Draw the player bar.
-    NSColor *playerTopColor = [NSColor colorWithHexString:@"#2E2F30" alpha:1.0];
-    NSColor *playerBottomColor = [NSColor colorWithHexString:@"#17191B" alpha:1.0];
-    NSGradient *playerGradient = [[NSGradient alloc] initWithStartingColor:playerTopColor endingColor:playerBottomColor];
-    NSRect playerRect = NSMakeRect(10, 93, self.bounds.size.width - 20, 29);
-    NSBezierPath *playerPath = [NSBezierPath bezierPathWithRoundedRect:playerRect cornerRadius:2.0 inCorners:OSBottomLeftCorner | OSBottomRightCorner];
-    [playerGradient drawInBezierPath:playerPath angle:-90];
+- (void)drawPlayerBar
+{
+    CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
 
-    NSRect playerHighlightRect = NSMakeRect(10, 121, self.bounds.size.width - 20, 1);
+    // Initialize the player bar and its gradient.
+    NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#2E2F30"] endingColor:[NSColor colorWithHexString:@"#17191B"]];
+    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(10, 93, self.bounds.size.width - 20, 29) cornerRadius:2.0 inCorners:OSBottomLeftCorner | OSBottomRightCorner];
+
+    // Initialize the player bar's shadow.
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.35]];
+    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+    [shadow setShadowBlurRadius:2];
+
+    // Draw the gradient into the player and the shadow below it.
+    [NSGraphicsContext saveGraphicsState];
+    {
+        [shadow set];
+        CGContextBeginTransparencyLayer(context, NULL);
+        [gradient drawInBezierPath:path angle:-90];
+        CGContextEndTransparencyLayer(context);
+    }
+    [NSGraphicsContext restoreGraphicsState];
+
+    // Initialize and draw the player bar's highlight line.
+    NSRect highlightRect = NSMakeRect(10, 121, self.bounds.size.width - 20, 1);
     [[NSColor colorWithHexString:@"#404043" alpha:1.0] setFill];
-    NSRectFill(playerHighlightRect);
+    NSRectFill(highlightRect);
 }
 
 - (NSAttributedString *)attributedStatusWithString:(NSString *)string
@@ -85,9 +111,15 @@
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     [style setMaximumLineHeight:20];
 
+    // Give it a shadow.
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#FFFFFF"]];
+
     // Send it off.
     NSMutableDictionary *attributes = [@{
-        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#4A4A4A" alpha:1.0],
+        NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#4A4A4A"],
+        NSShadowAttributeName: shadow,
         NSParagraphStyleAttributeName: style,
     } mutableCopy];
     [attrStatus addAttributes:attributes range:NSMakeRange(0, [attrStatus length])];

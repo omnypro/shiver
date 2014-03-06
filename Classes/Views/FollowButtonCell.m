@@ -31,7 +31,9 @@
 
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:3.0 yRadius:3.0];
     [path setLineWidth:1.0];
-    [[NSColor colorWithHexString:strokeColorString alpha:1.0] set];
+    [[NSColor colorWithHexString:@"#FFFFFF"] setFill];
+    [path fill];
+    [[NSColor colorWithHexString:strokeColorString alpha:1.0] setStroke];
     [path stroke];
 
     NSString *textColorString = nil;
