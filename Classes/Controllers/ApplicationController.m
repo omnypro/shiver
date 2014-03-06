@@ -17,7 +17,6 @@
 #import "Preferences.h"
 #import "Reachability.h"
 #import "StartAtLoginController.h"
-#import "WindowController.h"
 #import "UserViewModel.h"
 
 #import "ApplicationController.h"
