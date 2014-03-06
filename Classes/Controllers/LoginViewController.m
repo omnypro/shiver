@@ -92,9 +92,9 @@
     // UI elements to reflect the fact that we have a user present (or not).
     [_disconnectButton rac_liftSelector:@selector(setHidden:) withSignals:[isLoggedIn not], nil];
     [_loginButton rac_liftSelector:@selector(setHidden:) withSignals:isLoggedIn, nil];
-    RAC(self, connectionStatusLabel.stringValue, @"Not currently connected.") = [RACObserve(self, userViewModel.name)
+    RAC(self, connectionStatusLabel.stringValue) = [isLoggedIn
         map:^id(id value) {
-            return value ? [NSString stringWithFormat: @"You're logged in as %@.", value] : @"Not currently connected.";
+            return [value boolValue] ? @"You're logged in." : @"Not currently connected.";
         }];
 }
 
