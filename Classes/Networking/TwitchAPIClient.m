@@ -124,6 +124,20 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
         }];
 }
 
+- (RACSignal *)fetchStream:(NSString *)stream
+{
+    DDLogInfo(@"Fetching stream from the Twitch API.");
+    NSString *path = [NSString stringWithFormat:@"streams/%@", stream];
+    return [[[self enqueueRequestWithMethod:@"GET" path:path parameters:nil]
+        map:^id(id responseObject) { return [responseObject valueForKeyPath:@"stream"]; }]
+        map:^id(id dictionary) {
+            NSError *error;
+            Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
+            StreamViewModel *viewModel = [[StreamViewModel alloc] initWithStream:stream];
+            return viewModel;
+        }];
+}
+
 - (RACSignal *)fetchAuthenticatedStreamList
 {
     DDLogInfo(@"Fetching authenticated stream list from the Twitch API.");
