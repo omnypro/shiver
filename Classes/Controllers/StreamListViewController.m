@@ -144,7 +144,7 @@ enum {
     [[[RACObserve(self, viewModel.featuredStreams) skip:1]
         combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
             DDLogVerbose(@"Previous featured stream list = [%@], Current featured stream list = [%@]", previous, current);
-            return [RACTuple tupleWithObjects:current, previous, nil]; }]
+            return RACTuplePack(current, previous); }]
         subscribeNext:^(RACTuple *tuple) {
             if (![tuple[0] isEqualToArray:tuple[1]]) {
                 [self modifyListViewWithObjects:tuple inSection:1];
@@ -164,7 +164,7 @@ enum {
             NSArray *toRemove = previous.without(![current count] ? @[] : current);
 
             DDLogVerbose(@"Previous authenticated stream list = [%@], Current authenticated stream list = [%@]", previous, current);
-            return [RACTuple tupleWithObjects:toAdd, toRemove, nil]; }]
+            return RACTuplePack(toAdd, toRemove); }]
         subscribeNext:^(RACTuple *tuple) {
             if (![tuple[0] isEqualToArray:tuple[1]]) {
                 [self modifyListViewWithObjects:tuple inSection:0];
@@ -195,7 +195,7 @@ enum {
             return newStreams; }]
         combinePreviousWithStart:[NSArray array] reduce:^id(id previous, id current) {
             DDLogVerbose(@"Previous stream list = [%@], Current stream list = [%@]", previous, current);
-            return [RACTuple tupleWithObjects:previous, current, nil]; }]
+            return RACTuplePack(previous, current); }]
         map:^id(RACTuple *tuple) {
             RACTupleUnpack(NSArray *previous, NSArray *current) = tuple;
             return current.without(previous);
