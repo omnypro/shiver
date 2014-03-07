@@ -9,12 +9,14 @@
 #import <WebKit/WebKit.h>
 
 #import "EmptyViewerView.h"
-#import "MainWindowController.h"
 #import "HexColor.h"
+#import "MainWindowController.h"
+#import "Preferences.h"
 #import "SORelativeDateTransformer.h"
-#import "StreamViewModel.h"
 #import "StreamViewerView.h"
+#import "StreamViewModel.h"
 #import "TitleView.h"
+#import "TwitchAPIClient.h"
 #import "UserImageView.h"
 #import "UserViewModel.h"
 
@@ -22,7 +24,10 @@
 
 @interface StreamViewerViewController ()
 
+@property (nonatomic, strong) TwitchAPIClient *client;
+@property (nonatomic, strong) Preferences *preferences;
 @property (nonatomic, strong) MainWindowController *windowController;
+
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSURL *chatURL;
 @property (nonatomic, strong) NSURL *profileURL;
@@ -41,6 +46,8 @@
     self = [super initWithViewModel:viewModel nibName:nibName bundle:bundle];
     if (self == nil) { return nil; }
 
+    _client = [TwitchAPIClient sharedClient];
+    _preferences = [Preferences sharedPreferences];
     _windowController = [[NSApp delegate] windowController];
 
     _titleView = [_windowController titleView];
@@ -72,6 +79,7 @@
         subscribeNext:^(id x) {
             @strongify(self);
             DDLogInfo(@"Stream has been cleared. Deactivate the viewer.");
+            [[self.webView mainFrame] loadHTMLString:nil baseURL:nil];
             [self.titleView setIsActive:NO];
             if ([self.viewerView superview] != nil) {
                 [self.viewerView removeFromSuperview];
@@ -84,11 +92,41 @@
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
-            DDLogInfo(@"We have a stream. Activate the viewer.");
-            [self.titleView setIsActive:YES];
             if ([self.viewerView superview] == nil) {
+                DDLogInfo(@"We have a stream. Activate the viewer.");
+                [self.titleView setIsActive:YES];
                 [self.viewerView setFrame:self.view.bounds];
                 [self.view addSubview:self.viewerView];
+            }
+        }];
+
+    // Every 60 seconds, fetch the current stream from the API, refreshing it.
+    [[[RACSignal
+        interval:60
+        onScheduler:[RACScheduler scheduler]]
+        flattenMap:^RACStream *(id value) {
+            @strongify(self);
+            return [self.client fetchStream:self.stream.name]; }]
+        subscribeNext:^(StreamViewModel *stream) {
+            @strongify(self);
+            DDLogInfo(@"Refreshing %@.", stream.name);
+            self.stream = stream;
+        }];
+
+    // Compare the current stream to the recently set stream, if they're not
+    // the same, load that stream into the web view. If they are (which is the
+    // case during refreshing), don't do anything.
+    [[RACObserve(self, stream)
+        combinePreviousWithStart:nil
+        reduce:^id(id previous, id current) {
+            DDLogVerbose(@"Previous stream = [%@], Current stream = [%@]", previous, current);
+            return RACTuplePack(previous, current); }]
+        subscribeNext:^(RACTuple *tuple) {
+            @strongify(self);
+            RACTupleUnpack(StreamViewModel *previous, StreamViewModel *current) = tuple;
+            if (![previous.name isEqualToString:current.name]) {
+                NSURLRequest *request = [NSURLRequest requestWithURL:current.hlsURL];
+                [[self.webView mainFrame] loadRequest:request];
             }
         }];
 
@@ -137,11 +175,11 @@
 
     // Here's a hacky check to see if we should enable the follow button.
     // If we have a user's name, enable the button.
-//    RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
-//        map:^id(id value) {
-//            return @(value != nil);
-//        }] deliverOn:[RACScheduler mainThreadScheduler]];
-//    [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
+    // RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
+    //     map:^id(id value) {
+    //         return @(value != nil);
+    //     }] deliverOn:[RACScheduler mainThreadScheduler]];
+    // [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
     [self.viewerView.followButton setEnabled:NO];
 
     // Set the text for the follow button. Run -isUserFollowingChannel: and
@@ -161,18 +199,6 @@
 {
     SORelativeDateTransformer *relativeDateTransformer = [[SORelativeDateTransformer alloc] init];
     return [relativeDateTransformer transformedValue:timestamp];
-}
-
-- (void)setStream:(StreamViewModel *)stream
-{
-    _stream = stream;
-
-    if (stream != nil) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:stream.hlsURL];
-        [[self.webView mainFrame] loadRequest:request];
-    } else {
-        [[self.webView mainFrame] loadHTMLString:nil baseURL:nil];
-    }
 }
 
 - (void)setVolume
