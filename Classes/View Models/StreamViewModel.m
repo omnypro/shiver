@@ -20,23 +20,32 @@
     if (self == nil) return nil;
 
     _stream = stream;
-    _game = stream.game;
-    _broadcaster = stream.broadcaster;
-    _previewImageURL = stream.previewImageURL;
-    _viewers = stream.viewers;
 
-    _channel = stream.channel;
-    _name = _channel.name;
-    _displayName = _channel.displayName;
-    _url = _channel.url;
-    _createdAt = _channel.createdAt;
-    _updatedAt = _channel.updatedAt;
-    _logoImageURL = _channel.logoImageURL;
-    _status = _channel.status;
-
-    _hlsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/hls", _name]];
+    [self initializeSignals];
 
     return self;
+}
+
+- (void)initializeSignals
+{
+    RAC(self, game) = RACObserve(self, stream.game);
+    RAC(self, broadcaster) = RACObserve(self, stream.broadcaster);
+    RAC(self, previewImageURL) = RACObserve(self, stream.previewImageURL);
+    RAC(self, viewers) = RACObserve(self, stream.viewers);
+
+    RAC(self, channel) = RACObserve(self, stream.channel);
+    RAC(self, name) = RACObserve(self, stream.channel.name);
+    RAC(self, displayName) = RACObserve(self, stream.channel.displayName);
+    RAC(self, url) = RACObserve(self, stream.channel.url);
+    RAC(self, createdAt) = RACObserve(self, stream.channel.createdAt);
+    RAC(self, updatedAt) = RACObserve(self, stream.channel.updatedAt);
+    RAC(self, logoImageURL) = RACObserve(self, stream.channel.logoImageURL);
+    RAC(self, status) = RACObserve(self, stream.channel.status);
+
+    RAC(self, hlsURL) = [RACObserve(self, name)
+        map:^id(id value) {
+            return [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/hls", value]];
+        }];
 }
 
 #pragma mark NSObject
