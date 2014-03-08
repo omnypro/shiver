@@ -91,13 +91,20 @@
 
 - (NSAttributedString *)attributedStringWithName:(NSString *)name
 {
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#111111"]];
+    [shadow setShadowBlurRadius:1.0];
+
     NSAttributedString *attrName = [[NSAttributedString alloc] initWithString:name attributes:@{
         NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrPlayingUnspecified = [[NSAttributedString alloc] initWithString:@"playing an unspecified game" attributes:@{
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@", attrName, attrPlayingUnspecified];
@@ -106,18 +113,26 @@
 
 - (NSAttributedString *)attributedStringWithName:(NSString *)name game:(NSString *)game
 {
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#111111"]];
+    [shadow setShadowBlurRadius:1.0];
+
     NSAttributedString *attrName = [[NSAttributedString alloc] initWithString:name attributes:@{
         NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrPlaying = [[NSAttributedString alloc] initWithString:@"playing" attributes:@{
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrGame = [[NSAttributedString alloc] initWithString:game attributes:@{
         NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#FFFFFF" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@ %@", attrName, attrPlaying, attrGame];
@@ -126,13 +141,20 @@
 
 - (NSAttributedString *)attributedViewersWithNumber:(NSNumber *)number
 {
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#111111"]];
+    [shadow setShadowBlurRadius:1.0];
+
     NSAttributedString *attrCount = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", number] attributes:@{
         NSFontAttributeName: [NSFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#C7C7C7" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrViewers = [[NSAttributedString alloc] initWithString:@"viewers" attributes:@{
         NSForegroundColorAttributeName: [NSColor colorWithHexString:@"#7C7C7C" alpha:1.0],
+        NSShadowAttributeName: shadow,
     }];
 
     NSAttributedString *attrString = [NSAttributedString attributedStringWithFormat:@"%@ %@", attrCount, attrViewers];
