@@ -15,6 +15,7 @@
     IBOutlet NSButton *_systemStartupCheckbox;
     IBOutlet NSButton *_notificationCheckbox;
     IBOutlet NSButton *_streamCountCheckbox;
+    IBOutlet NSButton *_backgroundSoundCheckbox;
     IBOutlet NSTextField *_refreshTimeField;
 }
 
@@ -22,6 +23,7 @@
 - (IBAction)toggleStartOnSystemStartup:(id)sender;
 - (IBAction)toggleShowDesktopNotifications:(id)sender;
 - (IBAction)toggleDisplayStreamCount:(id)sender;
+- (IBAction)toggleBackgroundSound:(id)sender;
 - (IBAction)setStreamListRefreshTime:(id)sender;
 
 @end
@@ -47,6 +49,7 @@
     [_systemStartupCheckbox setState:self.preferences.autoStartEnabled];
     [_notificationCheckbox setState:self.preferences.notificationsEnabled];
     [_streamCountCheckbox setState:self.preferences.streamCountEnabled];
+    [_backgroundSoundCheckbox setState:self.preferences.backgroundSoundEnabled];
     [_refreshTimeField setIntegerValue:[self.preferences.streamListRefreshTime integerValue]];
 }
 
@@ -121,6 +124,18 @@
     else {
         [[self preferences] setStreamCountEnabled:NO];
         DDLogInfo(@"Preferences: Stream count will not be displayed in the menu item.");
+    }
+}
+
+- (IBAction)toggleBackgroundSound:(id)sender
+{
+    if ([_backgroundSoundCheckbox state]) {
+        [[self preferences] setBackgroundSoundEnabled:YES];
+        DDLogInfo(@"Preferences: Sound will be played while Shiver's in the background.");
+    }
+    else {
+        [[self preferences] setBackgroundSoundEnabled:NO];
+        DDLogInfo(@"Preferences: Sound will not be played while Shiver's in the background.");
     }
 }
 

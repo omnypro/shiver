@@ -35,6 +35,8 @@
 @property (nonatomic, strong) UserViewModel *userViewModel;
 @property (nonatomic, strong) WebScriptObject *wso;
 
+@property (nonatomic, assign) float videoVolume;
+
 @property (weak) IBOutlet StreamViewerView *viewerView;
 
 @end
@@ -60,6 +62,10 @@
 {
     [super awakeFromNib];
     [self.view setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+
+    NSWindow *window = self.windowController.window;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:window];
 
     self.wso = [self.webView windowScriptObject];
 
@@ -222,6 +228,27 @@
 - (BOOL)webView:(WebView *)webView shouldChangeSelectedDOMRange:(DOMRange *)currentRange toDOMRange:(DOMRange *)proposedRange affinity:(NSSelectionAffinity)selectionAffinity stillSelecting:(BOOL)flag
 {
     return NO; // Prevent the selection of content.
+}
+
+#pragma mark - NSNotifcationCenter
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+    // We will always reset the volume when becoming key, whether or not the
+    // background sound setting is set. This is to prevent perceived
+    // inconsistency in the preference.
+    [self setVolume];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+    if (![self.preferences backgroundSoundEnabled]) {
+        [self.wso evaluateWebScript:[NSString stringWithFormat:@"video.volume = 0;"]];
+    } else {
+        // Set volume when resigning and the background sound preference is
+        // disabled, preventing the perception of inconsistency.
+        [self setVolume];
+    }
 }
 
 #pragma mark - Interface Builder Actions

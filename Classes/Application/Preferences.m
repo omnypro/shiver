@@ -14,6 +14,7 @@ static NSString *const IconVisibilitySetting = @"iconvVisibility";
 static NSString *const AutoStartSetting = @"autoStart";
 static NSString *const NotificationSetting = @"displayNotifications";
 static NSString *const DisplayStreamCountSetting = @"displayStreamCount";
+static NSString *const BackgroundSoundSetting = @"backgroundSound";
 static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
 
 @implementation Preferences
@@ -37,6 +38,7 @@ static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
         AutoStartSetting: @(NO),
         NotificationSetting: @(YES),
         DisplayStreamCountSetting: @(YES),
+        BackgroundSoundSetting: @(YES),
         StreamListRefreshTimeSetting: @5,
     }];
     DDLogInfo(@"Application: The defaults have been set!");
@@ -93,6 +95,19 @@ static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:streamCountEnabled forKey:DisplayStreamCountSetting];
+    [userDefaults synchronize];
+}
+
+- (BOOL)backgroundSoundEnabled
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:BackgroundSoundSetting];
+}
+
+- (void)setBackgroundSoundEnabled:(BOOL)backgroundSoundEnabled
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:backgroundSoundEnabled forKey:BackgroundSoundSetting];
     [userDefaults synchronize];
 }
 
