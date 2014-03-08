@@ -40,8 +40,22 @@
 {
     [super windowDidLoad];
 
-    [self initializeInterface];
     [self initializeViewControllers];
+    [self initializeInterface];
+}
+
+- (void)initializeViewControllers
+{
+    StreamListViewModel *listViewModel = [[StreamListViewModel alloc] init];
+    self.sidebarController = [[StreamListViewController alloc] initWithViewModel:listViewModel nibName:@"StreamListView" bundle:nil];
+    [self.sidebarController.view setFrame:_sidebarView.bounds];
+    [_sidebarView addSubview:self.sidebarController.view];
+
+    StreamViewModel *streamViewModel = [[StreamViewModel alloc] init];
+    self.viewerController = [[StreamViewerViewController alloc] initWithViewModel:streamViewModel nibName:@"StreamViewer" bundle:nil];
+    [self setViewerController:self.viewerController];
+    [self.viewerController.view setFrame:_viewer.bounds];
+    [_viewer addSubview:self.viewerController.view];
 }
 
 - (void)initializeInterface
@@ -77,20 +91,6 @@
         map:^id(NSURL *url) {
             return [[NSImage alloc] initWithContentsOfURL:url];
         }];
-}
-
-- (void)initializeViewControllers
-{
-    StreamListViewModel *listViewModel = [[StreamListViewModel alloc] init];
-    self.sidebarController = [[StreamListViewController alloc] initWithViewModel:listViewModel nibName:@"StreamListView" bundle:nil];
-    [self.sidebarController.view setFrame:_sidebarView.bounds];
-    [_sidebarView addSubview:self.sidebarController.view];
-
-    StreamViewModel *streamViewModel = [[StreamViewModel alloc] init];
-    self.viewerController = [[StreamViewerViewController alloc] initWithViewModel:streamViewModel nibName:@"StreamViewer" bundle:nil];
-    [self setViewerController:self.viewerController];
-    [self.viewerController.view setFrame:_viewer.bounds];
-    [_viewer addSubview:self.viewerController.view];
 }
 
 #pragma mark - Interface Builder Actions
