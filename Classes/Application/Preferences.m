@@ -11,6 +11,7 @@
 #import "Preferences.h"
 
 static NSString *const IconVisibilitySetting = @"iconvVisibility";
+static NSString *const IconActionSetting = @"iconAction";
 static NSString *const AutoStartSetting = @"autoStart";
 static NSString *const NotificationSetting = @"displayNotifications";
 static NSString *const DisplayStreamCountSetting = @"displayStreamCount";
@@ -35,6 +36,7 @@ static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:@{
         IconVisibilitySetting: @0,
+        IconActionSetting: @0,
         AutoStartSetting: @(NO),
         NotificationSetting: @(YES),
         DisplayStreamCountSetting: @(YES),
@@ -54,6 +56,19 @@ static NSString *const StreamListRefreshTimeSetting = @"streamListRefreshTime";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:iconVisibility forKey:IconVisibilitySetting];
+    [userDefaults synchronize];
+}
+
+- (NSNumber *)iconAction
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults objectForKey:IconActionSetting];
+}
+
+- (void)setIconAction:(NSNumber *)iconAction
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:iconAction forKey:IconActionSetting];
     [userDefaults synchronize];
 }
 

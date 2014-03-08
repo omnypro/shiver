@@ -12,6 +12,7 @@
 
 @interface GeneralViewController () {
     IBOutlet NSPopUpButton *_iconVisibilityPopUp;
+    IBOutlet NSPopUpButton *_iconActionPopUp;
     IBOutlet NSButton *_systemStartupCheckbox;
     IBOutlet NSButton *_notificationCheckbox;
     IBOutlet NSButton *_streamCountCheckbox;
@@ -20,6 +21,7 @@
 }
 
 - (IBAction)toggleIconVisibility:(id)sender;
+- (IBAction)toggleIconAction:(id)sender;
 - (IBAction)toggleStartOnSystemStartup:(id)sender;
 - (IBAction)toggleShowDesktopNotifications:(id)sender;
 - (IBAction)toggleDisplayStreamCount:(id)sender;
@@ -46,6 +48,7 @@
 - (void)awakeFromNib
 {
     [_iconVisibilityPopUp selectItemAtIndex:[self.preferences.iconVisibility integerValue]];
+    [_iconActionPopUp selectItemAtIndex:[self.preferences.iconAction integerValue]];
     [_systemStartupCheckbox setState:self.preferences.autoStartEnabled];
     [_notificationCheckbox setState:self.preferences.notificationsEnabled];
     [_streamCountCheckbox setState:self.preferences.streamCountEnabled];
@@ -85,6 +88,23 @@
         case 2:  // Only Menu Bar.
             [[self preferences] setIconVisibility:@2];
             DDLogInfo(@"Preferences: Shiver will only appear in the menu bar.");
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)toggleIconAction:(id)sender
+{
+    NSUInteger item = [[sender objectValue] integerValue];
+    switch (item) {
+        case 0:  // Show Menu.
+            [[self preferences] setIconAction:@0];
+            DDLogInfo(@"Preferences: Clicking the menu icon will show a menu.");
+            break;
+        case 1:  // Show/Hide Shiver.
+            [[self preferences] setIconAction:@1];
+            DDLogInfo(@"Preferences: Clicking the menu icon will toggle Shiver's visibility.");
             break;
         default:
             break;

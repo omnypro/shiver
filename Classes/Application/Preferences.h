@@ -11,6 +11,7 @@
 @interface Preferences : NSObject
 
 @property (nonatomic, assign) NSNumber *iconVisibility;
+@property (nonatomic, assign) NSNumber *iconAction;
 @property (nonatomic, assign) BOOL autoStartEnabled;
 @property (nonatomic, assign) BOOL notificationsEnabled;
 @property (nonatomic, assign) BOOL streamCountEnabled;

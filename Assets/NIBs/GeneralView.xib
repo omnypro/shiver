@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralViewController">
             <connections>
                 <outlet property="_backgroundSoundCheckbox" destination="J4s-Z3-P6A" id="LnC-H9-alx"/>
+                <outlet property="_iconActionPopUp" destination="WCv-vM-IHx" id="l9c-yL-pnL"/>
                 <outlet property="_iconVisibilityPopUp" destination="nE4-yu-xo2" id="THd-ok-6Qy"/>
                 <outlet property="_notificationCheckbox" destination="2" id="162"/>
                 <outlet property="_refreshTimeField" destination="66" id="163"/>
@@ -22,20 +23,20 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="333"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="373"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" id="18">
-                    <rect key="frame" x="99" y="295" width="35" height="17"/>
+                    <rect key="frame" x="42" y="335" width="92" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Icon:" id="19">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Icon Visibility:" id="19">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" id="nE4-yu-xo2">
-                    <rect key="frame" x="144" y="289" width="261" height="26"/>
+                    <rect key="frame" x="144" y="329" width="261" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="z0E-Vm-KGE">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -50,6 +51,32 @@
                     </popUpButtonCell>
                     <connections>
                         <action selector="toggleIconVisibility:" target="-2" id="LUu-0H-8bt"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" id="KR9-ue-A77">
+                    <rect key="frame" x="60" y="295" width="74" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Menu Icon:" id="DkV-en-PXA">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" id="WCv-vM-IHx">
+                    <rect key="frame" x="144" y="289" width="261" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="29g-1M-ipI">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="OSV-uI-BvF">
+                            <items>
+                                <menuItem title="Show Menu" id="fyr-xo-rif"/>
+                                <menuItem title="Show/Hide Shiver" id="wgU-Co-66D"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="toggleIconAction:" target="-2" id="E61-2r-VY3"/>
                     </connections>
                 </popUpButton>
                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" id="n8j-JD-3av">

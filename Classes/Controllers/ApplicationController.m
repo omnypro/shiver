@@ -188,11 +188,20 @@
     [self.statusItem setImage:image];
     [self.statusItem setAlternateImage:alternateImage];
     [self.statusItem setHighlightMode:YES];
-//    [self.statusItem setAction:@selector(toggleWindow)];
 
     self.menu = [[NSMenu alloc] init];
     [self.menu setAutoenablesItems:NO];
-    [self.statusItem setMenu:self.menu];
+
+    [RACObserve(self, preferences.iconAction)
+        subscribeNext:^(NSNumber *action) {
+            if ([action isEqualToNumber:@0]) {
+                [self.statusItem setMenu:self.menu];
+                [self.statusItem setAction:nil];
+            } else if ([action isEqualToNumber:@1]) {
+                [self.statusItem setAction:@selector(toggleWindow)];
+                [self.statusItem setMenu:nil];
+            }
+        }];
 }
 
 - (void)removeStatusItem
