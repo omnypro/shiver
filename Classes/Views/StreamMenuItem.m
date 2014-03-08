@@ -38,4 +38,14 @@
     }
 }
 
+- (void)mouseUp:(NSEvent*)event
+{
+    NSMenuItem *menuItem = [self enclosingMenuItem];
+    NSMenu *menu = [menuItem menu];
+    
+    [menu performActionForItemAtIndex:[menu indexOfItem:menuItem]];
+    [menu cancelTracking];
+}
+
+
 @end

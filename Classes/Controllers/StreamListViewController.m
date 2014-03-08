@@ -416,8 +416,9 @@ enum {
     // Authenticated stream menu items.
     if (count) {
         for (StreamViewModel *viewModel in streams.reverse) {
-            NSMenuItem *streamItem = [[NSMenuItem alloc] init];
+            NSMenuItem *streamItem = [[NSMenuItem alloc] initWithTitle:@"" action:@selector(openStream:) keyEquivalent:@""];
             StreamMenuItem *view = [StreamMenuItem init];
+            [view setViewModel:viewModel];
             [view.name setStringValue:viewModel.displayName];
             [view.game setStringValue:viewModel.game];
             [view.logo setImage:[[NSImage alloc] initWithContentsOfURL:viewModel.logoImageURL]];
@@ -431,6 +432,23 @@ enum {
         [separator setTag:9999];
         [self.menu insertItem:separator atIndex:1];        
     }
+}
+
+- (IBAction)openStream:(NSMenuItem *)sender
+{
+    StreamMenuItem *view = (StreamMenuItem *)sender.view;
+    JAObjectListViewItem *item = [_listView viewItemForObject:view.viewModel];
+
+    // Clear any selections.
+    [self clearListViewSelection];
+
+    // Select the desired item.
+    [_listView selectView:item];
+    [item setSelected:YES];
+    [_listView setNeedsDisplay:YES];
+
+    // Open the window!
+    [self openWindow:self];
 }
 
 - (IBAction)openPreferences:(id)sender
