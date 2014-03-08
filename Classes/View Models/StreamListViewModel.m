@@ -58,7 +58,7 @@
             return @([reachable boolValue] && streams == nil);
         }];
 
-    RAC(self, hasError) = [[reachableSignal not] logAll];
+    RAC(self, hasError) = [reachableSignal not];
     RAC(self, errorMessage) = [RACSignal return:@"We're lacking Internets."];
 
     // A signal whose result contains an array of featured stream items.

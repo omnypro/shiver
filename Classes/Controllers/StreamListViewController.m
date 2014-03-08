@@ -279,7 +279,6 @@ enum {
     [[[RACObserve(self, viewModel.hasError) skip:1]
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *hasError) {
-            NSLog(@"haserror: %@", hasError);
             if ([hasError boolValue]) {
                 DDLogWarn(@"Showing the error view.");
                 [self.view addSubview:self.errorView];
@@ -401,8 +400,6 @@ enum {
 
 - (void)menuNeedsUpdate:(NSMenu *)menu
 {
-    NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
-
     NSArray *streams = self.viewModel.authenticatedStreams;
     NSUInteger count = [streams count];
 
