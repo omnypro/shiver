@@ -40,14 +40,16 @@
 {
     [super windowDidLoad];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToOpenWindow:) name:RequestToOpenWindowNotification object:nil];
+
     [self initializeViewControllers];
     [self initializeInterface];
 }
 
 - (void)initializeViewControllers
 {
-    StreamListViewModel *listViewModel = [[StreamListViewModel alloc] init];
-    self.sidebarController = [[StreamListViewController alloc] initWithViewModel:listViewModel nibName:@"StreamListView" bundle:nil];
+    self.listViewModel = [[StreamListViewModel alloc] init];
+    self.sidebarController = [[StreamListViewController alloc] initWithViewModel:self.listViewModel nibName:@"StreamListView" bundle:nil];
     [self.sidebarController.view setFrame:_sidebarView.bounds];
     [_sidebarView addSubview:self.sidebarController.view];
 
@@ -91,6 +93,14 @@
         map:^id(NSURL *url) {
             return [[NSImage alloc] initWithContentsOfURL:url];
         }];
+}
+
+#pragma mark - Notification Observers
+
+- (void)requestToOpenWindow:(NSNotification *)notification
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.window makeKeyAndOrderFront:self];
 }
 
 #pragma mark - Interface Builder Actions

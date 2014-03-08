@@ -11,6 +11,7 @@
 extern NSString *const ShiverIdentifier;
 extern NSString *const ShiverHelperIdentifier;
 extern NSString *const RequestToOpenPreferencesNotification;
+extern NSString *const RequestToOpenWindowNotification;
 
 extern int const ddLogLevel;
 

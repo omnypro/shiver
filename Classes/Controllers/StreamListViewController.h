@@ -12,7 +12,7 @@
 
 @class StreamViewerViewController;
 
-@interface StreamListViewController : SHViewController <NSUserNotificationCenterDelegate, JAListViewDelegate>
+@interface StreamListViewController : SHViewController <NSMenuDelegate, NSUserNotificationCenterDelegate, JAListViewDelegate>
 
 @property (nonatomic, strong, readonly) StreamListViewModel *viewModel;
 

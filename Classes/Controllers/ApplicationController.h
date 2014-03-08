@@ -18,6 +18,7 @@
 @property (nonatomic, readonly, strong) MainWindowController *windowController;
 @property (nonatomic, readonly, strong) RHPreferencesWindowController *preferencesWindowController;
 
+@property (nonatomic, strong) NSMenu *menu;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 
 + (ApplicationController *)sharedInstance;

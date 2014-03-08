@@ -17,6 +17,7 @@
 #import "Preferences.h"
 #import "Reachability.h"
 #import "StartAtLoginController.h"
+#import "StreamListViewModel.h"
 #import "UserViewModel.h"
 
 #import "ApplicationController.h"
@@ -187,7 +188,11 @@
     [self.statusItem setImage:image];
     [self.statusItem setAlternateImage:alternateImage];
     [self.statusItem setHighlightMode:YES];
-    [self.statusItem setAction:@selector(toggleWindow)];
+//    [self.statusItem setAction:@selector(toggleWindow)];
+
+    self.menu = [[NSMenu alloc] init];
+    [self.menu setAutoenablesItems:NO];
+    [self.statusItem setMenu:self.menu];
 }
 
 - (void)removeStatusItem
@@ -208,12 +213,14 @@
 
 - (void)requestToOpenPreferences:(NSNotification *)notification
 {
+    [NSApp activateIgnoringOtherApps:YES];
     [self showPreferences:notification.object];
 }
 
 #pragma mark - Interface Builder Actions
 
-- (IBAction)showAbout:(id)sender {
+- (IBAction)showAbout:(id)sender
+{
     [self.aboutWindowController.window center];
     [self.aboutWindowController.window makeKeyAndOrderFront:sender];
 }
@@ -224,7 +231,8 @@
     [self.preferencesWindowController.window makeKeyAndOrderFront:sender];
 }
 
-- (IBAction)showMainWindow:(id)sender {
+- (IBAction)showMainWindow:(id)sender
+{
     [self.windowController.window makeKeyAndOrderFront:sender];
 }
 

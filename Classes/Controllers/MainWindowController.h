@@ -9,6 +9,7 @@
 #import "SHWindowController.h"
 #import "UserViewModel.h"
 
+@class StreamListViewModel;
 @class StreamListViewController;
 @class StreamViewerViewController;
 @class TitleView;
@@ -17,7 +18,9 @@
 
 @property (nonatomic, strong) StreamListViewController *sidebarController;
 @property (nonatomic, strong) StreamViewerViewController *viewerController;
-@property (nonatomic, strong, readonly) UserViewModel *viewModel;
+
+@property (nonatomic, strong) StreamListViewModel *listViewModel;
+@property (nonatomic, strong) UserViewModel *viewModel;
 
 @property (weak) IBOutlet TitleView *titleView;
 @property (weak) IBOutlet NSView *viewer;

@@ -43,10 +43,11 @@ enum {
     IBOutlet NSButton *_refreshButton;
 }
 
-@property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) MainWindowController *windowController;
-@property (nonatomic, strong) StreamViewerViewController *viewerViewController;
+@property (nonatomic, strong) NSMenu *menu;
+@property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) Preferences *preferences;
+@property (nonatomic, strong) StreamViewerViewController *viewerViewController;
 
 @property (nonatomic, strong) NSString *emptyMessage;
 @property (nonatomic, strong) NSString *showingErrorMessage;
@@ -76,6 +77,7 @@ enum {
     [self initializeListViewHeaders];
     [self initializeSignals];
     [self initializeLifecycleSignals];
+    [self initializeMenu];
 
     [_activityIndicator setProgressShapeColor:[NSColor whiteColor]];
 
@@ -355,6 +357,78 @@ enum {
     }
 
     [_listView setNeedsDisplay:YES];
+}
+
+#pragma mark - Status Bar Menu
+
+- (void)initializeMenu
+{
+    // Bind our menu to the application delegate's menu.
+    ApplicationController *delegate = [ApplicationController sharedInstance];
+    RAC(self, menu) = RACObserve(delegate, menu);
+    [self.menu setDelegate:self];
+    [self composeMenu];
+}
+
+- (void)composeMenu
+{
+    // Stream count menu item.
+    NSMenuItem *streamCountItem = [[NSMenuItem alloc] init];
+    [streamCountItem setTag:1111];
+    [streamCountItem setEnabled:NO];
+    if (![self.menu itemWithTag:1111]) { [self.menu insertItem:streamCountItem atIndex:0]; }
+
+    // Menu separator.
+    NSMenuItem *separator = [NSMenuItem separatorItem];
+    [separator setTag:0];
+
+    // "Open Main Window" menu item.
+    NSMenuItem *mainWindowMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Main Window" action:@selector(openWindow:) keyEquivalent:@"\\"];
+    [mainWindowMenuItem setTarget:self];
+    [mainWindowMenuItem setTag:1];
+
+    // "Open Preferences" menu item.
+    NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Preferences..." action:@selector(openPreferences:) keyEquivalent:@","];
+    [preferencesMenuItem setTarget:self];
+    [preferencesMenuItem setTag:2];
+
+    // Add items to the menu.
+    if (![self.menu itemWithTag:0]) { [self.menu addItem:separator]; }
+    if (![self.menu itemWithTag:1]) { [self.menu addItem:mainWindowMenuItem]; }
+    if (![self.menu itemWithTag:2]) { [self.menu addItem:preferencesMenuItem]; }
+}
+
+- (void)menuNeedsUpdate:(NSMenu *)menu
+{
+    NSLog(@"[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+
+    NSArray *streams = self.viewModel.authenticatedStreams;
+    NSUInteger count = [streams count];
+
+    NSMenuItem *countItem = [menu itemWithTag:1111];
+    if (countItem) { [countItem setTitle:count ? [NSString stringWithFormat:@"%lu live streams", count] : @"No live streams"]; }
+
+    for (NSMenuItem *item in [menu itemArray]) {
+        if (item.tag == 9999) { [self.menu removeItem:item]; }
+    }
+
+    // Authenticated stream menu items.
+    for (StreamViewModel *viewModel in streams.reverse) {
+        NSMenuItem *streamItem = [[NSMenuItem alloc] initWithTitle:viewModel.displayName action:nil keyEquivalent:@""];
+        [streamItem setTarget:self];
+        [streamItem setTag:9999];
+        [self.menu insertItem:streamItem atIndex:1];
+    }
+}
+
+- (IBAction)openPreferences:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenPreferencesNotification object:self userInfo:nil];
+}
+
+- (IBAction)openWindow:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenWindowNotification object:self userInfo:nil];
 }
 
 #pragma mark - NSUserNotificationCenter Methods
