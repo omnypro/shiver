@@ -51,6 +51,8 @@
 		9381AF4118C7C74400AB275F /* Close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF3F18C7C74400AB275F /* Close@2x.png */; };
 		9381AF4318C7CE5200AB275F /* StreamListEmptyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */; };
 		9381AF4618C7CEBB00AB275F /* StreamListEmptyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */; };
+		9387FE5D18CBB7F200EB74B8 /* StreamMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9387FE5C18CBB7F200EB74B8 /* StreamMenuItem.xib */; };
+		9387FE6018CBB83800EB74B8 /* StreamMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9387FE5F18CBB83800EB74B8 /* StreamMenuItem.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21018A5AA160062C4D0 /* MainWindow.xib */; };
 		938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938CD21218A5AFB90062C4D0 /* StreamViewer.xib */; };
@@ -232,6 +234,9 @@
 		9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListEmptyItemView.xib; path = Assets/NIBs/StreamListEmptyItemView.xib; sourceTree = SOURCE_ROOT; };
 		9381AF4418C7CEBB00AB275F /* StreamListEmptyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListEmptyItemView.h; path = Classes/Views/StreamListEmptyItemView.h; sourceTree = SOURCE_ROOT; };
 		9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListEmptyItemView.m; path = Classes/Views/StreamListEmptyItemView.m; sourceTree = SOURCE_ROOT; };
+		9387FE5C18CBB7F200EB74B8 /* StreamMenuItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamMenuItem.xib; path = Assets/NIBs/StreamMenuItem.xib; sourceTree = SOURCE_ROOT; };
+		9387FE5E18CBB83800EB74B8 /* StreamMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamMenuItem.h; path = Classes/Views/StreamMenuItem.h; sourceTree = SOURCE_ROOT; };
+		9387FE5F18CBB83800EB74B8 /* StreamMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamMenuItem.m; path = Classes/Views/StreamMenuItem.m; sourceTree = SOURCE_ROOT; };
 		938A7667177122130094A361 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+MGCropExtensions.h"; path = "Extensions/Categories/NSImage+MGCropExtensions.h"; sourceTree = SOURCE_ROOT; };
 		938A7668177122130094A361 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+MGCropExtensions.m"; path = "Extensions/Categories/NSImage+MGCropExtensions.m"; sourceTree = SOURCE_ROOT; };
 		938CD21018A5AA160062C4D0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Assets/NIBs/MainWindow.xib; sourceTree = SOURCE_ROOT; };
@@ -537,6 +542,7 @@
 				936327D71764670300146C8A /* StreamListItemView.xib */,
 				93C0A7DB18BAC56E005943E8 /* StreamListSectionView.xib */,
 				936327CF1764287100146C8A /* StreamListView.xib */,
+				9387FE5C18CBB7F200EB74B8 /* StreamMenuItem.xib */,
 				938CD21218A5AFB90062C4D0 /* StreamViewer.xib */,
 			);
 			name = NIBs;
@@ -583,6 +589,8 @@
 				93C0A7A318B7FBDE005943E8 /* StreamListView.m */,
 				93A3A1341768EA5B00913C9A /* StreamLogoImageView.h */,
 				93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */,
+				9387FE5E18CBB83800EB74B8 /* StreamMenuItem.h */,
+				9387FE5F18CBB83800EB74B8 /* StreamMenuItem.m */,
 			);
 			name = "Stream List";
 			sourceTree = "<group>";
@@ -898,6 +906,7 @@
 				936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */,
 				93E65B9118C65F1800196B6A /* Reload@2x.png in Resources */,
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
+				9387FE5D18CBB7F200EB74B8 /* StreamMenuItem.xib in Resources */,
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListItemView.xib in Resources */,
 				93462A07177CB15400C928CA /* Error.png in Resources */,
@@ -1064,6 +1073,7 @@
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
 				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
+				9387FE6018CBB83800EB74B8 /* StreamMenuItem.m in Sources */,
 				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 				93C0A7D718B9B02B005943E8 /* FollowButtonCell.m in Sources */,
 				9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */,

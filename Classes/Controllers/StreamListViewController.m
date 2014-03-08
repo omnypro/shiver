@@ -24,6 +24,7 @@
 #import "StreamListItemView.h"
 #import "StreamListSectionView.h"
 #import "StreamListViewModel.h"
+#import "StreamMenuItem.h"
 #import "StreamViewerViewController.h"
 #import "StreamViewModel.h"
 #import "YOLO.h"
@@ -413,11 +414,22 @@ enum {
     }
 
     // Authenticated stream menu items.
-    for (StreamViewModel *viewModel in streams.reverse) {
-        NSMenuItem *streamItem = [[NSMenuItem alloc] initWithTitle:viewModel.displayName action:nil keyEquivalent:@""];
-        [streamItem setTarget:self];
-        [streamItem setTag:9999];
-        [self.menu insertItem:streamItem atIndex:1];
+    if (count) {
+        for (StreamViewModel *viewModel in streams.reverse) {
+            NSMenuItem *streamItem = [[NSMenuItem alloc] init];
+            StreamMenuItem *view = [StreamMenuItem init];
+            [view.name setStringValue:viewModel.displayName];
+            [view.game setStringValue:viewModel.game];
+            [view.logo setImage:[[NSImage alloc] initWithContentsOfURL:viewModel.logoImageURL]];
+            [streamItem setView:view];
+            [streamItem setTarget:self];
+            [streamItem setTag:9999];
+            [self.menu insertItem:streamItem atIndex:1];
+        }
+
+        NSMenuItem *separator = [NSMenuItem separatorItem];
+        [separator setTag:9999];
+        [self.menu insertItem:separator atIndex:1];        
     }
 }
 
