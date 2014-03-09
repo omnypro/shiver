@@ -61,73 +61,53 @@
     RAC(self, hasError) = [reachableSignal not];
     RAC(self, errorMessage) = [RACSignal return:@"We're lacking Internets."];
 
-    // A signal whose result contains an array of featured stream items.
-    RACSignal *featuredStreams = [[reachableSignal
-        filter:^BOOL(id value) {
-            return ([value boolValue] == YES); }]
-        flattenMap:^RACStream *(id value) {
-            return [[self.client fetchFeaturedStreamList] deliverOn:[RACScheduler mainThreadScheduler]];
-        }];
-
-    // A signal whose result either contains an array of authenticated stream
-    // items, or an empty array. We squelch errors delivered by this method, so
-    // we can still use it against RAC(self, featuredStreams).
-    RACSignal *catchableAuthenticatedStreams = [readyAndReachable
-        flattenMap:^RACStream *(id value) {
-            return [[[self.client fetchAuthenticatedStreamList] deliverOn:[RACScheduler mainThreadScheduler]] catchTo:[RACSignal return:@[]]];
+    // ...
+    [RACObserve(self, featuredStreams)
+        subscribeNext:^(id x) {
+            DDLogDebug(@"self.featuredStreams: %@", x);
         }];
 
     // ...
-    RAC(self, featuredStreams) = [[RACSignal
-        combineLatest:@[executionSignal, featuredStreams, catchableAuthenticatedStreams]
-        reduce:^id(NSNumber *executable, NSArray *featuredStreams, NSArray *authenticatedStreams){
-            DDLogInfo(@"Fetching featured stream list.");
-            if ([executable boolValue] && featuredStreams != nil) {
-                // If authenticated streams are a thing, its contents from
-                // the featured stream list.
-                DDLogInfo(@"%lu streams fetched.", [featuredStreams count]);
-                return [[featuredStreams.sortBy(@"name").rac_sequence
-                    map:^id(StreamViewModel *stream) {
-                        if ([authenticatedStreams containsObject:stream]) { [stream setIsFollowed:YES]; }
-                        return stream;
-                    }] array];
-            } else {
-                DDLogInfo(@"No featured streams fetched.");
-                return @[];
-            } }]
-        catch:^RACSignal *(NSError *error) {
+    [RACObserve(self, authenticatedStreams)
+        subscribeNext:^(id x) {
+            DDLogDebug(@"self.authenticatedStreams: %@", x);
+        }];
+
+    // ...
+    [[[[RACSignal
+        combineLatest:@[readyAndReachable, executionSignal]]
+        map:^id(id value) {
+            return [RACSignal merge:@[[self updateAuthenticatedStreams], [self updateFeaturedStreams]]]; }] switchToLatest]
+        subscribeError:^(NSError *error) {
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
             DDLogError(@"%@", self.errorMessage);
-            return [RACSignal return:@[]];
         }];
+}
 
-    // ...
-    RACSignal *authenticatedStreams = [[readyAndReachable
-        filter:^BOOL(id value) {
-            return ([value boolValue] == YES); }]
-        flattenMap:^RACStream *(id value) {
-            return [[[self.client fetchAuthenticatedStreamList]
-                deliverOn:[RACScheduler mainThreadScheduler]]
-                catch:^RACSignal *(NSError *error) {
-                    self.hasError = YES;
-                    self.errorMessage = [error localizedDescription];
-                    DDLogError(@"%@", self.errorMessage);
-                    return [RACSignal return:@[]];
-                }];
+- (RACSignal *)updateAuthenticatedStreams
+{
+    DDLogInfo(@"Updating authenticated stream list.");
+    return [[self.client fetchAuthenticatedStreamList]
+        doNext:^(NSArray *streams) {
+            self.authenticatedStreams = streams.sortBy(@"name");
+            DDLogInfo(@"%lu authenticated streams fetched.", [streams count]);
         }];
+}
 
-    RAC(self, authenticatedStreams) = [RACSignal
-        combineLatest:@[executionSignal, authenticatedStreams]
-        reduce:^id(NSNumber *executable, NSArray *streams) {
-            DDLogInfo(@"Fetching authenticated stream list.");
-            if ([executable boolValue] == YES && streams != nil) {
-                DDLogInfo(@"%lu authenticated streams fetched.", [streams count]);
-                return streams.sortBy(@"name");
-            } else {
-                DDLogInfo(@"No authenticated streams fetched.");
-                return @[];
-            }
+- (RACSignal *)updateFeaturedStreams
+{
+    DDLogInfo(@"Fetching featured stream list.");
+    return [[RACSignal
+        combineLatest:@[[self.client fetchFeaturedStreamList], [self.client fetchAuthenticatedStreamList]]
+        reduce:^id(NSArray *featured, NSArray *authenticated) {
+            return [[featured.rac_sequence map:^id(StreamViewModel *stream) {
+                if ([authenticated containsObject:stream]) { [stream setIsFollowed:YES]; }
+                return stream;
+            }] array]; }]
+        doNext:^(NSArray *streams) {
+            self.featuredStreams = streams.sortBy(@"name");
+            DDLogInfo(@"%lu featured streams fetched.", [streams count]);
         }];
 }
 
