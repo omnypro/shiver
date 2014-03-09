@@ -15,6 +15,7 @@
 @property (weak) IBOutlet NSImageView *logo;
 @property (weak) IBOutlet NSTextField *name;
 @property (weak) IBOutlet NSTextField *game;
+@property (weak) IBOutlet NSTextField *viewers;
 
 + (id)init;
 

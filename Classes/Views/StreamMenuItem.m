@@ -32,9 +32,11 @@
 
         [self.name setTextColor:[NSColor selectedMenuItemTextColor]];
         [self.game setTextColor:[NSColor selectedMenuItemTextColor]];
+        [self.viewers setTextColor:[NSColor selectedMenuItemTextColor]];
     } else {
         [self.name setTextColor:[NSColor controlTextColor]];
         [self.game setTextColor:[NSColor disabledControlTextColor]];
+        [self.viewers setTextColor:[NSColor secondarySelectedControlColor]];
     }
 }
 

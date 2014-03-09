@@ -419,6 +419,7 @@ enum {
             [view.name setStringValue:viewModel.displayName];
             [view.game setStringValue:viewModel.game];
             [view.logo setImage:[[NSImage alloc] initWithContentsOfURL:viewModel.logoImageURL]];
+            [view.viewers setStringValue:[NSString stringWithFormat:@"%@ viewers", viewModel.viewers]];
             [streamItem setView:view];
             [streamItem setTarget:self];
             [streamItem setTag:9999];
