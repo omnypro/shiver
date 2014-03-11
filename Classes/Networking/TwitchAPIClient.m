@@ -126,10 +126,11 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchStream:(NSString *)stream
 {
-    DDLogInfo(@"Fetching stream from the Twitch API.");
     NSString *path = [NSString stringWithFormat:@"streams/%@", stream];
     return [[[self enqueueRequestWithMethod:@"GET" path:path parameters:nil]
-        map:^id(id responseObject) { return [responseObject valueForKeyPath:@"stream"]; }]
+        map:^id(id responseObject) {
+            DDLogInfo(@"Fetched stream from the Twitch API.");
+            return [responseObject valueForKeyPath:@"stream"]; }]
         map:^id(id dictionary) {
             NSError *error;
             Stream *stream = [MTLJSONAdapter modelOfClass:Stream.class fromJSONDictionary:dictionary error:&error];
@@ -140,9 +141,10 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchAuthenticatedStreamList
 {
-    DDLogInfo(@"Fetching authenticated stream list from the Twitch API.");
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/followed" parameters:nil]
-        map:^id(id responseObject) { return [responseObject valueForKeyPath:@"streams"]; }]
+        map:^id(id responseObject) {
+            DDLogInfo(@"Fetched authenticated stream list from the Twitch API.");
+            return [responseObject valueForKeyPath:@"streams"]; }]
         map:^id(NSArray *streamsFromResponse) {
             return [[streamsFromResponse.rac_sequence map:^id(NSDictionary *dictionary) {
                 NSError *error = nil;
@@ -155,9 +157,10 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchFeaturedStreamList
 {
-    DDLogInfo(@"Fetching featured stream list from the Twitch API.");
     return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured" parameters:nil]
-        map:^id(id responseObject) { return [responseObject valueForKeyPath:@"featured"]; }]
+        map:^id(id responseObject) {
+            DDLogInfo(@"Fetched featured stream list from the Twitch API.");
+            return [responseObject valueForKeyPath:@"featured"]; }]
         map:^id(NSDictionary *streamsFromResponse) {
             // Twitch's featured streams nests a Stream object alongside
             // metadata that is used for their front page. We don't need
