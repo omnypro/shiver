@@ -322,16 +322,14 @@ enum {
     [[[[toRemove.rac_sequence
         map:^id(StreamViewModel *value) {
             [_listView removeListViewItemForObject:value];
-            return [RACSignal return:value];
-        }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
-    [[[[[toAdd.rac_sequence
-        filter:^BOOL(StreamViewModel *value) {
-             return (value.isFollowed == NO); }]
+            return [RACSignal return:value]; }] eagerSequence] signal]
+        deliverOn:[RACScheduler mainThreadScheduler]];
+    [[[[toAdd.rac_sequence
         map:^id(StreamViewModel *value) {
             StreamListItemView *item = [StreamListItemView initItemStream:value];
             [_listView addListViewItem:item inSection:section];
-            return [RACSignal return:value];
-        }] eagerSequence] signal] deliverOn:[RACScheduler mainThreadScheduler]];
+            return [RACSignal return:value]; }] eagerSequence] signal]
+        deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (void)displayEmptyListItem

@@ -109,7 +109,7 @@
             [[self.client fetchAuthenticatedStreamList] catchTo:[RACSignal return:@[]]]]
         reduce:^id(NSArray *featured, NSArray *authenticated) {
             return [[featured.rac_sequence map:^id(StreamViewModel *stream) {
-                if (authenticated && [authenticated containsObject:stream]) { [stream setIsFollowed:YES]; }
+                if (authenticated && [authenticated containsObject:stream]) { stream = nil; }
                 return stream;
             }] array]; }];
 }
