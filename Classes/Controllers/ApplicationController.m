@@ -250,8 +250,6 @@
     if (![self.menu itemWithTag:2]) { [self.menu addItem:preferencesMenuItem]; }
     if (![self.menu itemWithTag:3]) { [self.menu addItem:lowerSeparator]; }
     if (![self.menu itemWithTag:4]) { [self.menu addItem:terminateMenuItem]; }
-
-    NSLog(@"menu: %@", self.menu);
 }
 
 - (void)removeStatusItem
