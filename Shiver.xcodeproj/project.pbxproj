@@ -43,6 +43,10 @@
 		9381AF4118C7C74400AB275F /* Close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF3F18C7C74400AB275F /* Close@2x.png */; };
 		9381AF4318C7CE5200AB275F /* StreamListEmptyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */; };
 		9381AF4618C7CEBB00AB275F /* StreamListEmptyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */; };
+		93851B7818D0F3D000401DEE /* Muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7418D0F3D000401DEE /* Muted.png */; };
+		93851B7918D0F3D000401DEE /* Muted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7518D0F3D000401DEE /* Muted@2x.png */; };
+		93851B7A18D0F3D000401DEE /* Unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7618D0F3D000401DEE /* Unmuted.png */; };
+		93851B7B18D0F3D000401DEE /* Unmuted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7718D0F3D000401DEE /* Unmuted@2x.png */; };
 		9387FE5D18CBB7F200EB74B8 /* StreamMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9387FE5C18CBB7F200EB74B8 /* StreamMenuItem.xib */; };
 		9387FE6018CBB83800EB74B8 /* StreamMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9387FE5F18CBB83800EB74B8 /* StreamMenuItem.m */; };
 		938A7669177122130094A361 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A7668177122130094A361 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -211,6 +215,10 @@
 		9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListEmptyItemView.xib; path = Assets/NIBs/StreamListEmptyItemView.xib; sourceTree = SOURCE_ROOT; };
 		9381AF4418C7CEBB00AB275F /* StreamListEmptyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListEmptyItemView.h; path = Classes/Views/StreamListEmptyItemView.h; sourceTree = SOURCE_ROOT; };
 		9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListEmptyItemView.m; path = Classes/Views/StreamListEmptyItemView.m; sourceTree = SOURCE_ROOT; };
+		93851B7418D0F3D000401DEE /* Muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Muted.png; path = Assets/Images/Muted.png; sourceTree = SOURCE_ROOT; };
+		93851B7518D0F3D000401DEE /* Muted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Muted@2x.png"; path = "Assets/Images/Muted@2x.png"; sourceTree = SOURCE_ROOT; };
+		93851B7618D0F3D000401DEE /* Unmuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Unmuted.png; path = Assets/Images/Unmuted.png; sourceTree = SOURCE_ROOT; };
+		93851B7718D0F3D000401DEE /* Unmuted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Unmuted@2x.png"; path = "Assets/Images/Unmuted@2x.png"; sourceTree = SOURCE_ROOT; };
 		9387FE5C18CBB7F200EB74B8 /* StreamMenuItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamMenuItem.xib; path = Assets/NIBs/StreamMenuItem.xib; sourceTree = SOURCE_ROOT; };
 		9387FE5E18CBB83800EB74B8 /* StreamMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamMenuItem.h; path = Classes/Views/StreamMenuItem.h; sourceTree = SOURCE_ROOT; };
 		9387FE5F18CBB83800EB74B8 /* StreamMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamMenuItem.m; path = Classes/Views/StreamMenuItem.m; sourceTree = SOURCE_ROOT; };
@@ -593,6 +601,8 @@
 				9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */,
 				938CD21718A6BCD40062C4D0 /* Icon.icns */,
 				93BD3CB41793D9EA001A0C6F /* Icon.iconset */,
+				93851B7418D0F3D000401DEE /* Muted.png */,
+				93851B7518D0F3D000401DEE /* Muted@2x.png */,
 				93E65B8618C65A9A00196B6A /* Pause.png */,
 				93E65B8718C65A9A00196B6A /* Pause@2x.png */,
 				93E65B8818C65A9A00196B6A /* Play.png */,
@@ -605,6 +615,8 @@
 				939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */,
 				93E65B8E18C65F1800196B6A /* Reload.png */,
 				93E65B8F18C65F1800196B6A /* Reload@2x.png */,
+				93851B7618D0F3D000401DEE /* Unmuted.png */,
+				93851B7718D0F3D000401DEE /* Unmuted@2x.png */,
 			);
 			name = Images;
 			path = Assets/Images;
@@ -835,16 +847,20 @@
 				93E65B8B18C65A9A00196B6A /* Pause@2x.png in Resources */,
 				933EC0E7177C039F0041D020 /* AboutWindow.xib in Resources */,
 				939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */,
+				93851B7918D0F3D000401DEE /* Muted@2x.png in Resources */,
 				938CD21818A6BCD40062C4D0 /* Icon.icns in Resources */,
 				93E65B9018C65F1800196B6A /* Reload.png in Resources */,
+				93851B7818D0F3D000401DEE /* Muted.png in Resources */,
 				93636A801761B05C00980570 /* Menu.xib in Resources */,
 				9381AF4318C7CE5200AB275F /* StreamListEmptyItemView.xib in Resources */,
 				932C29C41761AF460049EC1B /* Credits.rtf in Resources */,
+				93851B7A18D0F3D000401DEE /* Unmuted.png in Resources */,
 				932C29C51761AF460049EC1B /* InfoPlist.strings in Resources */,
 				9381AF4118C7C74400AB275F /* Close@2x.png in Resources */,
 				939A7B681783462B009121D6 /* PreferencesGeneral@2x.png in Resources */,
 				934626591762798100F947FE /* Podfile in Resources */,
 				938CD21318A5AFB90062C4D0 /* StreamViewer.xib in Resources */,
+				93851B7B18D0F3D000401DEE /* Unmuted@2x.png in Resources */,
 				936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */,
 				93E65B9118C65F1800196B6A /* Reload@2x.png in Resources */,
 				936327C41763C91300146C8A /* TwitchGlitchWhite.pdf in Resources */,
