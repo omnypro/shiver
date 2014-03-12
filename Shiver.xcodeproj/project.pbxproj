@@ -65,7 +65,6 @@
 		93918311176A828500367399 /* PreferencesGlitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9391830F176A828500367399 /* PreferencesGlitch.png */; };
 		93918312176A828500367399 /* PreferencesGlitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93918310176A828500367399 /* PreferencesGlitch@2x.png */; };
 		93918315176A9E7000367399 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936327DC1765150000146C8A /* SystemConfiguration.framework */; };
-		9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9394113A178896E4003D1346 /* NSWindow+SHExtensions.m */; };
 		939A7B591782A537009121D6 /* StatusItem.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B581782A472009121D6 /* StatusItem.pdf */; };
 		939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */; };
 		939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B651783462B009121D6 /* PreferencesGeneral.png */; };
@@ -246,8 +245,6 @@
 		938CD23B18AE22160062C4D0 /* StreamListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = StreamListViewModel.m; path = "Classes/View Models/StreamListViewModel.m"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9391830F176A828500367399 /* PreferencesGlitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGlitch.png; path = Assets/Images/PreferencesGlitch.png; sourceTree = SOURCE_ROOT; };
 		93918310176A828500367399 /* PreferencesGlitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGlitch@2x.png"; path = "Assets/Images/PreferencesGlitch@2x.png"; sourceTree = SOURCE_ROOT; };
-		93941139178896E4003D1346 /* NSWindow+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+SHExtensions.h"; path = "Extensions/Categories/NSWindow+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
-		9394113A178896E4003D1346 /* NSWindow+SHExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+SHExtensions.m"; path = "Extensions/Categories/NSWindow+SHExtensions.m"; sourceTree = SOURCE_ROOT; };
 		939A7B581782A472009121D6 /* StatusItem.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItem.pdf; path = Assets/Templates/StatusItem.pdf; sourceTree = SOURCE_ROOT; };
 		939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItemAlternate.pdf; path = Assets/Templates/StatusItemAlternate.pdf; sourceTree = SOURCE_ROOT; };
 		939A7B651783462B009121D6 /* PreferencesGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGeneral.png; path = Assets/Images/PreferencesGeneral.png; sourceTree = SOURCE_ROOT; };
@@ -675,8 +672,6 @@
 				936314171785346300AED886 /* NSView+Animations.m */,
 				935378F0177A010B0069AEFC /* NSView+SHExtensions.h */,
 				935378F1177A010B0069AEFC /* NSView+SHExtensions.m */,
-				93941139178896E4003D1346 /* NSWindow+SHExtensions.h */,
-				9394113A178896E4003D1346 /* NSWindow+SHExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1028,7 +1023,6 @@
 				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
 				9387FE6018CBB83800EB74B8 /* StreamMenuItem.m in Sources */,
 				93C0A7D718B9B02B005943E8 /* FollowButtonCell.m in Sources */,
-				9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
