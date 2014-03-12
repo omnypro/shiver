@@ -315,7 +315,7 @@ enum {
 {
     RACTupleUnpack(NSArray *toAdd, NSArray *toRemove) = tuple;
 
-    if (section == 0 && [[_listView viewInSection:0 atIndex:0] isKindOfClass:[StreamListEmptyItemView class]]) {
+    if (section == 0 && [[_listView viewInSection:0 atIndex:0] isMemberOfClass:[StreamListEmptyItemView class]]) {
         [_listView removeListViewItemInSection:0 atIndex:0];
     }
 
@@ -336,7 +336,7 @@ enum {
 
 - (void)displayEmptyListItem
 {
-    if (![[_listView viewInSection:0 atIndex:0] isKindOfClass:[StreamListEmptyItemView class]]) {
+    if (![[_listView viewInSection:0 atIndex:0] isMemberOfClass:[StreamListEmptyItemView class]]) {
         StreamListEmptyItemView *item = [StreamListEmptyItemView initItem];
         item.emptyLabel.stringValue = self.emptyMessage;
         [_listView addListViewItem:item inSection:0 atIndex:0];
