@@ -229,6 +229,7 @@ enum {
             BOOL isLoading = [loading boolValue];
             if (isLoading) {
                 DDLogWarn(@"Showing the loading view.");
+                [_loadingView setFrame:self.view.bounds];
                 [self.view addSubview:_loadingView];
                 [_activityIndicator startAnimating];
             } else {
@@ -286,6 +287,7 @@ enum {
         subscribeNext:^(NSNumber *hasError) {
             if ([hasError boolValue]) {
                 DDLogWarn(@"Showing the error view.");
+                [self.errorView setFrame:self.view.bounds];
                 [self.view addSubview:self.errorView];
             } else {
                 DDLogWarn(@"Removing the error view.");
