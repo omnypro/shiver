@@ -195,7 +195,9 @@ enum {
     // Observe our authenticated stream list (ignoring nil values). Once that
     // value changes, return the stream list so we may further process it.
     RACSignal *notificationsEnabled = [[RACSignal
-        combineLatest:@[[authenticatedStreams ignore:nil], RACObserve(self, preferences.notificationsEnabled)]
+        combineLatest:@[
+            [authenticatedStreams ignore:nil],
+            [RACObserve(self, preferences.notificationsEnabled) ignore:NO]]
         reduce:^id(NSArray *streams, NSNumber *notificationsEnabled) {
             DDLogInfo(@"We will now be sending notifications.");
             return streams;
@@ -380,9 +382,10 @@ enum {
     // Bind our menu to the application delegate's menu.
     ApplicationController *delegate = [ApplicationController sharedInstance];
     RAC(self, menu) = RACObserve(delegate, menu);
-    [RACObserve(delegate, menu) subscribeNext:^(id x) {
-        [self.menu setDelegate:self];
-    }];
+    [[RACObserve(self, menu) ignore:nil]
+        subscribeNext:^(id x) {
+            [self.menu setDelegate:self];
+        }];
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu
