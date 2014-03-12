@@ -224,6 +224,8 @@
     [separator setHidden:YES];
     [separator setTag:1112];
 
+    if (![self.menu itemWithTag:1112]) { [self.menu addItem:separator]; }
+
     // "Open Main Window" menu item.
     NSMenuItem *mainWindowMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Main Window" action:@selector(openWindow:) keyEquivalent:@"\\"];
     [mainWindowMenuItem setTarget:self];
@@ -234,10 +236,20 @@
     [preferencesMenuItem setTarget:self];
     [preferencesMenuItem setTag:2];
 
+    // Lower separator menu item.
+    NSMenuItem *lowerSeparator = [NSMenuItem separatorItem];
+    [lowerSeparator setTag:3];
+
+    // "Quit Shiver" menu item.
+    NSMenuItem *terminateMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit Shiver" action:@selector(terminate:) keyEquivalent:@"q"];
+    [terminateMenuItem setTarget:NSApp];
+    [terminateMenuItem setTag:4];
+
     // Add items to the menu.
-    if (![self.menu itemWithTag:0]) { [self.menu addItem:separator]; }
     if (![self.menu itemWithTag:1]) { [self.menu addItem:mainWindowMenuItem]; }
     if (![self.menu itemWithTag:2]) { [self.menu addItem:preferencesMenuItem]; }
+    if (![self.menu itemWithTag:3]) { [self.menu addItem:lowerSeparator]; }
+    if (![self.menu itemWithTag:4]) { [self.menu addItem:terminateMenuItem]; }
 
     NSLog(@"menu: %@", self.menu);
 }
