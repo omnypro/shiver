@@ -395,10 +395,13 @@ enum {
 
     NSMenuItem *countItem = [menu itemWithTag:1111];
     NSMenuItem *separatorItem = [menu itemWithTag:1112];
-    if (countItem) {
-        [countItem setTitle:count ? [NSString stringWithFormat:@"%lu live streams", count] : @"No live streams"];
+    if (countItem && count > 0) {
+        [countItem setTitle:[NSString stringWithFormat:@"%lu live streams", count]];
         [countItem setHidden:NO];
         [separatorItem setHidden:NO];
+    } else if (count == 0) {
+        [countItem setHidden:YES];
+        [separatorItem setHidden:YES];
     }
 
     for (NSMenuItem *item in [menu itemArray]) {
