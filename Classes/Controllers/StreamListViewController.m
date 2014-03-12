@@ -103,8 +103,8 @@ enum {
 - (void)initializeSignals
 {
     // ...
-    _refreshButton.rac_command = self.viewModel.refreshCommand;
-    [self.viewModel.refreshCommand.executionSignals subscribeNext:^(id x) {}];
+    _refreshButton.rac_command = self.viewModel.fetchCommand;
+    [self.viewModel.fetchCommand execute:nil];
 
     // Bind our status item to the application delegate's status item. If
     // the user chooses to toggle icon visibility, there's a chance that
@@ -119,6 +119,13 @@ enum {
     RACSignal *streamCountEnabled = RACObserve(self, preferences.streamCountEnabled);
 
     @weakify(self);
+
+    RACSignal *readySignal = [[AccountManager sharedManager] readySignal];
+    [readySignal subscribeNext:^(id x) {
+        @strongify(self);
+        DDLogInfo(@"User status has changed, refresh the list.");
+        [self.viewModel.fetchCommand execute:nil];
+    }];
 
     RAC(self, statusItem.title) = [[RACSignal
         combineLatest:@[streamCountEnabled, authenticatedStreams, RACObserve(self, preferences.iconVisibility)]
@@ -173,6 +180,10 @@ enum {
                 [self modifyListViewWithObjects:tuple inSection:0];
                 DDLogInfo(@"Adding %lu streams to the authenticated list.", [tuple[0] count]);
                 DDLogInfo(@"Removing %lu streams from the authenticated list.", [tuple[1] count]);
+                if (![self.viewModel.authenticatedStreams count]) {
+                    DDLogInfo(@"There are no streams, adding empty view.");
+                    [self displayEmptyListItem];
+                }
             } else if (![self.viewModel.authenticatedStreams count]) {
                 DDLogInfo(@"There are no streams, adding empty view.");
                 [self displayEmptyListItem];
@@ -249,7 +260,7 @@ enum {
         subscribeNext:^(id x) {
             @strongify(self);
             DDLogVerbose(@"Triggering timed refresh.");
-            [self.viewModel.refreshCommand execute:nil];
+            [self.viewModel.fetchCommand execute:nil];
         }];
 
     RACSignal *readySignal = [[AccountManager sharedManager] readySignal];
@@ -275,7 +286,10 @@ enum {
         subscribeNext:^(id x) { [self clearListViewSelection]; }];
 
     // ...
-    RAC(self, errorView.titleLabel.stringValue, @"") = RACObserve(self, viewModel.errorMessage);
+    RAC(self, errorView.titleLabel.stringValue, @"") = [RACObserve(self, viewModel.errorMessage)
+        map:^id(id value) {
+            return [self formatError:value];
+        }];
     [[[RACObserve(self, viewModel.hasError) skip:1]
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *hasError) {
