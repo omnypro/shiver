@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Revyver, Inc. All rights reserved.
 //
 
+#import <HockeySDK/HockeySDK.h>
+
 #import "AboutWindowController.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
@@ -98,6 +100,9 @@
     [self.windowController showWindow:self];
 
     [self initializeLogging];
+
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"234d9a96428c082573bfe384c2fc3c13"];
+    [[BITHockeyManager sharedHockeyManager] startManager];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag

@@ -8,6 +8,7 @@ PODS:
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
   - HexColors (2.2.1)
+  - HockeySDK-Mac (2.1.0)
   - INAppStoreWindow (1.4)
   - JAListView (0.0.1)
   - Mantle (1.4.1):
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - AFOAuth2Client (~> 0.1.2)
   - CocoaLumberjack (~> 1.8.1)
   - HexColors (~> 2.2.1)
+  - HockeySDK-Mac (~> 2.1.0)
   - INAppStoreWindow (~> 1.4)
   - JAListView (~> 0.0.1)
   - Mantle (~> 1.4.1)
@@ -54,6 +56,7 @@ SPEC CHECKSUMS:
   AFOAuth2Client: 579d6f298b0047dfd5a6eec6ab5b28c01f6b4547
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
+  HockeySDK-Mac: e37f9cb7fc61828f797b061e186a682ed5d1216d
   INAppStoreWindow: 5a9eedcedc3ec95e7d8a12292de584b760d96c76
   JAListView: 7fb73768382a93a0cf48e18828709ef3240911fc
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
