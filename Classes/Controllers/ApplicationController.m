@@ -151,9 +151,9 @@
             return ([value isEqualToNumber:@2]); }]
         subscribeNext:^(id x) {
             [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+            [NSApp activateIgnoringOtherApps:YES];
             [self.windowController.window makeKeyAndOrderFront:self];
             [self.preferencesWindowController.window makeKeyAndOrderFront:self];
-            [NSApp activateIgnoringOtherApps:YES];
         }];
 }
 
@@ -196,12 +196,45 @@
         subscribeNext:^(NSNumber *action) {
             if ([action isEqualToNumber:@0]) {
                 [self.statusItem setMenu:self.menu];
+                [self composeMenu];
                 [self.statusItem setAction:nil];
             } else if ([action isEqualToNumber:@1]) {
                 [self.statusItem setAction:@selector(toggleWindow)];
                 [self.statusItem setMenu:nil];
             }
         }];
+}
+
+- (void)composeMenu
+{
+    // Stream count menu item.
+    NSMenuItem *streamCountItem = [[NSMenuItem alloc] init];
+    [streamCountItem setTag:1111];
+    [streamCountItem setEnabled:NO];
+    [streamCountItem setHidden:YES];
+    if (![self.menu itemWithTag:1111]) { [self.menu insertItem:streamCountItem atIndex:0]; }
+
+    // Menu separator.
+    NSMenuItem *separator = [NSMenuItem separatorItem];
+    [separator setHidden:YES];
+    [separator setTag:1112];
+
+    // "Open Main Window" menu item.
+    NSMenuItem *mainWindowMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Main Window" action:@selector(openWindow:) keyEquivalent:@"\\"];
+    [mainWindowMenuItem setTarget:self];
+    [mainWindowMenuItem setTag:1];
+
+    // "Open Preferences" menu item.
+    NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Preferences..." action:@selector(openPreferences:) keyEquivalent:@","];
+    [preferencesMenuItem setTarget:self];
+    [preferencesMenuItem setTag:2];
+
+    // Add items to the menu.
+    if (![self.menu itemWithTag:0]) { [self.menu addItem:separator]; }
+    if (![self.menu itemWithTag:1]) { [self.menu addItem:mainWindowMenuItem]; }
+    if (![self.menu itemWithTag:2]) { [self.menu addItem:preferencesMenuItem]; }
+
+    NSLog(@"menu: %@", self.menu);
 }
 
 - (void)removeStatusItem
@@ -227,6 +260,16 @@
 }
 
 #pragma mark - Interface Builder Actions
+
+- (IBAction)openPreferences:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenPreferencesNotification object:self userInfo:nil];
+}
+
+- (IBAction)openWindow:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenWindowNotification object:self userInfo:nil];
+}
 
 - (IBAction)showAbout:(id)sender
 {

@@ -380,36 +380,9 @@ enum {
     // Bind our menu to the application delegate's menu.
     ApplicationController *delegate = [ApplicationController sharedInstance];
     RAC(self, menu) = RACObserve(delegate, menu);
-    [self.menu setDelegate:self];
-    [self composeMenu];
-}
-
-- (void)composeMenu
-{
-    // Stream count menu item.
-    NSMenuItem *streamCountItem = [[NSMenuItem alloc] init];
-    [streamCountItem setTag:1111];
-    [streamCountItem setEnabled:NO];
-    if (![self.menu itemWithTag:1111]) { [self.menu insertItem:streamCountItem atIndex:0]; }
-
-    // Menu separator.
-    NSMenuItem *separator = [NSMenuItem separatorItem];
-    [separator setTag:0];
-
-    // "Open Main Window" menu item.
-    NSMenuItem *mainWindowMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Main Window" action:@selector(openWindow:) keyEquivalent:@"\\"];
-    [mainWindowMenuItem setTarget:self];
-    [mainWindowMenuItem setTag:1];
-
-    // "Open Preferences" menu item.
-    NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open Preferences..." action:@selector(openPreferences:) keyEquivalent:@","];
-    [preferencesMenuItem setTarget:self];
-    [preferencesMenuItem setTag:2];
-
-    // Add items to the menu.
-    if (![self.menu itemWithTag:0]) { [self.menu addItem:separator]; }
-    if (![self.menu itemWithTag:1]) { [self.menu addItem:mainWindowMenuItem]; }
-    if (![self.menu itemWithTag:2]) { [self.menu addItem:preferencesMenuItem]; }
+    [RACObserve(delegate, menu) subscribeNext:^(id x) {
+        [self.menu setDelegate:self];
+    }];
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu
@@ -418,7 +391,12 @@ enum {
     NSUInteger count = [streams count];
 
     NSMenuItem *countItem = [menu itemWithTag:1111];
-    if (countItem) { [countItem setTitle:count ? [NSString stringWithFormat:@"%lu live streams", count] : @"No live streams"]; }
+    NSMenuItem *separatorItem = [menu itemWithTag:1112];
+    if (countItem) {
+        [countItem setTitle:count ? [NSString stringWithFormat:@"%lu live streams", count] : @"No live streams"];
+        [countItem setHidden:NO];
+        [separatorItem setHidden:NO];
+    }
 
     for (NSMenuItem *item in [menu itemArray]) {
         if (item.tag == 9999) { [self.menu removeItem:item]; }
@@ -461,11 +439,6 @@ enum {
 
     // Open the window!
     [self openWindow:self];
-}
-
-- (IBAction)openPreferences:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenPreferencesNotification object:self userInfo:nil];
 }
 
 - (IBAction)openWindow:(id)sender
