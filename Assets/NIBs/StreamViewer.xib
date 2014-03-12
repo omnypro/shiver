@@ -136,12 +136,26 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="Sf4-UK-a7J"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Reload" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="Jqt-vC-6Kc">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Reload" imagePosition="overlaps" alignment="center" inset="2" id="Jqt-vC-6Kc">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="reloadStream:" target="-2" id="YJ0-lR-Q9Y"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="zKx-0G-hwU">
+                    <rect key="frame" x="492" y="95" width="24" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="lOR-V3-7EV"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Unmuted" imagePosition="overlaps" alignment="center" alternateImage="Muted" inset="2" id="akU-YB-zmh">
+                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleMute:" target="-2" id="rbm-AN-4gY"/>
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="maT-Tp-qqd">
@@ -150,7 +164,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="4SV-VZ-ndK"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Pause" imagePosition="overlaps" alignment="center" alternateImage="Play" imageScaling="proportionallyDown" inset="2" id="H0R-TG-G8O">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Pause" imagePosition="overlaps" alignment="center" alternateImage="Play" inset="2" id="H0R-TG-G8O">
                         <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -161,8 +175,10 @@
             </subviews>
             <constraints>
                 <constraint firstItem="txV-Sc-UAq" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="52" id="3Gc-w1-FsX"/>
+                <constraint firstItem="2Qu-uI-JvL" firstAttribute="leading" secondItem="zKx-0G-hwU" secondAttribute="trailing" constant="3" id="4JS-kl-jW8"/>
                 <constraint firstAttribute="trailing" secondItem="7rq-lY-FrR" secondAttribute="trailing" constant="200" id="4MY-9J-Mlc"/>
                 <constraint firstItem="2Qu-uI-JvL" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="8" id="6n2-ik-eYB"/>
+                <constraint firstItem="zKx-0G-hwU" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="4" id="83G-fe-TH3"/>
                 <constraint firstItem="ZsA-qk-GR6" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="48" id="840-G9-dib"/>
                 <constraint firstAttribute="bottom" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="123" id="Cnp-va-ZLh"/>
                 <constraint firstItem="yj9-ig-5LS" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="6" id="F41-nA-1rF"/>
@@ -189,6 +205,7 @@
                 <outlet property="followButton" destination="vPs-mV-Z4n" id="Xcl-9a-neW"/>
                 <outlet property="liveSinceLabel" destination="VEt-g2-exX" id="cqe-p9-x4h"/>
                 <outlet property="logo" destination="ZsA-qk-GR6" id="fDZ-b5-WDO"/>
+                <outlet property="muteButton" destination="zKx-0G-hwU" id="et4-Jz-Avb"/>
                 <outlet property="playPauseButton" destination="maT-Tp-qqd" id="Hwb-Mc-jit"/>
                 <outlet property="profileButton" destination="txV-Sc-UAq" id="NcE-ZC-ZyR"/>
                 <outlet property="reloadButton" destination="SCp-Yp-omU" id="1G7-HH-J3L"/>
@@ -199,8 +216,10 @@
     </objects>
     <resources>
         <image name="Icon" width="512" height="512"/>
+        <image name="Muted" width="24" height="24"/>
         <image name="Pause" width="24" height="24"/>
         <image name="Play" width="24" height="24"/>
         <image name="Reload" width="24" height="24"/>
+        <image name="Unmuted" width="24" height="24"/>
     </resources>
 </document>

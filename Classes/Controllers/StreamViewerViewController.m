@@ -259,9 +259,12 @@
     [self setStream:nil];
 }
 
-- (IBAction)changeVolume:(id)sender
+- (IBAction)changeVolume:(NSSlider *)sender
 {
     [self setVolume];
+
+    if ([sender integerValue] == 0) { [self.viewerView.muteButton setState:1]; }
+    else { [self.viewerView.muteButton setState:0]; }
 }
 
 - (IBAction)reloadStream:(id)sender
@@ -277,6 +280,19 @@
 - (IBAction)showChat:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:self.chatURL];
+}
+
+- (IBAction)toggleMute:(id)sender
+{
+    NSUInteger state = [sender state];
+    if (state) {
+        [self.wso evaluateWebScript:@"video.volume = 0.0"];
+        self.videoVolume = (float)self.viewerView.volumeSlider.integerValue * 0.01;
+        [self.viewerView.volumeSlider setIntValue:0];
+    } else {
+        [self.wso evaluateWebScript:[NSString stringWithFormat:@"video.volume = %f", self.videoVolume]];
+        [self.viewerView.volumeSlider setIntValue:self.videoVolume / 0.01];
+    }
 }
 
 - (IBAction)togglePlayPause:(id)sender

@@ -14,6 +14,7 @@
 @property (weak) IBOutlet NSButton *profileButton;
 @property (weak) IBOutlet NSButton *reloadButton;
 @property (weak) IBOutlet NSButton *playPauseButton;
+@property (weak) IBOutlet NSButton *muteButton;
 @property (weak) IBOutlet NSImageView *logo;
 @property (weak) IBOutlet NSTextField *broadcastLabel;
 @property (weak) IBOutlet NSTextField *liveSinceLabel;
