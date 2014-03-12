@@ -130,7 +130,7 @@
         DDLogInfo(@"Authentication: We've been granted access.");
 
         closeSheet();
-        [[[self.client authorizeUsingResponseURL:x] deliverOn:[RACScheduler mainThreadScheduler]]
+        [[self.client authorizeUsingResponseURL:x]
             subscribeNext:^(AFOAuthCredential *credential) {
                 DDLogVerbose(@"Authentication: (Credential) %@", credential.accessToken);
             } error:^(NSError *error) {

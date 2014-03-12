@@ -215,7 +215,7 @@ enum {
 
     // Subscribe to -notificationChanges and send a notification for every
     // new stream that we have.
-    [[[notificationChanges deliverOn:[RACScheduler mainThreadScheduler]]
+    [[notificationChanges
         filter:^BOOL(NSArray *array) {
             DDLogInfo(@"Notifications: %lu new streams.", [array count]);
             return ([array count] > 0); }]
