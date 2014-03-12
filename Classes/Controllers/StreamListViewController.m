@@ -151,13 +151,9 @@ enum {
             DDLogVerbose(@"Previous featured stream list = [%@], Current featured stream list = [%@]", previous, current);
             return RACTuplePack(current, previous); }]
         subscribeNext:^(RACTuple *tuple) {
-            if (![tuple[0] isEqualToArray:tuple[1]]) {
-                [self modifyListViewWithObjects:tuple inSection:1];
-                DDLogInfo(@"Adding %lu streams to the featured list.", [tuple[0] count]);
-                DDLogInfo(@"Removing %lu streams from the featured list.", [tuple[1] count]);
-            } else {
-                DDLogInfo(@"Taking no action on the featured list.");
-            }
+            [self modifyListViewWithObjects:tuple inSection:1];
+            DDLogInfo(@"Adding %lu streams to the featured list.", [tuple[0] count]);
+            DDLogInfo(@"Removing %lu streams from the featured list.", [tuple[1] count]);
         }];
 
     // ...
@@ -171,19 +167,13 @@ enum {
             DDLogVerbose(@"Previous authenticated stream list = [%@], Current authenticated stream list = [%@]", previous, current);
             return RACTuplePack(toAdd, toRemove); }]
         subscribeNext:^(RACTuple *tuple) {
-            if (![tuple[0] isEqualToArray:tuple[1]]) {
-                [self modifyListViewWithObjects:tuple inSection:0];
-                DDLogInfo(@"Adding %lu streams to the authenticated list.", [tuple[0] count]);
-                DDLogInfo(@"Removing %lu streams from the authenticated list.", [tuple[1] count]);
-                if (![self.viewModel.authenticatedStreams count]) {
-                    DDLogInfo(@"There are no streams, adding empty view.");
-                    [self displayEmptyListItem];
-                }
-            } else if (![self.viewModel.authenticatedStreams count]) {
+            [self modifyListViewWithObjects:tuple inSection:0];
+            DDLogInfo(@"Adding %lu streams to the authenticated list.", [tuple[0] count]);
+            DDLogInfo(@"Removing %lu streams from the authenticated list.", [tuple[1] count]);
+
+            if (![self.viewModel.authenticatedStreams count]) {
                 DDLogInfo(@"There are no streams, adding empty view.");
                 [self displayEmptyListItem];
-            } else {
-                DDLogInfo(@"Taking no action on the authenticated list.");
             }
         }];
 
@@ -205,7 +195,6 @@ enum {
         map:^id(NSArray *newStreams) {
             return newStreams; }]
         combinePreviousWithStart:[NSArray array] reduce:^id(id previous, id current) {
-            DDLogVerbose(@"Previous stream list = [%@], Current stream list = [%@]", previous, current);
             return RACTuplePack(previous, current); }]
         map:^id(RACTuple *tuple) {
             RACTupleUnpack(NSArray *previous, NSArray *current) = tuple;
