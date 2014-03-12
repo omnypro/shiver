@@ -16,7 +16,6 @@
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
 		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
 		932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932423A01772945800374EB9 /* LoginKeys@2x.png */; };
-		932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932423A31772950A00374EB9 /* LoginRequiredView.xib */; };
 		932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		932C29BD1761AF0B0049EC1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29BA1761AF0B0049EC1B /* main.m */; };
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
@@ -177,7 +176,6 @@
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
 		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
 		932423A01772945800374EB9 /* LoginKeys@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LoginKeys@2x.png"; path = "Assets/Images/LoginKeys@2x.png"; sourceTree = SOURCE_ROOT; };
-		932423A31772950A00374EB9 /* LoginRequiredView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginRequiredView.xib; path = Assets/NIBs/LoginRequiredView.xib; sourceTree = SOURCE_ROOT; };
 		932C29961761AE0B0049EC1B /* Shiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932C29991761AE0B0049EC1B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		932C299C1761AE0B0049EC1B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -535,7 +533,6 @@
 			children = (
 				93A3A12417658EF600913C9A /* Preferences */,
 				933EC0E4177BDE560041D020 /* AboutWindow.xib */,
-				932423A31772950A00374EB9 /* LoginRequiredView.xib */,
 				938CD21018A5AA160062C4D0 /* MainWindow.xib */,
 				93636A7D1761B03D00980570 /* Menu.xib */,
 				9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */,
@@ -925,7 +922,6 @@
 				939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */,
 				93E65B8A18C65A9A00196B6A /* Pause.png in Resources */,
 				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
-				932423A41772950A00374EB9 /* LoginRequiredView.xib in Resources */,
 				939A7B591782A537009121D6 /* StatusItem.pdf in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
 				938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */,
