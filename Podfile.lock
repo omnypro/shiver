@@ -10,9 +10,9 @@ PODS:
   - HexColors (2.2.1)
   - INAppStoreWindow (1.4)
   - JAListView (0.0.1)
-  - Mantle (1.3.1):
+  - Mantle (1.4.1):
     - Mantle/extobjc
-  - Mantle/extobjc (1.3.1)
+  - Mantle/extobjc (1.4.1)
   - NSAttributedString+CCLFormat (1.0.0)
   - Reachability (3.1.1)
   - ReactiveCocoa (2.2.4):
@@ -29,7 +29,7 @@ PODS:
   - RHPreferences (1.0.0)
   - SORelativeDateTransformer (1.1.10)
   - StartAtLoginController (0.0.1)
-  - YOLOKit (7)
+  - YOLOKit (8)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
@@ -38,7 +38,7 @@ DEPENDENCIES:
   - HexColors (~> 2.2.1)
   - INAppStoreWindow (~> 1.4)
   - JAListView (~> 0.0.1)
-  - Mantle (~> 1.1)
+  - Mantle (~> 1.4.1)
   - NSAttributedString+CCLFormat (~> 1.0.0)
   - Reachability (~> 3.1.0)
   - ReactiveCocoa (~> 2.2.4)
@@ -47,7 +47,7 @@ DEPENDENCIES:
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.9)
   - StartAtLoginController (~> 0.0.1)
-  - YOLOKit (~> 7)
+  - YOLOKit (~> 8)
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   HexColors: 3a68db077cd6572a8f7d4aa1add284dd2436a934
   INAppStoreWindow: 5a9eedcedc3ec95e7d8a12292de584b760d96c76
   JAListView: 7fb73768382a93a0cf48e18828709ef3240911fc
-  Mantle: abc3b0c81bc66eb624cf9cebb8640e377d5a44ae
+  Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   NSAttributedString+CCLFormat: 365cb9f560c6594855851925ec0e2b5ff2654bff
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   ReactiveCocoa: 953a45dda30674fe704d1d9c77cc874141742f47
@@ -65,6 +65,6 @@ SPEC CHECKSUMS:
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: eba9b9bcc290eb7c9754b9955ace59b890fa59f8
   StartAtLoginController: 7ab3011175dbcce1f887cc004fb5faabf29aba8d
-  YOLOKit: b87148f86b4e254b1beae49478ba9375e4ae852a
+  YOLOKit: 6eb94c5138e381c1ea2a9b370210223076e4291c
 
 COCOAPODS: 0.29.0
