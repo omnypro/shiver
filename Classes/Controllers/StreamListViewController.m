@@ -14,7 +14,6 @@
 #import "HexColor.h"
 #import "JAObjectListView.h"
 #import "LoadingView.h"
-#import "LoginRequiredView.h"
 #import "MainWindowController.h"
 #import "NSView+Animations.h"
 #import "Preferences.h"

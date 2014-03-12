@@ -11,7 +11,6 @@
 		9310D0F01780FBA80052C25C /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310D0EF1780FBA80052C25C /* MainWindow.m */; };
 		931E252A1778B7B20081162C /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* ErrorView.m */; };
 		931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */; };
-		931E254217791FC70081162C /* InnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E254117791FC70081162C /* InnerShadowView.m */; };
 		9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239B17728FBF00374EB9 /* EmptyStreamList.png */; };
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
 		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
@@ -33,7 +32,6 @@
 		934D109718C67648007D3E6F /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D109218C67593007D3E6F /* Butter.framework */; };
 		934D109818C67656007D3E6F /* Butter.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 934D109218C67593007D3E6F /* Butter.framework */; };
 		935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F1177A010B0069AEFC /* NSView+SHExtensions.m */; };
-		935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935378F8177B696F0069AEFC /* LoginRequiredView.m */; };
 		936314181785346300AED886 /* NSView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 936314171785346300AED886 /* NSView+Animations.m */; };
 		936327BF1763C25B00146C8A /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 936327BE1763C25B00146C8A /* ApplicationController.m */; };
 		936327C31763C91300146C8A /* TwitchGlitchPurple.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 936327C11763C91300146C8A /* TwitchGlitchPurple.pdf */; };
@@ -74,7 +72,6 @@
 		939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B651783462B009121D6 /* PreferencesGeneral.png */; };
 		939A7B681783462B009121D6 /* PreferencesGeneral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */; };
 		939A7B701783723D009121D6 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939A7B6F1783723D009121D6 /* LoadingView.m */; };
-		939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E8B6A177161A8006D6442 /* LightShadowTextField.m */; };
 		939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */; };
 		939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7017717BAF006D6442 /* RefreshInactive.png */; };
 		939E8B7517717BAF006D6442 /* RefreshInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */; };
@@ -88,7 +85,6 @@
 		93A3A1331768571C00913C9A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1321768571B00913C9A /* Constants.m */; };
 		93A3A1361768EA5C00913C9A /* StreamLogoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */; };
 		93A9B67B18C2640A000BF53E /* LoginButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A9B67A18C2640A000BF53E /* LoginButtonCell.m */; };
-		93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */; };
 		93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB1AAC177F97F10038DB27 /* Preferences.m */; };
 		93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 93BD3CB41793D9EA001A0C6F /* Icon.iconset */; };
 		93BE57BB1773C3C8008CB04E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BE57BA1773C3C8008CB04E /* ServiceManagement.framework */; };
@@ -169,8 +165,6 @@
 		931E25291778B7B20081162C /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorView.m; path = Classes/Views/ErrorView.m; sourceTree = SOURCE_ROOT; };
 		931E253A17790FC20081162C /* NSLayoutConstraint+Equations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+Equations.h"; path = "Extensions/Categories/NSLayoutConstraint+Equations.h"; sourceTree = SOURCE_ROOT; };
 		931E253B17790FC20081162C /* NSLayoutConstraint+Equations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+Equations.m"; path = "Extensions/Categories/NSLayoutConstraint+Equations.m"; sourceTree = SOURCE_ROOT; };
-		931E254017791FC70081162C /* InnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InnerShadowView.h; path = Classes/Views/InnerShadowView.h; sourceTree = SOURCE_ROOT; };
-		931E254117791FC70081162C /* InnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InnerShadowView.m; path = Classes/Views/InnerShadowView.m; sourceTree = SOURCE_ROOT; };
 		9324239B17728FBF00374EB9 /* EmptyStreamList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EmptyStreamList.png; path = Assets/Images/EmptyStreamList.png; sourceTree = SOURCE_ROOT; };
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
 		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
@@ -204,8 +198,6 @@
 		934D108D18C67593007D3E6F /* Butter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Butter.xcodeproj; path = External/Butter/Butter.xcodeproj; sourceTree = "<group>"; };
 		935378F0177A010B0069AEFC /* NSView+SHExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+SHExtensions.h"; path = "Extensions/Categories/NSView+SHExtensions.h"; sourceTree = SOURCE_ROOT; };
 		935378F1177A010B0069AEFC /* NSView+SHExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+SHExtensions.m"; path = "Extensions/Categories/NSView+SHExtensions.m"; sourceTree = SOURCE_ROOT; };
-		935378F7177B696F0069AEFC /* LoginRequiredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginRequiredView.h; path = Classes/Views/LoginRequiredView.h; sourceTree = SOURCE_ROOT; };
-		935378F8177B696F0069AEFC /* LoginRequiredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginRequiredView.m; path = Classes/Views/LoginRequiredView.m; sourceTree = SOURCE_ROOT; };
 		936314161785346300AED886 /* NSView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+Animations.h"; path = "Extensions/Categories/NSView+Animations.h"; sourceTree = SOURCE_ROOT; };
 		936314171785346300AED886 /* NSView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+Animations.m"; path = "Extensions/Categories/NSView+Animations.m"; sourceTree = SOURCE_ROOT; };
 		936327BD1763C25B00146C8A /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = Classes/Controllers/ApplicationController.h; sourceTree = SOURCE_ROOT; };
@@ -265,8 +257,6 @@
 		939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGeneral@2x.png"; path = "Assets/Images/PreferencesGeneral@2x.png"; sourceTree = SOURCE_ROOT; };
 		939A7B6E1783723D009121D6 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Classes/Views/LoadingView.h; sourceTree = SOURCE_ROOT; };
 		939A7B6F1783723D009121D6 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Classes/Views/LoadingView.m; sourceTree = SOURCE_ROOT; };
-		939E8B69177161A8006D6442 /* LightShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LightShadowTextField.h; path = Classes/Views/LightShadowTextField.h; sourceTree = SOURCE_ROOT; };
-		939E8B6A177161A8006D6442 /* LightShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LightShadowTextField.m; path = Classes/Views/LightShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ViewersTemplate.pdf; path = Assets/Templates/ViewersTemplate.pdf; sourceTree = SOURCE_ROOT; };
 		939E8B7017717BAF006D6442 /* RefreshInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshInactive.png; path = Assets/Images/RefreshInactive.png; sourceTree = SOURCE_ROOT; };
 		939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshInactive@2x.png"; path = "Assets/Images/RefreshInactive@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -287,8 +277,6 @@
 		93A3A1351768EA5B00913C9A /* StreamLogoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamLogoImageView.m; path = Classes/Views/StreamLogoImageView.m; sourceTree = SOURCE_ROOT; };
 		93A9B67918C2640A000BF53E /* LoginButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginButtonCell.h; path = Classes/Views/LoginButtonCell.h; sourceTree = SOURCE_ROOT; };
 		93A9B67A18C2640A000BF53E /* LoginButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginButtonCell.m; path = Classes/Views/LoginButtonCell.m; sourceTree = SOURCE_ROOT; };
-		93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DarkShadowTextField.h; path = Classes/Views/DarkShadowTextField.h; sourceTree = SOURCE_ROOT; };
-		93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DarkShadowTextField.m; path = Classes/Views/DarkShadowTextField.m; sourceTree = SOURCE_ROOT; };
 		93AB1AAB177F97F10038DB27 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Classes/Application/Preferences.h; sourceTree = SOURCE_ROOT; };
 		93AB1AAC177F97F10038DB27 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Classes/Application/Preferences.m; sourceTree = SOURCE_ROOT; };
 		93BD3CB41793D9EA001A0C6F /* Icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = Icon.iconset; path = Assets/Images/Icon.iconset; sourceTree = SOURCE_ROOT; };
@@ -544,7 +532,6 @@
 		936327D61764468B00146C8A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				939E8B9317728326006D6442 /* Custom UI */,
 				939E8B921772830A006D6442 /* Main Window */,
 				93A3A12817679C6600913C9A /* Preferences */,
 				938A766617710AD30094A361 /* Stream List */,
@@ -646,8 +633,6 @@
 			children = (
 				93A9B67918C2640A000BF53E /* LoginButtonCell.h */,
 				93A9B67A18C2640A000BF53E /* LoginButtonCell.m */,
-				935378F7177B696F0069AEFC /* LoginRequiredView.h */,
-				935378F8177B696F0069AEFC /* LoginRequiredView.m */,
 				9310D0EE1780FBA80052C25C /* MainWindow.h */,
 				9310D0EF1780FBA80052C25C /* MainWindow.m */,
 				93C0A7AC18B84AD8005943E8 /* TitleView.h */,
@@ -656,19 +641,6 @@
 				939E8B8D17727456006D6442 /* UserImageView.m */,
 			);
 			name = "Main Window";
-			sourceTree = "<group>";
-		};
-		939E8B9317728326006D6442 /* Custom UI */ = {
-			isa = PBXGroup;
-			children = (
-				93AB1A9E177DF5850038DB27 /* DarkShadowTextField.h */,
-				93AB1AA0177DF5B20038DB27 /* DarkShadowTextField.m */,
-				931E254017791FC70081162C /* InnerShadowView.h */,
-				931E254117791FC70081162C /* InnerShadowView.m */,
-				939E8B69177161A8006D6442 /* LightShadowTextField.h */,
-				939E8B6A177161A8006D6442 /* LightShadowTextField.m */,
-			);
-			name = "Custom UI";
 			sourceTree = "<group>";
 		};
 		93A3A11E17658E2B00913C9A /* Preferences */ = {
@@ -762,10 +734,10 @@
 		93C0A7B818B98D9B005943E8 /* Stream Viewer */ = {
 			isa = PBXGroup;
 			children = (
-				93C0A7D518B9B02B005943E8 /* FollowButtonCell.h */,
-				93C0A7D618B9B02B005943E8 /* FollowButtonCell.m */,
 				93F6770718BD50BC0064F005 /* EmptyViewerView.h */,
 				93F6770818BD50BC0064F005 /* EmptyViewerView.m */,
+				93C0A7D518B9B02B005943E8 /* FollowButtonCell.h */,
+				93C0A7D618B9B02B005943E8 /* FollowButtonCell.m */,
 				93C0A7D218B9A9D2005943E8 /* ProfileButtonCell.h */,
 				93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */,
 				93C0A7A818B824BB005943E8 /* StreamViewerView.h */,
@@ -1020,7 +992,6 @@
 				93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */,
 				932C29C91761AF800049EC1B /* ShiverApplication.m in Sources */,
 				934626571762740E00F947FE /* Stream.m in Sources */,
-				93AB1AA1177DF5B20038DB27 /* DarkShadowTextField.m in Sources */,
 				93AB1AAD177F97F10038DB27 /* Preferences.m in Sources */,
 				93A9B67B18C2640A000BF53E /* LoginButtonCell.m in Sources */,
 				93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */,
@@ -1051,20 +1022,17 @@
 				938CD21F18AABA270062C4D0 /* UserViewModel.m in Sources */,
 				9381AF4618C7CEBB00AB275F /* StreamListEmptyItemView.m in Sources */,
 				933EC0EC177C1F210041D020 /* AboutView.m in Sources */,
-				939E8B6B177161A8006D6442 /* LightShadowTextField.m in Sources */,
 				936314181785346300AED886 /* NSView+Animations.m in Sources */,
 				939E8B8E17727456006D6442 /* UserImageView.m in Sources */,
 				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
 				934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */,
 				931E252A1778B7B20081162C /* ErrorView.m in Sources */,
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
-				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
 				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
 				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
 				9387FE6018CBB83800EB74B8 /* StreamMenuItem.m in Sources */,
-				935378F9177B696F0069AEFC /* LoginRequiredView.m in Sources */,
 				93C0A7D718B9B02B005943E8 /* FollowButtonCell.m in Sources */,
 				9394113B178896E4003D1346 /* NSWindow+SHExtensions.m in Sources */,
 			);
