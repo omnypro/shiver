@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5053"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
@@ -22,7 +22,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="Shiver" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1" customClass="INAppStoreWindow">
+        <window title="Shiver" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="1" customClass="INAppStoreWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="196" y="240" width="880" height="488"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
@@ -94,12 +94,12 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="2h1-ew-9Qn" secondAttribute="centerY" constant="-2" id="6M3-qc-hyy"/>
-                <constraint firstAttribute="centerY" secondItem="o7Y-Qa-dtr" secondAttribute="centerY" constant="2" id="KOF-MR-RRq"/>
+                <constraint firstItem="2h1-ew-9Qn" firstAttribute="top" secondItem="Z0Z-Zh-U7C" secondAttribute="top" constant="6" id="LWn-IB-nFp"/>
                 <constraint firstAttribute="trailing" secondItem="2h1-ew-9Qn" secondAttribute="trailing" constant="5" id="MGr-Q8-LGy"/>
                 <constraint firstItem="2h1-ew-9Qn" firstAttribute="leading" secondItem="LaI-0m-gaR" secondAttribute="trailing" constant="15" id="SHX-OC-P19"/>
+                <constraint firstItem="o7Y-Qa-dtr" firstAttribute="top" secondItem="Z0Z-Zh-U7C" secondAttribute="top" constant="7" id="b70-UJ-SU0"/>
+                <constraint firstItem="LaI-0m-gaR" firstAttribute="top" secondItem="Z0Z-Zh-U7C" secondAttribute="top" constant="7" id="dEk-ur-ETQ"/>
                 <constraint firstItem="o7Y-Qa-dtr" firstAttribute="leading" secondItem="Z0Z-Zh-U7C" secondAttribute="leading" constant="255" id="ijr-tR-IcY"/>
-                <constraint firstAttribute="centerY" secondItem="LaI-0m-gaR" secondAttribute="centerY" constant="2" id="s18-VW-fO8"/>
             </constraints>
             <connections>
                 <outlet property="closeButton" destination="2h1-ew-9Qn" id="eWs-q6-HNs"/>
@@ -133,8 +133,8 @@
             <constraints>
                 <constraint firstItem="u90-8j-Zx2" firstAttribute="leading" secondItem="ev4-DT-Etn" secondAttribute="trailing" constant="5" id="3oh-ee-lZU"/>
                 <constraint firstAttribute="centerY" secondItem="u90-8j-Zx2" secondAttribute="centerY" id="837-Di-8Ak"/>
+                <constraint firstItem="ev4-DT-Etn" firstAttribute="top" secondItem="gkn-M6-wcm" secondAttribute="top" constant="7" id="HHB-E1-p8z"/>
                 <constraint firstAttribute="trailing" secondItem="u90-8j-Zx2" secondAttribute="trailing" constant="10" id="i56-o1-K7I"/>
-                <constraint firstAttribute="centerY" secondItem="ev4-DT-Etn" secondAttribute="centerY" constant="2" id="ll2-Fe-Um6"/>
             </constraints>
         </customView>
         <customView id="tSt-9O-B0B">
