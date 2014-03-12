@@ -148,8 +148,13 @@ enum {
     // ...
     [[[RACObserve(self, viewModel.featuredStreams) skip:1]
         combinePreviousWithStart:@[] reduce:^id(NSArray *previous, NSArray *current) {
+            if (![current count]) { current = @[]; }
+            NSArray *toAdd = current.without(![previous count] ? @[] : previous);
+            if (![previous count]) { previous = @[]; }
+            NSArray *toRemove = previous.without(![current count] ? @[] : current);
+
             DDLogVerbose(@"Previous featured stream list = [%@], Current featured stream list = [%@]", previous, current);
-            return RACTuplePack(current, previous); }]
+            return RACTuplePack(toAdd, toRemove); }]
         subscribeNext:^(RACTuple *tuple) {
             [self modifyListViewWithObjects:tuple inSection:1];
             DDLogInfo(@"Adding %lu streams to the featured list.", [tuple[0] count]);
