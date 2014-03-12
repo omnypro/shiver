@@ -157,7 +157,7 @@ NSString * const kClientSecret = @"rji9hs6u0wbj35snosv1n71ou0xpuqi";
 
 - (RACSignal *)fetchFeaturedStreamList
 {
-    return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured" parameters:nil]
+    return [[[self enqueueRequestWithMethod:@"GET" path:@"streams/featured?limit=100" parameters:nil]
         map:^id(id responseObject) {
             DDLogInfo(@"Fetched featured stream list from the Twitch API.");
             return [responseObject valueForKeyPath:@"featured"]; }]
