@@ -12,8 +12,6 @@
 		931E252A1778B7B20081162C /* ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E25291778B7B20081162C /* ErrorView.m */; };
 		9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239B17728FBF00374EB9 /* EmptyStreamList.png */; };
 		9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */; };
-		932423A11772945800374EB9 /* LoginKeys.png in Resources */ = {isa = PBXBuildFile; fileRef = 9324239F1772945800374EB9 /* LoginKeys.png */; };
-		932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932423A01772945800374EB9 /* LoginKeys@2x.png */; };
 		932C299A1761AE0B0049EC1B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932C29991761AE0B0049EC1B /* Cocoa.framework */; };
 		932C29BD1761AF0B0049EC1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C29BA1761AF0B0049EC1B /* main.m */; };
 		932C29C41761AF460049EC1B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 932C29BE1761AF460049EC1B /* Credits.rtf */; };
@@ -25,8 +23,6 @@
 		934626571762740E00F947FE /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 934626561762740E00F947FE /* Stream.m */; };
 		934626591762798100F947FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 934626581762798100F947FE /* Podfile */; };
 		93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = 93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */; };
-		93462A07177CB15400C928CA /* Error.png in Resources */ = {isa = PBXBuildFile; fileRef = 93462A05177CB14D00C928CA /* Error.png */; };
-		93462A08177CB15400C928CA /* Error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93462A06177CB14D00C928CA /* Error@2x.png */; };
 		934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */; };
 		934D109718C67648007D3E6F /* Butter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D109218C67593007D3E6F /* Butter.framework */; };
 		934D109818C67656007D3E6F /* Butter.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 934D109218C67593007D3E6F /* Butter.framework */; };
@@ -163,8 +159,6 @@
 		931E25291778B7B20081162C /* ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorView.m; path = Classes/Views/ErrorView.m; sourceTree = SOURCE_ROOT; };
 		9324239B17728FBF00374EB9 /* EmptyStreamList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = EmptyStreamList.png; path = Assets/Images/EmptyStreamList.png; sourceTree = SOURCE_ROOT; };
 		9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EmptyStreamList@2x.png"; path = "Assets/Images/EmptyStreamList@2x.png"; sourceTree = SOURCE_ROOT; };
-		9324239F1772945800374EB9 /* LoginKeys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoginKeys.png; path = Assets/Images/LoginKeys.png; sourceTree = SOURCE_ROOT; };
-		932423A01772945800374EB9 /* LoginKeys@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LoginKeys@2x.png"; path = "Assets/Images/LoginKeys@2x.png"; sourceTree = SOURCE_ROOT; };
 		932C29961761AE0B0049EC1B /* Shiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932C29991761AE0B0049EC1B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		932C299C1761AE0B0049EC1B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -187,8 +181,6 @@
 		934626581762798100F947FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93462A02177CA6FA00C928CA /* NSAttributedString+Hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Hyperlink.h"; path = "Extensions/Categories/NSAttributedString+Hyperlink.h"; sourceTree = SOURCE_ROOT; };
 		93462A03177CA6FA00C928CA /* NSAttributedString+Hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Hyperlink.m"; path = "Extensions/Categories/NSAttributedString+Hyperlink.m"; sourceTree = SOURCE_ROOT; };
-		93462A05177CB14D00C928CA /* Error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Error.png; path = Assets/Images/Error.png; sourceTree = SOURCE_ROOT; };
-		93462A06177CB14D00C928CA /* Error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Error@2x.png"; path = "Assets/Images/Error@2x.png"; sourceTree = SOURCE_ROOT; };
 		934C25DE1777639E0038E5DB /* NSImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImageView+AFNetworking.h"; path = "Extensions/Categories/NSImageView+AFNetworking.h"; sourceTree = SOURCE_ROOT; };
 		934C25DF1777639E0038E5DB /* NSImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImageView+AFNetworking.m"; path = "Extensions/Categories/NSImageView+AFNetworking.m"; sourceTree = SOURCE_ROOT; };
 		934D108D18C67593007D3E6F /* Butter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Butter.xcodeproj; path = External/Butter/Butter.xcodeproj; sourceTree = "<group>"; };
@@ -599,12 +591,8 @@
 				9381AF3F18C7C74400AB275F /* Close@2x.png */,
 				9324239B17728FBF00374EB9 /* EmptyStreamList.png */,
 				9324239C17728FBF00374EB9 /* EmptyStreamList@2x.png */,
-				93462A05177CB14D00C928CA /* Error.png */,
-				93462A06177CB14D00C928CA /* Error@2x.png */,
 				938CD21718A6BCD40062C4D0 /* Icon.icns */,
 				93BD3CB41793D9EA001A0C6F /* Icon.iconset */,
-				9324239F1772945800374EB9 /* LoginKeys.png */,
-				932423A01772945800374EB9 /* LoginKeys@2x.png */,
 				93E65B8618C65A9A00196B6A /* Pause.png */,
 				93E65B8718C65A9A00196B6A /* Pause@2x.png */,
 				93E65B8818C65A9A00196B6A /* Play.png */,
@@ -863,7 +851,6 @@
 				9387FE5D18CBB7F200EB74B8 /* StreamMenuItem.xib in Resources */,
 				936327D11764287100146C8A /* StreamListView.xib in Resources */,
 				936327D81764670300146C8A /* StreamListItemView.xib in Resources */,
-				93462A07177CB15400C928CA /* Error.png in Resources */,
 				93A3A12317658ED200913C9A /* LoginView.xib in Resources */,
 				93E65B8C18C65A9A00196B6A /* Play.png in Resources */,
 				9301E9E6176A635800C46750 /* TwitchLogoWhite.pdf in Resources */,
@@ -874,15 +861,12 @@
 				939E8B7517717BAF006D6442 /* RefreshInactive@2x.png in Resources */,
 				9324239D17728FBF00374EB9 /* EmptyStreamList.png in Resources */,
 				9324239E17728FBF00374EB9 /* EmptyStreamList@2x.png in Resources */,
-				932423A11772945800374EB9 /* LoginKeys.png in Resources */,
 				93E65B8D18C65A9A00196B6A /* Play@2x.png in Resources */,
 				939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */,
 				93E65B8A18C65A9A00196B6A /* Pause.png in Resources */,
-				932423A21772945800374EB9 /* LoginKeys@2x.png in Resources */,
 				939A7B591782A537009121D6 /* StatusItem.pdf in Resources */,
 				93D15BA917736EB100643D95 /* GeneralView.xib in Resources */,
 				938CD21118A5AA160062C4D0 /* MainWindow.xib in Resources */,
-				93462A08177CB15400C928CA /* Error@2x.png in Resources */,
 				93BD3CB51793D9EA001A0C6F /* Icon.iconset in Resources */,
 				9381AF4018C7C74400AB275F /* Close.png in Resources */,
 			);
