@@ -13,7 +13,6 @@
 #import "ErrorView.h"
 #import "HexColor.h"
 #import "JAObjectListView.h"
-#import "JLNFadingScrollView.h"
 #import "LoadingView.h"
 #import "LoginRequiredView.h"
 #import "MainWindowController.h"
@@ -39,7 +38,6 @@ enum {
 @interface StreamListViewController () {
     IBOutlet BTRActivityIndicator *_activityIndicator;
     IBOutlet JAObjectListView *_listView;
-    IBOutlet JLNFadingScrollView *_scrollView;
     IBOutlet LoadingView *_loadingView;
     IBOutlet NSButton *_refreshButton;
 }
@@ -85,8 +83,6 @@ enum {
     [_listView setBackgroundColor:[NSColor clearColor]];
     [_listView setConditionallyUseLayerBacking:YES];
     [_listView setPadding:JAEdgeInsetsMake(-5, 0, 5, 0)];
-
-    [_scrollView setFadeColor:[NSColor colorWithHexString:@"#000000" alpha:0.5]];
 }
 
 - (void)initializeListViewHeaders

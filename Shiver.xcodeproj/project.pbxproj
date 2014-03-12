@@ -100,7 +100,6 @@
 		93BE57D61773D941008CB04E /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BE57D41773D941008CB04E /* Menu.xib */; };
 		93BE57DB1773DA98008CB04E /* ShiverHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = 93BE57C31773D941008CB04E /* ShiverHelper.app */; };
 		93C0A7A418B7FBDE005943E8 /* StreamListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A318B7FBDE005943E8 /* StreamListView.m */; };
-		93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */; };
 		93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7A918B824BB005943E8 /* StreamViewerView.m */; };
 		93C0A7AE18B84AD8005943E8 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7AD18B84AD8005943E8 /* TitleView.m */; };
 		93C0A7B418B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C0A7B318B94242005943E8 /* NSBezierPath-PXRoundedRectangleAdditions.m */; };
@@ -306,8 +305,6 @@
 		93BE57DD1773DDCC008CB04E /* ShiverHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShiverHelper.entitlements; sourceTree = SOURCE_ROOT; };
 		93C0A7A218B7FBDE005943E8 /* StreamListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListView.h; path = Classes/Views/StreamListView.h; sourceTree = SOURCE_ROOT; };
 		93C0A7A318B7FBDE005943E8 /* StreamListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListView.m; path = Classes/Views/StreamListView.m; sourceTree = SOURCE_ROOT; };
-		93C0A7A518B81E25005943E8 /* JLNFadingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLNFadingScrollView.h; path = Extensions/JLNFadingScrollView.h; sourceTree = SOURCE_ROOT; };
-		93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLNFadingScrollView.m; path = Extensions/JLNFadingScrollView.m; sourceTree = SOURCE_ROOT; };
 		93C0A7A818B824BB005943E8 /* StreamViewerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamViewerView.h; path = Classes/Views/StreamViewerView.h; sourceTree = SOURCE_ROOT; };
 		93C0A7A918B824BB005943E8 /* StreamViewerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamViewerView.m; path = Classes/Views/StreamViewerView.m; sourceTree = SOURCE_ROOT; };
 		93C0A7AC18B84AD8005943E8 /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleView.h; path = Classes/Views/TitleView.h; sourceTree = SOURCE_ROOT; };
@@ -472,8 +469,6 @@
 			isa = PBXGroup;
 			children = (
 				93A3A1251766DFDF00913C9A /* Categories */,
-				93C0A7A518B81E25005943E8 /* JLNFadingScrollView.h */,
-				93C0A7A618B81E25005943E8 /* JLNFadingScrollView.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1065,7 +1060,6 @@
 				931E253C17790FC20081162C /* NSLayoutConstraint+Equations.m in Sources */,
 				931E254217791FC70081162C /* InnerShadowView.m in Sources */,
 				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
-				93C0A7A718B81E25005943E8 /* JLNFadingScrollView.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
 				93C0A7DA18BAC545005943E8 /* StreamListSectionView.m in Sources */,
