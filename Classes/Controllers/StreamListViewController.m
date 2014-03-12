@@ -255,8 +255,8 @@ enum {
     RACSignal *readySignal = [[AccountManager sharedManager] readySignal];
     RAC(self, emptyMessage, @"") = [[readySignal
         map:^id(NSNumber *isReady) {
-            return isReady ? @"Nobody's streaming. :(" : @"Connect to see your follows.";
-        }] deliverOn:[RACScheduler mainThreadScheduler]];
+            return [isReady boolValue] ? @"Nobody's streaming. :(" : @"Connect to see your follows."; }]
+        deliverOn:[RACScheduler mainThreadScheduler]];
 
     // Watch -readySignal: to see if it becomes nil. If so, unset the
     // viewerController's stream so the interface can be reverted appropriately.
