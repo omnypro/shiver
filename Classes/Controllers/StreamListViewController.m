@@ -248,7 +248,7 @@ enum {
     // Refresh the stream list at an interval provided by the user.
     [[RACObserve(self, preferences.streamListRefreshTime) distinctUntilChanged]
         subscribeNext:^(NSNumber *interval) {
-            DDLogInfo(@"Refresh set to %ld seconds.", [interval integerValue]);
+            DDLogInfo(@"Refresh set to %ld seconds.", [interval integerValue] * 60);
         }];
 
     // We store the stream list refresh time in minutes, so take
