@@ -109,7 +109,7 @@
     // Every 60 seconds, fetch the current stream from the API, refreshing it.
     [[[RACSignal
         interval:60
-        onScheduler:[RACScheduler scheduler]]
+        onScheduler:[RACScheduler mainThreadScheduler]]
         flattenMap:^RACStream *(id value) {
             @strongify(self);
             return [self.client fetchStream:self.stream.name]; }]

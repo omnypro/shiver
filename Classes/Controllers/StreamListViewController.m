@@ -247,7 +247,7 @@ enum {
     // We store the stream list refresh time in minutes, so take
     // that value and multiply it by 60 for great justice.
     [[RACSignal interval:[self.preferences.streamListRefreshTime doubleValue] * 60
-        onScheduler:[RACScheduler scheduler]]
+        onScheduler:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(id x) {
             @strongify(self);
             DDLogVerbose(@"Triggering timed refresh.");
