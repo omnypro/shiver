@@ -71,8 +71,8 @@
 
 - (RACSignal *)isUserFollowingChannel:(NSString *)channel
 {
-    DDLogInfo(@"Checking if '%@' follows '%@'.", self.name, channel);
     return [[[self.client isUser:self.name followingChannel:channel] map:^id(id responseObject) {
+        DDLogInfo(@"Checking if '%@' follows '%@'.", self.name, channel);
         return @(YES);
     }] catch:^RACSignal *(NSError *error) {
         long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
