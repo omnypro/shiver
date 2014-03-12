@@ -197,7 +197,7 @@ enum {
     RACSignal *notificationsEnabled = [[RACSignal
         combineLatest:@[
             [authenticatedStreams ignore:nil],
-            [RACObserve(self, preferences.notificationsEnabled) ignore:NO]]
+            [RACObserve(self, preferences.notificationsEnabled) ignore:@NO]]
         reduce:^id(NSArray *streams, NSNumber *notificationsEnabled) {
             DDLogInfo(@"We will now be sending notifications.");
             return streams;
