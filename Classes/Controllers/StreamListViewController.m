@@ -230,11 +230,11 @@ enum {
             if (isLoading) {
                 DDLogWarn(@"Showing the loading view.");
                 [_loadingView setFrame:self.view.bounds];
-                [self.view addSubview:_loadingView];
+                [self.view addSubview:_loadingView animated:YES];
                 [_activityIndicator startAnimating];
             } else {
                 DDLogWarn(@"Removing the loading view.");
-                [_loadingView removeFromSuperview];
+                [_loadingView removeFromSuperviewAnimated:YES];
                 [_activityIndicator stopAnimating];
             }
         }];
@@ -282,16 +282,16 @@ enum {
         map:^id(id value) {
             return [self formatError:value];
         }];
-    [[[RACObserve(self, viewModel.hasError) skip:1]
+    [[[[RACObserve(self, viewModel.hasError) skip:1] distinctUntilChanged]
         deliverOn:[RACScheduler mainThreadScheduler]]
         subscribeNext:^(NSNumber *hasError) {
             if ([hasError boolValue]) {
                 DDLogWarn(@"Showing the error view.");
                 [self.errorView setFrame:self.view.bounds];
-                [self.view addSubview:self.errorView];
+                [self.view addSubview:self.errorView animated:YES];
             } else {
                 DDLogWarn(@"Removing the error view.");
-                [self.errorView removeFromSuperview];
+                [self.errorView removeFromSuperviewAnimated:YES];
             }
         }];
 }
