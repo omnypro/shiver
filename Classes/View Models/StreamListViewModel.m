@@ -28,7 +28,6 @@
     if (self == nil) return nil;
 
     _client = [TwitchAPIClient sharedClient];
-    _hasError = NO;
 
     [self initializeSignals];
 
@@ -61,9 +60,9 @@
     }];
 
     // ...
-    RAC(self, isLoading, @YES) = [[self.fetchCommand enabled] not];
-    RAC(self, hasError) = [reachableSignal not];
     RAC(self, errorMessage) = [RACSignal return:@"We're lacking Internets."];
+    RAC(self, hasError) = [reachableSignal not];
+    RAC(self, isLoading, @YES) = [[self.fetchCommand enabled] not];
 
     // ...
     RAC(self, featuredStreams) = [self.fetchCommand.executionSignals.flatten
@@ -108,10 +107,14 @@
             [self.client fetchFeaturedStreamList],
             [[self.client fetchAuthenticatedStreamList] catchTo:[RACSignal return:@[]]]]
         reduce:^id(NSArray *featured, NSArray *authenticated) {
-            return [[featured.rac_sequence map:^id(StreamViewModel *stream) {
-                if (authenticated && [authenticated containsObject:stream]) { stream = nil; }
-                return stream;
-            }] array]; }];
+            return [[[featured.rac_sequence
+                filter:^BOOL(StreamViewModel *stream) {
+                    NSNumber *state = @(![authenticated containsObject:stream]);
+                    return [state boolValue]; }]
+                map:^id(StreamViewModel *stream) {
+                    return stream;
+                }] array];
+            }];
 }
 
 @end
