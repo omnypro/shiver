@@ -52,12 +52,18 @@
                         return RACTuplePack(featuredStreams, authenticatedStreams); }]
                     deliverOn:[RACScheduler mainThreadScheduler]];
         }];
-    [self.fetchCommand.errors subscribeNext:^(NSError *error) {
-        @strongify(self);
-        self.hasError = YES;
-        self.errorMessage = [error localizedDescription];
-        DDLogError(@"%@", self.errorMessage);
-    }];
+    [self.fetchCommand.executionSignals
+        subscribeNext:^(id x) {
+            @strongify(self);
+            self.hasError = NO;
+        }];
+    [self.fetchCommand.errors
+        subscribeNext:^(NSError *error) {
+            @strongify(self);
+            self.hasError = YES;
+            self.errorMessage = [error localizedDescription];
+            DDLogError(@"%@", self.errorMessage);
+        }];
 
     // ...
     RAC(self, errorMessage) = [RACSignal return:@"We're lacking Internets."];
