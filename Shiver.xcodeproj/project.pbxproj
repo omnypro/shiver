@@ -43,6 +43,7 @@
 		9381AF4118C7C74400AB275F /* Close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF3F18C7C74400AB275F /* Close@2x.png */; };
 		9381AF4318C7CE5200AB275F /* StreamListEmptyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */; };
 		9381AF4618C7CEBB00AB275F /* StreamListEmptyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */; };
+		93851B7318D0E03E00401DEE /* VolumeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93851B7218D0E03E00401DEE /* VolumeSliderCell.m */; };
 		93851B7818D0F3D000401DEE /* Muted.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7418D0F3D000401DEE /* Muted.png */; };
 		93851B7918D0F3D000401DEE /* Muted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7518D0F3D000401DEE /* Muted@2x.png */; };
 		93851B7A18D0F3D000401DEE /* Unmuted.png in Resources */ = {isa = PBXBuildFile; fileRef = 93851B7618D0F3D000401DEE /* Unmuted.png */; };
@@ -215,6 +216,8 @@
 		9381AF4218C7CE5200AB275F /* StreamListEmptyItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamListEmptyItemView.xib; path = Assets/NIBs/StreamListEmptyItemView.xib; sourceTree = SOURCE_ROOT; };
 		9381AF4418C7CEBB00AB275F /* StreamListEmptyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StreamListEmptyItemView.h; path = Classes/Views/StreamListEmptyItemView.h; sourceTree = SOURCE_ROOT; };
 		9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StreamListEmptyItemView.m; path = Classes/Views/StreamListEmptyItemView.m; sourceTree = SOURCE_ROOT; };
+		93851B7118D0E03E00401DEE /* VolumeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VolumeSliderCell.h; path = Classes/Views/VolumeSliderCell.h; sourceTree = SOURCE_ROOT; };
+		93851B7218D0E03E00401DEE /* VolumeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VolumeSliderCell.m; path = Classes/Views/VolumeSliderCell.m; sourceTree = SOURCE_ROOT; };
 		93851B7418D0F3D000401DEE /* Muted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Muted.png; path = Assets/Images/Muted.png; sourceTree = SOURCE_ROOT; };
 		93851B7518D0F3D000401DEE /* Muted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Muted@2x.png"; path = "Assets/Images/Muted@2x.png"; sourceTree = SOURCE_ROOT; };
 		93851B7618D0F3D000401DEE /* Unmuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Unmuted.png; path = Assets/Images/Unmuted.png; sourceTree = SOURCE_ROOT; };
@@ -732,6 +735,8 @@
 				93C0A7D318B9A9D2005943E8 /* ProfileButtonCell.m */,
 				93C0A7A818B824BB005943E8 /* StreamViewerView.h */,
 				93C0A7A918B824BB005943E8 /* StreamViewerView.m */,
+				93851B7118D0E03E00401DEE /* VolumeSliderCell.h */,
+				93851B7218D0E03E00401DEE /* VolumeSliderCell.m */,
 			);
 			name = "Stream Viewer";
 			sourceTree = "<group>";
@@ -1017,6 +1022,7 @@
 				93D15BAC17736ED900643D95 /* GeneralViewController.m in Sources */,
 				934C25E01777639E0038E5DB /* NSImageView+AFNetworking.m in Sources */,
 				931E252A1778B7B20081162C /* ErrorView.m in Sources */,
+				93851B7318D0E03E00401DEE /* VolumeSliderCell.m in Sources */,
 				9310D0F01780FBA80052C25C /* MainWindow.m in Sources */,
 				935378F2177A010B0069AEFC /* NSView+SHExtensions.m in Sources */,
 				93C0A7AA18B824BB005943E8 /* StreamViewerView.m in Sources */,
@@ -1167,7 +1173,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
@@ -1176,7 +1183,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80F46D9E-0188-4E64-9DC3-C016A9D68852";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1186,7 +1193,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF671BDFC2FC4B05989329A6 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1196,7 +1204,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80F46D9E-0188-4E64-9DC3-C016A9D68852";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1206,13 +1214,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShiverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AC774B37-E5CD-46A5-91EC-A896A35B10A7";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
@@ -1223,13 +1232,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShiverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Helper/Prefix.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Helper/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AC774B37-E5CD-46A5-91EC-A896A35B10A7";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;

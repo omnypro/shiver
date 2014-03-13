@@ -113,7 +113,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="TQh-sR-8PL"/>
                     </constraints>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="LAV-Bi-chU"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="LAV-Bi-chU" customClass="VolumeSliderCell"/>
                     <connections>
                         <action selector="changeVolume:" target="-2" id="EZ7-jy-Do4"/>
                     </connections>
