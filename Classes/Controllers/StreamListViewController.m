@@ -299,11 +299,11 @@ enum {
 - (NSString *)formatError:(NSString *)errorString
 {
     NSString *string = errorString;
-    if ([string rangeOfString:@"401"].location != NSNotFound) { string = @"Twitch says we're unauthorized. Try logging in again."; }
-    if ([string rangeOfString:@"408"].location != NSNotFound) { string = @"Our request for streams timed out. Try refreshing."; }
-    if ([string rangeOfString:@"500"].location != NSNotFound) { string = @"Twitch's servers are erroring out. Try refreshing."; }
-    if ([string rangeOfString:@"502"].location != NSNotFound) { string = @"Twitch isn't listening to us right now. Try refreshing."; }
-    if ([string rangeOfString:@"503"].location != NSNotFound) { string = @"Twitch is down at the moment. Come back later."; }
+    if ([string rangeOfString:@"401"].location != NSNotFound) { string = @"We're unauthorized. Log in again."; }
+    if ([string rangeOfString:@"408"].location != NSNotFound) { string = @"Our request timed out."; }
+    if ([string rangeOfString:@"500"].location != NSNotFound) { string = @"Twitch's is erroring out."; }
+    if ([string rangeOfString:@"502"].location != NSNotFound) { string = @"Twitch looks broken."; }
+    if ([string rangeOfString:@"503"].location != NSNotFound) { string = @"Twitch looks down."; }
     return string;
 }
 
