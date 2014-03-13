@@ -71,7 +71,7 @@
             NSArray *streams = tuple[0];
             if (streams != nil) {
                 DDLogInfo(@"%lu featured streams fetched.", [streams count]);
-                return streams.sortBy(@"name");
+                return streams.shuffle;
             } else {
                 DDLogInfo(@"No featured streams fetched.");
                 return @[];
