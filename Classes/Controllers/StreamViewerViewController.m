@@ -116,7 +116,7 @@
         subscribeNext:^(StreamViewModel *stream) {
             @strongify(self);
             DDLogInfo(@"Refreshing %@.", stream.name);
-            self.stream = stream;
+            if (stream) { self.stream = stream; }
         }];
 
     // Compare the current stream to the recently set stream, if they're not
