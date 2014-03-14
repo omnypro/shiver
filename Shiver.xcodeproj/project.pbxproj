@@ -70,7 +70,6 @@
 		939A7B5B1782A53E009121D6 /* StatusItemAlternate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */; };
 		939A7B671783462B009121D6 /* PreferencesGeneral.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B651783462B009121D6 /* PreferencesGeneral.png */; };
 		939A7B681783462B009121D6 /* PreferencesGeneral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */; };
-		939A7B701783723D009121D6 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939A7B6F1783723D009121D6 /* LoadingView.m */; };
 		939E8B6D1771681D006D6442 /* ViewersTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */; };
 		939E8B7417717BAF006D6442 /* RefreshInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7017717BAF006D6442 /* RefreshInactive.png */; };
 		939E8B7517717BAF006D6442 /* RefreshInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */; };
@@ -252,8 +251,6 @@
 		939A7B5A1782A53E009121D6 /* StatusItemAlternate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = StatusItemAlternate.pdf; path = Assets/Templates/StatusItemAlternate.pdf; sourceTree = SOURCE_ROOT; };
 		939A7B651783462B009121D6 /* PreferencesGeneral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PreferencesGeneral.png; path = Assets/Images/PreferencesGeneral.png; sourceTree = SOURCE_ROOT; };
 		939A7B661783462B009121D6 /* PreferencesGeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PreferencesGeneral@2x.png"; path = "Assets/Images/PreferencesGeneral@2x.png"; sourceTree = SOURCE_ROOT; };
-		939A7B6E1783723D009121D6 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Classes/Views/LoadingView.h; sourceTree = SOURCE_ROOT; };
-		939A7B6F1783723D009121D6 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Classes/Views/LoadingView.m; sourceTree = SOURCE_ROOT; };
 		939E8B6C1771681D006D6442 /* ViewersTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ViewersTemplate.pdf; path = Assets/Templates/ViewersTemplate.pdf; sourceTree = SOURCE_ROOT; };
 		939E8B7017717BAF006D6442 /* RefreshInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RefreshInactive.png; path = Assets/Images/RefreshInactive.png; sourceTree = SOURCE_ROOT; };
 		939E8B7117717BAF006D6442 /* RefreshInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RefreshInactive@2x.png"; path = "Assets/Images/RefreshInactive@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -553,8 +550,6 @@
 			children = (
 				931E25281778B7B20081162C /* ErrorView.h */,
 				931E25291778B7B20081162C /* ErrorView.m */,
-				939A7B6E1783723D009121D6 /* LoadingView.h */,
-				939A7B6F1783723D009121D6 /* LoadingView.m */,
 				9381AF4418C7CEBB00AB275F /* StreamListEmptyItemView.h */,
 				9381AF4518C7CEBB00AB275F /* StreamListEmptyItemView.m */,
 				936327D31764468400146C8A /* StreamListItemView.h */,
@@ -1005,7 +1000,6 @@
 				93462A04177CA6FA00C928CA /* NSAttributedString+Hyperlink.m in Sources */,
 				93A3A12217658ED200913C9A /* LoginViewController.m in Sources */,
 				93A3A12B17679C8100913C9A /* LoginView.m in Sources */,
-				939A7B701783723D009121D6 /* LoadingView.m in Sources */,
 				93A3A1301768071C00913C9A /* User.m in Sources */,
 				938CD23918AE188A0062C4D0 /* StreamViewModel.m in Sources */,
 				938CD23618AE116E0062C4D0 /* StreamViewerViewController.m in Sources */,

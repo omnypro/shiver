@@ -13,7 +13,6 @@
 #import "ErrorView.h"
 #import "HexColor.h"
 #import "JAObjectListView.h"
-#import "LoadingView.h"
 #import "MainWindowController.h"
 #import "NSView+Animations.h"
 #import "Preferences.h"
@@ -37,7 +36,6 @@ enum {
 @interface StreamListViewController () {
     IBOutlet BTRActivityIndicator *_activityIndicator;
     IBOutlet JAObjectListView *_listView;
-    IBOutlet LoadingView *_loadingView;
     IBOutlet NSButton *_refreshButton;
 }
 
@@ -225,16 +223,12 @@ enum {
     // Show or hide the loading view.
     [[RACObserve(self, viewModel.isLoading) distinctUntilChanged]
         subscribeNext:^(NSNumber *loading) {
-            @strongify(self);
             BOOL isLoading = [loading boolValue];
             if (isLoading) {
-                DDLogWarn(@"Showing the loading view.");
-                [_loadingView setFrame:self.view.bounds];
-                [self.view addSubview:_loadingView animated:YES];
+                DDLogWarn(@"Starting the activity indicator.");
                 [_activityIndicator startAnimating];
             } else {
-                DDLogWarn(@"Removing the loading view.");
-                [_loadingView removeFromSuperviewAnimated:YES];
+                DDLogWarn(@"Stopping the activity indicator.");
                 [_activityIndicator stopAnimating];
             }
         }];
