@@ -71,14 +71,41 @@
 
 - (RACSignal *)isUserFollowingChannel:(NSString *)channel
 {
-    return [[[self.client isUser:self.name followingChannel:channel] map:^id(id responseObject) {
-        DDLogInfo(@"Checking if '%@' follows '%@'.", self.name, channel);
-        return @(YES);
-    }] catch:^RACSignal *(NSError *error) {
-        long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
-        DDLogError(@"Recieved a %ld from %@.", statusCode, NSStringFromSelector(_cmd));
-        return [RACSignal return:@(NO)];
-    }];
+    return [[[self.client isUser:self.name followingChannel:channel]
+        map:^id(id responseObject) {
+            DDLogInfo(@"Checking if '%@' follows '%@'.", self.name, channel);
+            return @(YES); }]
+        catch:^RACSignal *(NSError *error) {
+            long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+            DDLogError(@"Recieved a %ld from %@.", statusCode, NSStringFromSelector(_cmd));
+            return [RACSignal return:@(NO)];
+        }];
+}
+
+- (RACSignal *)haveUserFollowChannel:(NSString *)channel
+{
+    return [[[self.client haveUser:self.name followChannel:channel]
+        map:^id(id value) {
+            DDLogInfo(@"Having '%@' follow '%@'.", self.name, channel);
+            return @(YES); }]
+        catch:^RACSignal *(NSError *error) {
+            long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+            DDLogError(@"Recieved a %ld from %@.", statusCode, NSStringFromSelector(_cmd));
+            return [RACSignal return:@(NO)];
+        }];
+}
+
+- (RACSignal *)haveUserUnfollowChannel:(NSString *)channel
+{
+    return [[[self.client haveUser:self.name unfollowChannel:channel]
+        map:^id(id value) {
+            DDLogInfo(@"Having '%@' unfollow '%@'.", self.name, channel);
+            return @(YES); }]
+        catch:^RACSignal *(NSError *error) {
+            long statusCode = [[[error userInfo] objectForKey:AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
+            DDLogError(@"Recieved a %ld from %@.", statusCode, NSStringFromSelector(_cmd));
+            return [RACSignal return:@(NO)];
+        }];
 }
 
 @end

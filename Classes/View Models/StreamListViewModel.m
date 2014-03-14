@@ -52,7 +52,7 @@
                         return RACTuplePack(featuredStreams, authenticatedStreams); }]
                     deliverOn:[RACScheduler mainThreadScheduler]];
         }];
-    [self.fetchCommand.executionSignals
+    [self.fetchCommand.executionSignals.flatten
         subscribeNext:^(id x) {
             @strongify(self);
             self.hasError = NO;

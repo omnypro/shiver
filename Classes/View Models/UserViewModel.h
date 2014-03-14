@@ -20,5 +20,7 @@
 @property (nonatomic, assign) BOOL isLoggedIn;
 
 - (RACSignal *)isUserFollowingChannel:(NSString *)channel;
+- (RACSignal *)haveUserFollowChannel:(NSString *)channel;
+- (RACSignal *)haveUserUnfollowChannel:(NSString *)channel;
 
 @end

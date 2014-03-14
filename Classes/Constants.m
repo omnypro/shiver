@@ -12,6 +12,7 @@ NSString *const ShiverIdentifier = @"com.revyver.Shiver";
 NSString *const ShiverHelperIdentifier = @"com.revyver.ShiverHelper";
 NSString *const RequestToOpenPreferencesNotification = @"com.revyver.Shiver.RequestToOpenPreferencesNotification";
 NSString *const RequestToOpenWindowNotification = @"com.revyver.Shiver.RequestToOpenWindowNotification";
+NSString *const RequestToRefreshStreamListNotification = @"com.revyver.Shiver.RequestToRefreshStreamListNotification";
 
 #ifdef DEBUG
 const int ddLogLevel = LOG_LEVEL_VERBOSE;

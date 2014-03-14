@@ -62,6 +62,8 @@ enum {
 {
     [super awakeFromNib];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestToRefreshStreamList:) name:RequestToRefreshStreamListNotification object:nil];
+
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     [center setDelegate:self];
 
@@ -433,6 +435,13 @@ enum {
 - (IBAction)openWindow:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:RequestToOpenWindowNotification object:self userInfo:nil];
+}
+
+#pragma mark - Notifications Observers
+
+- (void)requestToRefreshStreamList:(NSNotification *)notification
+{
+    [self.viewModel.fetchCommand execute:nil];
 }
 
 #pragma mark - NSUserNotificationCenter Methods

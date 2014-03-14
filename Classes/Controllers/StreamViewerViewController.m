@@ -35,6 +35,7 @@
 @property (nonatomic, strong) UserViewModel *userViewModel;
 @property (nonatomic, strong) WebScriptObject *wso;
 
+@property (nonatomic, assign) BOOL isFollowing;
 @property (nonatomic, assign) float videoVolume;
 
 @property (weak) IBOutlet StreamViewerView *viewerView;
@@ -179,23 +180,91 @@
             return [NSURL URLWithString:[NSString stringWithFormat:@"http://twitch.tv/%@/profile", name]];
         }];
 
-    // Here's a hacky check to see if we should enable the follow button.
-    // If we have a user's name, enable the button.
-    // RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
-    //     map:^id(id value) {
-    //         return @(value != nil);
-    //     }] deliverOn:[RACScheduler mainThreadScheduler]];
-    // [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enableFollowButton, nil];
-    [self.viewerView.followButton setEnabled:NO];
-
     // Set the text for the follow button. Run -isUserFollowingChannel: and
     // process the results.
-    RAC(self, viewerView.followButton.title, @"Connect to Follow") = [[[[RACObserve(self, stream) ignore:nil]
+    RAC(self, isFollowing) = [[RACObserve(self, stream) ignore:nil]
         flattenMap:^RACStream *(StreamViewModel *stream) {
-            return [self.userViewModel isUserFollowingChannel:stream.name]; }]
-        map:^id(id responseObject) {
-            return [responseObject boolValue] ? @"Following" : @"Follow";
-        }] deliverOn:[RACScheduler mainThreadScheduler]];
+            return [self.userViewModel isUserFollowingChannel:stream.name]; }];
+    RACSignal *isFollowing = [RACObserve(self, isFollowing) distinctUntilChanged];
+
+    // ...
+    RAC(self, viewerView.followButton.title, @"Connect to Follow") = [[isFollowing
+        map:^id(id value) {
+            return [value boolValue] ? @"Unfollow": @"Follow"; }]
+        deliverOn:[RACScheduler mainThreadScheduler]];
+
+    // If the given user's following the given channel,
+    // attach -unfollowCommand.
+    RACCommand *unfollowCommand = [[RACCommand alloc]
+        initWithEnabled:isFollowing
+        signalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            DDLogInfo(@"Attempting to unfollow.");
+            return [[self.userViewModel haveUserUnfollowChannel:self.stream.name]
+                deliverOn:[RACScheduler mainThreadScheduler]];
+        }];
+
+    [[isFollowing
+        filter:^BOOL(id value) {
+            return ([value boolValue] == YES); }]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            self.viewerView.followButton.rac_command = unfollowCommand;
+        }];
+    [unfollowCommand.executionSignals.flatten
+        subscribeNext:^(id x) {
+            @strongify(self);
+            DDLogInfo(@"%@ successfully unfollowed %@.", self.userViewModel.name, self.stream.name);
+            [self.viewerView.followButton setTitle:@"Follow"];
+            [self setIsFollowing:NO];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:RequestToRefreshStreamListNotification object:self userInfo:nil];
+        }];
+    [unfollowCommand.errors subscribeNext:^(id x) {
+        DDLogError(@"Couldn't successfully have %@ unfollow %@.", self.userViewModel, self.stream.name);
+    }];
+
+    // If the given user's is not following the given channel,
+    // attach -followCommand.
+    RACCommand *followCommand = [[RACCommand alloc]
+        initWithEnabled:[isFollowing not]
+        signalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            DDLogInfo(@"Attempting to follow.");
+            return [[self.userViewModel haveUserFollowChannel:self.stream.name]
+                deliverOn:[RACScheduler mainThreadScheduler]];
+        }];
+
+    [[isFollowing
+        filter:^BOOL(id value) {
+            return ([value boolValue] == NO); }]
+        subscribeNext:^(id x) {
+            @strongify(self);
+            self.viewerView.followButton.rac_command = followCommand;
+        }];
+    [followCommand.executionSignals.flatten
+        subscribeNext:^(id x) {
+            @strongify(self);
+            DDLogInfo(@"%@ successfully followed %@.", self.userViewModel.name, self.stream.name);
+            [self.viewerView.followButton setTitle:@"Unfollow"];
+            [self setIsFollowing:YES];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:RequestToRefreshStreamListNotification object:self userInfo:nil];
+        }];
+    [followCommand.errors subscribeNext:^(id x) {
+        DDLogError(@"Couldn't successfully have %@ follow %@.", self.userViewModel, self.stream.name);
+    }];
+
+    // Here's a hacky check to see if we should enable the follow button.
+    // If we have a user's name, enable the button.
+    RACSignal *enableFollowButton = [[RACObserve(self, userViewModel.name)
+        map:^id(id value) {
+            return @(value != nil); }]
+        deliverOn:[RACScheduler mainThreadScheduler]];
+
+    RACSignal *enabledSignals = [RACSignal merge:@[enableFollowButton, [[followCommand enabled] not], [[unfollowCommand enabled] not]]];
+    [self.viewerView.followButton rac_liftSelector:@selector(setEnabled:) withSignals:enabledSignals, nil];
+    [self.viewerView.followButton setTarget:nil];
 
     [_webView setFrameLoadDelegate:self];
     [_webView setMaintainsBackForwardList:NO];
@@ -230,7 +299,7 @@
     return NO; // Prevent the selection of content.
 }
 
-#pragma mark - NSNotifcationCenter
+#pragma mark - Notifications Observers
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
