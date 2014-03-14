@@ -24,6 +24,7 @@
     [self drawBackground];
     [self drawHeader];
     [self drawFooter];
+    [self drawWebView];
     [self drawPlayerBar];
 }
 
@@ -42,7 +43,7 @@
 - (void)drawHeader
 {
     // Draw the view's header top border rectangle.
-    NSGradient *headerGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#161719"] endingColor:[NSColor colorWithHexString:@"171719"]];
+    NSGradient *headerGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithHexString:@"#161719"] endingColor:[NSColor colorWithHexString:@"#171719"]];
     NSBezierPath *headerPath = [NSBezierPath bezierPathWithRect:NSMakeRect(0, self.bounds.size.height - 10, self.bounds.size.width, 10)];
     [headerGradient drawInBezierPath:headerPath angle:-90];
 
@@ -71,6 +72,30 @@
     [gradient drawInBezierPath:path angle:-90];
 }
 
+- (void)drawWebView
+{
+    CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+
+    // Initialize the web view's shadow.
+    NSShadow *shadow = [[NSShadow alloc] init];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.8]];
+    [shadow setShadowOffset:NSMakeSize(0.0, 0.0)];
+    [shadow setShadowBlurRadius:4];
+
+    NSBezierPath *webViewPath = [NSBezierPath bezierPathWithRect:NSMakeRect(10, 123, self.bounds.size.width - 20, self.bounds.size.height - 123)];
+
+    // Draw the gradient into the player and the shadow below it.
+    [NSGraphicsContext saveGraphicsState];
+    {
+        [shadow set];
+        CGContextBeginTransparencyLayer(context, NULL);
+        [[NSColor colorWithHexString:@"#000000"] setFill];
+        [webViewPath fill];
+        CGContextEndTransparencyLayer(context);
+    }
+    [NSGraphicsContext restoreGraphicsState];
+}
+
 - (void)drawPlayerBar
 {
     CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
@@ -81,9 +106,9 @@
 
     // Initialize the player bar's shadow.
     NSShadow *shadow = [[NSShadow alloc] init];
-    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.35]];
-    [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
-    [shadow setShadowBlurRadius:2];
+    [shadow setShadowColor:[NSColor colorWithHexString:@"#000000" alpha:0.4]];
+    [shadow setShadowOffset:NSMakeSize(0.0, -2.0)];
+    [shadow setShadowBlurRadius:4];
 
     // Draw the gradient into the player and the shadow below it.
     [NSGraphicsContext saveGraphicsState];
