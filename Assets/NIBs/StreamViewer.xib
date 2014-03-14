@@ -108,10 +108,10 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="qfK-GD-GHh"/>
                 </imageView>
                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Qu-uI-JvL">
-                    <rect key="frame" x="519" y="99" width="100" height="17"/>
+                    <rect key="frame" x="501" y="99" width="118" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="TQh-sR-8PL"/>
+                        <constraint firstAttribute="width" constant="118" id="TQh-sR-8PL"/>
                     </constraints>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="LAV-Bi-chU" customClass="VolumeSliderCell"/>
                     <connections>
@@ -145,7 +145,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="zKx-0G-hwU">
-                    <rect key="frame" x="492" y="95" width="24" height="24"/>
+                    <rect key="frame" x="476" y="95" width="24" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="lOR-V3-7EV"/>
@@ -175,7 +175,7 @@
             </subviews>
             <constraints>
                 <constraint firstItem="txV-Sc-UAq" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="52" id="3Gc-w1-FsX"/>
-                <constraint firstItem="2Qu-uI-JvL" firstAttribute="leading" secondItem="zKx-0G-hwU" secondAttribute="trailing" constant="3" id="4JS-kl-jW8"/>
+                <constraint firstItem="2Qu-uI-JvL" firstAttribute="leading" secondItem="zKx-0G-hwU" secondAttribute="trailing" constant="1" id="4JS-kl-jW8"/>
                 <constraint firstAttribute="trailing" secondItem="7rq-lY-FrR" secondAttribute="trailing" constant="200" id="4MY-9J-Mlc"/>
                 <constraint firstItem="2Qu-uI-JvL" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="8" id="6n2-ik-eYB"/>
                 <constraint firstItem="zKx-0G-hwU" firstAttribute="top" secondItem="13u-a7-fcZ" secondAttribute="bottom" constant="4" id="83G-fe-TH3"/>
