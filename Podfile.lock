@@ -27,6 +27,7 @@ PODS:
   - Rebel (0.3.2):
     - Rebel/NSColorExtensions
   - Rebel/NSColorExtensions (0.3.2)
+  - RFOverlayScrollView (0.3)
   - RHPreferences (1.0.0)
   - SORelativeDateTransformer (1.1.10)
   - StartAtLoginController (0.0.1)
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - ReactiveCocoa (~> 2.2.4)
   - ReactiveViewModel (~> 0.2)
   - Rebel (~> 0.3.2)
+  - RFOverlayScrollView (~> 0.3)
   - RHPreferences (~> 1.0.0)
   - SORelativeDateTransformer (~> 1.1.9)
   - StartAtLoginController (~> 0.0.1)
@@ -65,6 +67,7 @@ SPEC CHECKSUMS:
   ReactiveCocoa: 953a45dda30674fe704d1d9c77cc874141742f47
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
   Rebel: 62fb32b3b4c06ce3d73e226f7d8fc51ad1b70d10
+  RFOverlayScrollView: 8f1405756f416d0d865217ae04f41c48c77978b7
   RHPreferences: 0725b8c28519a1f4fe7002765dd6b4333b966fdd
   SORelativeDateTransformer: eba9b9bcc290eb7c9754b9955ace59b890fa59f8
   StartAtLoginController: 7ab3011175dbcce1f887cc004fb5faabf29aba8d
