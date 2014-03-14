@@ -86,6 +86,7 @@
         subscribeNext:^(id x) {
             @strongify(self);
             DDLogInfo(@"Stream has been cleared. Deactivate the viewer.");
+            [self.wso evaluateWebScript:@"video.pause(); video.currentTime = -1;"];
             [[self.webView mainFrame] loadHTMLString:nil baseURL:nil];
             [self.titleView setIsActive:NO];
             if ([self.viewerView superview] != nil) {
