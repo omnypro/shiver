@@ -59,7 +59,7 @@
             self.hasError = YES;
             self.errorMessage = [error localizedDescription];
             DDLogError(@"%@", error);
-            return [RACSignal return:nil];
+            return [self.client fetchUser];
         }];
 
     RAC(self, isLoggedIn) = readySignal;
