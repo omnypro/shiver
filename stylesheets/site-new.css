@@ -1,0 +1,20 @@
+/* Force the box model to use the saner border-box calculation. */
+*, *:before, *:after {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+}
+
+/* Scaffolding. */
+html, body { width: 100%; height: 100%; }
+html { -webkit-tap-highlight-color: rgba(#000, 0); }
+body { }
+
+header {
+  width: 100%; height: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
