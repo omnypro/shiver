@@ -23,7 +23,7 @@ header {
     color: #fff;
 
     padding-top: 140px;
-    padding-bottom: 254px; }
+    padding-bottom: 10px; }
 header h1 {
     font-size: 40px;
     font-weight: 900;
@@ -96,7 +96,7 @@ h2 {
     border-radius: 4px;
     text-align: center;
 
-    margin-top: 120px; margin-bottom: 20px;
+    margin-top: 20px; margin-bottom: 20px;
     padding: 4px; }
 .download span {
     padding-left: 26px;
