@@ -136,7 +136,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="Sf4-UK-a7J"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Reload" imagePosition="overlaps" alignment="center" inset="2" id="Jqt-vC-6Kc">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Reload" imagePosition="only" alignment="center" inset="2" id="Jqt-vC-6Kc">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

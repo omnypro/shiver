@@ -87,7 +87,7 @@
                         <constraint firstAttribute="width" constant="30" id="WK4-qK-uhW"/>
                         <constraint firstAttribute="height" constant="30" id="Z00-5F-mby"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Close" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="07K-LD-Hrx">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Close" imagePosition="only" alignment="center" inset="2" id="07K-LD-Hrx">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
