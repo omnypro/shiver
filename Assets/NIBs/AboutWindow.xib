@@ -107,7 +107,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="NwQ-cl-DmI">
                         <rect key="frame" x="20" y="85" width="200" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="©2013 Revyver Inc. All rights reserved." id="QFM-s6-Qkq">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="©2014 Revyver Inc. All rights reserved." id="QFM-s6-Qkq">
                             <font key="font" size="10" name="HelveticaNeue-Bold"/>
                             <color key="textColor" red="0.45098042490000001" green="0.45098042490000001" blue="0.45098042490000001" alpha="1" colorSpace="deviceRGB"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
