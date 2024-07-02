@@ -12,6 +12,8 @@
 		E359C39F2C33DB9C00B085C4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359C39E2C33DB9C00B085C4 /* Item.swift */; };
 		E359C3A12C33DB9C00B085C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359C3A02C33DB9C00B085C4 /* Assets.xcassets */; };
 		E359C3A42C33DB9C00B085C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359C3A32C33DB9C00B085C4 /* Preview Assets.xcassets */; };
+		E3E201E72C345C2E0091BB15 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E201E62C345C2E0091BB15 /* SidebarView.swift */; };
+		E3E201E92C345D9A0091BB15 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E201E82C345D9A0091BB15 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		E359C3A02C33DB9C00B085C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E359C3A32C33DB9C00B085C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E359C3A52C33DB9C00B085C4 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Shiver.entitlements; sourceTree = "<group>"; };
+		E3E201E62C345C2E0091BB15 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		E3E201E82C345D9A0091BB15 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				E359C39A2C33DB9C00B085C4 /* ShiverApp.swift */,
 				E359C39C2C33DB9C00B085C4 /* ContentView.swift */,
+				E3E201E62C345C2E0091BB15 /* SidebarView.swift */,
+				E3E201E82C345D9A0091BB15 /* MainView.swift */,
 				E359C39E2C33DB9C00B085C4 /* Item.swift */,
 				E359C3A02C33DB9C00B085C4 /* Assets.xcassets */,
 				E359C3A52C33DB9C00B085C4 /* Shiver.entitlements */,
@@ -143,7 +149,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E359C39D2C33DB9C00B085C4 /* ContentView.swift in Sources */,
+				E3E201E72C345C2E0091BB15 /* SidebarView.swift in Sources */,
 				E359C39F2C33DB9C00B085C4 /* Item.swift in Sources */,
+				E3E201E92C345D9A0091BB15 /* MainView.swift in Sources */,
 				E359C39B2C33DB9C00B085C4 /* ShiverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +283,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shiver/Shiver.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -283,6 +292,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Shiver;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -290,7 +301,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.omnypro.Shiver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omnypro.shiver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -303,6 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Shiver/Shiver.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -311,6 +323,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Shiver;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -318,7 +332,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.omnypro.Shiver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.omnypro.shiver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

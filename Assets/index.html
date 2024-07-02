@@ -1,0 +1,53 @@
+<!-- 
+  We need this file to bypass Twitch's inability to support embeds in native applications. 
+  Happy to report that yes, the year is 2024.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shiver Embed Functionality</title>
+  <style>
+    html {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #twitch-embed {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="twitch-embed"></div>
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  <script type="text/javascript">
+    function getChannelName() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('channel') || "omnyist";
+    }
+
+    const options = {
+      width: "100%",
+      height: "100%",
+      channel: getChannelName(),
+      parent: ["shiver.omnyist.productions"]
+    };
+
+    const player = new Twitch.Player("twitch-embed", options);
+  </script>
+</body>
+
+</html>
