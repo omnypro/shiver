@@ -14,15 +14,15 @@ struct MainView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if isLoading {
-                ProgressView("Loading...")
+            ZStack {
+                Color.black
+                WebView(channelName: channel.displayName.lowercased(), isLoading: $isLoading).aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit).frame(minWidth: 400, idealWidth: 640)
             }
-            WebView(channelName: channel.displayName.lowercased(), isLoading: $isLoading).aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
-            VStack(alignment: .leading) {
-                Text("TEST").font(.title)
-                Text(channel.game).font(.subheadline)
-            }
-            .padding()
+//            VStack(alignment: .leading) {
+//                Text("TEST").font(.title)
+//                Text(channel.game).font(.subheadline)
+//            }
+//            .padding()
         }
     }
 }
