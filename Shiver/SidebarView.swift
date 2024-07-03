@@ -15,17 +15,19 @@ struct SidebarView: View {
         VStack(alignment: .leading) {
             // Followed Channels List
             List(selection: $selectedChannel) {
-                ForEach(channels) { channel in
-                    NavigationLink(value: channel) {
-                        HStack {
-                            Image(channel.profileImageUrl).resizable().frame(width: 40, height: 40)
-                            VStack(alignment: .leading) {
-                                Text(channel.displayName).font(.headline)
-                                Text(channel.game).font(.subheadline)
+                Section(header: Text("Live Channels")) {
+                    ForEach(channels) { channel in
+                        NavigationLink(value: channel) {
+                            HStack {
+                                Image(channel.profileImageUrl).resizable().frame(width: 40, height: 40)
+                                VStack(alignment: .leading) {
+                                    Text(channel.displayName).font(.headline)
+                                    Text(channel.game).font(.subheadline)
+                                }
                             }
                         }
+                        .tag(channel)
                     }
-                    .tag(channel)
                 }
             }
             .listStyle(SidebarListStyle())
@@ -33,6 +35,7 @@ struct SidebarView: View {
             
             // Profile
             // ...
+            
         }
     }
 }
