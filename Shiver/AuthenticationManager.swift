@@ -37,11 +37,19 @@ class AuthenticationManager: NSObject, ASWebAuthenticationPresentationContextPro
         session.start()
     }
     
+    #if os(macOS)
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        #if os(macOS)
-        return NSApplication.shared.windows.last(where: \.isKeyWindow)!
-        #else
-        return UIApplication.shared.windows.first{ $0.isKeyWindow }!
-        #endif
+        return NSApplication.shared()?.windows.last(where: \.isKeyWindow) ?? ASPresentationAnchor()
     }
+    #endif
+    
+    #if os(visionOS)
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            return windowScene.windows.last(where: \.isKeyWindow) ?? ASPresentationAnchor()
+        }
+        
+        return ASPresentationAnchor()
+    }
+    #endif
 }
