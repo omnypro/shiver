@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import os
 
 @main
 struct ShiverApp: App {
@@ -26,7 +27,11 @@ struct ShiverApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(sharedModelContainer)
         }
-        .modelContainer(sharedModelContainer)
+        .windowResizability(.contentSize)
     }
 }
+
+/// A global log of events for the app.
+let logger = Logger()
