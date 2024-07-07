@@ -5,17 +5,19 @@
 //  Created by Bryan Veloso on 7/6/24.
 //
 
+import Alamofire
 import AuthenticationServices
 import Foundation
-import SwiftUI
 import Security
+import SwiftData
+import SwiftUI
 
 class TwitchManager: NSObject, ASWebAuthenticationPresentationContextProviding {
     static let shared = TwitchManager()
     
     private override init() {}
     
-    func startAuthentication(completion: @escaping (Error?) -> Void) {
+    func startAuthentication(context: ModelContext, completion: @escaping (Error?) -> Void) {
         let authURL = URL(string: "https://getshiver.app/api/auth/authenticate")!
         let callbackURLScheme = "shiver"
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: callbackURLScheme) { callbackURL, error in
@@ -29,6 +31,9 @@ class TwitchManager: NSObject, ASWebAuthenticationPresentationContextProviding {
                    let refreshToken = queryItems.first(where: { $0.name == "refresh_token" })?.value {
                     self.storeToken(accessToken, forKey: "accessToken")
                     self.storeToken(refreshToken, forKey: "refreshToken")
+                    self.fetchUser(accessToken: accessToken, context: context) { error in
+                        completion(error)
+                    }
                     completion(nil)
                 } else {
                     completion(nil)
@@ -94,5 +99,61 @@ class TwitchManager: NSObject, ASWebAuthenticationPresentationContextProviding {
         }
         
         return nil
+    }
+    
+    private func storeUser(_ info: TwitchUser, context: ModelContext) {
+        context.insert(info)
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save user info: \(error)")
+        }
+    }
+    
+    func retrieveUser(context: ModelContext) -> TwitchUser? {
+        let request: FetchDescriptor<TwitchUser> = FetchDescriptor()
+        
+        do {
+            let results = try context.fetch(request)
+            return results.first
+        } catch {
+            print("Failed to fetch user info: \(error)")
+            return nil
+        }
+    }
+    
+    private func fetchUser(accessToken: String, context: ModelContext, completion: @escaping (Error?) -> Void) {
+        let url = "https://api.twitch.tv/helix/users"
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)",
+            "Client-ID": ProcessInfo.processInfo.environment["TWITCH_CLIENT_ID"]!
+        ]
+        
+        AF.request(url, headers: headers).responseDecodable(of: TwitchUserResponse.self) { response in
+            switch response.result {
+            case .success(let userResponse):
+                guard let user = userResponse.data.first else {
+                    completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid data format"]))
+                    return
+                }
+                                
+                let payload = TwitchUser(
+                    id: user.id,
+                    login: user.login,
+                    displayName: user.display_name,
+                    type: user.type,
+                    broadcasterType: user.broadcaster_type,
+                    userDescription: user.description,
+                    profileImageURL: user.profile_image_url,
+                    offlineImageURL: user.offline_image_url,
+                    email: user.email
+                )
+                
+                self.storeUser(payload, context: context)
+                completion(nil)
+            case .failure(let error):
+                completion(error)
+            }
+        }
     }
 }
