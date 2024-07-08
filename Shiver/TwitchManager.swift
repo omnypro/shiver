@@ -121,7 +121,7 @@ class TwitchManager: NSObject, ASWebAuthenticationPresentationContextProviding {
             return nil
         }
     }
-    
+
     private func fetchUser(accessToken: String, context: ModelContext, completion: @escaping (Error?) -> Void) {
         let url = "https://api.twitch.tv/helix/users"
         let headers: HTTPHeaders = [
@@ -155,5 +155,42 @@ class TwitchManager: NSObject, ASWebAuthenticationPresentationContextProviding {
                 completion(error)
             }
         }
+    }
+    
+    func fetchStreams(accessToken: String, context: ModelContext, completion: @escaping (Result<[TwitchStream], Error>) -> Void) {
+        guard let user: TwitchUser = TwitchManager.shared.retrieveUser(context: context) else {
+            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User not found"])))
+            return
+        }
+        
+        let url = "https://api.twitch.tv/helix/streams/followed?user_id=\(user.id)"
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)",
+            "Client-ID": ProcessInfo.processInfo.environment["TWITCH_CLIENT_ID"]!
+        ]
+        
+        let decoder: JSONDecoder = {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return decoder
+        }()
+        
+        AF.request(url, headers: headers).responseDecodable(of: TwitchStreamResponse.self, decoder: decoder) { response in
+            switch response.result {
+            case.success(let streamResponse):
+                completion(.success(streamResponse.data))
+            case.failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func refreshStreams(context: ModelContext, completion: @escaping (Result<[TwitchStream], Error>) -> Void) {
+        guard let accessToken = retrieveToken(forKey: "accessToken") else {
+            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Access token not found"])))
+            return
+        }
+        
+        fetchStreams(accessToken: accessToken, context: context, completion: completion)
     }
 }

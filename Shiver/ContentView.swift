@@ -14,34 +14,80 @@ struct ContentView: View {
     @State private var loginMessage = ""
     @State private var accessToken: String?
     @State private var refreshToken: String?
+    @State private var user: TwitchUser?
+    @State private var streams: [TwitchStream] = []
+    
+    @Environment(\.modelContext) private var context: ModelContext
     
     var body: some View {
         VStack {
-            Button("Login with Twitch") {
-                startAuthentication()
-            }
-            .alert(isPresented: $showingLoginAlert) {
-                Alert(title: Text("Login"), message: Text(loginMessage), dismissButton: .default(Text("OK")))
-            }
-            
-            if let accessToken = accessToken, let refreshToken = refreshToken {
-                Text("Access Token: \(accessToken)")
-                Text("Refresh Token: \(refreshToken)")
+            if let user = user {
+                NavigationSplitView {
+                    VStack(alignment: .leading) {
+                        List($streams) { (stream: Binding<TwitchStream>) in
+                            VStack(alignment: .leading) {
+                                Text(stream.userName.wrappedValue)
+                                    .font(.headline)
+                                Text(stream.gameName.wrappedValue)
+                                    .font(.subheadline)
+                            }
+                        }
+
+                        Text("User Info:")
+                            .font(.headline)
+                        Text("ID: \(user.id)")
+                        Text("Login: \(user.login)")
+                        Text("Email: \(user.email ?? "")")
+
+                        HStack {
+                            AsyncImage(url: URL(string: user.profileImageURL!), scale: 2) { image in
+                                image.resizable()
+                            } placeholder: {
+                                Color.black
+                            }
+                            .frame(width: 36, height: 36)
+                            .clipShape(.rect(cornerRadius: 8))
+                            
+                            Text(user.displayName)
+                        }
+                    }
+                    .padding()
+                } detail: {
+                    Text("")
+                }
+            } else {
+                Button("Login with Twitch") {
+                    startAuthentication()
+                }
             }
         }
         .onAppear {
             accessToken = TwitchManager.shared.retrieveToken(forKey: "accessToken")
             refreshToken = TwitchManager.shared.retrieveToken(forKey: "refreshToken")
+            user = TwitchManager.shared.retrieveUser(context: context)
+            fetchStreams()
+        }
+    }
+    
+    func fetchStreams() {
+        TwitchManager.shared.refreshStreams(context: context) { result in
+            switch result {
+            case .success(let fetchedStreams):
+                streams = fetchedStreams
+            case .failure(let error):
+                print("Failed to fetch streams: \(error)")
+            }
         }
     }
     
     func startAuthentication() {
-        TwitchManager.shared.startAuthentication { error in
+        TwitchManager.shared.startAuthentication(context: context) { error in
             if let error = error {
                 loginMessage = "Authentication error: \(error.localizedDescription)"
             } else {
                 accessToken = TwitchManager.shared.retrieveToken(forKey: "accessToken")
                 refreshToken = TwitchManager.shared.retrieveToken(forKey: "refreshToken")
+                user = TwitchManager.shared.retrieveUser(context: context)
                 loginMessage = "Authentication successful"
             }
             
@@ -50,31 +96,6 @@ struct ContentView: View {
     }
 }
 
-//struct ContentView: View {
-//    @State private var isLoggedIn: Bool = false
-//    @State private var selectedChannel: Channel?
-//    
-//    var body: some View {
-//        VStack {
-//            // Main View
-//            NavigationSplitView {
-//                SidebarView(channels: sampleChannels, selectedChannel: $selectedChannel)
-//            } detail: {
-//                if let selectedChannel = selectedChannel {
-//                    MainView(channel: selectedChannel)
-//                } else {
-//                    Text("Select a channel to view!")
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//let sampleChannels = [
-//    Channel(displayName: "Avalonstar", game: "Wuthering Waves", profileImageUrl: ""),
-//    Channel(displayName: "Spoonee", game: "Persona 3", profileImageUrl: "")
-//]
-//
 //struct Preview: PreviewProvider {
 //    static var previews: some View {
 //        ContentView()
