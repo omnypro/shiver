@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		E359C39D2C33DB9C00B085C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359C39C2C33DB9C00B085C4 /* ContentView.swift */; };
 		E359C3A12C33DB9C00B085C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359C3A02C33DB9C00B085C4 /* Assets.xcassets */; };
 		E359C3A42C33DB9C00B085C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E359C3A32C33DB9C00B085C4 /* Preview Assets.xcassets */; };
-		E3DFCAFF2C3B25670073497F /* TwitchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DFCAFE2C3B25640073497F /* TwitchUser.swift */; };
 		E3E201E72C345C2E0091BB15 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E201E62C345C2E0091BB15 /* SidebarView.swift */; };
 		E3E201E92C345D9A0091BB15 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E201E82C345D9A0091BB15 /* MainView.swift */; };
 		E3EB82C72C3A6F4500780954 /* TwitchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EB82C62C3A6F4000780954 /* TwitchManager.swift */; };
@@ -27,12 +26,27 @@
 		E359C3A02C33DB9C00B085C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E359C3A32C33DB9C00B085C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E359C3A52C33DB9C00B085C4 /* Shiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Shiver.entitlements; sourceTree = "<group>"; };
-		E3DFCAFE2C3B25640073497F /* TwitchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchUser.swift; sourceTree = "<group>"; };
 		E3E201E62C345C2E0091BB15 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		E3E201E82C345D9A0091BB15 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E3EB82C62C3A6F4000780954 /* TwitchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitchManager.swift; sourceTree = "<group>"; };
 		E3EB82C82C3A74C200780954 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E3DFCB012C3B39770073497F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TwitchChannel.swift,
+				TwitchStream.swift,
+				TwitchUser.swift,
+			);
+			target = E359C3962C33DB9C00B085C4 /* Shiver */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E3DFCB002C3B39740073497F /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E3DFCB012C3B39770073497F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E359C3942C33DB9C00B085C4 /* Frameworks */ = {
@@ -66,7 +80,7 @@
 		E359C3992C33DB9C00B085C4 /* Shiver */ = {
 			isa = PBXGroup;
 			children = (
-				E3DFCAFE2C3B25640073497F /* TwitchUser.swift */,
+				E3DFCB002C3B39740073497F /* Models */,
 				E3EB82C62C3A6F4000780954 /* TwitchManager.swift */,
 				E359C39A2C33DB9C00B085C4 /* ShiverApp.swift */,
 				E359C39C2C33DB9C00B085C4 /* ContentView.swift */,
@@ -169,7 +183,6 @@
 				E359C39D2C33DB9C00B085C4 /* ContentView.swift in Sources */,
 				E3E201E72C345C2E0091BB15 /* SidebarView.swift in Sources */,
 				E338110E2C3739460091D55F /* OSKit.swift in Sources */,
-				E3DFCAFF2C3B25670073497F /* TwitchUser.swift in Sources */,
 				E3E201E92C345D9A0091BB15 /* MainView.swift in Sources */,
 				E359C39B2C33DB9C00B085C4 /* ShiverApp.swift in Sources */,
 			);
