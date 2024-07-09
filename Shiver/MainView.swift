@@ -9,14 +9,13 @@ import SwiftUI
 import WebKit
 
 struct MainView: View {
-    var channel: Channel
-    @State private var isLoading = true
+    var channel: TwitchStream
     
     var body: some View {
         VStack(alignment: .leading) {
             ZStack {
                 Color.black
-                WebView(channelName: channel.displayName.lowercased(), isLoading: $isLoading).aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit).frame(minWidth: 400, idealWidth: 640)
+                WebView(channelName: channel.userLogin).aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit).frame(minWidth: 400, idealWidth: 640)
             }
 //            VStack(alignment: .leading) {
 //                Text("TEST").font(.title)
@@ -27,13 +26,12 @@ struct MainView: View {
     }
 }
 
-struct WebView: NSViewRepresentable {
+struct WebView: OSViewRepresentable {
     var channelName: String
-    @Binding var isLoading: Bool
     
-    func makeNSView(context: Context) -> WKWebView {
+    func makeOSView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        webView.navigationDelegate = context.coordinator
+//        webView.navigationDelegate = context.coordinator
         
         let url = URL(string: "https://shiver-embed.omnyist.productions/index.html?channel=\(channelName)")!
         let request = URLRequest(url: url)
@@ -41,25 +39,34 @@ struct WebView: NSViewRepresentable {
         return webView
     }
     
-    func updateNSView(_ nsView: WKWebView, context: Context) {
+    func updateOSView(_ osView: WKWebView, context: Context) {
         let url = URL(string: "https://shiver-embed.omnyist.productions/index.html?channel=\(channelName)")!
         let request = URLRequest(url: url)
-        nsView.load(request)
+        osView.load(request)
     }
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(isLoading: $isLoading)
-    }
+//    func makeCoordinator() -> Coordinator {
+//        Coordinator()
+//    }
     
-    class Coordinator: NSObject, WKNavigationDelegate {
-        @Binding var isLoading: Bool
-        
-        init(isLoading: Binding<Bool>) {
-            _isLoading = isLoading
-        }
-        
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            isLoading = false
-        }
-    }
+    
+//    init(channelName: String) {
+//        let config = WKWebViewConfiguration()
+//        config.preferences.isElementFullscreenEnabled = true
+//        config.preferences.isTextInteractionEnabled = false
+//
+//        self.channelName = channelName
+//    }
 }
+
+//extension WebView {
+//    @MainActor class Coordinator: NSObject, WKNavigationDelegate {
+//        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
+//            if let url = navigationAction.request.url {
+//                return .cancel
+//            } else {
+//                return .allow
+//            }
+//        }
+//    }
+//}

@@ -25,19 +25,22 @@ struct ContentView: View {
                 NavigationSplitView {
                     VStack(alignment: .leading) {
                         List($streams) { (stream: Binding<TwitchStream>) in
-                            VStack(alignment: .leading) {
-                                Text(stream.userName.wrappedValue)
-                                    .font(.headline)
-                                Text(stream.gameName.wrappedValue)
-                                    .font(.subheadline)
+                            NavigationLink(destination: MainView(channel: stream.wrappedValue)) {
+                                VStack(alignment: .leading) {
+                                    Text(stream.userName.wrappedValue)
+                                        .font(.headline)
+                                    Text(stream.gameName.wrappedValue)
+                                        .font(.subheadline)
+                                }
+                                .fixedSize(horizontal: true, vertical: true)
                             }
                         }
 
-                        Text("User Info:")
-                            .font(.headline)
-                        Text("ID: \(user.id)")
-                        Text("Login: \(user.login)")
-                        Text("Email: \(user.email ?? "")")
+//                        Text("User Info:")
+//                            .font(.headline)
+//                        Text("ID: \(user.id)")
+//                        Text("Login: \(user.login)")
+//                        Text("Email: \(user.email ?? "")")
 
                         HStack {
                             AsyncImage(url: URL(string: user.profileImageURL!), scale: 2) { image in
@@ -50,10 +53,10 @@ struct ContentView: View {
                             
                             Text(user.displayName)
                         }
+                        .padding()
                     }
-                    .padding()
                 } detail: {
-                    Text("")
+                    Text("Select a stream to begin!").font(.headline)
                 }
             } else {
                 Button("Login with Twitch") {

@@ -42,10 +42,18 @@
 			);
 			target = E359C3962C33DB9C00B085C4 /* Shiver */;
 		};
+		E3DFCB922C3CAC5E0073497F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SettingsView.swift,
+			);
+			target = E359C3962C33DB9C00B085C4 /* Shiver */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E3DFCB002C3B39740073497F /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E3DFCB012C3B39770073497F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		E3DFCB912C3CAC5B0073497F /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E3DFCB922C3CAC5E0073497F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				E3DFCB002C3B39740073497F /* Models */,
+				E3DFCB912C3CAC5B0073497F /* Views */,
 				E3EB82C62C3A6F4000780954 /* TwitchManager.swift */,
 				E359C39A2C33DB9C00B085C4 /* ShiverApp.swift */,
 				E359C39C2C33DB9C00B085C4 /* ContentView.swift */,

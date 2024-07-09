@@ -14,6 +14,7 @@ struct ShiverApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             TwitchUser.self,
+            TwitchStream.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -29,7 +30,9 @@ struct ShiverApp: App {
             ContentView()
                 .modelContainer(sharedModelContainer)
         }
-        .windowResizability(.contentSize)
+        #if canImport(AppKit)
+        .windowStyle(.hiddenTitleBar)
+        #endif
     }
 }
 
